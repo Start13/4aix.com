@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corrado Bruni - Esperto in Programmazione e Progettazione</title>
+    <title>Corrado Bruni - Consulente Tecnico e Sviluppatore Esperto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset e stili base */
         * {
             margin: 0;
             padding: 0;
@@ -27,9 +27,9 @@
         
         /* Header */
         header {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
             color: white;
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -42,7 +42,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
         }
         
         .header-content {
@@ -50,17 +50,23 @@
             z-index: 1;
         }
         
-        .profile-img {
-            width: 150px;
-            height: 150px;
+        .profile-img-container {
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             border: 5px solid white;
             margin: 0 auto 20px;
-            background-color: #ddd;
+            overflow: hidden;
+            background-color: #e9ecef;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
+        }
+        
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         h1 {
@@ -69,9 +75,12 @@
         }
         
         .tagline {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 300;
             margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         /* Sezioni */
@@ -97,7 +106,7 @@
             position: absolute;
             width: 80px;
             height: 3px;
-            background: linear-gradient(to right, #1a2a6c, #fdbb2d);
+            background: linear-gradient(to right, #1a2a6c, #2c3e50);
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
@@ -114,16 +123,26 @@
             flex: 2;
         }
         
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
         .about-image {
             flex: 1;
             background-color: #e9ecef;
-            height: 300px;
+            height: 350px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            color: #6c757d;
+            overflow: hidden;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         /* Skills */
@@ -137,16 +156,18 @@
             background: white;
             border-radius: 10px;
             padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #1a2a6c;
         }
         
         .skill-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
         
         .skill-icon {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 20px;
             color: #1a2a6c;
         }
@@ -161,12 +182,12 @@
         .timeline::after {
             content: '';
             position: absolute;
-            width: 6px;
+            width: 4px;
             background-color: #1a2a6c;
             top: 0;
             bottom: 0;
             left: 50%;
-            margin-left: -3px;
+            margin-left: -2px;
         }
         
         .timeline-item {
@@ -185,35 +206,37 @@
         }
         
         .timeline-content {
-            padding: 20px 30px;
+            padding: 25px;
             background-color: white;
             position: relative;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
         
         .timeline-item:nth-child(odd) .timeline-content::after {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
+            width: 16px;
+            height: 16px;
+            right: -8px;
             background-color: white;
-            top: 20px;
+            top: 25px;
             border-radius: 50%;
             z-index: 1;
+            border: 3px solid #1a2a6c;
         }
         
         .timeline-item:nth-child(even) .timeline-content::after {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            left: -10px;
+            width: 16px;
+            height: 16px;
+            left: -8px;
             background-color: white;
-            top: 20px;
+            top: 25px;
             border-radius: 50%;
             z-index: 1;
+            border: 3px solid #1a2a6c;
         }
         
         /* Services */
@@ -228,16 +251,17 @@
             border-radius: 10px;
             padding: 30px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
         }
         
         .service-icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
             color: #1a2a6c;
         }
@@ -250,6 +274,15 @@
         
         .contact-info {
             flex: 1;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: #1a2a6c;
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
         }
         
         .contact-form {
@@ -266,10 +299,16 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+        
+        input:focus, textarea:focus {
+            border-color: #1a2a6c;
+            outline: none;
         }
         
         button {
-            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            background: linear-gradient(to right, #1a2a6c, #2c3e50);
             color: white;
             border: none;
             padding: 12px 30px;
@@ -287,13 +326,56 @@
         footer {
             background-color: #1a2a6c;
             color: white;
-            padding: 30px 0;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-info {
+            flex: 2;
+        }
+        
+        .footer-links {
+            flex: 1;
+        }
+        
+        .footer-links h4 {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
             text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #ccc;
         }
         
         /* Responsive */
         @media (max-width: 768px) {
-            .about-content, .contact-content {
+            .about-content, .contact-content, .footer-content {
                 flex-direction: column;
             }
             
@@ -310,6 +392,11 @@
             .timeline-item:nth-child(even) {
                 left: 0;
             }
+            
+            .profile-img-container {
+                width: 150px;
+                height: 150px;
+            }
         }
     </style>
 </head>
@@ -318,10 +405,15 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="profile-img">CB</div>
+                <div class="profile-img-container">
+                    <!-- Sostituisci con la tua immagine -->
+                    <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: #2c3e50; color: white; font-size: 3rem;">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
                 <h1>Corrado Bruni</h1>
-                <p class="tagline">Esperto in Programmazione, Progettazione e Sviluppo Aziendale</p>
-                <p>Torino, 60 anni - Disponibile per nuove opportunità professionali</p>
+                <p class="tagline">Consulente Tecnico con Esperienza Pluriennale in Sviluppo Software e Gestione Aziendale</p>
+                <p>Torino - Disponibile per collaborazioni professionali</p>
             </div>
         </div>
     </header>
@@ -330,16 +422,19 @@
     <section id="about">
         <div class="container">
             <div class="section-title">
-                <h2>Chi Sono</h2>
+                <h2>Profilo Professionale</h2>
             </div>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Sono Corrado Bruni, un professionista con una vasta esperienza in diversi settori. Ho 60 anni, vivo a Torino e sono attualmente alla ricerca di nuove opportunità lavorative per creare un'entrata economica stabile.</p>
-                    <p>Nonostante alcune difficoltà di salute all'anca e ai ginocchi, mantengo una forte determinazione e sono disposto a impegnarmi in diversi tipi di lavoro. Sono particolarmente interessato al ruolo di autista privato, ma sono aperto a qualsiasi opportunità che mi permetta di mettere a frutto le mie competenze.</p>
-                    <p>Attualmente non ho una partita IVA per motivi economici, ma sono pronto a valutare qualsiasi forma di collaborazione.</p>
+                    <p>Professionista con significativa esperienza nello sviluppo software, progettazione tecnica e gestione aziendale. Ho coordinato team e progetti complessi, raggiungendo obiettivi ambiziosi in diversi settori.</p>
+                    <p>La mia carriera include l'avvio e la gestione di iniziative imprenditoriali di successo, con particolare competenza nello sviluppo di soluzioni software personalizzate e nella creazione di siti web moderni e funzionali.</p>
+                    <p>Attualmente cerco opportunità di collaborazione dove poter applicare la mia esperienza e competenze tecniche per contribuire a progetti stimolanti e di valore.</p>
                 </div>
                 <div class="about-image">
-                    [Immagine di Corrado]
+                    <!-- Sostituisci con un'immagine professionale -->
+                    <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: #e9ecef; color: #6c757d;">
+                        <i class="fas fa-image" style="font-size: 3rem;"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -349,28 +444,28 @@
     <section id="skills" style="background-color: #f1f3f5;">
         <div class="container">
             <div class="section-title">
-                <h2>Le Mie Competenze</h2>
+                <h2>Competenze Tecniche</h2>
             </div>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <div class="skill-icon">💻</div>
-                    <h3>Programmazione</h3>
-                    <p>Esperto in diversi linguaggi di programmazione, con particolare competenza in Visual Basic 5. So creare siti web utilizzando VS Code con modelli avanzati come GPT-5 o DeepSeek Coder.</p>
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <h3>Sviluppo Software</h3>
+                    <p>Esperto in diversi linguaggi di programmazione con particolare competenza in Visual Basic. Sviluppo di applicazioni personalizzate e siti web moderni utilizzando tecnologie avanzate.</p>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">🔒</div>
-                    <h3>Progettazione Antifurti</h3>
-                    <p>Ho lavorato come progettista di sistemi antifurto, sviluppando soluzioni di sicurezza innovative e affidabili per diverse esigenze.</p>
+                    <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Progettazione Sistemi Sicurezza</h3>
+                    <p>Progettazione e implementazione di sistemi antifurto e soluzioni di sicurezza personalizzate per clienti privati e aziendali.</p>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">🎮</div>
+                    <div class="skill-icon"><i class="fas fa-gamepad"></i></div>
                     <h3>Sviluppo Videogiochi</h3>
-                    <p>Ho fondato e gestito un'azienda di produzione videogiochi che ha raggiunto un fatturato di 2,5 milioni di euro all'anno, coordinando team e progetti complessi.</p>
+                    <p>Esperienza nella creazione e gestione di aziende di produzione videogiochi, con risultati significativi nel settore.</p>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">🚗</div>
-                    <h3>Guida</h3>
-                    <p>Patente di guida e interesse per il ruolo di autista privato. Disponibile per trasferte e servizi di accompagnamento.</p>
+                    <div class="skill-icon"><i class="fas fa-car"></i></div>
+                    <h3>Servizi di Trasporto</h3>
+                    <p>Disponibile per servizi di autista privato e trasporto, con attenzione alla puntualità e professionalità.</p>
                 </div>
             </div>
         </div>
@@ -380,31 +475,31 @@
     <section id="experience">
         <div class="container">
             <div class="section-title">
-                <h2>La Mia Esperienza</h2>
+                <h2>Esperienze Professionali</h2>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>Imprenditore nel Settore Videogiochi</h3>
-                        <p>Ho fondato e gestito un'azienda di produzione videogiochi che ha raggiunto un fatturato di 2,5 milioni di euro all'anno. Esperienza nella gestione di team, budget e progetti complessi.</p>
+                        <p>Fondazione e gestione di un'azienda di produzione videogiochi che ha raggiunto un fatturato significativo. Coordinamento di team e gestione di progetti complessi.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>Progettista di Antifurti</h3>
-                        <p>Ho lavorato come progettista di sistemi antifurto, sviluppando soluzioni di sicurezza personalizzate per clienti privati e aziendali.</p>
+                        <h3>Progettista di Sistemi Antifurto</h3>
+                        <p>Progettazione e implementazione di soluzioni di sicurezza personalizzate per clienti privati e aziendali, con attenzione alle specifiche esigenze di ogni contesto.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>Programmatore</h3>
-                        <p>Esperienza pluriennale nella programmazione, con particolare competenza in Visual Basic 5 e nella creazione di siti web con tecnologie moderne.</p>
+                        <h3>Sviluppatore Software</h3>
+                        <p>Esperienza pluriennale nello sviluppo di applicazioni e siti web, con particolare competenza in Visual Basic e tecnologie moderne per la creazione di soluzioni web.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>Varie Attività Imprenditoriali</h3>
-                        <p>Ho gestito diverse ditte in vari settori, sviluppando competenze trasversali nella gestione aziendale e nel problem solving.</p>
+                        <h3>Consulente Tecnico</h3>
+                        <p>Consulenza per varie attività imprenditoriali, con sviluppo di competenze trasversali nella gestione aziendale e nel problem solving.</p>
                     </div>
                 </div>
             </div>
@@ -415,28 +510,28 @@
     <section id="services" style="background-color: #f1f3f5;">
         <div class="container">
             <div class="section-title">
-                <h2>Cosa Posso Fare</h2>
+                <h2>Servizi Offerti</h2>
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">💻</div>
+                    <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
                     <h3>Sviluppo Siti Web</h3>
-                    <p>Creazione di siti web moderni e responsive utilizzando VS Code e modelli avanzati.</p>
+                    <p>Creazione di siti web moderni, responsive e funzionali utilizzando tecnologie avanzate e best practices.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🚗</div>
-                    <h3>Autista Privato</h3>
-                    <p>Servizi di autista privato per trasferte, accompagnamenti e necessità di mobilità.</p>
+                    <div class="service-icon"><i class="fas fa-car-side"></i></div>
+                    <h3>Servizi di Autista</h3>
+                    <p>Servizi di autista privato per trasferte, accompagnamenti e necessità di mobilità professionale.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🔧</div>
-                    <h3>Lavori Vari</h3>
-                    <p>Disponibile per diversi tipi di lavoretti e mansioni, con approccio flessibile e determinato.</p>
+                    <div class="service-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Consulenza Tecnica</h3>
+                    <p>Consulenza basata sull'esperienza imprenditoriale e professionale in diversi settori tecnologici.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">💼</div>
-                    <h3>Consulenza</h3>
-                    <p>Consulenza basata sulla mia esperienza imprenditoriale e professionale in diversi settori.</p>
+                    <div class="service-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Soluzioni Personalizzate</h3>
+                    <p>Sviluppo di soluzioni software e tecniche personalizzate per esigenze specifiche.</p>
                 </div>
             </div>
         </div>
@@ -446,20 +541,19 @@
     <section id="contact">
         <div class="container">
             <div class="section-title">
-                <h2>Contattami</h2>
+                <h2>Contatti</h2>
             </div>
             <div class="contact-content">
                 <div class="contact-info">
                     <h3>Informazioni di Contatto</h3>
-                    <p>Sono disponibile per colloqui e opportunità di lavoro. Non esitare a contattarmi per discutere di come posso contribuire alla tua azienda o progetto.</p>
-                    <p><strong>Disponibilità:</strong> Immediata</p>
-                    <p><strong>Zona:</strong> Torino e dintorni</p>
-                    <p><strong>Note:</strong> Attualmente senza partita IVA per motivi economici</p>
+                    <p>Sono disponibile per discutere potenziali collaborazioni e progetti interessanti. Non esitare a contattarmi per esplorare come le mie competenze possano aggiungere valore al tuo progetto o alla tua azienda.</p>
+                    <p><strong>Zona di operatività:</strong> Torino e dintorni</p>
+                    <p><strong>Modalità di collaborazione:</strong> Valuto diverse forme di collaborazione professionale</p>
                 </div>
                 <div class="contact-form">
                     <form>
                         <div class="form-group">
-                            <input type="text" placeholder="Nome" required>
+                            <input type="text" placeholder="Nome e Cognome" required>
                         </div>
                         <div class="form-group">
                             <input type="email" placeholder="Email" required>
@@ -480,9 +574,33 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>Corrado Bruni - Torino</p>
-            <p>Sito creato con VS Code e pubblicato su GitHub Pages</p>
-            <p>© 2023 4aix.com - Tutti i diritti riservati</p>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Corrado Bruni</h3>
+                    <p>Consulente Tecnico e Sviluppatore Esperto</p>
+                    <p>Torino, Italia</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Link Utili</h4>
+                    <ul>
+                        <li><a href="#about">Profilo</a></li>
+                        <li><a href="#skills">Competenze</a></li>
+                        <li><a href="#experience">Esperienze</a></li>
+                        <li><a href="#contact">Contatti</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Note Legali</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Termini di Servizio</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Sito web progettato e sviluppato da Corrado Bruni | &copy; 2024 4aix.com - Tutti i diritti riservati</p>
+            </div>
         </div>
     </footer>
 </body>
