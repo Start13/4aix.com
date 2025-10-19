@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corrado Bruni - Consulente Tecnico e Sviluppatore Esperto</title>
+    <meta name="description" content="Corrado Bruni - Esperto in Trading Algoritmico, Sviluppo MQL5 e Consulenza Tecnica. 15+ anni di esperienza professionale.">
+    <meta name="keywords" content="trading algoritmico, MQL5, sviluppatore EA, indicatori trading, MetaTrader, consulente tecnico">
+    <title>Corrado Bruni - Trading Algoritmico & Sviluppo Software</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #1a2a6c;
             --secondary-color: #2c3e50;
+            --accent-color: #00b4d8;
             --background-color: #f8f9fa;
             --text-color: #333;
             --card-background: white;
@@ -18,6 +22,7 @@
         .dark-mode {
             --primary-color: #3a4a8c;
             --secondary-color: #4c5e70;
+            --accent-color: #0096c7;
             --background-color: #121212;
             --text-color: #e0e0e0;
             --card-background: #1e1e1e;
@@ -28,7 +33,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
@@ -44,14 +49,24 @@
             padding: 0 20px;
         }
         
-        /* Header */
+        /* Header Migliorato */
         header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--header-text);
-            padding: 100px 0;
+            padding: 120px 0 80px;
             text-align: center;
             position: relative;
             overflow: hidden;
+        }
+        
+        .header-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,30 L70,70 M70,30 L30,70" stroke="white" stroke-width="1"/></svg>');
         }
         
         .header-content {
@@ -59,38 +74,94 @@
             z-index: 1;
         }
         
-        .profile-img-container {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            border: 5px solid var(--header-text);
-            margin: 0 auto 20px;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        /* Monogramma CB Elegante */
+        .monogram-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
         }
         
-        .profile-img {
-            font-size: 4rem;
-            color: var(--header-text);
+        .monogram-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
         }
         
-        h1 {
+        @keyframes shimmer {
+            0% { transform: rotate(45deg) translateX(-100%); }
+            100% { transform: rotate(45deg) translateX(100%); }
+        }
+        
+        .monogram {
             font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 2;
         }
         
-        .tagline {
-            font-size: 1.3rem;
-            font-weight: 300;
-            margin-bottom: 20px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+        .tagline-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0 30px;
+            flex-wrap: wrap;
         }
-
+        
+        .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .header-cta {
+            margin-top: 30px;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
+            background: #0096c7;
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            margin-left: 15px;
+        }
+        
         /* Dark Mode Toggle */
         .dark-mode-toggle {
             position: fixed;
@@ -107,16 +178,24 @@
             justify-content: center;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
-
-        .dark-mode-toggle i {
-            font-size: 1.2rem;
-            color: var(--primary-color);
+        
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
         }
         
         /* Sezioni */
         section {
             padding: 80px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .section-title {
@@ -174,6 +253,57 @@
             font-size: 4rem;
         }
         
+        /* Trading Section */
+        .trading-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .trading-card {
+            background: var(--card-background);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .trading-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .trading-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
         /* Skills */
         .skills-grid {
             display: grid;
@@ -225,6 +355,16 @@
             font-size: 3rem;
             margin-bottom: 20px;
             color: var(--primary-color);
+        }
+        
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-top: 15px;
+            font-weight: 500;
         }
         
         /* Experience */
@@ -338,6 +478,14 @@
         
         .contact-info p {
             margin-bottom: 15px;
+        }
+        
+        .contact-details {
+            background: var(--card-background);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-top: 20px;
         }
         
         .contact-form {
@@ -478,9 +626,24 @@
                 left: 0;
             }
             
-            .profile-img-container {
-                width: 150px;
-                height: 150px;
+            .monogram-container {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .monogram {
+                font-size: 2rem;
+            }
+            
+            .cta-button {
+                display: block;
+                margin: 10px auto;
+                text-align: center;
+                max-width: 250px;
+            }
+            
+            .cta-secondary {
+                margin-left: 0;
             }
         }
     </style>
@@ -500,14 +663,33 @@
 
     <!-- Header -->
     <header>
+        <div class="header-background"></div>
         <div class="container">
             <div class="header-content">
-                <div class="profile-img-container">
-                    <i class="fas fa-user profile-img"></i>
+                <div class="monogram-container">
+                    <div class="monogram">CB</div>
                 </div>
                 <h1>Corrado Bruni</h1>
-                <p class="tagline">Consulente Tecnico con Esperienza Pluriennale in Sviluppo Software e Gestione Aziendale</p>
-                <p>Torino - Disponibile per collaborazioni professionali</p>
+                <p class="tagline">15+ anni di esperienza in Trading Algoritmico & Sviluppo Software</p>
+                
+                <div class="tagline-badges">
+                    <div class="badge">Trader Algoritmico</div>
+                    <div class="badge">Sviluppatore MQL5</div>
+                    <div class="badge">Consulente Tecnico</div>
+                </div>
+                
+                <p>Torino - Soluzioni professionali per trading sistematico e sviluppo software</p>
+                
+                <div class="header-cta">
+                    <a href="#contact" class="cta-button">
+                        <i class="fas fa-paper-plane"></i>
+                        Collabora con me
+                    </a>
+                    <a href="#portfolio" class="cta-button cta-secondary">
+                        <i class="fas fa-chart-line"></i>
+                        Scopri i miei EA
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -520,9 +702,9 @@
             </div>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Professionista con significativa esperienza nello sviluppo software, progettazione tecnica e gestione aziendale. Ho coordinato team e progetti complessi, raggiungendo obiettivi ambiziosi in diversi settori.</p>
-                    <p>La mia carriera include l'avvio e la gestione di iniziative imprenditoriali di successo, con particolare competenza nello sviluppo di soluzioni software personalizzate e nella creazione di siti web moderni e funzionali.</p>
-                    <p>Ho sviluppato indicatori e Expert Advisor per MQL5, creato piattaforme SaaS come EasyCardPro, e realizzato numerosi siti web per clienti. Attualmente cerco opportunità di collaborazione dove poter applicare la mia esperienza e competenze tecniche.</p>
+                    <p>Professionista con 15+ anni di esperienza nel trading algoritmico, sviluppo software e gestione aziendale. Ho coordinato team e progetti complessi, raggiungendo obiettivi ambiziosi in diversi settori finanziari e tecnologici.</p>
+                    <p>La mia carriera include l'avvio e la gestione di iniziative imprenditoriali di successo, con particolare competenza nello sviluppo di sistemi di trading algoritmico, soluzioni software personalizzate e piattaforme web moderne.</p>
+                    <p>Specializzato in MQL5 per MetaTrader, ho sviluppato Expert Advisor e indicatori avanzati che combinano analisi tecnica, gestione del rischio e automazione per mercati FX, indici e commodities.</p>
                 </div>
                 <div class="about-image">
                     <i class="fas fa-laptop-code"></i>
@@ -531,64 +713,64 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
+    <!-- Trading Section -->
+    <section id="trading" style="background-color: rgba(0, 180, 216, 0.05);">
         <div class="container">
             <div class="section-title">
-                <h2>Competenze Tecniche</h2>
+                <h2>Trading Algoritmico Avanzato</h2>
             </div>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fas fa-code"></i></div>
-                    <h3>Sviluppo Software</h3>
-                    <p>Esperto in diversi linguaggi di programmazione con particolare competenza in Visual Basic e MQL5. Sviluppo di applicazioni personalizzate, siti web e sistemi complessi.</p>
+            
+            <div class="trading-highlights">
+                <div class="trading-card">
+                    <h3><i class="fas fa-robot"></i> Sistemi Automatizzati</h3>
+                    <p>Expert Advisor completamente automatizzati per MetaTrader 4/5, con backtesting avanzato e ottimizzazione dei parametri.</p>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3>Progettazione Sistemi Sicurezza</h3>
-                    <p>Progettazione e implementazione di sistemi antifurto e soluzioni di sicurezza personalizzate per clienti privati e aziendali.</p>
+                <div class="trading-card">
+                    <h3><i class="fas fa-chart-bar"></i> Indicator Personalizzati</h3>
+                    <p>Indicatori tecnici avanzati sviluppati su misura, integrando multiple timeframe e analisi di mercato complesse.</p>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fas fa-gamepad"></i></div>
-                    <h3>Sviluppo Videogiochi</h3>
-                    <p>Esperienza nella creazione e gestione di aziende di produzione videogiochi, con risultati significativi nel settore.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fas fa-car"></i></div>
-                    <h3>Servizi di Trasporto</h3>
-                    <p>Disponibile per servizi di autista privato e trasporto, con attenzione alla puntualità e professionalità.</p>
+                <div class="trading-card">
+                    <h3><i class="fas fa-shield-alt"></i> Risk Management</h3>
+                    <p>Sistemi di gestione del rischio incorporati, money management dinamico e protezioni per drawdown estremi.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio">
-        <div class="container">
-            <div class="section-title">
-                <h2>Progetti Realizzati</h2>
-            </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-icon">
+            
+            <div class="trading-features">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h4>Esecuzione Ultra-Rapida</h4>
+                        <p>Ottimizzazione per VPS e latenza minima</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div>
+                        <h4>Strategy Tester</h4>
+                        <p>Backtesting completo con dati tick-by-tick</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div>
+                        <h4>Multi-Timeframe</h4>
+                        <p>Analisi simultanea su diversi timeframe</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Indicatori & EA MQL5</h3>
-                    <p>Sviluppo di indicatori e Expert Advisor per trading algoritmico su piattaforma MetaTrader 5</p>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-icon">
-                        <i class="fas fa-credit-card"></i>
+                    <div>
+                        <h4>Analisi Avanzata</h4>
+                        <p>Pattern recognition e machine learning</p>
                     </div>
-                    <h3>EasyCardPro</h3>
-                    <p>Piattaforma SaaS per gestione carte fedeltà digitali - www.easycardpro.com</p>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Sviluppo Siti Web</h3>
-                    <p>Creazione di siti web moderni e applicazioni web personalizzate per diverse esigenze</p>
                 </div>
             </div>
         </div>
@@ -603,6 +785,12 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
+                        <h3>Trading Algoritmico & Sviluppo MQL5</h3>
+                        <p>15+ anni di esperienza nello sviluppo di sistemi di trading automatizzati, Expert Advisor e indicatori personalizzati per piattaforma MetaTrader.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
                         <h3>Imprenditore nel Settore Videogiochi</h3>
                         <p>Fondazione e gestione di un'azienda di produzione videogiochi che ha raggiunto un fatturato significativo. Coordinamento di team e gestione di progetti complessi.</p>
                     </div>
@@ -610,51 +798,117 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>Progettista di Sistemi Antifurto</h3>
-                        <p>Progettazione e implementazione di soluzioni di sicurezza personalizzate per clienti privati e aziendali, con attenzione alle specifiche esigenze di ogni contesto.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Sviluppatore Software</h3>
-                        <p>Esperienza pluriennale nello sviluppo di applicazioni e siti web, con particolare competenza in Visual Basic, MQL5 e tecnologie moderne per la creazione di soluzioni web.</p>
+                        <p>Progettazione e implementazione di soluzioni di sicurezza personalizzate per clienti privati e aziendali.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>Consulente Tecnico</h3>
-                        <p>Consulenza per varie attività imprenditoriali, con sviluppo di competenze trasversali nella gestione aziendale e nel problem solving.</p>
+                        <p>Consulenza per varie attività imprenditoriali, con sviluppo di competenze trasversali nella gestione aziendale e problem solving.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Skills Section -->
+    <section id="skills" style="background-color: rgba(26, 42, 108, 0.05);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Competenze Tecniche</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <h3>Sviluppo MQL5/4</h3>
+                    <p>Esperto in MQL5 e MQL4 per lo sviluppo di Expert Advisor, indicatori personalizzati e script per MetaTrader.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Analisi Tecnica</h3>
+                    <p>Analisi tecnica avanzata, pattern recognition e sviluppo di strategie di trading sistematico.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-gamepad"></i></div>
+                    <h3>Sviluppo Software</h3>
+                    <p>Esperienza pluriennale nello sviluppo di applicazioni e sistemi software complessi.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-car"></i></div>
+                    <h3>Servizi di Trasporto</h3>
+                    <p>Disponibile per servizi di autista privato e trasporto professionale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Progetti Realizzati</h2>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Expert Advisor MQL5</h3>
+                    <p>Sviluppo di sistemi di trading completamente automatizzati con gestione del rischio integrata.</p>
+                    <a href="#" class="portfolio-link">
+                        Scopri di più <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Indicatori Personalizzati</h3>
+                    <p>Indicator tecnici avanzati per analisi di mercato e segnali di trading.</p>
+                    <a href="#" class="portfolio-link">
+                        Scopri di più <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>EasyCardPro</h3>
+                    <p>Piattaforma SaaS per gestione carte fedeltà digitali - www.easycardpro.com</p>
+                    <a href="https://www.easycardpro.com" class="portfolio-link" target="_blank">
+                        Visita il sito <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
-    <section id="services">
+    <section id="services" style="background-color: rgba(0, 180, 216, 0.05);">
         <div class="container">
             <div class="section-title">
                 <h2>Servizi Offerti</h2>
             </div>
             <div class="services-grid">
                 <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-robot"></i></div>
+                    <h3>Sviluppo EA MQL5</h3>
+                    <p>Creazione di Expert Advisor personalizzati per strategie di trading automatizzate.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-chart-bar"></i></div>
+                    <h3>Indicator Custom</h3>
+                    <p>Sviluppo di indicatori tecnici su misura per le tue esigenze di analisi.</p>
+                </div>
+                <div class="service-card">
                     <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
-                    <h3>Sviluppo Siti Web</h3>
-                    <p>Creazione di siti web moderni, responsive e funzionali utilizzando tecnologie avanzate e best practices.</p>
+                    <h3>Sviluppo Software</h3>
+                    <p>Creazione di applicazioni e siti web moderni e funzionali.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-car-side"></i></div>
                     <h3>Servizi di Autista</h3>
-                    <p>Servizi di autista privato per trasferte, accompagnamenti e necessità di mobilità professionale.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-cogs"></i></div>
-                    <h3>Consulenza Tecnica</h3>
-                    <p>Consulenza basata sull'esperienza imprenditoriale e professionale in diversi settori tecnologici.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-tools"></i></div>
-                    <h3>Soluzioni Personalizzate</h3>
-                    <p>Sviluppo di soluzioni software e tecniche personalizzate per esigenze specifiche.</p>
+                    <p>Servizi di autista privato per trasferte e necessità di mobilità.</p>
                 </div>
             </div>
         </div>
@@ -669,11 +923,14 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <h3>Informazioni di Contatto</h3>
-                    <p>Sono disponibile per discutere potenziali collaborazioni e progetti interessanti. Non esitare a contattarmi per esplorare come le mie competenze possano aggiungere valore al tuo progetto o alla tua azienda.</p>
-                    <p><strong>Zona di operatività:</strong> Torino e dintorni</p>
-                    <p><strong>Email:</strong> corbruni@gmail.com</p>
-                    <p><strong>Telefono:</strong> +39 338 8187925</p>
-                    <p><strong>Modalità di collaborazione:</strong> Valuto diverse forme di collaborazione professionale</p>
+                    <p>Sono disponibile per discutere potenziali collaborazioni e progetti interessanti. Non esitare a contattarmi per esplorare come le mie competenze possano aggiungere valore al tuo progetto.</p>
+                    
+                    <div class="contact-details">
+                        <p><strong><i class="fas fa-map-marker-alt"></i> Zona di operatività:</strong> Torino e dintorni</p>
+                        <p><strong><i class="fas fa-envelope"></i> Email:</strong> corbruni@gmail.com</p>
+                        <p><strong><i class="fas fa-phone"></i> Telefono:</strong> +39 338 8187925</p>
+                        <p><strong><i class="fas fa-briefcase"></i> Modalità di collaborazione:</strong> Valuto diverse forme di collaborazione professionale</p>
+                    </div>
                 </div>
                 <div class="contact-form">
                     <form id="contactForm">
@@ -702,7 +959,7 @@
             <div class="footer-content">
                 <div class="footer-info">
                     <h3>Corrado Bruni</h3>
-                    <p>Consulente Tecnico e Sviluppatore Esperto</p>
+                    <p>Esperto in Trading Algoritmico & Sviluppo Software</p>
                     <p>Torino, Italia</p>
                     <p>Email: corbruni@gmail.com</p>
                     <p>Telefono: +39 338 8187925</p>
@@ -711,7 +968,7 @@
                     <h4>Link Utili</h4>
                     <ul>
                         <li><a href="#about">Profilo</a></li>
-                        <li><a href="#skills">Competenze</a></li>
+                        <li><a href="#trading">Trading</a></li>
                         <li><a href="#portfolio">Progetti</a></li>
                         <li><a href="#experience">Esperienze</a></li>
                         <li><a href="#contact">Contatti</a></li>
@@ -736,7 +993,6 @@
         const darkModeToggle = document.getElementById('darkModeToggle');
         const body = document.body;
 
-        // Controlla se l'utente ha già una preferenza
         if (localStorage.getItem('darkMode') === 'enabled') {
             body.classList.add('dark-mode');
             darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
@@ -765,11 +1021,43 @@
             document.getElementById('cookieBanner').style.display = 'none';
         }
 
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
         // Form di contatto
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Grazie per il messaggio! Ti risponderò al più presto.');
             this.reset();
+        });
+
+        // Smooth scrolling per anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
     </script>
 </body>
