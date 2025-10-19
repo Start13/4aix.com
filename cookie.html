@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cookie Policy - Corrado Bruni</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         body {
@@ -55,36 +56,86 @@
         }
         
         .back-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             margin-bottom: 20px;
             color: #1a2a6c;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 500;
         }
         
         .back-link:hover {
             text-decoration: underline;
         }
+        
+        .cookie-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .cookie-type {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #1a2a6c;
+        }
+        
+        .update-date {
+            text-align: right;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-link">← Torna al Sito Principale</a>
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Torna al Sito Principale
+        </a>
         
         <h1>Cookie Policy</h1>
-        <p><strong>Ultimo aggiornamento:</strong> 2024</p>
+        <div class="update-date"><strong>Ultimo aggiornamento:</strong> Gennaio 2024</div>
 
         <h2>Cosa sono i cookie</h2>
         <p>I cookie sono piccoli file di testo che i siti visitati inviano al terminale dell'Utente, dove vengono memorizzati, per poi essere ritrasmessi agli stessi siti alla visita successiva.</p>
 
-        <h2>Utilizzo dei cookie</h2>
-        <p>Questo sito utilizza solo cookie tecnici, necessari per il corretto funzionamento del sito. Non vengono utilizzati cookie di profilazione.</p>
+        <h2>Tipologie di cookie utilizzati</h2>
+        <div class="cookie-types">
+            <div class="cookie-type">
+                <h3>Cookie Tecnici</h3>
+                <p>Cookie necessari per il corretto funzionamento del sito e per la navigazione.</p>
+            </div>
+            <div class="cookie-type">
+                <h3>Cookie di Preferenze</h3>
+                <p>Cookie che memorizzano le preferenze dell'utente (es. dark mode).</p>
+            </div>
+        </div>
 
-        <h2>Cookie tecnici</h2>
-        <p>I cookie tecnici utilizzati hanno la sola funzione di rendere possibile la navigazione del sito e sono necessari per il suo corretto funzionamento.</p>
+        <h2>Utilizzo dei cookie</h2>
+        <p>Questo sito utilizza esclusivamente cookie tecnici necessari per il corretto funzionamento del sito. Non vengono utilizzati cookie di profilazione o di tracciamento.</p>
+
+        <h2>Cookie tecnici utilizzati</h2>
+        <p>I cookie tecnici utilizzati hanno la sola funzione di rendere possibile la navigazione del sito e sono necessari per il suo corretto funzionamento:</p>
+        <ul>
+            <li><strong>cookiesAccepted</strong>: Memorizza la preferenza dell'utente riguardo l'accettazione dei cookie</li>
+            <li><strong>darkMode</strong>: Memorizza la preferenza della modalità scura</li>
+        </ul>
 
         <h2>Gestione dei cookie</h2>
         <p>L'Utente può decidere se accettare o meno i cookie utilizzando le impostazioni del proprio browser. La disabilitazione totale dei cookie tecnici potrebbe compromettere l'uso del sito.</p>
+
+        <h2>Come disabilitare i cookie</h2>
+        <p>È possibile disabilitare i cookie attraverso le impostazioni del proprio browser. Di seguito i link alle guide per i browser più comuni:</p>
+        <ul>
+            <li><a href="https://support.google.com/chrome/answer/95647">Google Chrome</a></li>
+            <li><a href="https://support.mozilla.org/it/kb/attivare-e-disattivare-i-cookie">Mozilla Firefox</a></li>
+            <li><a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac">Safari</a></li>
+            <li><a href="https://support.microsoft.com/it-it/windows/eliminare-e-gestire-i-cookie-168dab11-0753-043d-7c16-ede5947fc64d">Microsoft Edge</a></li>
+        </ul>
 
         <h2>Titolare del trattamento</h2>
         <p><strong>Corrado Bruni</strong><br>
@@ -94,5 +145,7 @@
         <h2>Modifiche a questa cookie policy</h2>
         <p>Il Titolare del Trattamento si riserva il diritto di apportare modifiche alla presente cookie policy in qualsiasi tempo notificandolo agli Utenti su questa pagina.</p>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </body>
 </html>
