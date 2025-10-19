@@ -57,16 +57,15 @@
             border: 5px solid white;
             margin: 0 auto 20px;
             overflow: hidden;
-            background-color: #e9ecef;
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
             display: flex;
             align-items: center;
             justify-content: center;
         }
         
         .profile-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            font-size: 4rem;
+            color: white;
         }
         
         h1 {
@@ -130,19 +129,17 @@
         
         .about-image {
             flex: 1;
-            background-color: #e9ecef;
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
             height: 350px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            color: white;
         }
         
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .about-image i {
+            font-size: 4rem;
         }
         
         /* Skills */
@@ -168,6 +165,32 @@
         
         .skill-icon {
             font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #1a2a6c;
+        }
+        
+        /* Portfolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .portfolio-icon {
+            font-size: 3rem;
             margin-bottom: 20px;
             color: #1a2a6c;
         }
@@ -373,6 +396,34 @@
             color: #ccc;
         }
         
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #1a2a6c;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .cookie-banner p {
+            margin-bottom: 10px;
+        }
+        
+        .cookie-banner button {
+            background: white;
+            color: #1a2a6c;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .about-content, .contact-content, .footer-content {
@@ -401,15 +452,19 @@
     </style>
 </head>
 <body>
+    <!-- Cookie Banner -->
+    <div id="cookieBanner" class="cookie-banner">
+        <p>Questo sito utilizza cookie tecnici necessari per il funzionamento. Continuando la navigazione acconsenti all'uso dei cookie.</p>
+        <button onclick="acceptCookies()">Accetta</button>
+        <a href="privacy.html" style="color: #ddd; margin-left: 15px;">Privacy Policy</a>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
                 <div class="profile-img-container">
-                    <!-- Sostituisci con la tua immagine -->
-                    <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: #2c3e50; color: white; font-size: 3rem;">
-                        <i class="fas fa-user"></i>
-                    </div>
+                    <i class="fas fa-user profile-img"></i>
                 </div>
                 <h1>Corrado Bruni</h1>
                 <p class="tagline">Consulente Tecnico con Esperienza Pluriennale in Sviluppo Software e Gestione Aziendale</p>
@@ -428,13 +483,10 @@
                 <div class="about-text">
                     <p>Professionista con significativa esperienza nello sviluppo software, progettazione tecnica e gestione aziendale. Ho coordinato team e progetti complessi, raggiungendo obiettivi ambiziosi in diversi settori.</p>
                     <p>La mia carriera include l'avvio e la gestione di iniziative imprenditoriali di successo, con particolare competenza nello sviluppo di soluzioni software personalizzate e nella creazione di siti web moderni e funzionali.</p>
-                    <p>Attualmente cerco opportunità di collaborazione dove poter applicare la mia esperienza e competenze tecniche per contribuire a progetti stimolanti e di valore.</p>
+                    <p>Ho sviluppato indicatori e Expert Advisor per MQL5, creato piattaforme SaaS come EasyCardPro, e realizzato numerosi siti web per clienti. Attualmente cerco opportunità di collaborazione dove poter applicare la mia esperienza e competenze tecniche.</p>
                 </div>
                 <div class="about-image">
-                    <!-- Sostituisci con un'immagine professionale -->
-                    <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; background: #e9ecef; color: #6c757d;">
-                        <i class="fas fa-image" style="font-size: 3rem;"></i>
-                    </div>
+                    <i class="fas fa-laptop-code"></i>
                 </div>
             </div>
         </div>
@@ -450,7 +502,7 @@
                 <div class="skill-card">
                     <div class="skill-icon"><i class="fas fa-code"></i></div>
                     <h3>Sviluppo Software</h3>
-                    <p>Esperto in diversi linguaggi di programmazione con particolare competenza in Visual Basic. Sviluppo di applicazioni personalizzate e siti web moderni utilizzando tecnologie avanzate.</p>
+                    <p>Esperto in diversi linguaggi di programmazione con particolare competenza in Visual Basic e MQL5. Sviluppo di applicazioni personalizzate, siti web e sistemi complessi.</p>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
@@ -471,8 +523,40 @@
         </div>
     </section>
 
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Progetti Realizzati</h2>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Indicatori & EA MQL5</h3>
+                    <p>Sviluppo di indicatori e Expert Advisor per trading algoritmico su piattaforma MetaTrader 5</p>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>EasyCardPro</h3>
+                    <p>Piattaforma SaaS per gestione carte fedeltà digitali - www.easycardpro.com</p>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Sviluppo Siti Web</h3>
+                    <p>Creazione di siti web moderni e applicazioni web personalizzate per diverse esigenze</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Experience Section -->
-    <section id="experience">
+    <section id="experience" style="background-color: #f1f3f5;">
         <div class="container">
             <div class="section-title">
                 <h2>Esperienze Professionali</h2>
@@ -493,7 +577,7 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>Sviluppatore Software</h3>
-                        <p>Esperienza pluriennale nello sviluppo di applicazioni e siti web, con particolare competenza in Visual Basic e tecnologie moderne per la creazione di soluzioni web.</p>
+                        <p>Esperienza pluriennale nello sviluppo di applicazioni e siti web, con particolare competenza in Visual Basic, MQL5 e tecnologie moderne per la creazione di soluzioni web.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -507,7 +591,7 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" style="background-color: #f1f3f5;">
+    <section id="services">
         <div class="container">
             <div class="section-title">
                 <h2>Servizi Offerti</h2>
@@ -538,7 +622,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
+    <section id="contact" style="background-color: #f1f3f5;">
         <div class="container">
             <div class="section-title">
                 <h2>Contatti</h2>
@@ -548,10 +632,11 @@
                     <h3>Informazioni di Contatto</h3>
                     <p>Sono disponibile per discutere potenziali collaborazioni e progetti interessanti. Non esitare a contattarmi per esplorare come le mie competenze possano aggiungere valore al tuo progetto o alla tua azienda.</p>
                     <p><strong>Zona di operatività:</strong> Torino e dintorni</p>
+                    <p><strong>Email:</strong> corrado.bruni@pec.it</p>
                     <p><strong>Modalità di collaborazione:</strong> Valuto diverse forme di collaborazione professionale</p>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form id="contactForm">
                         <div class="form-group">
                             <input type="text" placeholder="Nome e Cognome" required>
                         </div>
@@ -579,12 +664,14 @@
                     <h3>Corrado Bruni</h3>
                     <p>Consulente Tecnico e Sviluppatore Esperto</p>
                     <p>Torino, Italia</p>
+                    <p>Email: corrado.bruni@pec.it</p>
                 </div>
                 <div class="footer-links">
                     <h4>Link Utili</h4>
                     <ul>
                         <li><a href="#about">Profilo</a></li>
                         <li><a href="#skills">Competenze</a></li>
+                        <li><a href="#portfolio">Progetti</a></li>
                         <li><a href="#experience">Esperienze</a></li>
                         <li><a href="#contact">Contatti</a></li>
                     </ul>
@@ -592,9 +679,8 @@
                 <div class="footer-links">
                     <h4>Note Legali</h4>
                     <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">Termini di Servizio</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="cookie.html">Cookie Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -603,5 +689,26 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Cookie Banner
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                document.getElementById('cookieBanner').style.display = 'block';
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookieBanner').style.display = 'none';
+        }
+
+        // Form di contatto
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Grazie per il messaggio! Ti risponderò al più presto.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
