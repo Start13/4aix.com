@@ -1,1061 +1,239 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Corrado Bruni - Esperto in Trading Algoritmico, Sviluppo MQL5 e Consulenza Tecnica. 15+ anni di esperienza professionale.">
-    <meta name="keywords" content="trading algoritmico, MQL5, sviluppatore EA, indicatori trading, MetaTrader, consulente tecnico">
-    <title>Corrado Bruni - Trading Algoritmico & Sviluppo Software</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #1a2a6c;
-            --secondary-color: #2c3e50;
-            --accent-color: #00b4d8;
-            --background-color: #f8f9fa;
-            --text-color: #333;
-            --card-background: white;
-            --header-text: white;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corrado Bruni – Servizi Tecnici e Tuttofare a Torino</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-        .dark-mode {
-            --primary-color: #3a4a8c;
-            --secondary-color: #4c5e70;
-            --accent-color: #0096c7;
-            --background-color: #121212;
-            --text-color: #e0e0e0;
-            --card-background: #1e1e1e;
-            --header-text: #e0e0e0;
-        }
+    body {
+      background-color: #f5f6fa;
+      color: #333;
+      line-height: 1.6;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            transition: all 0.3s ease;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Migliorato */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--header-text);
-            padding: 120px 0 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 0.1;
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,30 L70,70 M70,30 L30,70" stroke="white" stroke-width="1"/></svg>');
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Monogramma CB Elegante */
-        .monogram-container {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 30px;
-            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .monogram-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 3s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: rotate(45deg) translateX(-100%); }
-            100% { transform: rotate(45deg) translateX(100%); }
-        }
-        
-        .monogram {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: white;
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .tagline-badges {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0 30px;
-            flex-wrap: wrap;
-        }
-        
-        .badge {
-            background: rgba(255,255,255,0.2);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-        
-        .header-cta {
-            margin-top: 30px;
-        }
-        
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--accent-color);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
-            background: #0096c7;
-        }
-        
-        .cta-secondary {
-            background: transparent;
-            border: 2px solid var(--accent-color);
-            margin-left: 15px;
-        }
-        
-        /* Dark Mode Toggle */
-        .dark-mode-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--card-background);
-            border: 2px solid var(--primary-color);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .dark-mode-toggle:hover {
-            transform: scale(1.1);
-        }
-        
-        /* Sezioni */
-        section {
-            padding: 80px 0;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2rem;
-            color: var(--primary-color);
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        /* About */
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-        
-        .about-text {
-            flex: 2;
-        }
-        
-        .about-text p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-        
-        .about-image {
-            flex: 1;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            height: 350px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-        
-        .about-image i {
-            font-size: 4rem;
-        }
-        
-        /* Trading Section */
-        .trading-highlights {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .trading-card {
-            background: var(--card-background);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            border-left: 4px solid var(--accent-color);
-        }
-        
-        .trading-card h3 {
-            color: var(--accent-color);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .trading-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: var(--card-background);
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-        }
-        
-        .feature-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-        }
-        
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .skill-card {
-            background: var(--card-background);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-left: 4px solid var(--primary-color);
-        }
-        
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-        }
-        
-        .skill-icon {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        
-        /* Portfolio */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .portfolio-item {
-            background: var(--card-background);
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
-        }
-        
-        .portfolio-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .portfolio-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        
-        .portfolio-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--accent-color);
-            text-decoration: none;
-            margin-top: 15px;
-            font-weight: 500;
-        }
-        
-        /* Experience */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background-color: var(--primary-color);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -2px;
-        }
-        
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-        }
-        
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-        
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-        
-        .timeline-content {
-            padding: 25px;
-            background-color: var(--card-background);
-            position: relative;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-        
-        .timeline-item:nth-child(odd) .timeline-content::after {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            right: -8px;
-            background-color: var(--card-background);
-            top: 25px;
-            border-radius: 50%;
-            z-index: 1;
-            border: 3px solid var(--primary-color);
-        }
-        
-        .timeline-item:nth-child(even) .timeline-content::after {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            left: -8px;
-            background-color: var(--card-background);
-            top: 25px;
-            border-radius: 50%;
-            z-index: 1;
-            border: 3px solid var(--primary-color);
-        }
-        
-        /* Services */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background: var(--card-background);
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-        }
-        
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        
-        /* Contact */
-        .contact-content {
-            display: flex;
-            gap: 40px;
-        }
-        
-        .contact-info {
-            flex: 1;
-        }
-        
-        .contact-info h3 {
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        
-        .contact-info p {
-            margin-bottom: 15px;
-        }
-        
-        .contact-details {
-            background: var(--card-background);
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            margin-top: 20px;
-        }
-        
-        .contact-form {
-            flex: 1;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border 0.3s ease;
-            background: var(--card-background);
-            color: var(--text-color);
-        }
-        
-        input:focus, textarea:focus {
-            border-color: var(--primary-color);
-            outline: none;
-        }
-        
-        button {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: opacity 0.3s ease;
-        }
-        
-        button:hover {
-            opacity: 0.9;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--primary-color);
-            color: var(--header-text);
-            padding: 40px 0 20px;
-        }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
-        
-        .footer-info {
-            flex: 2;
-        }
-        
-        .footer-links {
-            flex: 1;
-        }
-        
-        .footer-links h4 {
-            margin-bottom: 15px;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 8px;
-        }
-        
-        .footer-links a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: #ccc;
-        }
-        
-        /* Cookie Banner */
-        .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--primary-color);
-            color: white;
-            padding: 15px 20px;
-            text-align: center;
-            z-index: 1000;
-            display: none;
-        }
-        
-        .cookie-banner p {
-            margin-bottom: 10px;
-        }
-        
-        .cookie-banner button {
-            background: white;
-            color: var(--primary-color);
-            border: none;
-            padding: 8px 20px;
-            border-radius: 3px;
-            cursor: pointer;
-            margin: 0 5px;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .about-content, .contact-content, .footer-content {
-                flex-direction: column;
-            }
-            
-            .timeline::after {
-                left: 31px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-            
-            .monogram-container {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .monogram {
-                font-size: 2rem;
-            }
-            
-            .cta-button {
-                display: block;
-                margin: 10px auto;
-                text-align: center;
-                max-width: 250px;
-            }
-            
-            .cta-secondary {
-                margin-left: 0;
-            }
-        }
-    </style>
+    /* HERO */
+    header {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(26, 42, 108, 0.75);
+    }
+
+    header .hero-content {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 25px;
+    }
+
+    .cta-buttons {
+      margin-top: 10px;
+    }
+
+    .cta-buttons a {
+      display: inline-block;
+      background: #00b4d8;
+      color: white;
+      padding: 12px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      margin: 5px;
+      transition: background 0.3s;
+      font-weight: 500;
+    }
+
+    .cta-buttons a:hover {
+      background: #0090b0;
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #1a2a6c;
+      text-align: center;
+    }
+
+    section p.intro {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      text-align: center;
+      color: #555;
+    }
+
+    /* Profilo */
+    .profile {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .profile p {
+      margin-bottom: 15px;
+    }
+
+    /* Servizi */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .service-card .content {
+      padding: 20px;
+      flex: 1;
+    }
+
+    .service-card h3 {
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    /* Footer */
+    footer {
+      background: #1a2a6c;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #00b4d8;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <!-- Dark Mode Toggle -->
-    <div class="dark-mode-toggle" id="darkModeToggle">
-        <i class="fas fa-moon"></i>
+
+  <header>
+    <div class="hero-content">
+      <h1>Corrado Bruni</h1>
+      <p>Esperienza tecnica e disponibilità concreta.  
+         Mi occupo di sviluppo web e soluzioni su misura, ma offro anche supporto pratico per chi ha bisogno di una mano nella vita di tutti i giorni.</p>
+      <div class="cta-buttons">
+        <a href="mailto:corbruni@gmail.com">Contattami via Email</a>
+        <a href="tel:+393000000000">Chiama Ora</a>
+      </div>
     </div>
+  </header>
 
-    <!-- Cookie Banner -->
-    <div id="cookieBanner" class="cookie-banner">
-        <p>Questo sito utilizza cookie tecnici necessari per il funzionamento. Continuando la navigazione acconsenti all'uso dei cookie.</p>
-        <button onclick="acceptCookies()">Accetta</button>
-        <a href="privacy.html" style="color: #ddd; margin-left: 15px;">Privacy Policy</a>
+  <section>
+    <h2>Profilo Professionale</h2>
+    <div class="profile">
+      <p>Ho alle spalle una lunga esperienza come progettista, sviluppatore e imprenditore nel settore tecnico e informatico.  
+      Ho diretto aziende di successo e realizzato progetti complessi, ma oggi metto queste competenze al servizio di persone e realtà che cercano affidabilità, precisione e spirito pratico.</p>
+
+      <p>Posso seguire progetti web e digitali su misura, collaborare da remoto, oppure occuparmi di attività pratiche locali, con particolare attenzione alle esigenze della terza età e di chi ha bisogno di supporto fidato.</p>
     </div>
+  </section>
 
-    <!-- Header -->
-    <header>
-        <div class="header-background"></div>
-        <div class="container">
-            <div class="header-content">
-                <h1>Corrado Bruni</h1>
-                <p class="tagline">15+ anni di esperienza in Trading Algoritmico & Sviluppo Software</p>
-                
-                <div class="tagline-badges">
-                    <div class="badge">Trader Algoritmico</div>
-                    <div class="badge">Sviluppatore MQL5</div>
-                    <div class="badge">Consulente Tecnico</div>
-                </div>
-                
-                <p>Torino - Soluzioni professionali per trading sistematico e sviluppo software</p>
-                
-                <div class="header-cta">
-                    <a href="#contact" class="cta-button">
-                        <i class="fas fa-paper-plane"></i>
-                        Collabora con me
-                    </a>
-                    <a href="#portfolio" class="cta-button cta-secondary">
-                        <i class="fas fa-chart-line"></i>
-                        Scopri i miei EA
-                    </a>
-                </div>
-            </div>
+  <section>
+    <h2>Servizi Offerti</h2>
+    <p class="intro">Un mix di professionalità tecnica e disponibilità umana.  
+       Ecco in che modo posso essere utile a privati, piccole attività o collaboratori.</p>
+
+    <div class="services">
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1502882700104-9c0ad6e0b6c9?auto=format&fit=crop&w=800&q=80" alt="Siti web moderni">
+        <div class="content">
+          <h3>Siti Web & Soluzioni Digitali</h3>
+          <p>Realizzo siti moderni, landing page e piattaforme leggere, con un design professionale e tempi rapidi.</p>
         </div>
-    </header>
+      </div>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>Profilo Professionale</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Professionista con 15+ anni di esperienza nel trading algoritmico, sviluppo software e gestione aziendale. Ho coordinato team e progetti complessi, raggiungendo obiettivi ambiziosi in diversi settori finanziari e tecnologici.</p>
-                    <p>La mia carriera include l'avvio e la gestione di iniziative imprenditoriali di successo, con particolare competenza nello sviluppo di sistemi di trading algoritmico, soluzioni software personalizzate e piattaforme web moderne.</p>
-                    <p>Specializzato in MQL5 per MetaTrader, ho sviluppato Expert Advisor e indicatori avanzati che combinano analisi tecnica, gestione del rischio e automazione per mercati FX, indici e commodities.</p>
-                </div>
-                <div class="about-image">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-            </div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1601379329533-1e3db6cc1e08?auto=format&fit=crop&w=800&q=80" alt="Autista privato Torino">
+        <div class="content">
+          <h3>Autista Privato</h3>
+          <p>Disponibile per spostamenti in città e dintorni. Puntualità, discrezione e attenzione alla persona.</p>
         </div>
-    </section>
+      </div>
 
-    <!-- Trading Section -->
-    <section id="trading" style="background-color: rgba(0, 180, 216, 0.05);">
-        <div class="container">
-            <div class="section-title">
-                <h2>Trading Algoritmico Avanzato</h2>
-            </div>
-            
-            <div class="trading-highlights">
-                <div class="trading-card">
-                    <h3><i class="fas fa-robot"></i> Sistemi Automatizzati</h3>
-                    <p>Expert Advisor completamente automatizzati per MetaTrader 4/5, con backtesting avanzato e ottimizzazione dei parametri.</p>
-                </div>
-                <div class="trading-card">
-                    <h3><i class="fas fa-chart-bar"></i> Indicator Personalizzati</h3>
-                    <p>Indicatori tecnici avanzati sviluppati su misura, integrando multiple timeframe e analisi di mercato complesse.</p>
-                </div>
-                <div class="trading-card">
-                    <h3><i class="fas fa-shield-alt"></i> Risk Management</h3>
-                    <p>Sistemi di gestione del rischio incorporati, money management dinamico e protezioni per drawdown estremi.</p>
-                </div>
-            </div>
-            
-            <div class="trading-features">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <div>
-                        <h4>Esecuzione Ultra-Rapida</h4>
-                        <p>Ottimizzazione per VPS e latenza minima</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <div>
-                        <h4>Strategy Tester</h4>
-                        <p>Backtesting completo con dati tick-by-tick</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-sync-alt"></i>
-                    </div>
-                    <div>
-                        <h4>Multi-Timeframe</h4>
-                        <p>Analisi simultanea su diversi timeframe</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div>
-                        <h4>Analisi Avanzata</h4>
-                        <p>Pattern recognition e machine learning</p>
-                    </div>
-                </div>
-            </div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1581579186984-1e38a8f4d8d4?auto=format&fit=crop&w=800&q=80" alt="Piccoli lavori in casa">
+        <div class="content">
+          <h3>Tuttofare Leggeri</h3>
+          <p>Piccole riparazioni e aiuti domestici per anziani e famiglie. Un supporto pratico e affidabile, con gentilezza.</p>
         </div>
-    </section>
+      </div>
 
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="container">
-            <div class="section-title">
-                <h2>Esperienze Professionali</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Trading Algoritmico & Sviluppo MQL5</h3>
-                        <p>15+ anni di esperienza nello sviluppo di sistemi di trading automatizzati, Expert Advisor e indicatori personalizzati per piattaforma MetaTrader.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Imprenditore nel Settore Videogiochi</h3>
-                        <p>Fondazione e gestione di un'azienda di produzione videogiochi che ha raggiunto un fatturato significativo. Coordinamento di team e gestione di progetti complessi.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Progettista di Sistemi Antifurto</h3>
-                        <p>Progettazione e implementazione di soluzioni di sicurezza personalizzate per clienti privati e aziendali.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Consulente Tecnico</h3>
-                        <p>Consulenza per varie attività imprenditoriali, con sviluppo di competenze trasversali nella gestione aziendale e problem solving.</p>
-                    </div>
-                </div>
-            </div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Collaborazioni tecniche">
+        <div class="content">
+          <h3>Collaborazioni Tecniche</h3>
+          <p>Supporto per progetti digitali, sviluppo personalizzato e consulenze mirate anche da remoto.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Skills Section -->
-    <section id="skills" style="background-color: rgba(26, 42, 108, 0.05);">
-        <div class="container">
-            <div class="section-title">
-                <h2>Competenze Tecniche</h2>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fas fa-code"></i></div>
-                    <h3>Sviluppo MQL5/4</h3>
-                    <p>Esperto in MQL5 e MQL4 per lo sviluppo di Expert Advisor, indicatori personalizzati e script per MetaTrader.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3>Analisi Tecnica</h3>
-                    <p>Analisi tecnica avanzata, pattern recognition e sviluppo di strategie di trading sistematico.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fas fa-gamepad"></i></div>
-                    <h3>Sviluppo Software</h3>
-                    <p>Esperienza pluriennale nello sviluppo di applicazioni e sistemi software complessi.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon"><i class="fas fa-car"></i></div>
-                    <h3>Servizi di Trasporto</h3>
-                    <p>Disponibile per servizi di autista privato e trasporto professionale.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+   <footer>
+    <p>© 2025 Corrado Bruni – Torino</p>
+    <p>
+      <a href="cookie.html">Cookie Policy</a> |
+      <a href="legal.html">Note Legali</a>
+    </p>
+    <p>
+      📧 <a href="mailto:corbruni@gmail.com">corbruni@gmail.com</a><br>
+      📞 <a href="tel:+393388187925">+39 338 818 7925</a>
+    </p>
+  </footer>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio">
-        <div class="container">
-            <div class="section-title">
-                <h2>Progetti Realizzati</h2>
-            </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Expert Advisor MQL5</h3>
-                    <p>Sviluppo di sistemi di trading completamente automatizzati con gestione del rischio integrata.</p>
-                    <a href="#" class="portfolio-link">
-                        Scopri di più <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Indicatori Personalizzati</h3>
-                    <p>Indicator tecnici avanzati per analisi di mercato e segnali di trading.</p>
-                    <a href="#" class="portfolio-link">
-                        Scopri di più <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-icon">
-                        <i class="fas fa-credit-card"></i>
-                    </div>
-                    <h3>EasyCardPro</h3>
-                    <p>Piattaforma SaaS per gestione carte fedeltà digitali - www.easycardpro.com</p>
-                    <a href="https://www.easycardpro.com" class="portfolio-link" target="_blank">
-                        Visita il sito <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Services Section -->
-    <section id="services" style="background-color: rgba(0, 180, 216, 0.05);">
-        <div class="container">
-            <div class="section-title">
-                <h2>Servizi Offerti</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-robot"></i></div>
-                    <h3>Sviluppo EA MQL5</h3>
-                    <p>Creazione di Expert Advisor personalizzati per strategie di trading automatizzate.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-chart-bar"></i></div>
-                    <h3>Indicator Custom</h3>
-                    <p>Sviluppo di indicatori tecnici su misura per le tue esigenze di analisi.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
-                    <h3>Sviluppo Software</h3>
-                    <p>Creazione di applicazioni e siti web moderni e funzionali.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-car-side"></i></div>
-                    <h3>Servizi di Autista</h3>
-                    <p>Servizi di autista privato per trasferte e necessità di mobilità.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contatti</h2>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Informazioni di Contatto</h3>
-                    <p>Sono disponibile per discutere potenziali collaborazioni e progetti interessanti. Non esitare a contattarmi per esplorare come le mie competenze possano aggiungere valore al tuo progetto.</p>
-                    
-                    <div class="contact-details">
-                        <p><strong><i class="fas fa-map-marker-alt"></i> Zona di operatività:</strong> Torino e dintorni</p>
-                        <p><strong><i class="fas fa-envelope"></i> Email:</strong> corbruni@gmail.com</p>
-                        <p><strong><i class="fas fa-phone"></i> Telefono:</strong> +39 338 8187925</p>
-                        <p><strong><i class="fas fa-briefcase"></i> Modalità di collaborazione:</strong> Valuto diverse forme di collaborazione professionale</p>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" placeholder="Nome e Cognome" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="Oggetto" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea rows="5" placeholder="Messaggio" required></textarea>
-                        </div>
-                        <button type="submit">Invia Messaggio</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h3>Corrado Bruni</h3>
-                    <p>Esperto in Trading Algoritmico & Sviluppo Software</p>
-                    <p>Torino, Italia</p>
-                    <p>Email: corbruni@gmail.com</p>
-                    <p>Telefono: +39 338 8187925</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Link Utili</h4>
-                    <ul>
-                        <li><a href="#about">Profilo</a></li>
-                        <li><a href="#trading">Trading</a></li>
-                        <li><a href="#portfolio">Progetti</a></li>
-                        <li><a href="#experience">Esperienze</a></li>
-                        <li><a href="#contact">Contatti</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Note Legali</h4>
-                    <ul>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="cookie.html">Cookie Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>Sito web progettato e sviluppato da Corrado Bruni | &copy; 2024 4aix.com - Tutti i diritti riservati</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Dark Mode
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
-
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            body.classList.add('dark-mode');
-            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
-
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('darkMode', 'enabled');
-                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            } else {
-                localStorage.setItem('darkMode', 'disabled');
-                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            }
-        });
-
-        // Cookie Banner
-        document.addEventListener('DOMContentLoaded', function() {
-            if (!localStorage.getItem('cookiesAccepted')) {
-                document.getElementById('cookieBanner').style.display = 'block';
-            }
-        });
-
-        function acceptCookies() {
-            localStorage.setItem('cookiesAccepted', 'true');
-            document.getElementById('cookieBanner').style.display = 'none';
-        }
-
-        // Scroll Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Form di contatto
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Grazie per il messaggio! Ti risponderò al più presto.');
-            this.reset();
-        });
-
-        // Smooth scrolling per anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
