@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Corrado Bruni - Supporto Tecnico e Tuttofare a Torino</title>
+  <title>Corrado Bruni - Web Developer & Supporto Tecnico a Torino</title>
   
-  <!-- ✅ Meta per Social Preview -->
-  <meta property="og:title" content="Corrado Bruni - Supporto Tecnico e Tuttofare a Torino"/>
-  <meta property="og:description" content="Sviluppo siti web e offro un aiuto concreto per piccoli lavori. Un supporto affidabile per privati, famiglie e persone di terza età a Torino."/>
+  <!-- Meta Social -->
+  <meta property="og:title" content="Corrado Bruni - Web Developer & Supporto Tecnico a Torino"/>
+  <meta property="og:description" content="Creo siti web moderni e offro supporto tecnico. Sviluppo soluzioni digitali su misura per privati e attività a Torino."/>
   <meta property="og:image" content="https://4aix.com/preview.jpg"/>
   <meta property="og:url" content="https://4aix.com"/>
   <meta property="og:type" content="website"/>
   <meta name="twitter:card" content="summary_large_image">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -23,147 +24,239 @@
     }
 
     body {
-      background-color: #f5f6fa;
+      background-color: #f8fafc;
       color: #333;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* HERO */
+    /* Header Moderno */
     header {
       position: relative;
-      background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      background: linear-gradient(rgba(26, 42, 108, 0.8), rgba(26, 42, 108, 0.9)), 
+                  url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: white;
       text-align: center;
-      padding: 100px 20px;
+      padding: 120px 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
     }
 
-    header::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(26, 42, 108, 0.75);
-    }
-
-    header .hero-content {
-      position: relative;
+    .hero-content {
       max-width: 900px;
       margin: 0 auto;
-      z-index: 2;
+      animation: fadeInUp 1s ease-out;
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
-      font-weight: 600;
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
 
-    header p {
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto 25px;
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+      opacity: 0.95;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      line-height: 1.8;
     }
 
     .cta-buttons {
-      margin-top: 10px;
+      margin-top: 30px;
     }
 
-    .cta-buttons a {
+    .btn-primary, .btn-secondary {
       display: inline-block;
-      background: #00b4d8;
-      color: white;
-      padding: 12px 22px;
-      border-radius: 6px;
+      padding: 15px 30px;
+      margin: 10px;
+      border-radius: 50px;
       text-decoration: none;
-      margin: 5px;
-      transition: background 0.3s;
-      font-weight: 500;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
     }
 
-    .cta-buttons a:hover {
-      background: #0090b0;
+    .btn-primary {
+      background: linear-gradient(135deg, #00b4d8, #0090b0);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0,180,216,0.3);
     }
 
-    /* SECTIONS */
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,180,216,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: #1a2a6c;
+    }
+
+    /* Animazioni */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Sezioni */
     section {
-      max-width: 1000px;
-      margin: 60px auto;
+      max-width: 1200px;
+      margin: 80px auto;
       padding: 0 20px;
     }
 
     section h2 {
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       margin-bottom: 20px;
       color: #1a2a6c;
       text-align: center;
+      font-weight: 600;
     }
 
     section p.intro {
       max-width: 800px;
-      margin: 0 auto 40px;
+      margin: 0 auto 50px;
       text-align: center;
       color: #555;
+      font-size: 1.1rem;
     }
 
     /* Profilo */
     .profile {
       background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      padding: 50px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      animation: fadeInUp 0.8s ease-out 0.2s both;
     }
 
     .profile p {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      line-height: 1.8;
     }
 
     /* Servizi */
     .services {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
+      gap: 30px;
     }
 
     .service-card {
       background: white;
-      border-radius: 10px;
+      border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-      display: flex;
-      flex-direction: column;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255,255,255,0.1);
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      border-color: #00b4d8;
     }
 
     .service-card img {
       width: 100%;
-      height: 180px;
+      height: 200px;
       object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover img {
+      transform: scale(1.05);
     }
 
     .service-card .content {
-      padding: 20px;
-      flex: 1;
+      padding: 25px;
     }
 
     .service-card h3 {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       color: #2c3e50;
+      font-size: 1.3rem;
+      font-weight: 600;
     }
+
+    .service-card p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Delay animazioni per le card */
+    .service-card:nth-child(1) { animation-delay: 0.1s; }
+    .service-card:nth-child(2) { animation-delay: 0.2s; }
+    .service-card:nth-child(3) { animation-delay: 0.3s; }
+    .service-card:nth-child(4) { animation-delay: 0.4s; }
 
     /* Footer */
     footer {
-      background: #1a2a6c;
+      background: linear-gradient(135deg, #1a2a6c, #2c3e50);
       color: white;
       text-align: center;
-      padding: 25px;
-      font-size: 0.9rem;
+      padding: 40px 20px;
+      margin-top: 80px;
     }
 
     footer a {
       color: #00b4d8;
       text-decoration: none;
+      transition: color 0.3s;
     }
 
     footer a:hover {
-      text-decoration: underline;
+      color: white;
+    }
+
+    .social-links {
+      margin: 20px 0;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin: 0 15px;
+      font-size: 1.5rem;
+      color: white;
+      transition: transform 0.3s;
+    }
+
+    .social-links a:hover {
+      transform: translateY(-3px);
+      color: #00b4d8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero-content p {
+        font-size: 1.1rem;
+      }
+      
+      .btn-primary, .btn-secondary {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -172,10 +265,11 @@
   <header>
     <div class="hero-content">
       <h1>Corrado Bruni</h1>
-      <p>Sviluppo siti web e offro una mano nei piccoli lavori di ogni giorno. Metto la mia esperienza tecnica e la mia disponibilità al servizio di privati, famiglie e persone di terza età a Torino. Un supporto affidabile, sia online che a domicilio.</p>
+      <p>Web Developer & Supporto Tecnico a Torino<br>
+      Creo siti web moderni e offro una mano concreta per piccoli lavori e supporto quotidiano</p>
       <div class="cta-buttons">
-        <a href="mailto:corbruni@gmail.com">Contattami via Email</a>
-        <a href="tel:+393388187925">Chiama Ora</a>
+        <a href="#servizi" class="btn-primary">Scopri i Miei Servizi</a>
+        <a href="mailto:corbruni@gmail.com" class="btn-secondary">Richiedi un Preventivo</a>
       </div>
     </div>
   </header>
@@ -185,11 +279,11 @@
     <div class="profile">
       <p>Con un passato da progettista e imprenditore nel settore tech, ho gestito aziende e progetti complessi. Oggi scelgo di mettere questa esperienza al servizio delle persone, con un approccio più diretto e umano.</p>
 
-      <p>Mi rivolgo a chi cerca un professionista affidabile non solo per un sito internet o una consulenza tecnica, ma anche per quel supporto pratico e rassicurante di cui a volte si ha bisogno: un accompagnamento, un piccolo lavoretto in casa, una soluzione semplice a un problema quotidiano. Per me, aiutare una persona a risolvere una difficoltà, grande o piccola che sia, è la soddisfazione più grande.</p>
+      <p>Mi rivolgo a chi cerca un professionista affidabile non solo per un sito internet o una consulenza tecnica, ma anche per quel supporto pratico e rassicurante di cui a volte si ha bisogno: un accompagnamento, un piccolo lavoretto in casa, una soluzione semplice a un problema quotidiano.</p>
     </div>
   </section>
 
-  <section>
+  <section id="servizi">
     <h2>Servizi Offerti</h2>
     <p class="intro">Un mix di professionalità tecnica e disponibilità umana. Ecco in che modo posso essere utile a privati, piccole attività e persone di terza età.</p>
 
@@ -198,7 +292,7 @@
       <div class="service-card">
         <img src="img/creositi.png" alt="Siti web moderni">
         <div class="content">
-          <h3>Siti Web & Soluzioni Digitali</h3>
+          <h3><i class="fas fa-code"></i> Siti Web & Soluzioni Digitali</h3>
           <p>Realizzo siti moderni, landing page e piattaforme leggere, con un design professionale e tempi rapidi.</p>
         </div>
       </div>
@@ -207,7 +301,7 @@
       <div class="service-card">
         <img src="img/autista.png" alt="Autista privato Torino">
         <div class="content">
-          <h3>Autista Privato</h3>
+          <h3><i class="fas fa-car"></i> Autista Privato</h3>
           <p>Disponibile per spostamenti in città e dintorni. Puntualità, discrezione e attenzione alla persona.</p>
         </div>
       </div>
@@ -216,7 +310,7 @@
       <div class="service-card">
         <img src="https://images.unsplash.com/photo-1581579186984-1e38a8f4d8d4?auto=format&fit=crop&w=800&q=80" alt="Piccoli lavori in casa">
         <div class="content">
-          <h3>Tuttofare Leggeri</h3>
+          <h3><i class="fas fa-tools"></i> Tuttofare Leggeri</h3>
           <p>Piccole riparazioni e aiuti domestici per anziani e famiglie. Un supporto pratico e affidabile, con gentilezza.</p>
         </div>
       </div>
@@ -225,7 +319,7 @@
       <div class="service-card">
         <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Collaborazioni tecniche">
         <div class="content">
-          <h3>Collaborazioni Tecniche</h3>
+          <h3><i class="fas fa-laptop-code"></i> Collaborazioni Tecniche</h3>
           <p>Supporto per progetti digitali, sviluppo personalizzato e consulenze mirate anche da remoto.</p>
         </div>
       </div>
@@ -234,6 +328,11 @@
 
   <footer>
     <p>© 2025 Corrado Bruni – Torino</p>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+    </div>
     <p>
       <a href="cookie.html">Cookie Policy</a> |
       <a href="privacy.html">Privacy Policy</a>
