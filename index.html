@@ -180,12 +180,20 @@
       font-weight: 600;
     }
 
+    [data-theme="dark"] section h2 {
+      color: var(--secondary-color);
+    }
+
     section p.intro {
       max-width: 800px;
       margin: 0 auto 50px;
       text-align: center;
       color: var(--text-color);
       font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    [data-theme="dark"] section p.intro {
       opacity: 0.8;
     }
 
@@ -203,6 +211,7 @@
       margin-bottom: 20px;
       font-size: 1.1rem;
       line-height: 1.8;
+      color: var(--text-color);
     }
 
     /* Servizi */
@@ -258,7 +267,7 @@
     .service-card p {
       color: var(--text-color);
       line-height: 1.6;
-      opacity: 0.8;
+      opacity: 0.9;
     }
 
     /* Delay animazioni per le card */
@@ -272,6 +281,7 @@
       background: linear-gradient(135deg, var(--bg-color) 0%, var(--card-bg) 100%);
       padding: 80px 0;
       margin: 80px 0;
+      text-align: center;
     }
 
     .portfolio-grid {
@@ -279,6 +289,7 @@
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 30px;
       margin-top: 50px;
+      justify-items: center;
     }
 
     .portfolio-item {
@@ -287,6 +298,8 @@
       overflow: hidden;
       box-shadow: var(--shadow);
       transition: var(--transition);
+      max-width: 400px;
+      width: 100%;
     }
 
     .portfolio-item:hover {
@@ -386,6 +399,7 @@
       font-style: italic;
       margin-bottom: 20px;
       line-height: 1.6;
+      color: var(--text-color);
     }
 
     .testimonial-author {
@@ -404,11 +418,13 @@
     .author-info h4 {
       margin-bottom: 5px;
       color: var(--text-color);
+      font-weight: 600;
     }
 
     .author-info p {
       font-size: 0.9rem;
-      opacity: 0.7;
+      opacity: 0.8;
+      color: var(--text-color);
     }
 
     /* Contact Form */
@@ -445,6 +461,12 @@
       color: var(--text-color);
     }
 
+    [data-theme="dark"] .form-group input,
+    [data-theme="dark"] .form-group textarea,
+    [data-theme="dark"] .form-group select {
+      border-color: #4a5568;
+    }
+
     .form-group input:focus,
     .form-group textarea:focus,
     .form-group select:focus {
@@ -469,11 +491,42 @@
       cursor: pointer;
       transition: var(--transition);
       box-shadow: 0 4px 15px rgba(0,180,216,0.3);
+      width: 100%;
     }
 
     .submit-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(0,180,216,0.4);
+    }
+
+    .form-message {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      display: none;
+    }
+
+    .form-message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .form-message.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    [data-theme="dark"] .form-message.success {
+      background: #0f5132;
+      color: #d1e7dd;
+    }
+
+    [data-theme="dark"] .form-message.error {
+      background: #842029;
+      color: #f8d7da;
     }
 
     /* Footer */
@@ -564,6 +617,10 @@
         width: 40px;
         height: 40px;
         font-size: 1rem;
+      }
+
+      .testimonials {
+        padding: 40px 20px;
       }
     }
   </style>
@@ -689,10 +746,10 @@
             "Corrado ha realizzato il sito della mia attività in tempi record. Professionale, competente e sempre disponibile. Consigliatissimo!"
           </div>
           <div class="testimonial-author">
-            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Mario Rossi" class="author-avatar">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Alessandro Conti" class="author-avatar">
             <div class="author-info">
-              <h4>Mario Rossi</h4>
-              <p>Ristorante La Trattoria</p>
+              <h4>Alessandro Conti</h4>
+              <p>Ristorante "Da Alessandro"</p>
             </div>
           </div>
         </div>
@@ -702,9 +759,9 @@
             "Oltre al sito, mi ha aiutato con piccoli lavori domestici. Una persona affidabile e competente su più fronti!"
           </div>
           <div class="testimonial-author">
-            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=100&q=80" alt="Laura Bianchi" class="author-avatar">
+            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=100&q=80" alt="Elena Romano" class="author-avatar">
             <div class="author-info">
-              <h4>Laura Bianchi</h4>
+              <h4>Elena Romano</h4>
               <p>Insegnante in pensione</p>
             </div>
           </div>
@@ -715,10 +772,10 @@
             "Supporto tecnico eccellente e grande pazienza nel spiegare le cose. Finalmente qualcuno che unisce competenza e umanità."
           </div>
           <div class="testimonial-author">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Giuseppe Verdi" class="author-avatar">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Marco Esposito" class="author-avatar">
             <div class="author-info">
-              <h4>Giuseppe Verdi</h4>
-              <p>Piccola Impresa</p>
+              <h4>Marco Esposito</h4>
+              <p>Artigiano - Falegnameria Esposito</p>
             </div>
           </div>
         </div>
@@ -732,7 +789,7 @@
     <p class="intro">Hai un progetto in mente? Scrivimi e parliamone!</p>
 
     <div class="contact-form">
-      <form id="contactForm">
+      <form id="contactForm" action="https://formspree.io/f/mjvneqjq" method="POST">
         <div class="form-group">
           <label for="name">Nome e Cognome</label>
           <input type="text" id="name" name="name" required>
@@ -741,6 +798,11 @@
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Telefono (opzionale)</label>
+          <input type="tel" id="phone" name="phone">
         </div>
 
         <div class="form-group">
@@ -757,11 +819,12 @@
 
         <div class="form-group">
           <label for="message">Messaggio</label>
-          <textarea id="message" name="message" required></textarea>
+          <textarea id="message" name="message" placeholder="Descrivi il tuo progetto o la tua richiesta..." required></textarea>
         </div>
 
         <button type="submit" class="submit-btn">Invia Richiesta</button>
       </form>
+      <div id="formMessage" class="form-message"></div>
     </div>
   </section>
 
@@ -808,13 +871,47 @@
       themeIcon.className = 'fas fa-sun';
     }
 
-    // Form Submission
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    // Form Submission with Formspree
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      // Qui puoi aggiungere l'integrazione con un servizio di email
-      alert('Grazie per il tuo messaggio! Ti ricontatterò al più presto.');
-      this.reset();
+      const form = e.target;
+      const formData = new FormData(form);
+      const submitBtn = form.querySelector('.submit-btn');
+      const messageDiv = document.getElementById('formMessage');
+      
+      // Disable submit button
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Invio in corso...';
+      messageDiv.style.display = 'none';
+      
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        if (response.ok) {
+          messageDiv.textContent = 'Grazie per il tuo messaggio! Ti ricontatterò al più presto.';
+          messageDiv.className = 'form-message success';
+          form.reset();
+        } else {
+          throw new Error('Errore nell\'invio del form');
+        }
+      } catch (error) {
+        messageDiv.textContent = 'Si è verificato un errore. Puoi contattarmi direttamente all\'indirizzo corbruni@gmail.com';
+        messageDiv.className = 'form-message error';
+      } finally {
+        messageDiv.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Invia Richiesta';
+        
+        // Scroll to message
+        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     });
 
     // Smooth Scroll for Anchor Links
