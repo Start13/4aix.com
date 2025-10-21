@@ -964,9 +964,9 @@
   <footer>
     <p>© 2025 Corrado Bruni – Torino</p>
     <div class="social-links">
-      <a href="#"><i class="fab fa-linkedin"></i></a>
-      <a href="#"><i class="fab fa-github"></i></a>
-      <a href="#"><i class="fab fa-facebook"></i></a>
+  <a href="https://linkedin.com/in/4AIX di C.B." target="_blank"><i class="fab fa-linkedin"></i></a>
+  <a href="https://github.com/Start13" target="_blank"><i class="fab fa-github"></i></a>
+  <a href="https://facebook.com/4aix" target="_blank"><i class="fab fa-facebook"></i></a>
     </div>
     <p>
       <a href="cookie.html" data-i18n="footer.cookie">Cookie Policy</a> |
@@ -1223,6 +1223,8 @@
       formData.append('phone', phone || 'Non fornito');
       formData.append('service', service);
       formData.append('message', message);
+	  formData.append('_subject', `Nuovo messaggio da ${name} - Servizio: ${service}`);
+      formData.append('_replyto', email);
 
       // Send to Formspree (you need to create a free account at formspree.io)
       fetch('https://formspree.io/f/mpwyeodr', {
