@@ -276,24 +276,23 @@
     .service-card:nth-child(3) { animation-delay: 0.3s; }
     .service-card:nth-child(4) { animation-delay: 0.4s; }
 
-    /* Portfolio Section */
+    /* Portfolio Section - CORRETTA */
     .portfolio {
       background: linear-gradient(135deg, var(--bg-color) 0%, var(--card-bg) 100%);
-      padding: 80px 0;
-      margin: 80px 0;
+      padding: 80px 20px;
+      margin: 80px auto;
       text-align: center;
+      max-width: 1200px;
     }
 
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 400px));
-  gap: 30px;
-  margin-top: 50px;
-  justify-content: center;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+      justify-content: center;
+    }
+
     .portfolio-item {
       position: relative;
       border-radius: 15px;
@@ -302,6 +301,7 @@
       transition: var(--transition);
       max-width: 400px;
       width: 100%;
+      justify-self: center;
     }
 
     .portfolio-item:hover {
@@ -624,6 +624,11 @@
       .testimonials {
         padding: 40px 20px;
       }
+      
+      .portfolio {
+        padding: 60px 20px;
+        margin: 60px auto;
+      }
     }
   </style>
 </head>
@@ -701,7 +706,7 @@
     </div>
   </section>
 
-  <!-- Portfolio Section -->
+  <!-- Portfolio Section - CORRETTA -->
   <section class="portfolio">
     <h2>I Miei Lavori</h2>
     <p class="intro">Alcuni esempi di siti web e progetti che ho realizzato</p>
