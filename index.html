@@ -52,6 +52,30 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
+    /* Language Selector */
+    .language-selector {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: var(--card-bg);
+      border: none;
+      border-radius: 25px;
+      padding: 10px 15px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      color: var(--text-color);
+      transition: var(--transition);
+    }
+
+    .language-selector:hover {
+      transform: scale(1.05);
+    }
+
     /* Theme Toggle */
     .theme-toggle {
       position: fixed;
@@ -75,6 +99,40 @@
 
     .theme-toggle:hover {
       transform: scale(1.1);
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      background: var(--secondary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,180,216,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,180,216,0.4);
+      background: var(--accent-color);
     }
 
     /* Header Moderno */
@@ -276,7 +334,7 @@
     .service-card:nth-child(3) { animation-delay: 0.3s; }
     .service-card:nth-child(4) { animation-delay: 0.4s; }
 
-    /* Portfolio Section - CORRETTA */
+    /* Portfolio Section */
     .portfolio {
       background: linear-gradient(135deg, var(--bg-color) 0%, var(--card-bg) 100%);
       padding: 80px 20px;
@@ -482,23 +540,54 @@
       min-height: 120px;
     }
 
-    .submit-btn {
-      background: linear-gradient(135deg, var(--secondary-color), #0090b0);
-      color: white;
+    /* Dual Buttons for Email and WhatsApp */
+    .form-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .form-buttons {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .btn-email, .btn-whatsapp {
+      padding: 15px 25px;
       border: none;
-      padding: 15px 40px;
       border-radius: 50px;
       font-size: 1.1rem;
       font-weight: 600;
       cursor: pointer;
       transition: var(--transition);
-      box-shadow: 0 4px 15px rgba(0,180,216,0.3);
-      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
-    .submit-btn:hover {
+    .btn-email {
+      background: linear-gradient(135deg, var(--secondary-color), #0090b0);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0,180,216,0.3);
+    }
+
+    .btn-email:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(0,180,216,0.4);
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
     }
 
     .form-message {
@@ -613,12 +702,21 @@
         grid-template-columns: 1fr;
       }
 
-      .theme-toggle {
+      .theme-toggle, .language-selector {
         top: 10px;
+      }
+
+      .theme-toggle {
         right: 10px;
         width: 40px;
         height: 40px;
         font-size: 1rem;
+      }
+
+      .language-selector {
+        left: 10px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
       }
 
       .testimonials {
@@ -629,13 +727,32 @@
         padding: 60px 20px;
         margin: 60px auto;
       }
+
+      .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
-<body>
+<body data-theme="dark">
+  <!-- Language Selector -->
+  <button class="language-selector" id="languageSelector">
+    <i class="fas fa-globe"></i>
+    <span class="language-text">IT</span>
+  </button>
+
   <!-- Theme Toggle -->
   <button class="theme-toggle" id="themeToggle">
-    <i class="fas fa-moon"></i>
+    <i class="fas fa-sun"></i>
+  </button>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop">
+    <i class="fas fa-chevron-up"></i>
   </button>
 
   <!-- Floating Background Elements -->
@@ -644,36 +761,36 @@
 
   <header>
     <div class="hero-content">
-      <h1>Corrado Bruni</h1>
-      <p>Web Developer & Supporto Tecnico a Torino<br>
+      <h1 data-i18n="hero.title">Corrado Bruni</h1>
+      <p data-i18n="hero.subtitle">Web Developer & Supporto Tecnico a Torino<br>
       Creo siti web moderni e offro una mano concreta per piccoli lavori e supporto quotidiano</p>
       <div class="cta-buttons">
-        <a href="#servizi" class="btn-primary">Scopri i Miei Servizi</a>
-        <a href="#contatto" class="btn-secondary">Richiedi un Preventivo</a>
+        <a href="#servizi" class="btn-primary" data-i18n="hero.services">Scopri i Miei Servizi</a>
+        <a href="#contatto" class="btn-secondary" data-i18n="hero.quote">Richiedi un Preventivo</a>
       </div>
     </div>
   </header>
 
   <section>
-    <h2>Profilo Professionale</h2>
+    <h2 data-i18n="profile.title">Profilo Professionale</h2>
     <div class="profile">
-      <p>Con un passato da progettista e imprenditore nel settore tech, ho gestito aziende e progetti complessi. Oggi scelgo di mettere questa esperienza al servizio delle persone, con un approccio più diretto e umano.</p>
+      <p data-i18n="profile.text1">Con un passato da progettista e imprenditore nel settore tech, ho gestito aziende e progetti complessi. Oggi scelgo di mettere questa esperienza al servizio delle persone, con un approccio più diretto e umano.</p>
 
-      <p>Mi rivolgo a chi cerca un professionista affidabile non solo per un sito internet o una consulenza tecnica, ma anche per quel supporto pratico e rassicurante di cui a volte si ha bisogno: un accompagnamento, un piccolo lavoretto in casa, una soluzione semplice a un problema quotidiano.</p>
+      <p data-i18n="profile.text2">Mi rivolgo a chi cerca un professionista affidabile non solo per un sito internet o una consulenza tecnica, ma anche per quel supporto pratico e rassicurante di cui a volte si ha bisogno: un accompagnamento, un piccolo lavoretto in casa, una soluzione semplice a un problema quotidiano.</p>
     </div>
   </section>
 
   <section id="servizi">
-    <h2>Servizi Offerti</h2>
-    <p class="intro">Un mix di professionalità tecnica e disponibilità umana. Ecco in che modo posso essere utile a privati, piccole attività e persone di terza età.</p>
+    <h2 data-i18n="services.title">Servizi Offerti</h2>
+    <p class="intro" data-i18n="services.intro">Un mix di professionalità tecnica e disponibilità umana. Ecco in che modo posso essere utile a privati, piccole attività e persone di terza età.</p>
 
     <div class="services">
       <!-- Siti Web -->
       <div class="service-card">
         <img src="img/creositi.png" alt="Siti web moderni">
         <div class="content">
-          <h3><i class="fas fa-code"></i> Siti Web & Soluzioni Digitali</h3>
-          <p>Realizzo siti moderni, landing page e piattaforme leggere, con un design professionale e tempi rapidi.</p>
+          <h3><i class="fas fa-code"></i> <span data-i18n="services.web.title">Siti Web & Soluzioni Digitali</span></h3>
+          <p data-i18n="services.web.text">Realizzo siti moderni, landing page e piattaforme leggere, con un design professionale e tempi rapidi.</p>
         </div>
       </div>
 
@@ -681,8 +798,8 @@
       <div class="service-card">
         <img src="img/autista.png" alt="Autista privato Torino">
         <div class="content">
-          <h3><i class="fas fa-car"></i> Autista Privato</h3>
-          <p>Disponibile per spostamenti in città e dintorni. Puntualità, discrezione e attenzione alla persona.</p>
+          <h3><i class="fas fa-car"></i> <span data-i18n="services.driver.title">Autista Privato</span></h3>
+          <p data-i18n="services.driver.text">Disponibile per spostamenti in città e dintorni. Puntualità, discrezione e attenzione alla persona.</p>
         </div>
       </div>
 
@@ -690,8 +807,8 @@
       <div class="service-card">
         <img src="https://images.unsplash.com/photo-1581579186984-1e38a8f4d8d4?auto=format&fit=crop&w=800&q=80" alt="Piccoli lavori in casa">
         <div class="content">
-          <h3><i class="fas fa-tools"></i> Tuttofare Leggeri</h3>
-          <p>Piccole riparazioni e aiuti domestici per anziani e famiglie. Un supporto pratico e affidabile, con gentilezza.</p>
+          <h3><i class="fas fa-tools"></i> <span data-i18n="services.handyman.title">Tuttofare Leggeri</span></h3>
+          <p data-i18n="services.handyman.text">Piccole riparazioni e aiuti domestici per anziani e famiglie. Un supporto pratico e affidabile, con gentilezza.</p>
         </div>
       </div>
 
@@ -699,43 +816,43 @@
       <div class="service-card">
         <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Collaborazioni tecniche">
         <div class="content">
-          <h3><i class="fas fa-laptop-code"></i> Collaborazioni Tecniche</h3>
-          <p>Supporto per progetti digitali, sviluppo personalizzato e consulenze mirate anche da remoto.</p>
+          <h3><i class="fas fa-laptop-code"></i> <span data-i18n="services.tech.title">Collaborazioni Tecniche</span></h3>
+          <p data-i18n="services.tech.text">Supporto per progetti digitali, sviluppo personalizzato e consulenze mirate anche da remoto.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Portfolio Section - CORRETTA -->
+  <!-- Portfolio Section -->
   <section class="portfolio">
-    <h2>I Miei Lavori</h2>
-    <p class="intro">Alcuni esempi di siti web e progetti che ho realizzato</p>
+    <h2 data-i18n="portfolio.title">I Miei Lavori</h2>
+    <p class="intro" data-i18n="portfolio.intro">Alcuni esempi di siti web e progetti che ho realizzato</p>
     
     <div class="portfolio-grid">
       <div class="portfolio-item">
         <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80" alt="Progetto E-Commerce">
         <div class="portfolio-overlay">
-          <h3>E-Commerce Moderno</h3>
-          <p>Sito e-commerce con carrello e pagamenti integrati</p>
-          <a href="#" class="btn-portfolio">Visita Sito</a>
+          <h3 data-i18n="portfolio.project1.title">E-Commerce Moderno</h3>
+          <p data-i18n="portfolio.project1.text">Sito e-commerce con carrello e pagamenti integrati</p>
+          <a href="#" class="btn-portfolio" data-i18n="portfolio.visit">Visita Sito</a>
         </div>
       </div>
       
       <div class="portfolio-item">
         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Progetto Portfolio">
         <div class="portfolio-overlay">
-          <h3>Sito Portfolio</h3>
-          <p>Portfolio personale con design elegante e responsive</p>
-          <a href="#" class="btn-portfolio">Visita Sito</a>
+          <h3 data-i18n="portfolio.project2.title">Sito Portfolio</h3>
+          <p data-i18n="portfolio.project2.text">Portfolio personale con design elegante e responsive</p>
+          <a href="#" class="btn-portfolio" data-i18n="portfolio.visit">Visita Sito</a>
         </div>
       </div>
       
       <div class="portfolio-item">
         <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" alt="Progetto Aziendale">
         <div class="portfolio-overlay">
-          <h3>Sito Aziendale</h3>
-          <p>Piattaforma corporate con blog integrato</p>
-          <a href="#" class="btn-portfolio">Visita Sito</a>
+          <h3 data-i18n="portfolio.project3.title">Sito Aziendale</h3>
+          <p data-i18n="portfolio.project3.text">Piattaforma corporate con blog integrato</p>
+          <a href="#" class="btn-portfolio" data-i18n="portfolio.visit">Visita Sito</a>
         </div>
       </div>
     </div>
@@ -743,46 +860,46 @@
 
   <!-- Testimonials Section -->
   <section>
-    <h2>Cosa Dicono i Miei Clienti</h2>
-    <p class="intro">La soddisfazione dei clienti è la mia migliore vetrina</p>
+    <h2 data-i18n="testimonials.title">Cosa Dicono i Miei Clienti</h2>
+    <p class="intro" data-i18n="testimonials.intro">La soddisfazione dei clienti è la mia migliore vetrina</p>
 
     <div class="testimonials">
       <div class="testimonial-grid">
         <div class="testimonial-card">
-          <div class="testimonial-text">
+          <div class="testimonial-text" data-i18n="testimonials.1.text">
             "Corrado ha realizzato il sito della mia attività in tempi record. Professionale, competente e sempre disponibile. Consigliatissimo!"
           </div>
           <div class="testimonial-author">
             <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Alessandro Conti" class="author-avatar">
             <div class="author-info">
-              <h4>Alessandro Conti</h4>
-              <p>Ristorante "Da Alessandro"</p>
+              <h4 data-i18n="testimonials.1.name">Alessandro Conti</h4>
+              <p data-i18n="testimonials.1.role">Ristorante "Da Alessandro"</p>
             </div>
           </div>
         </div>
 
         <div class="testimonial-card">
-          <div class="testimonial-text">
+          <div class="testimonial-text" data-i18n="testimonials.2.text">
             "Oltre al sito, mi ha aiutato con piccoli lavori domestici. Una persona affidabile e competente su più fronti!"
           </div>
           <div class="testimonial-author">
             <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=100&q=80" alt="Elena Romano" class="author-avatar">
             <div class="author-info">
-              <h4>Elena Romano</h4>
-              <p>Insegnante in pensione</p>
+              <h4 data-i18n="testimonials.2.name">Elena Romano</h4>
+              <p data-i18n="testimonials.2.role">Insegnante in pensione</p>
             </div>
           </div>
         </div>
 
         <div class="testimonial-card">
-          <div class="testimonial-text">
+          <div class="testimonial-text" data-i18n="testimonials.3.text">
             "Supporto tecnico eccellente e grande pazienza nel spiegare le cose. Finalmente qualcuno che unisce competenza e umanità."
           </div>
           <div class="testimonial-author">
             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Marco Esposito" class="author-avatar">
             <div class="author-info">
-              <h4>Marco Esposito</h4>
-              <p>Artigiano - Falegnameria Esposito</p>
+              <h4 data-i18n="testimonials.3.name">Marco Esposito</h4>
+              <p data-i18n="testimonials.3.role">Artigiano - Falegnameria Esposito</p>
             </div>
           </div>
         </div>
@@ -790,46 +907,55 @@
     </div>
   </section>
 
-  <!-- Contact Form Section - MODIFICATA CON OPZIONE 2 -->
+  <!-- Contact Form Section -->
   <section id="contatto">
-    <h2>Contattami</h2>
-    <p class="intro">Hai un progetto in mente? Scrivimi e parliamone!</p>
+    <h2 data-i18n="contact.title">Contattami</h2>
+    <p class="intro" data-i18n="contact.intro">Hai un progetto in mente? Scrivimi e parliamone!</p>
 
     <div class="contact-form">
       <form id="contactForm">
         <div class="form-group">
-          <label for="name">Nome e Cognome</label>
+          <label for="name" data-i18n="contact.name">Nome e Cognome</label>
           <input type="text" id="name" name="name" required>
         </div>
 
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="email" data-i18n="contact.email">Email</label>
           <input type="email" id="email" name="email" required>
         </div>
 
         <div class="form-group">
-          <label for="phone">Telefono (opzionale)</label>
+          <label for="phone" data-i18n="contact.phone">Telefono (opzionale)</label>
           <input type="tel" id="phone" name="phone">
         </div>
 
         <div class="form-group">
-          <label for="service">Tipo di Servizio</label>
+          <label for="service" data-i18n="contact.service">Tipo di Servizio</label>
           <select id="service" name="service" required>
-            <option value="">Seleziona un servizio</option>
-            <option value="sito-web">Sito Web</option>
-            <option value="consulenza">Consulenza Tecnica</option>
-            <option value="autista">Autista Privato</option>
-            <option value="tuttofare">Tuttofare Leggero</option>
-            <option value="altro">Altro</option>
+            <option value="" data-i18n="contact.select">Seleziona un servizio</option>
+            <option value="sito-web" data-i18n="contact.website">Sito Web</option>
+            <option value="consulenza" data-i18n="contact.consulting">Consulenza Tecnica</option>
+            <option value="autista" data-i18n="contact.driver">Autista Privato</option>
+            <option value="tuttofare" data-i18n="contact.handyman">Tuttofare Leggero</option>
+            <option value="altro" data-i18n="contact.other">Altro</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="message">Messaggio</label>
-          <textarea id="message" name="message" placeholder="Descrivi il tuo progetto o la tua richiesta..." required></textarea>
+          <label for="message" data-i18n="contact.message">Messaggio</label>
+          <textarea id="message" name="message" placeholder="" required data-i18n-placeholder="contact.placeholder"></textarea>
         </div>
 
-        <button type="submit" class="submit-btn">Invia Richiesta</button>
+        <div class="form-buttons">
+          <button type="button" class="btn-email" id="emailBtn">
+            <i class="fas fa-envelope"></i>
+            <span data-i18n="contact.emailBtn">Invia Email</span>
+          </button>
+          <button type="button" class="btn-whatsapp" id="whatsappBtn">
+            <i class="fab fa-whatsapp"></i>
+            <span data-i18n="contact.whatsappBtn">WhatsApp</span>
+          </button>
+        </div>
       </form>
       <div id="formMessage" class="form-message"></div>
     </div>
@@ -843,8 +969,8 @@
       <a href="#"><i class="fab fa-facebook"></i></a>
     </div>
     <p>
-      <a href="cookie.html">Cookie Policy</a> |
-      <a href="privacy.html">Privacy Policy</a>
+      <a href="cookie.html" data-i18n="footer.cookie">Cookie Policy</a> |
+      <a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
     </p>
     <p>
       📧 <a href="mailto:corbruni@gmail.com">corbruni@gmail.com</a><br>
@@ -853,10 +979,167 @@
   </footer>
 
   <script>
-    // Theme Toggle
+    // Translations
+    const translations = {
+      it: {
+        "hero.title": "Corrado Bruni",
+        "hero.subtitle": "Web Developer & Supporto Tecnico a Torino<br>Creo siti web moderni e offro una mano concreta per piccoli lavori e supporto quotidiano",
+        "hero.services": "Scopri i Miei Servizi",
+        "hero.quote": "Richiedi un Preventivo",
+        "profile.title": "Profilo Professionale",
+        "profile.text1": "Con un passato da progettista e imprenditore nel settore tech, ho gestito aziende e progetti complessi. Oggi scelgo di mettere questa esperienza al servizio delle persone, con un approccio più diretto e umano.",
+        "profile.text2": "Mi rivolgo a chi cerca un professionista affidabile non solo per un sito internet o una consulenza tecnica, ma anche per quel supporto pratico e rassicurante di cui a volte si ha bisogno: un accompagnamento, un piccolo lavoretto in casa, una soluzione semplice a un problema quotidiano.",
+        "services.title": "Servizi Offerti",
+        "services.intro": "Un mix di professionalità tecnica e disponibilità umana. Ecco in che modo posso essere utile a privati, piccole attività e persone di terza età.",
+        "services.web.title": "Siti Web & Soluzioni Digitali",
+        "services.web.text": "Realizzo siti moderni, landing page e piattaforme leggere, con un design professionale e tempi rapidi.",
+        "services.driver.title": "Autista Privato",
+        "services.driver.text": "Disponibile per spostamenti in città e dintorni. Puntualità, discrezione e attenzione alla persona.",
+        "services.handyman.title": "Tuttofare Leggeri",
+        "services.handyman.text": "Piccole riparazioni e aiuti domestici per anziani e famiglie. Un supporto pratico e affidabile, con gentilezza.",
+        "services.tech.title": "Collaborazioni Tecniche",
+        "services.tech.text": "Supporto per progetti digitali, sviluppo personalizzato e consulenze mirate anche da remoto.",
+        "portfolio.title": "I Miei Lavori",
+        "portfolio.intro": "Alcuni esempi di siti web e progetti che ho realizzato",
+        "portfolio.project1.title": "E-Commerce Moderno",
+        "portfolio.project1.text": "Sito e-commerce con carrello e pagamenti integrati",
+        "portfolio.project2.title": "Sito Portfolio",
+        "portfolio.project2.text": "Portfolio personale con design elegante e responsive",
+        "portfolio.project3.title": "Sito Aziendale",
+        "portfolio.project3.text": "Piattaforma corporate con blog integrato",
+        "portfolio.visit": "Visita Sito",
+        "testimonials.title": "Cosa Dicono i Miei Clienti",
+        "testimonials.intro": "La soddisfazione dei clienti è la mia migliore vetrina",
+        "testimonials.1.text": "\"Corrado ha realizzato il sito della mia attività in tempi record. Professionale, competente e sempre disponibile. Consigliatissimo!\"",
+        "testimonials.1.name": "Alessandro Conti",
+        "testimonials.1.role": "Ristorante \"Da Alessandro\"",
+        "testimonials.2.text": "\"Oltre al sito, mi ha aiutato con piccoli lavori domestici. Una persona affidabile e competente su più fronti!\"",
+        "testimonials.2.name": "Elena Romano",
+        "testimonials.2.role": "Insegnante in pensione",
+        "testimonials.3.text": "\"Supporto tecnico eccellente e grande pazienza nel spiegare le cose. Finalmente qualcuno che unisce competenza e umanità.\"",
+        "testimonials.3.name": "Marco Esposito",
+        "testimonials.3.role": "Artigiano - Falegnameria Esposito",
+        "contact.title": "Contattami",
+        "contact.intro": "Hai un progetto in mente? Scrivimi e parliamone!",
+        "contact.name": "Nome e Cognome",
+        "contact.email": "Email",
+        "contact.phone": "Telefono (opzionale)",
+        "contact.service": "Tipo di Servizio",
+        "contact.select": "Seleziona un servizio",
+        "contact.website": "Sito Web",
+        "contact.consulting": "Consulenza Tecnica",
+        "contact.driver": "Autista Privato",
+        "contact.handyman": "Tuttofare Leggero",
+        "contact.other": "Altro",
+        "contact.message": "Messaggio",
+        "contact.placeholder": "Descrivi il tuo progetto o la tua richiesta...",
+        "contact.emailBtn": "Invia Email",
+        "contact.whatsappBtn": "WhatsApp",
+        "footer.cookie": "Cookie Policy",
+        "footer.privacy": "Privacy Policy"
+      },
+      en: {
+        "hero.title": "Corrado Bruni",
+        "hero.subtitle": "Web Developer & Technical Support in Turin<br>I create modern websites and offer practical help for small jobs and daily support",
+        "hero.services": "Discover My Services",
+        "hero.quote": "Request a Quote",
+        "profile.title": "Professional Profile",
+        "profile.text1": "With a background as a designer and entrepreneur in the tech sector, I have managed companies and complex projects. Today I choose to put this experience at the service of people, with a more direct and human approach.",
+        "profile.text2": "I address those looking for a reliable professional not only for a website or technical consultation, but also for that practical and reassuring support that is sometimes needed: accompaniment, small household jobs, a simple solution to an everyday problem.",
+        "services.title": "Services Offered",
+        "services.intro": "A mix of technical professionalism and human availability. Here's how I can be useful to individuals, small businesses and elderly people.",
+        "services.web.title": "Websites & Digital Solutions",
+        "services.web.text": "I create modern websites, landing pages and lightweight platforms, with professional design and fast turnaround times.",
+        "services.driver.title": "Private Driver",
+        "services.driver.text": "Available for trips in the city and surrounding areas. Punctuality, discretion and attention to the person.",
+        "services.handyman.title": "Light Handyman Services",
+        "services.handyman.text": "Small repairs and domestic help for elderly people and families. Practical and reliable support, with kindness.",
+        "services.tech.title": "Technical Collaborations",
+        "services.tech.text": "Support for digital projects, customized development and targeted consultations also remotely.",
+        "portfolio.title": "My Works",
+        "portfolio.intro": "Some examples of websites and projects I have created",
+        "portfolio.project1.title": "Modern E-Commerce",
+        "portfolio.project1.text": "E-commerce site with integrated cart and payments",
+        "portfolio.project2.title": "Portfolio Website",
+        "portfolio.project2.text": "Personal portfolio with elegant and responsive design",
+        "portfolio.project3.title": "Corporate Website",
+        "portfolio.project3.text": "Corporate platform with integrated blog",
+        "portfolio.visit": "Visit Site",
+        "testimonials.title": "What My Clients Say",
+        "testimonials.intro": "Customer satisfaction is my best showcase",
+        "testimonials.1.text": "\"Corrado created my business website in record time. Professional, competent and always available. Highly recommended!\"",
+        "testimonials.1.name": "Alessandro Conti",
+        "testimonials.1.role": "Restaurant \"Da Alessandro\"",
+        "testimonials.2.text": "\"In addition to the website, he helped me with small household jobs. A reliable and competent person on multiple fronts!\"",
+        "testimonials.2.name": "Elena Romano",
+        "testimonials.2.role": "Retired teacher",
+        "testimonials.3.text": "\"Excellent technical support and great patience in explaining things. Finally someone who combines competence and humanity.\"",
+        "testimonials.3.name": "Marco Esposito",
+        "testimonials.3.role": "Craftsman - Esposito Woodworking",
+        "contact.title": "Contact Me",
+        "contact.intro": "Have a project in mind? Write to me and let's talk!",
+        "contact.name": "Full Name",
+        "contact.email": "Email",
+        "contact.phone": "Phone (optional)",
+        "contact.service": "Type of Service",
+        "contact.select": "Select a service",
+        "contact.website": "Website",
+        "contact.consulting": "Technical Consulting",
+        "contact.driver": "Private Driver",
+        "contact.handyman": "Light Handyman",
+        "contact.other": "Other",
+        "contact.message": "Message",
+        "contact.placeholder": "Describe your project or request...",
+        "contact.emailBtn": "Send Email",
+        "contact.whatsappBtn": "WhatsApp",
+        "footer.cookie": "Cookie Policy",
+        "footer.privacy": "Privacy Policy"
+      }
+    };
+
+    // Language Management
+    let currentLanguage = localStorage.getItem('language') || 'it';
+    const languageSelector = document.getElementById('languageSelector');
+    const languageText = languageSelector.querySelector('.language-text');
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      localStorage.setItem('language', lang);
+      languageText.textContent = lang.toUpperCase();
+      
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          element.innerHTML = translations[lang][key];
+        }
+      });
+
+      // Update placeholder attributes
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-i18n-placeholder');
+        if (translations[lang][key]) {
+          element.setAttribute('placeholder', translations[lang][key]);
+        }
+      });
+    }
+
+    languageSelector.addEventListener('click', () => {
+      const newLang = currentLanguage === 'it' ? 'en' : 'it';
+      setLanguage(newLang);
+    });
+
+    // Initialize language
+    setLanguage(currentLanguage);
+
+    // Theme Toggle (Dark by default)
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = themeToggle.querySelector('i');
     
+    // Set dark theme by default
+    document.body.setAttribute('data-theme', 'dark');
+    themeIcon.className = 'fas fa-sun';
+    localStorage.setItem('theme', 'dark');
+
     themeToggle.addEventListener('click', () => {
       const currentTheme = document.body.getAttribute('data-theme');
       
@@ -871,51 +1154,116 @@
       }
     });
 
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.body.setAttribute('data-theme', 'dark');
-      themeIcon.className = 'fas fa-sun';
+    // Back to Top Button
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Email and WhatsApp Integration
+    const emailBtn = document.getElementById('emailBtn');
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    const messageDiv = document.getElementById('formMessage');
+
+    function validateForm() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const service = document.getElementById('service').value;
+      const message = document.getElementById('message').value;
+
+      if (!name || !email || !service || !message) {
+        messageDiv.textContent = currentLanguage === 'it' 
+          ? 'Per favore, compila tutti i campi obbligatori.' 
+          : 'Please fill in all required fields.';
+        messageDiv.className = 'form-message error';
+        messageDiv.style.display = 'block';
+        return false;
+      }
+      return true;
     }
 
-    // Form Submission - Versione Semplice che funziona subito
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+    function showSuccessMessage() {
+      messageDiv.textContent = currentLanguage === 'it'
+        ? 'Grazie per il tuo messaggio! Ti ricontatterò al più presto.'
+        : 'Thank you for your message! I will get back to you as soon as possible.';
+      messageDiv.className = 'form-message success';
+      messageDiv.style.display = 'block';
+      document.getElementById('contactForm').reset();
       
-      const form = e.target;
-      const submitBtn = form.querySelector('.submit-btn');
-      const messageDiv = document.getElementById('formMessage');
+      // Scroll to message
+      messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Email Button
+    emailBtn.addEventListener('click', () => {
+      if (!validateForm()) return;
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const service = document.getElementById('service').value;
+      const message = document.getElementById('message').value;
+
+      // Create FormData for Formspree
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('phone', phone || 'Non fornito');
+      formData.append('service', service);
+      formData.append('message', message);
+
+      // Send to Formspree (you need to create a free account at formspree.io)
+      fetch('https://formspree.io/f/mjvneqjq', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          showSuccessMessage();
+        } else {
+          throw new Error('Form submission failed');
+        }
+      })
+      .catch(error => {
+        // Fallback: Open default email client
+        const subject = `Richiesta servizio: ${service}`;
+        const body = `Nome: ${name}%0D%0AEmail: ${email}%0D%0ATelefono: ${phone || 'Non fornito'}%0D%0AServizio: ${service}%0D%0AMessaggio: ${message}`;
+        window.location.href = `mailto:corbruni@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+        showSuccessMessage();
+      });
+    });
+
+    // WhatsApp Button
+    whatsappBtn.addEventListener('click', () => {
+      if (!validateForm()) return;
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const service = document.getElementById('service').value;
+      const message = document.getElementById('message').value;
+
+      const whatsappMessage = `Ciao Corrado, mi chiamo ${name}.%0A%0AEmail: ${email}%0ATelefono: ${phone || 'Non fornito'}%0AServizio richiesto: ${service}%0A%0AMessaggio:%0A${message}`;
       
-      // Disable submit button
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Invio in corso...';
-      messageDiv.style.display = 'none';
+      const whatsappUrl = `https://wa.me/393388187925?text=${whatsappMessage}`;
+      window.open(whatsappUrl, '_blank');
       
-      // Raccogli i dati del form
-      const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        service: document.getElementById('service').value,
-        message: document.getElementById('message').value,
-        timestamp: new Date().toLocaleString('it-IT')
-      };
-      
-      // Simula l'invio (mostra i dati in console)
-      console.log('Richiesta di contatto ricevuta:', formData);
-      
-      // Mostra successo dopo un breve delay
-      setTimeout(() => {
-        messageDiv.textContent = 'Grazie per il tuo messaggio! Ti ricontatterò al più presto.';
-        messageDiv.className = 'form-message success';
-        messageDiv.style.display = 'block';
-        form.reset();
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Invia Richiesta';
-        
-        // Scroll to message
-        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 1500);
+      showSuccessMessage();
     });
 
     // Smooth Scroll for Anchor Links
