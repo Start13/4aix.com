@@ -16,6 +16,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
+    :root {
+      --primary-color: #1a2a6c;
+      --secondary-color: #00b4d8;
+      --accent-color: #fdbb2d;
+      --text-color: #333;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    [data-theme="dark"] {
+      --primary-color: #2d3748;
+      --secondary-color: #63b3ed;
+      --accent-color: #f6ad55;
+      --text-color: #e2e8f0;
+      --bg-color: #1a202c;
+      --card-bg: #2d3748;
+      --shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -24,10 +45,36 @@
     }
 
     body {
-      background-color: #f8fafc;
-      color: #333;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       line-height: 1.6;
       overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: var(--card-bg);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--text-color);
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
     }
 
     /* Header Moderno */
@@ -75,12 +122,12 @@
       border-radius: 50px;
       text-decoration: none;
       font-weight: 600;
-      transition: all 0.3s ease;
+      transition: var(--transition);
       font-size: 1.1rem;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #00b4d8, #0090b0);
+      background: linear-gradient(135deg, var(--secondary-color), #0090b0);
       color: white;
       box-shadow: 0 4px 15px rgba(0,180,216,0.3);
     }
@@ -98,7 +145,7 @@
 
     .btn-secondary:hover {
       background: white;
-      color: #1a2a6c;
+      color: var(--primary-color);
     }
 
     /* Animazioni */
@@ -113,6 +160,11 @@
       }
     }
 
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
     /* Sezioni */
     section {
       max-width: 1200px;
@@ -123,7 +175,7 @@
     section h2 {
       font-size: 2.2rem;
       margin-bottom: 20px;
-      color: #1a2a6c;
+      color: var(--primary-color);
       text-align: center;
       font-weight: 600;
     }
@@ -132,17 +184,19 @@
       max-width: 800px;
       margin: 0 auto 50px;
       text-align: center;
-      color: #555;
+      color: var(--text-color);
       font-size: 1.1rem;
+      opacity: 0.8;
     }
 
     /* Profilo */
     .profile {
-      background: white;
+      background: var(--card-bg);
       padding: 50px;
       border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      box-shadow: var(--shadow);
       animation: fadeInUp 0.8s ease-out 0.2s both;
+      transition: var(--transition);
     }
 
     .profile p {
@@ -159,11 +213,11 @@
     }
 
     .service-card {
-      background: white;
+      background: var(--card-bg);
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
       border: 1px solid rgba(255,255,255,0.1);
       animation: fadeInUp 0.8s ease-out;
     }
@@ -171,7 +225,7 @@
     .service-card:hover {
       transform: translateY(-10px) scale(1.02);
       box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-      border-color: #00b4d8;
+      border-color: var(--secondary-color);
     }
 
     .service-card img {
@@ -191,14 +245,20 @@
 
     .service-card h3 {
       margin-bottom: 15px;
-      color: #2c3e50;
+      color: var(--text-color);
       font-size: 1.3rem;
       font-weight: 600;
     }
 
+    .service-card h3 i {
+      margin-right: 10px;
+      color: var(--secondary-color);
+    }
+
     .service-card p {
-      color: #555;
+      color: var(--text-color);
       line-height: 1.6;
+      opacity: 0.8;
     }
 
     /* Delay animazioni per le card */
@@ -207,9 +267,218 @@
     .service-card:nth-child(3) { animation-delay: 0.3s; }
     .service-card:nth-child(4) { animation-delay: 0.4s; }
 
+    /* Portfolio Section */
+    .portfolio {
+      background: linear-gradient(135deg, var(--bg-color) 0%, var(--card-bg) 100%);
+      padding: 80px 0;
+      margin: 80px 0;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .portfolio-item {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      padding: 30px 20px 20px;
+      transform: translateY(10px);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .portfolio-overlay h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .btn-portfolio {
+      display: inline-block;
+      background: var(--secondary-color);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .btn-portfolio:hover {
+      background: var(--accent-color);
+      transform: translateX(5px);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: var(--card-bg);
+      padding: 60px 40px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      margin: 80px auto;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .testimonial-card {
+      background: var(--bg-color);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      font-size: 4rem;
+      color: var(--secondary-color);
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      opacity: 0.3;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .author-info h4 {
+      margin-bottom: 5px;
+      color: var(--text-color);
+    }
+
+    .author-info p {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: var(--card-bg);
+      padding: 50px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, var(--secondary-color), #0090b0);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0,180,216,0.3);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,180,216,0.4);
+    }
+
     /* Footer */
     footer {
-      background: linear-gradient(135deg, #1a2a6c, #2c3e50);
+      background: linear-gradient(135deg, var(--primary-color), #2c3e50);
       color: white;
       text-align: center;
       padding: 40px 20px;
@@ -217,7 +486,7 @@
     }
 
     footer a {
-      color: #00b4d8;
+      color: var(--secondary-color);
       text-decoration: none;
       transition: color 0.3s;
     }
@@ -235,12 +504,32 @@
       margin: 0 15px;
       font-size: 1.5rem;
       color: white;
-      transition: transform 0.3s;
+      transition: var(--transition);
     }
 
     .social-links a:hover {
       transform: translateY(-3px);
-      color: #00b4d8;
+      color: var(--secondary-color);
+    }
+
+    /* Floating Elements */
+    .floating-element {
+      position: absolute;
+      animation: float 3s ease-in-out infinite;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .floating-1 {
+      top: 20%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+
+    .floating-2 {
+      top: 60%;
+      right: 5%;
+      animation-delay: 1.5s;
     }
 
     /* Responsive */
@@ -256,11 +545,38 @@
       .btn-primary, .btn-secondary {
         padding: 12px 25px;
         font-size: 1rem;
+        display: block;
+        margin: 10px auto;
+        max-width: 250px;
+      }
+
+      .profile, .contact-form {
+        padding: 30px 20px;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .theme-toggle {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- Floating Background Elements -->
+  <div class="floating-element floating-1">🚀</div>
+  <div class="floating-element floating-2">💻</div>
 
   <header>
     <div class="hero-content">
@@ -269,7 +585,7 @@
       Creo siti web moderni e offro una mano concreta per piccoli lavori e supporto quotidiano</p>
       <div class="cta-buttons">
         <a href="#servizi" class="btn-primary">Scopri i Miei Servizi</a>
-        <a href="mailto:corbruni@gmail.com" class="btn-secondary">Richiedi un Preventivo</a>
+        <a href="#contatto" class="btn-secondary">Richiedi un Preventivo</a>
       </div>
     </div>
   </header>
@@ -326,6 +642,129 @@
     </div>
   </section>
 
+  <!-- Portfolio Section -->
+  <section class="portfolio">
+    <h2>I Miei Lavori</h2>
+    <p class="intro">Alcuni esempi di siti web e progetti che ho realizzato</p>
+    
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80" alt="Progetto E-Commerce">
+        <div class="portfolio-overlay">
+          <h3>E-Commerce Moderno</h3>
+          <p>Sito e-commerce con carrello e pagamenti integrati</p>
+          <a href="#" class="btn-portfolio">Visita Sito</a>
+        </div>
+      </div>
+      
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Progetto Portfolio">
+        <div class="portfolio-overlay">
+          <h3>Sito Portfolio</h3>
+          <p>Portfolio personale con design elegante e responsive</p>
+          <a href="#" class="btn-portfolio">Visita Sito</a>
+        </div>
+      </div>
+      
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" alt="Progetto Aziendale">
+        <div class="portfolio-overlay">
+          <h3>Sito Aziendale</h3>
+          <p>Piattaforma corporate con blog integrato</p>
+          <a href="#" class="btn-portfolio">Visita Sito</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section>
+    <h2>Cosa Dicono i Miei Clienti</h2>
+    <p class="intro">La soddisfazione dei clienti è la mia migliore vetrina</p>
+
+    <div class="testimonials">
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "Corrado ha realizzato il sito della mia attività in tempi record. Professionale, competente e sempre disponibile. Consigliatissimo!"
+          </div>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Mario Rossi" class="author-avatar">
+            <div class="author-info">
+              <h4>Mario Rossi</h4>
+              <p>Ristorante La Trattoria</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "Oltre al sito, mi ha aiutato con piccoli lavori domestici. Una persona affidabile e competente su più fronti!"
+          </div>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=100&q=80" alt="Laura Bianchi" class="author-avatar">
+            <div class="author-info">
+              <h4>Laura Bianchi</h4>
+              <p>Insegnante in pensione</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "Supporto tecnico eccellente e grande pazienza nel spiegare le cose. Finalmente qualcuno che unisce competenza e umanità."
+          </div>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Giuseppe Verdi" class="author-avatar">
+            <div class="author-info">
+              <h4>Giuseppe Verdi</h4>
+              <p>Piccola Impresa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section id="contatto">
+    <h2>Contattami</h2>
+    <p class="intro">Hai un progetto in mente? Scrivimi e parliamone!</p>
+
+    <div class="contact-form">
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">Nome e Cognome</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="service">Tipo di Servizio</label>
+          <select id="service" name="service" required>
+            <option value="">Seleziona un servizio</option>
+            <option value="sito-web">Sito Web</option>
+            <option value="consulenza">Consulenza Tecnica</option>
+            <option value="autista">Autista Privato</option>
+            <option value="tuttofare">Tuttofare Leggero</option>
+            <option value="altro">Altro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Messaggio</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Invia Richiesta</button>
+      </form>
+    </div>
+  </section>
+
   <footer>
     <p>© 2025 Corrado Bruni – Torino</p>
     <div class="social-links">
@@ -343,5 +782,54 @@
     </p>
   </footer>
 
+  <script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme');
+      
+      if (currentTheme === 'dark') {
+        document.body.removeAttribute('data-theme');
+        themeIcon.className = 'fas fa-moon';
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'fas fa-sun';
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.setAttribute('data-theme', 'dark');
+      themeIcon.className = 'fas fa-sun';
+    }
+
+    // Form Submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Qui puoi aggiungere l'integrazione con un servizio di email
+      alert('Grazie per il tuo messaggio! Ti ricontatterò al più presto.');
+      this.reset();
+    });
+
+    // Smooth Scroll for Anchor Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
