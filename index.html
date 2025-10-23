@@ -231,6 +231,34 @@
       50% { transform: translateY(-10px); }
     }
 
+    /* Nuova animazione mosaico per il titolo */
+    @keyframes titleMosaicReveal {
+      0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+      }
+      50% {
+        opacity: 0.7;
+        transform: scale(0.95) translateY(5px);
+        clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+
+    .mosaic-title {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .mosaic-title.animated {
+      animation: titleMosaicReveal 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
     /* Sezioni */
     section {
       max-width: 1200px;
@@ -368,6 +396,7 @@
       max-width: 400px;
       width: 100%;
       justify-self: center;
+      animation: fadeInUp 0.8s ease-out;
     }
 
     .portfolio-item:hover {
@@ -423,6 +452,12 @@
       background: var(--accent-color);
       transform: translateX(5px);
     }
+
+    /* Delay animazioni per le card portfolio */
+    .portfolio-item:nth-child(1) { animation-delay: 0.1s; }
+    .portfolio-item:nth-child(2) { animation-delay: 0.2s; }
+    .portfolio-item:nth-child(3) { animation-delay: 0.3s; }
+    .portfolio-item:nth-child(4) { animation-delay: 0.4s; }
 
     /* Testimonials */
     .testimonials {
@@ -833,7 +868,7 @@
 
   <!-- Portfolio Section - MODIFICATA -->
   <section class="portfolio">
-    <h2 data-i18n="portfolio.title">Cosa Posso Creare per Te</h2>
+    <h2 class="mosaic-title" data-i18n="portfolio.title">Cosa Posso Creare per Te</h2>
     <p class="intro" data-i18n="portfolio.intro">Esempi di soluzioni che posso sviluppare su misura per le tue esigenze</p>
     
     <div class="portfolio-grid">
@@ -1193,6 +1228,22 @@
         behavior: 'smooth'
       });
     });
+
+    // Intersection Observer per l'animazione del titolo mosaico
+    const mosaicTitle = document.querySelector('.mosaic-title');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          mosaicTitle.classList.add('animated');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    if (mosaicTitle) {
+      observer.observe(mosaicTitle);
+    }
 
     // Email and WhatsApp Integration
     const emailBtn = document.getElementById('emailBtn');
