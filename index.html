@@ -29,6 +29,11 @@
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#1a2a6c">
 
+  <!-- iOS PWA Support -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="4AIX">
+
   <!-- Meta Social Ottimizzati -->
   <meta property="og:title" content="Corrado Bruni - Web Developer & Supporto Tecnico a Torino"/>
   <meta property="og:description" content="Con un passato da progettista e imprenditore tech, offro soluzioni digitali e supporto umano. Siti web, consulenze e aiuto pratico per privati e attività."/>
@@ -43,9 +48,9 @@
   <meta name="twitter:description" content="Soluzioni digitali e supporto umano per privati e attività a Torino"/>
   <meta name="twitter:image" content="https://www.4aix.com/img/4aix_social_preview.jpg"/>
 
-<!-- Font Awesome e Google Fonts normali -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome e Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -73,7 +78,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
@@ -83,21 +88,6 @@
       overflow-x: hidden;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
-
-// Gestione caricamento font
-document.addEventListener('DOMContentLoaded', function() {
-  // Quando i font sono caricati, aggiungi la classe
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(function() {
-      document.body.classList.add('fonts-loaded');
-    });
-  } else {
-    // Fallback per browser che non supportano Font Loading API
-    setTimeout(function() {
-      document.body.classList.add('fonts-loaded');
-    }, 1000);
-  }
-});
 
     /* Language Selector */
     .language-selector {
@@ -1083,21 +1073,6 @@ document.addEventListener('DOMContentLoaded', function() {
   </footer>
 
   <script>
-    // Gestione caricamento font
-    document.addEventListener('DOMContentLoaded', function() {
-      // Quando i font sono caricati, aggiungi la classe
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(function() {
-          document.body.classList.add('fonts-loaded');
-        });
-      } else {
-        // Fallback per browser che non supportano Font Loading API
-        setTimeout(function() {
-          document.body.classList.add('fonts-loaded');
-        }, 1000);
-      }
-    });
-
     // Translations
     const translations = {
       it: {
