@@ -43,17 +43,9 @@
   <meta name="twitter:description" content="Soluzioni digitali e supporto umano per privati e attività a Torino"/>
   <meta name="twitter:image" content="https://www.4aix.com/img/4aix_social_preview.jpg"/>
 
-  <!-- Font Awesome caricato in modo ottimizzato -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
-  
-  <!-- Google Fonts caricato in modo ottimizzato -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  
-  <!-- Fallback per CSS quando JavaScript è disabilitato -->
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  </noscript>
+<!-- Font Awesome e Google Fonts normali -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -92,10 +84,20 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Quando i font sono caricati, applica Poppins */
-    .fonts-loaded * {
-      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
-    }
+// Gestione caricamento font
+document.addEventListener('DOMContentLoaded', function() {
+  // Quando i font sono caricati, aggiungi la classe
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function() {
+      document.body.classList.add('fonts-loaded');
+    });
+  } else {
+    // Fallback per browser che non supportano Font Loading API
+    setTimeout(function() {
+      document.body.classList.add('fonts-loaded');
+    }, 1000);
+  }
+});
 
     /* Language Selector */
     .language-selector {
