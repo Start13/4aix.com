@@ -15,6 +15,12 @@
     gtag('config', 'G-0PFF5S9Z2R');
   </script>
   
+  <!-- Preconnect per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
+
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
@@ -23,23 +29,32 @@
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#1a2a6c">
 
-  <!-- Meta Social -->
-<!-- Meta Social Ottimizzati -->
-<meta property="og:title" content="Corrado Bruni - Web Developer & Supporto Tecnico a Torino"/>
-<meta property="og:description" content="Con un passato da progettista e imprenditore tech, offro soluzioni digitali e supporto umano. Siti web, consulenze e aiuto pratico per privati e attività."/>
-<meta property="og:image" content="https://www.4aix.com/img/4aix_social_preview.jpg"/>
-<meta property="og:image:width" content="1200"/>
-<meta property="og:image:height" content="630"/>
-<meta property="og:url" content="https://www.4aix.com"/>
-<meta property="og:type" content="website"/>
-<meta property="og:locale" content="it_IT"/>
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Corrado Bruni - Web Developer & Supporto Tecnico a Torino"/>
-<meta name="twitter:description" content="Soluzioni digitali e supporto umano per privati e attività a Torino"/>
-<meta name="twitter:image" content="https://www.4aix.com/img/4aix_social_preview.jpg"/>
+  <!-- Meta Social Ottimizzati -->
+  <meta property="og:title" content="Corrado Bruni - Web Developer & Supporto Tecnico a Torino"/>
+  <meta property="og:description" content="Con un passato da progettista e imprenditore tech, offro soluzioni digitali e supporto umano. Siti web, consulenze e aiuto pratico per privati e attività."/>
+  <meta property="og:image" content="https://www.4aix.com/img/4aix_social_preview.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:url" content="https://www.4aix.com"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:locale" content="it_IT"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Corrado Bruni - Web Developer & Supporto Tecnico a Torino"/>
+  <meta name="twitter:description" content="Soluzioni digitali e supporto umano per privati e attività a Torino"/>
+  <meta name="twitter:image" content="https://www.4aix.com/img/4aix_social_preview.jpg"/>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Font Awesome caricato in modo ottimizzato -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+  
+  <!-- Google Fonts caricato in modo ottimizzato -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  
+  <!-- Fallback per CSS quando JavaScript è disabilitato -->
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </noscript>
+
   <style>
     :root {
       --primary-color: #1a2a6c;
@@ -66,7 +81,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     body {
@@ -75,6 +90,11 @@
       line-height: 1.6;
       overflow-x: hidden;
       transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Quando i font sono caricati, applica Poppins */
+    .fonts-loaded * {
+      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
     }
 
     /* Language Selector */
@@ -848,7 +868,7 @@
     <div class="services">
       <!-- Siti Web -->
       <div class="service-card">
-        <img src="img/creositi.png" alt="Siti web moderni">
+        <img src="img/creositi.png" alt="Siti web moderni" loading="lazy" width="800" height="400">
         <div class="content">
           <h3><i class="fas fa-code"></i> <span data-i18n="services.web.title">Siti Web & Soluzioni Digitali</span></h3>
           <p data-i18n="services.web.text">Realizzo siti moderni, landing page e piattaforme leggere, con un design professionale e tempi rapidi.</p>
@@ -857,7 +877,7 @@
 
       <!-- Autista Privato -->
       <div class="service-card">
-        <img src="img/autista.png" alt="Autista privato Torino">
+        <img src="img/autista.png" alt="Autista privato Torino" loading="lazy" width="800" height="400">
         <div class="content">
           <h3><i class="fas fa-car"></i> <span data-i18n="services.driver.title">Autista Privato</span></h3>
           <p data-i18n="services.driver.text">Disponibile per spostamenti in città e dintorni. Puntualità, discrezione e attenzione alla persona.</p>
@@ -866,7 +886,7 @@
 
       <!-- Tuttofare Leggeri -->
       <div class="service-card">
-        <img src="img/tuttofare.png" alt="Piccoli lavori in casa">
+        <img src="img/tuttofare.png" alt="Piccoli lavori in casa" loading="lazy" width="800" height="400">
         <div class="content">
           <h3><i class="fas fa-tools"></i> <span data-i18n="services.handyman.title">Tuttofare Leggeri</span></h3>
           <p data-i18n="services.handyman.text">Piccole riparazioni e aiuti domestici per anziani e famiglie. Un supporto pratico e affidabile, con gentilezza.</p>
@@ -875,7 +895,7 @@
 
       <!-- Collaborazioni Tecniche -->
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Collaborazioni tecniche">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Collaborazioni tecniche" loading="lazy" width="800" height="400">
         <div class="content">
           <h3><i class="fas fa-laptop-code"></i> <span data-i18n="services.tech.title">Collaborazioni Tecniche</span></h3>
           <p data-i18n="services.tech.text">Supporto per progetti digitali, sviluppo personalizzato e consulenze mirate anche da remoto.</p>
@@ -891,7 +911,7 @@
     
     <div class="portfolio-grid">
       <div class="portfolio-item">
-        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80" alt="Sito E-Commerce">
+        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80" alt="Sito E-Commerce" loading="lazy" width="800" height="500">
         <div class="portfolio-overlay">
           <h3 data-i18n="portfolio.project1.title">E-Commerce Moderno</h3>
           <p data-i18n="portfolio.project1.text">Negozi online con carrello, pagamenti sicuri e gestione ordini</p>
@@ -900,7 +920,7 @@
       </div>
       
       <div class="portfolio-item">
-        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Sito Aziendale">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Sito Aziendale" loading="lazy" width="800" height="500">
         <div class="portfolio-overlay">
           <h3 data-i18n="portfolio.project2.title">Sito Aziendale</h3>
           <p data-i18n="portfolio.project2.text">Presenza online professionale con design responsive</p>
@@ -909,7 +929,7 @@
       </div>
       
       <div class="portfolio-item">
-        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" alt="Portfolio Personale">
+        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" alt="Portfolio Personale" loading="lazy" width="800" height="500">
         <div class="portfolio-overlay">
           <h3 data-i18n="portfolio.project3.title">Portfolio Personale</h3>
           <p data-i18n="portfolio.project3.text">Siti vetrina per professionisti e creativi</p>
@@ -919,7 +939,7 @@
 
       <!-- Scheda Software Gestionale -->
       <div class="portfolio-item">
-        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Software Gestionale">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Software Gestionale" loading="lazy" width="800" height="500">
         <div class="portfolio-overlay">
           <h3 data-i18n="portfolio.project4.title">Software Gestionale</h3>
           <p data-i18n="portfolio.project4.text">Soluzioni personalizzate per gestire la tua attività in modo efficiente</p>
@@ -929,7 +949,7 @@
 
       <!-- Nuova scheda EA/Indicators MT4/5 -->
       <div class="portfolio-item">
-        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="EA/Indicators MT4/5">
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="EA/Indicators MT4/5" loading="lazy" width="800" height="500">
         <div class="portfolio-overlay">
           <h3 data-i18n="portfolio.project5.title">EA/Indicators MT4/5</h3>
           <p data-i18n="portfolio.project5.text">Expert Advisor e indicatori personalizzati per MetaTrader 4 e 5</p>
@@ -951,7 +971,7 @@
             "Corrado ha realizzato il sito della mia attività in tempi record. Professionale, competente e sempre disponibile. Consigliatissimo!"
           </div>
           <div class="testimonial-author">
-            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Alessandro Conti" class="author-avatar">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Alessandro Conti" class="author-avatar" loading="lazy" width="100" height="100">
             <div class="author-info">
               <h4 data-i18n="testimonials.1.name">Alessandro Conti</h4>
               <p data-i18n="testimonials.1.role">Ristorante "Da Alessandro"</p>
@@ -964,7 +984,7 @@
             "Oltre al sito, mi ha aiutato con piccoli lavori domestici. Una persona affidabile e competente su più fronti!"
           </div>
           <div class="testimonial-author">
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" alt="Elena Romano" class="author-avatar">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" alt="Elena Romano" class="author-avatar" loading="lazy" width="100" height="100">
             <div class="author-info">
               <h4 data-i18n="testimonials.2.name">Elena Romano</h4>
               <p data-i18n="testimonials.2.role">Insegnante in pensione</p>
@@ -977,7 +997,7 @@
             "Supporto tecnico eccellente e grande pazienza nel spiegare le cose. Finalmente qualcuno che unisce competenza e umanità."
           </div>
           <div class="testimonial-author">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Marco Esposito" class="author-avatar">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Marco Esposito" class="author-avatar" loading="lazy" width="100" height="100">
             <div class="author-info">
               <h4 data-i18n="testimonials.3.name">Marco Esposito</h4>
               <p data-i18n="testimonials.3.role">Artigiano - Falegnameria Esposito</p>
@@ -1061,6 +1081,21 @@
   </footer>
 
   <script>
+    // Gestione caricamento font
+    document.addEventListener('DOMContentLoaded', function() {
+      // Quando i font sono caricati, aggiungi la classe
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function() {
+          document.body.classList.add('fonts-loaded');
+        });
+      } else {
+        // Fallback per browser che non supportano Font Loading API
+        setTimeout(function() {
+          document.body.classList.add('fonts-loaded');
+        }, 1000);
+      }
+    });
+
     // Translations
     const translations = {
       it: {
