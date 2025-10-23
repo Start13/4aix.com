@@ -15,12 +15,6 @@
     gtag('config', 'G-0PFF5S9Z2R');
   </script>
   
-  <!-- Preconnect per CDN esterni -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link rel="preconnect" href="https://images.unsplash.com">
-
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
@@ -29,23 +23,24 @@
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#1a2a6c">
 
-  <!-- Meta Social Ottimizzati -->
-  <meta property="og:title" content="Corrado Bruni - Web Developer & Supporto Tecnico a Torino"/>
-  <meta property="og:description" content="Con un passato da progettista e imprenditore tech, offro soluzioni digitali e supporto umano. Siti web, consulenze e aiuto pratico per privati e attività."/>
-  <meta property="og:image" content="https://www.4aix.com/img/4aix_social_preview.jpg"/>
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
-  <meta property="og:url" content="https://www.4aix.com"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:locale" content="it_IT"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Corrado Bruni - Web Developer & Supporto Tecnico a Torino"/>
-  <meta name="twitter:description" content="Soluzioni digitali e supporto umano per privati e attività a Torino"/>
-  <meta name="twitter:image" content="https://www.4aix.com/img/4aix_social_preview.jpg"/>
+  <!-- Meta Social -->
+<!-- Meta Social Ottimizzati -->
+<meta property="og:title" content="Corrado Bruni - Web Developer & Supporto Tecnico a Torino"/>
+<meta property="og:description" content="Con un passato da progettista e imprenditore tech, offro soluzioni digitali e supporto umano. Siti web, consulenze e aiuto pratico per privati e attività."/>
+<meta property="og:image" content="https://www.4aix.com/img/4aix_social_preview.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:url" content="https://www.4aix.com"/>
+<meta property="og:type" content="website"/>
+<meta property="og:locale" content="it_IT"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Corrado Bruni - Web Developer & Supporto Tecnico a Torino"/>
+<meta name="twitter:description" content="Soluzioni digitali e supporto umano per privati e attività a Torino"/>
+<meta name="twitter:image" content="https://www.4aix.com/img/4aix_social_preview.jpg"/>
 
-  <!-- CSS Critico Inline -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    /* CSS critico ridotto per above-the-fold content */
     :root {
       --primary-color: #1a2a6c;
       --secondary-color: #00b4d8;
@@ -71,6 +66,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
@@ -79,13 +75,96 @@
       line-height: 1.6;
       overflow-x: hidden;
       transition: background-color 0.3s ease, color 0.3s ease;
-      font-family: system-ui, -apple-system, sans-serif; /* Fallback fonts */
     }
 
-    /* Stili minimi per above-the-fold */
+    /* Language Selector */
+    .language-selector {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: var(--card-bg);
+      border: none;
+      border-radius: 25px;
+      padding: 10px 15px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      color: var(--text-color);
+      transition: var(--transition);
+    }
+
+    .language-selector:hover {
+      transform: scale(1.05);
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: var(--card-bg);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--text-color);
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      background: var(--secondary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,180,216,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,180,216,0.4);
+      background: var(--accent-color);
+    }
+
+    /* Header Moderno */
     header {
       position: relative;
-      background: linear-gradient(rgba(26, 42, 108, 0.8), rgba(26, 42, 108, 0.9));
+      background: linear-gradient(rgba(26, 42, 108, 0.8), rgba(26, 42, 108, 0.9)), 
+                  url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       color: white;
       text-align: center;
       padding: 120px 20px;
@@ -97,41 +176,628 @@
     .hero-content {
       max-width: 900px;
       margin: 0 auto;
+      animation: fadeInUp 1s ease-out;
     }
 
     .hero-content h1 {
       font-size: 3rem;
       margin-bottom: 20px;
       font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
 
-    /* Nascondi contenuto non critico fino al caricamento completo */
-    .services, .portfolio, .testimonials, .contact-form {
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+      opacity: 0.95;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      line-height: 1.8;
+    }
+
+    .cta-buttons {
+      margin-top: 30px;
+    }
+
+    .btn-primary, .btn-secondary {
+      display: inline-block;
+      padding: 15px 30px;
+      margin: 10px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--secondary-color), #0090b0);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0,180,216,0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,180,216,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: var(--primary-color);
+    }
+
+    /* Animazioni */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Nuova animazione mosaico per il titolo */
+    @keyframes titleMosaicReveal {
+      0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+      }
+      50% {
+        opacity: 0.7;
+        transform: scale(0.95) translateY(5px);
+        clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+
+    .mosaic-title {
       opacity: 0;
-      transition: opacity 0.5s ease;
+      transform: translateY(20px);
     }
 
-    .loaded .services, 
-    .loaded .portfolio, 
-    .loaded .testimonials, 
-    .loaded .contact-form {
+    .mosaic-title.animated {
+      animation: titleMosaicReveal 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    /* Sezioni */
+    section {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    [data-theme="dark"] section h2 {
+      color: var(--secondary-color);
+    }
+
+    section p.intro {
+      max-width: 800px;
+      margin: 0 auto 50px;
+      text-align: center;
+      color: var(--text-color);
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    [data-theme="dark"] section p.intro {
+      opacity: 0.8;
+    }
+
+    /* Profilo */
+    .profile {
+      background: var(--card-bg);
+      padding: 50px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+      transition: var(--transition);
+    }
+
+    .profile p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-color);
+    }
+
+    /* Servizi */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(255,255,255,0.1);
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      border-color: var(--secondary-color);
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .service-card .content {
+      padding: 25px;
+    }
+
+    .service-card h3 {
+      margin-bottom: 15px;
+      color: var(--text-color);
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .service-card h3 i {
+      margin-right: 10px;
+      color: var(--secondary-color);
+    }
+
+    .service-card p {
+      color: var(--text-color);
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    /* Delay animazioni per le card */
+    .service-card:nth-child(1) { animation-delay: 0.1s; }
+    .service-card:nth-child(2) { animation-delay: 0.2s; }
+    .service-card:nth-child(3) { animation-delay: 0.3s; }
+    .service-card:nth-child(4) { animation-delay: 0.4s; }
+
+    /* Portfolio Section */
+    .portfolio {
+      background: linear-gradient(135deg, var(--bg-color) 0%, var(--card-bg) 100%);
+      padding: 80px 20px;
+      margin: 80px auto;
+      text-align: center;
+      max-width: 1200px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+      justify-content: center;
+    }
+
+    .portfolio-item {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      max-width: 400px;
+      width: 100%;
+      justify-self: center;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      padding: 30px 20px 20px;
+      transform: translateY(10px);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+      transform: translateY(0);
       opacity: 1;
     }
-  </style>
 
-  <!-- Caricamento differito di Font Awesome e Google Fonts -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  
-  <!-- CSS principale caricato in modo non bloccante -->
-  <link rel="stylesheet" href="css/main.css" media="print" onload="this.media='all'">
-  
-  <!-- Fallback per JavaScript disabilitato -->
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-  </noscript>
+    .portfolio-overlay h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .btn-portfolio {
+      display: inline-block;
+      background: var(--secondary-color);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .btn-portfolio:hover {
+      background: var(--accent-color);
+      transform: translateX(5px);
+    }
+
+    /* Delay animazioni per le card portfolio */
+    .portfolio-item:nth-child(1) { animation-delay: 0.1s; }
+    .portfolio-item:nth-child(2) { animation-delay: 0.2s; }
+    .portfolio-item:nth-child(3) { animation-delay: 0.3s; }
+    .portfolio-item:nth-child(4) { animation-delay: 0.4s; }
+    .portfolio-item:nth-child(5) { animation-delay: 0.5s; }
+
+    /* Testimonials */
+    .testimonials {
+      background: var(--card-bg);
+      padding: 60px 40px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      margin: 80px auto;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .testimonial-card {
+      background: var(--bg-color);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      font-size: 4rem;
+      color: var(--secondary-color);
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      opacity: 0.3;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      line-height: 1.6;
+      color: var(--text-color);
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .author-info h4 {
+      margin-bottom: 5px;
+      color: var(--text-color);
+      font-weight: 600;
+    }
+
+    .author-info p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      color: var(--text-color);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: var(--card-bg);
+      padding: 50px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    [data-theme="dark"] .form-group input,
+    [data-theme="dark"] .form-group textarea,
+    [data-theme="dark"] .form-group select {
+      border-color: #4a5568;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Dual Buttons for Email and WhatsApp */
+    .form-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .form-buttons {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .btn-email, .btn-whatsapp {
+      padding: 15px 25px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-email {
+      background: linear-gradient(135deg, var(--secondary-color), #0090b0);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0,180,216,0.3);
+    }
+
+    .btn-email:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,180,216,0.4);
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    .form-message {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      display: none;
+    }
+
+    .form-message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .form-message.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    [data-theme="dark"] .form-message.success {
+      background: #0f5132;
+      color: #d1e7dd;
+    }
+
+    [data-theme="dark"] .form-message.error {
+      background: #842029;
+      color: #f8d7da;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary-color), #2c3e50);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 80px;
+    }
+
+    footer a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .social-links {
+      margin: 20px 0;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin: 0 15px;
+      font-size: 1.5rem;
+      color: white;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      transform: translateY(-3px);
+      color: var(--secondary-color);
+    }
+
+    /* Floating Elements */
+    .floating-element {
+      position: absolute;
+      animation: float 3s ease-in-out infinite;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .floating-1 {
+      top: 20%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+
+    .floating-2 {
+      top: 60%;
+      right: 5%;
+      animation-delay: 1.5s;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero-content p {
+        font-size: 1.1rem;
+      }
+      
+      .btn-primary, .btn-secondary {
+        padding: 12px 25px;
+        font-size: 1rem;
+        display: block;
+        margin: 10px auto;
+        max-width: 250px;
+      }
+
+      .profile, .contact-form {
+        padding: 30px 20px;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .theme-toggle, .language-selector {
+        top: 10px;
+      }
+
+      .theme-toggle {
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+
+      .language-selector {
+        left: 10px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+
+      .testimonials {
+        padding: 40px 20px;
+      }
+      
+      .portfolio {
+        padding: 60px 20px;
+        margin: 60px auto;
+      }
+
+      .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body data-theme="dark">
   <!-- Language Selector -->
@@ -182,7 +848,7 @@
     <div class="services">
       <!-- Siti Web -->
       <div class="service-card">
-        <img src="img/creositi.png" alt="Siti web moderni" loading="lazy" width="800" height="400">
+        <img src="img/creositi.png" alt="Siti web moderni">
         <div class="content">
           <h3><i class="fas fa-code"></i> <span data-i18n="services.web.title">Siti Web & Soluzioni Digitali</span></h3>
           <p data-i18n="services.web.text">Realizzo siti moderni, landing page e piattaforme leggere, con un design professionale e tempi rapidi.</p>
@@ -191,7 +857,7 @@
 
       <!-- Autista Privato -->
       <div class="service-card">
-        <img src="img/autista.png" alt="Autista privato Torino" loading="lazy" width="800" height="400">
+        <img src="img/autista.png" alt="Autista privato Torino">
         <div class="content">
           <h3><i class="fas fa-car"></i> <span data-i18n="services.driver.title">Autista Privato</span></h3>
           <p data-i18n="services.driver.text">Disponibile per spostamenti in città e dintorni. Puntualità, discrezione e attenzione alla persona.</p>
@@ -200,7 +866,7 @@
 
       <!-- Tuttofare Leggeri -->
       <div class="service-card">
-        <img src="img/tuttofare.png" alt="Piccoli lavori in casa" loading="lazy" width="800" height="400">
+        <img src="img/tuttofare.png" alt="Piccoli lavori in casa">
         <div class="content">
           <h3><i class="fas fa-tools"></i> <span data-i18n="services.handyman.title">Tuttofare Leggeri</span></h3>
           <p data-i18n="services.handyman.text">Piccole riparazioni e aiuti domestici per anziani e famiglie. Un supporto pratico e affidabile, con gentilezza.</p>
@@ -209,7 +875,7 @@
 
       <!-- Collaborazioni Tecniche -->
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Collaborazioni tecniche" loading="lazy" width="800" height="400">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Collaborazioni tecniche">
         <div class="content">
           <h3><i class="fas fa-laptop-code"></i> <span data-i18n="services.tech.title">Collaborazioni Tecniche</span></h3>
           <p data-i18n="services.tech.text">Supporto per progetti digitali, sviluppo personalizzato e consulenze mirate anche da remoto.</p>
@@ -225,7 +891,7 @@
     
     <div class="portfolio-grid">
       <div class="portfolio-item">
-        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80" alt="Sito E-Commerce" loading="lazy" width="800" height="500">
+        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80" alt="Sito E-Commerce">
         <div class="portfolio-overlay">
           <h3 data-i18n="portfolio.project1.title">E-Commerce Moderno</h3>
           <p data-i18n="portfolio.project1.text">Negozi online con carrello, pagamenti sicuri e gestione ordini</p>
@@ -234,7 +900,7 @@
       </div>
       
       <div class="portfolio-item">
-        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Sito Aziendale" loading="lazy" width="800" height="500">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Sito Aziendale">
         <div class="portfolio-overlay">
           <h3 data-i18n="portfolio.project2.title">Sito Aziendale</h3>
           <p data-i18n="portfolio.project2.text">Presenza online professionale con design responsive</p>
@@ -243,7 +909,7 @@
       </div>
       
       <div class="portfolio-item">
-        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" alt="Portfolio Personale" loading="lazy" width="800" height="500">
+        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" alt="Portfolio Personale">
         <div class="portfolio-overlay">
           <h3 data-i18n="portfolio.project3.title">Portfolio Personale</h3>
           <p data-i18n="portfolio.project3.text">Siti vetrina per professionisti e creativi</p>
@@ -253,7 +919,7 @@
 
       <!-- Scheda Software Gestionale -->
       <div class="portfolio-item">
-        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Software Gestionale" loading="lazy" width="800" height="500">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Software Gestionale">
         <div class="portfolio-overlay">
           <h3 data-i18n="portfolio.project4.title">Software Gestionale</h3>
           <p data-i18n="portfolio.project4.text">Soluzioni personalizzate per gestire la tua attività in modo efficiente</p>
@@ -263,7 +929,7 @@
 
       <!-- Nuova scheda EA/Indicators MT4/5 -->
       <div class="portfolio-item">
-        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="EA/Indicators MT4/5" loading="lazy" width="800" height="500">
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="EA/Indicators MT4/5">
         <div class="portfolio-overlay">
           <h3 data-i18n="portfolio.project5.title">EA/Indicators MT4/5</h3>
           <p data-i18n="portfolio.project5.text">Expert Advisor e indicatori personalizzati per MetaTrader 4 e 5</p>
@@ -285,7 +951,7 @@
             "Corrado ha realizzato il sito della mia attività in tempi record. Professionale, competente e sempre disponibile. Consigliatissimo!"
           </div>
           <div class="testimonial-author">
-            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Alessandro Conti" class="author-avatar" loading="lazy" width="100" height="100">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Alessandro Conti" class="author-avatar">
             <div class="author-info">
               <h4 data-i18n="testimonials.1.name">Alessandro Conti</h4>
               <p data-i18n="testimonials.1.role">Ristorante "Da Alessandro"</p>
@@ -298,7 +964,7 @@
             "Oltre al sito, mi ha aiutato con piccoli lavori domestici. Una persona affidabile e competente su più fronti!"
           </div>
           <div class="testimonial-author">
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" alt="Elena Romano" class="author-avatar" loading="lazy" width="100" height="100">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" alt="Elena Romano" class="author-avatar">
             <div class="author-info">
               <h4 data-i18n="testimonials.2.name">Elena Romano</h4>
               <p data-i18n="testimonials.2.role">Insegnante in pensione</p>
@@ -311,7 +977,7 @@
             "Supporto tecnico eccellente e grande pazienza nel spiegare le cose. Finalmente qualcuno che unisce competenza e umanità."
           </div>
           <div class="testimonial-author">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Marco Esposito" class="author-avatar" loading="lazy" width="100" height="100">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Marco Esposito" class="author-avatar">
             <div class="author-info">
               <h4 data-i18n="testimonials.3.name">Marco Esposito</h4>
               <p data-i18n="testimonials.3.role">Artigiano - Falegnameria Esposito</p>
@@ -395,11 +1061,6 @@
   </footer>
 
   <script>
-    // Gestione caricamento completo
-    window.addEventListener('load', function() {
-      document.body.classList.add('loaded');
-    });
-
     // Translations
     const translations = {
       it: {
