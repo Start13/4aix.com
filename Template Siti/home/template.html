@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template - 4AIX Web Solutions</title>
+    
+    <!-- Font Awesome e Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stili coerenti con 4aix.com -->
+    <style>
+        :root {
+            --primary-color: #1a2a6c;
+            --secondary-color: #00b4d8;
+            --accent-color: #fdbb2d;
+            --text-color: #333;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #2d3748;
+            --secondary-color: #63b3ed;
+            --accent-color: #f6ad55;
+            --text-color: #e2e8f0;
+            --bg-color: #1a202c;
+            --card-bg: #2d3748;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: var(--card-bg);
+            border: none;
+            border-radius: 25px;
+            padding: 10px 15px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+
+        .language-selector:hover {
+            transform: scale(1.05);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--card-bg);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Header */
+        .template-header {
+            background: linear-gradient(135deg, var(--primary-color), #2c3e50);
+            color: white;
+            padding: 80px 20px 40px;
+            text-align: center;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(-5px);
+        }
+
+        /* Filtri Categorie */
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            padding: 0 20px;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid var(--secondary-color);
+            background: transparent;
+            color: var(--secondary-color);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Grid Template */
+        .template-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .template-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .template-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .template-preview {
+            height: 200px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .template-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .template-info {
+            padding: 25px;
+        }
+
+        .template-info h3 {
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .template-info p {
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .template-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-preview, .btn-details {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .btn-preview {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-preview:hover {
+            background: #0090b0;
+            transform: translateY(-2px);
+        }
+
+        .btn-details {
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+            background: transparent;
+        }
+
+        .btn-details:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Footer */
+        .template-footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .template-footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .template-actions {
+                flex-direction: column;
+            }
+            
+            .category-filters {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            .language-selector, .theme-toggle {
+                top: 10px;
+            }
+
+            .theme-toggle {
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .language-selector {
+                left: 10px;
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- Language Selector -->
+    <button class="language-selector" id="languageSelector">
+        <i class="fas fa-globe"></i>
+        <span class="language-text">IT</span>
+    </button>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <header class="template-header">
+        <a href="../../index.html" class="back-button">
+            ← <span data-i18n="template.back">Torna a 4AIX.com</span>
+        </a>
+        <h1 data-i18n="template.title">Template Disponibili</h1>
+        <p data-i18n="template.subtitle">Scegli tra i nostri template professionali e personalizzabili</p>
+        
+        <div class="category-filters">
+            <button class="filter-btn active" data-category="all" data-i18n="template.all">Tutti</button>
+            <button class="filter-btn" data-category="ecommerce" data-i18n="template.ecommerce">E-Commerce</button>
+            <button class="filter-btn" data-category="aziendale" data-i18n="template.aziendale">Aziendale</button>
+            <button class="filter-btn" data-category="portfolio" data-i18n="template.portfolio">Portfolio</button>
+            <button class="filter-btn" data-category="gestionale" data-i18n="template.gestionale">Gestionale</button>
+            <button class="filter-btn" data-category="trading" data-i18n="template.trading">Trading</button>
+        </div>
+    </header>
+
+    <main class="template-container">
+        <div class="template-grid" id="templateGrid">
+            <!-- I template verranno inseriti qui via JavaScript -->
+        </div>
+    </main>
+
+    <footer class="template-footer">
+        <p>© 2025 4AIX Web Solutions - <span data-i18n="template.footer">Tutti i template sono gratuiti e open source</span></p>
+        <p><a href="../../index.html" data-i18n="template.home">Torna al sito principale</a></p>
+    </footer>
+
+    <script>
+        // Translations
+        const translations = {
+            it: {
+                "template.back": "Torna a 4AIX.com",
+                "template.title": "Template Disponibili",
+                "template.subtitle": "Scegli tra i nostri template professionali e personalizzabili",
+                "template.all": "Tutti",
+                "template.ecommerce": "E-Commerce",
+                "template.aziendale": "Aziendale",
+                "template.portfolio": "Portfolio",
+                "template.gestionale": "Gestionale",
+                "template.trading": "Trading",
+                "template.preview": "Anteprima Live",
+                "template.details": "Dettagli",
+                "template.footer": "Tutti i template sono gratuiti e open source",
+                "template.home": "Torna al sito principale",
+                "template.ecommerce01.name": "E-Commerce Base",
+                "template.ecommerce01.desc": "Template base per negozio online con design moderno",
+                "template.ecommerce02.name": "E-Commerce Avanzato", 
+                "template.ecommerce02.desc": "Template completo con carrello e pagamenti",
+                "template.aziendale01.name": "Sito Aziendale Moderno",
+                "template.aziendale01.desc": "Design professionale per aziende e professionisti",
+                "template.aziendale02.name": "Corporate Business",
+                "template.aziendale02.desc": "Template elegante per grandi aziende",
+                "template.portfolio01.name": "Portfolio Creativo",
+                "template.portfolio01.desc": "Per fotografi, designer e creativi",
+                "template.portfolio02.name": "Portfolio Minimal",
+                "template.portfolio02.desc": "Design pulito per mostrare i tuoi lavori",
+                "template.gestionale01.name": "Software Gestionale Base",
+                "template.gestionale01.desc": "Soluzione base per gestione attività",
+                "template.gestionale02.name": "Gestionale Avanzato",
+                "template.gestionale02.desc": "Sistema completo per business complessi",
+                "template.trading01.name": "EA Trading Base",
+                "template.trading01.desc": "Expert Advisor base per MetaTrader",
+                "template.trading02.name": "Indicatori Avanzati",
+                "template.trading02.desc": "Set completo di indicatori personalizzati"
+            },
+            en: {
+                "template.back": "Back to 4AIX.com",
+                "template.title": "Available Templates",
+                "template.subtitle": "Choose from our professional and customizable templates",
+                "template.all": "All",
+                "template.ecommerce": "E-Commerce",
+                "template.aziendale": "Business",
+                "template.portfolio": "Portfolio",
+                "template.gestionale": "Management",
+                "template.trading": "Trading",
+                "template.preview": "Live Preview",
+                "template.details": "Details",
+                "template.footer": "All templates are free and open source",
+                "template.home": "Back to main site",
+                "template.ecommerce01.name": "E-Commerce Base",
+                "template.ecommerce01.desc": "Basic template for online store with modern design",
+                "template.ecommerce02.name": "Advanced E-Commerce",
+                "template.ecommerce02.desc": "Complete template with cart and payments",
+                "template.aziendale01.name": "Modern Business Website",
+                "template.aziendale01.desc": "Professional design for companies and professionals",
+                "template.aziendale02.name": "Corporate Business",
+                "template.aziendale02.desc": "Elegant template for large companies",
+                "template.portfolio01.name": "Creative Portfolio",
+                "template.portfolio01.desc": "For photographers, designers and creatives",
+                "template.portfolio02.name": "Minimal Portfolio",
+                "template.portfolio02.desc": "Clean design to showcase your work",
+                "template.gestionale01.name": "Basic Management Software",
+                "template.gestionale01.desc": "Basic solution for activity management",
+                "template.gestionale02.name": "Advanced Management",
+                "template.gestionale02.desc": "Complete system for complex businesses",
+                "template.trading01.name": "Base EA Trading",
+                "template.trading01.desc": "Basic Expert Advisor for MetaTrader",
+                "template.trading02.name": "Advanced Indicators",
+                "template.trading02.desc": "Complete set of custom indicators"
+            }
+        };
+
+        // Database dei template con percorsi corretti
+        const templates = [
+            // E-Commerce Templates
+            {
+                id: 1,
+                name: "template.ecommerce01.name",
+                category: "ecommerce",
+                description: "template.ecommerce01.desc",
+                previewUrl: "../templates/ecommerce/ecommerce01.html",
+                demoUrl: "../templates/ecommerce/ecommerce01.html",
+                badge: "Basic"
+            },
+            {
+                id: 2,
+                name: "template.ecommerce02.name",
+                category: "ecommerce", 
+                description: "template.ecommerce02.desc",
+                previewUrl: "../templates/ecommerce/ecommerce02.html",
+                demoUrl: "../templates/ecommerce/ecommerce02.html",
+                badge: "Advanced"
+            },
+            // Aziendale Templates
+            {
+                id: 3,
+                name: "template.aziendale01.name",
+                category: "aziendale",
+                description: "template.aziendale01.desc",
+                previewUrl: "../templates/aziendale/aziendale01.html",
+                demoUrl: "../templates/aziendale/aziendale01.html",
+                badge: "Business"
+            },
+            {
+                id: 4,
+                name: "template.aziendale02.name",
+                category: "aziendale",
+                description: "template.aziendale02.desc",
+                previewUrl: "../templates/aziendale/aziendale02.html",
+                demoUrl: "../templates/aziendale/aziendale02.html",
+                badge: "Corporate"
+            },
+            // Portfolio Templates
+            {
+                id: 5,
+                name: "template.portfolio01.name",
+                category: "portfolio",
+                description: "template.portfolio01.desc",
+                previewUrl: "../templates/portfolio/portfolio01.html",
+                demoUrl: "../templates/portfolio/portfolio01.html",
+                badge: "Creative"
+            },
+            {
+                id: 6,
+                name: "template.portfolio02.name",
+                category: "portfolio",
+                description: "template.portfolio02.desc",
+                previewUrl: "../templates/portfolio/portfolio02.html",
+                demoUrl: "../templates/portfolio/portfolio02.html",
+                badge: "Minimal"
+            },
+            // Gestionale Templates
+            {
+                id: 7,
+                name: "template.gestionale01.name",
+                category: "gestionale",
+                description: "template.gestionale01.desc",
+                previewUrl: "../templates/gestionale/gestionale01.html",
+                demoUrl: "../templates/gestionale/gestionale01.html",
+                badge: "Basic"
+            },
+            {
+                id: 8,
+                name: "template.gestionale02.name",
+                category: "gestionale",
+                description: "template.gestionale02.desc",
+                previewUrl: "../templates/gestionale/gestionale02.html",
+                demoUrl: "../templates/gestionale/gestionale02.html",
+                badge: "Advanced"
+            },
+            // Trading Templates
+            {
+                id: 9,
+                name: "template.trading01.name",
+                category: "trading",
+                description: "template.trading01.desc",
+                previewUrl: "../templates/trading/trading01.html",
+                demoUrl: "../templates/trading/trading01.html",
+                badge: "Basic"
+            },
+            {
+                id: 10,
+                name: "template.trading02.name",
+                category: "trading",
+                description: "template.trading02.desc",
+                previewUrl: "../templates/trading/trading02.html",
+                demoUrl: "../templates/trading/trading02.html",
+                badge: "Advanced"
+            }
+        ];
+
+        // Language Management
+        let currentLanguage = localStorage.getItem('language') || 'it';
+        const languageSelector = document.getElementById('languageSelector');
+        const languageText = languageSelector.querySelector('.language-text');
+
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('language', lang);
+            languageText.textContent = lang.toUpperCase();
+            
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Rerender templates with new language
+            renderTemplates(getCurrentCategory());
+        }
+
+        languageSelector.addEventListener('click', () => {
+            const newLang = currentLanguage === 'it' ? 'en' : 'it';
+            setLanguage(newLang);
+        });
+
+        // Initialize language
+        setLanguage(currentLanguage);
+
+        // Theme Toggle (Dark by default)
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Set dark theme by default
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'fas fa-sun';
+        localStorage.setItem('theme', 'dark');
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                document.body.removeAttribute('data-theme');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Filtri e rendering
+        const templateGrid = document.getElementById('templateGrid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        function getCurrentCategory() {
+            const activeButton = document.querySelector('.filter-btn.active');
+            return activeButton ? activeButton.getAttribute('data-category') : 'all';
+        }
+
+        function getTranslatedText(key) {
+            return translations[currentLanguage][key] || key;
+        }
+
+        function renderTemplates(category = 'all') {
+            templateGrid.innerHTML = '';
+            
+            const filteredTemplates = category === 'all' 
+                ? templates 
+                : templates.filter(template => template.category === category);
+            
+            filteredTemplates.forEach(template => {
+                const templateCard = document.createElement('div');
+                templateCard.className = 'template-card';
+                templateCard.setAttribute('data-category', template.category);
+                
+                const templateName = getTranslatedText(template.name);
+                const templateDesc = getTranslatedText(template.description);
+                
+                templateCard.innerHTML = `
+                    <div class="template-preview">
+                        <div class="template-badge">${template.badge}</div>
+                        ${templateName}
+                    </div>
+                    <div class="template-info">
+                        <h3>${templateName}</h3>
+                        <p>${templateDesc}</p>
+                        <div class="template-actions">
+                            <a href="${template.previewUrl}" target="_blank" class="btn-preview" data-i18n="template.preview">Anteprima Live</a>
+                            <a href="${template.demoUrl}" class="btn-details" data-i18n="template.details">Dettagli</a>
+                        </div>
+                    </div>
+                `;
+                
+                templateGrid.appendChild(templateCard);
+            });
+
+            // Update button texts after rendering
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLanguage][key]) {
+                    element.innerHTML = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        // Gestione filtri
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Rimuovi active da tutti i pulsanti
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Aggiungi active al pulsante cliccato
+                button.classList.add('active');
+                
+                // Filtra i template
+                const category = button.getAttribute('data-category');
+                renderTemplates(category);
+            });
+        });
+
+        // Gestione parametri URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryParam = urlParams.get('category');
+        
+        if (categoryParam) {
+            // Attiva il filtro corrispondente
+            const targetButton = document.querySelector(`[data-category="${categoryParam}"]`);
+            if (targetButton) {
+                targetButton.click();
+            }
+        }
+
+        // Render iniziale
+        renderTemplates();
+    </script>
+</body>
+</html>
