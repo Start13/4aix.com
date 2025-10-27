@@ -147,35 +147,39 @@
             color: white;
         }
 
-        /* Grid Template */
+        /* Template List (MODIFICATO: da grid a list) */
         .template-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
         }
 
-        .template-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+        .template-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
             margin-top: 40px;
         }
 
-        .template-card {
+        .template-item {
             background: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 10px;
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 20px;
         }
 
-        .template-card:hover {
+        .template-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
         .template-preview {
-            height: 200px;
+            width: 120px;
+            height: 90px;
             background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             position: relative;
             overflow: hidden;
@@ -184,35 +188,46 @@
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            flex-shrink: 0;
+            margin-right: 20px;
         }
 
         .template-badge {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 8px;
+            right: 8px;
             background: var(--accent-color);
             color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
             font-weight: 600;
         }
 
+        .template-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .template-info {
-            padding: 25px;
+            flex-grow: 1;
         }
 
         .template-info h3 {
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             color: var(--text-color);
+            font-size: 1.2rem;
         }
 
         .template-info p {
             color: var(--text-color);
             opacity: 0.8;
-            margin-bottom: 20px;
-            line-height: 1.6;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
 
         .template-actions {
@@ -221,14 +236,13 @@
         }
 
         .btn-preview, .btn-details {
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 8px 16px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
-            flex: 1;
-            text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            white-space: nowrap;
         }
 
         .btn-preview {
@@ -268,13 +282,43 @@
             text-decoration: none;
         }
 
+        /* Messaggio quando non ci sono template */
+        .no-templates {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+
+        .no-templates i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
         @media (max-width: 768px) {
-            .template-grid {
-                grid-template-columns: 1fr;
+            .template-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+            
+            .template-preview {
+                width: 100%;
+                height: 100px;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .template-content {
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
             }
             
             .template-actions {
-                flex-direction: column;
+                width: 100%;
+                justify-content: center;
             }
             
             .category-filters {
@@ -335,7 +379,7 @@
     </header>
 
     <main class="template-container">
-        <div class="template-grid" id="templateGrid">
+        <div class="template-list" id="templateList">
             <!-- I template verranno inseriti qui via JavaScript -->
         </div>
     </main>
@@ -358,10 +402,11 @@
                 "template.portfolio": "Portfolio",
                 "template.gestionale": "Gestionale",
                 "template.trading": "Trading",
-                "template.preview": "Anteprima Live",
+                "template.preview": "Anteprima",
                 "template.details": "Dettagli",
                 "template.footer": "Tutti i template sono gratuiti e open source",
                 "template.home": "Torna al sito principale",
+                "template.noTemplates": "Nessun template trovato per questa categoria",
                 "template.ecommerce01.name": "E-Commerce Base",
                 "template.ecommerce01.desc": "Template base per negozio online con design moderno",
                 "template.ecommerce02.name": "E-Commerce Avanzato", 
@@ -393,10 +438,11 @@
                 "template.portfolio": "Portfolio",
                 "template.gestionale": "Management",
                 "template.trading": "Trading",
-                "template.preview": "Live Preview",
+                "template.preview": "Preview",
                 "template.details": "Details",
                 "template.footer": "All templates are free and open source",
                 "template.home": "Back to main site",
+                "template.noTemplates": "No templates found for this category",
                 "template.ecommerce01.name": "E-Commerce Base",
                 "template.ecommerce01.desc": "Basic template for online store with modern design",
                 "template.ecommerce02.name": "Advanced E-Commerce",
@@ -572,7 +618,7 @@
         });
 
         // Filtri e rendering
-        const templateGrid = document.getElementById('templateGrid');
+        const templateList = document.getElementById('templateList');
         const filterButtons = document.querySelectorAll('.filter-btn');
 
         function getCurrentCategory() {
@@ -585,36 +631,51 @@
         }
 
         function renderTemplates(category = 'all') {
-            templateGrid.innerHTML = '';
+            console.log("Rendering templates for category:", category);
+            
+            templateList.innerHTML = '';
             
             const filteredTemplates = category === 'all' 
                 ? templates 
                 : templates.filter(template => template.category === category);
             
+            if (filteredTemplates.length === 0) {
+                templateList.innerHTML = `
+                    <div class="no-templates">
+                        <i class="fas fa-folder-open"></i>
+                        <h3>${getTranslatedText('template.noTemplates')}</h3>
+                        <p>Prova a selezionare un'altra categoria</p>
+                    </div>
+                `;
+                return;
+            }
+            
             filteredTemplates.forEach(template => {
-                const templateCard = document.createElement('div');
-                templateCard.className = 'template-card';
-                templateCard.setAttribute('data-category', template.category);
+                const templateItem = document.createElement('div');
+                templateItem.className = 'template-item';
+                templateItem.setAttribute('data-category', template.category);
                 
                 const templateName = getTranslatedText(template.name);
                 const templateDesc = getTranslatedText(template.description);
                 
-                templateCard.innerHTML = `
+                templateItem.innerHTML = `
                     <div class="template-preview">
                         <div class="template-badge">${template.badge}</div>
                         ${templateName}
                     </div>
-                    <div class="template-info">
-                        <h3>${templateName}</h3>
-                        <p>${templateDesc}</p>
+                    <div class="template-content">
+                        <div class="template-info">
+                            <h3>${templateName}</h3>
+                            <p>${templateDesc}</p>
+                        </div>
                         <div class="template-actions">
-                            <a href="${template.previewUrl}" target="_blank" class="btn-preview" data-i18n="template.preview">Anteprima Live</a>
+                            <a href="${template.previewUrl}" target="_blank" class="btn-preview" data-i18n="template.preview">Anteprima</a>
                             <a href="${template.demoUrl}" class="btn-details" data-i18n="template.details">Dettagli</a>
                         </div>
                     </div>
                 `;
                 
-                templateGrid.appendChild(templateCard);
+                templateList.appendChild(templateItem);
             });
 
             // Update button texts after rendering
