@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template - 4AIX Web Solutions</title>
+    
+    <!-- Stili coerenti con 4aix.com -->
+    <style>
+        :root {
+            --primary-color: #1a2a6c;
+            --secondary-color: #00b4d8;
+            --accent-color: #fdbb2d;
+            --text-color: #333;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #2d3748;
+            --secondary-color: #63b3ed;
+            --accent-color: #f6ad55;
+            --text-color: #e2e8f0;
+            --bg-color: #1a202c;
+            --card-bg: #2d3748;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease;
+        }
+
+        /* Header */
+        .template-header {
+            background: linear-gradient(135deg, var(--primary-color), #2c3e50);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(-5px);
+        }
+
+        /* Filtri Categorie */
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            padding: 0 20px;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid var(--secondary-color);
+            background: transparent;
+            color: var(--secondary-color);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Grid Template */
+        .template-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .template-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .template-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .template-preview {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .template-info {
+            padding: 25px;
+        }
+
+        .template-info h3 {
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .template-info p {
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .template-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-preview, .btn-details {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+        }
+
+        .btn-preview {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-preview:hover {
+            background: #0090b0;
+            transform: translateY(-2px);
+        }
+
+        .btn-details {
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+            background: transparent;
+        }
+
+        .btn-details:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Footer */
+        .template-footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .template-footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .template-actions {
+                flex-direction: column;
+            }
+            
+            .category-filters {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <header class="template-header">
+        <a href="index.html" class="back-button">
+            ← Torna a 4AIX.com
+        </a>
+        <h1>Template Disponibili</h1>
+        <p>Scegli tra i nostri template professionali e personalizzabili</p>
+        
+        <div class="category-filters">
+            <button class="filter-btn active" data-category="all">Tutti</button>
+            <button class="filter-btn" data-category="ecommerce">E-Commerce</button>
+            <button class="filter-btn" data-category="aziendale">Aziendale</button>
+            <button class="filter-btn" data-category="portfolio">Portfolio</button>
+            <button class="filter-btn" data-category="gestionale">Gestionale</button>
+            <button class="filter-btn" data-category="trading">Trading</button>
+        </div>
+    </header>
+
+    <main class="template-container">
+        <div class="template-grid" id="templateGrid">
+            <!-- I template verranno inseriti qui via JavaScript -->
+        </div>
+    </main>
+
+    <footer class="template-footer">
+        <p>© 2025 4AIX Web Solutions - Tutti i template sono gratuiti e open source</p>
+        <p><a href="index.html">Torna al sito principale</a></p>
+    </footer>
+
+    <script>
+        // Database dei template
+        const templates = [
+            {
+                id: 1,
+                name: "E-Commerce Base",
+                category: "ecommerce",
+                description: "Template base per negozio online con carrello e pagamenti",
+                previewUrl: "https://vetrina-coky.vercel.app",
+                demoUrl: "templates/ecommerce/base/index.html",
+                badge: "Minimal"
+            },
+            {
+                id: 2,
+                name: "E-Commerce Premium",
+                category: "ecommerce", 
+                description: "Template avanzato con più funzionalità e design moderno",
+                previewUrl: "https://portfolio-coky.vercel.app",
+                demoUrl: "templates/ecommerce/premium/index.html",
+                badge: "Premium"
+            },
+            {
+                id: 3,
+                name: "Sito Aziendale Moderno",
+                category: "aziendale",
+                description: "Design professionale per aziende e professionisti",
+                previewUrl: "https://shop-coky.vercel.app",
+                demoUrl: "templates/aziendale/moderno/index.html",
+                badge: "Business"
+            },
+            {
+                id: 4,
+                name: "Portfolio Creativo",
+                category: "portfolio",
+                description: "Per fotografi, designer e creativi",
+                previewUrl: "https://vetrina-coky.vercel.app",
+                demoUrl: "templates/portfolio/creativo/index.html",
+                badge: "Creative"
+            },
+            {
+                id: 5,
+                name: "Software Gestionale Base",
+                category: "gestionale",
+                description: "Soluzione base per gestione attività",
+                previewUrl: "https://portfolio-coky.vercel.app",
+                demoUrl: "templates/gestionale/base/index.html",
+                badge: "Business"
+            },
+            {
+                id: 6,
+                name: "EA Trading Base",
+                category: "trading",
+                description: "Expert Advisor base per MetaTrader",
+                previewUrl: "https://shop-coky.vercel.app",
+                demoUrl: "templates/trading/ea-base/index.html",
+                badge: "Trading"
+            }
+        ];
+
+        // Filtri e rendering
+        const templateGrid = document.getElementById('templateGrid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        function renderTemplates(category = 'all') {
+            templateGrid.innerHTML = '';
+            
+            const filteredTemplates = category === 'all' 
+                ? templates 
+                : templates.filter(template => template.category === category);
+            
+            filteredTemplates.forEach(template => {
+                const templateCard = document.createElement('div');
+                templateCard.className = 'template-card';
+                templateCard.setAttribute('data-category', template.category);
+                
+                templateCard.innerHTML = `
+                    <div class="template-preview">
+                        <div class="template-badge">${template.badge}</div>
+                    </div>
+                    <div class="template-info">
+                        <h3>${template.name}</h3>
+                        <p>${template.description}</p>
+                        <div class="template-actions">
+                            <a href="${template.previewUrl}" target="_blank" class="btn-preview">Anteprima Live</a>
+                            <a href="${template.demoUrl}" class="btn-details">Dettagli</a>
+                        </div>
+                    </div>
+                `;
+                
+                templateGrid.appendChild(templateCard);
+            });
+        }
+
+        // Gestione filtri
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Rimuovi active da tutti i pulsanti
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Aggiungi active al pulsante cliccato
+                button.classList.add('active');
+                
+                // Filtra i template
+                const category = button.getAttribute('data-category');
+                renderTemplates(category);
+            });
+        });
+
+        // Gestione parametri URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryParam = urlParams.get('category');
+        
+        if (categoryParam) {
+            // Attiva il filtro corrispondente
+            const targetButton = document.querySelector(`[data-category="${categoryParam}"]`);
+            if (targetButton) {
+                targetButton.click();
+            }
+        }
+
+        // Render iniziale
+        renderTemplates();
+    </script>
+</body>
+</html>
