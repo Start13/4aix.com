@@ -1,0 +1,97 @@
+<!-- FILE: shop.html -->
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Servizi & Preventivi · Nome Attività</title>
+  <meta name="description" content="Pagina prezzi e ordini semplice per attività locali: listino, pacchetti e modulo d'ordine." />
+  <style>
+    :root{--maxw:1100px;--bg:#ffffff;--card:#f8fafc;--accent:#059669;--txt:#022c22;--muted:#475569;--radius:12px}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:var(--txt);-webkit-font-smoothing:antialiased}
+    .wrap{max-width:var(--maxw);margin:18px auto;padding:18px}
+    header{display:flex;justify-content:space-between;align-items:center}
+    .title{font-weight:800}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+    .product{background:var(--card);padding:14px;border-radius:var(--radius);display:flex;flex-direction:column;gap:8px}
+    .price{font-weight:800;color:var(--accent)}
+    .btn{background:var(--accent);color:#fff;padding:8px 12px;border-radius:10px;border:0;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+    @media(min-width:760px){ .grid{grid-template-columns:repeat(3,1fr)} .product{min-height:160px} }
+    footer{margin-top:16px;text-align:center;color:var(--muted);font-size:13px}
+    .order-form{background:#fff;padding:12px;border-radius:10px;box-shadow:0 10px 30px rgba(2,6,23,0.05)}
+    .input{padding:10px;border-radius:8px;border:1px solid #e6eef8}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="title">Nome Attività — Servizi e Pacchetti</div>
+        <div style="color:var(--muted);font-size:13px">Semplice: scegli un pacchetto e invia la richiesta</div>
+      </div>
+      <div><a class="btn" href="#order" onclick="document.querySelector('#order').scrollIntoView({behavior:'smooth'})">Ordina ora</a></div>
+    </header>
+
+    <main>
+      <section class="grid" aria-label="Pacchetti">
+        <div class="product">
+          <div style="font-weight:700">Pacchetto Basic</div>
+          <div class="price">99€</div>
+          <div class="small">Sito vetrina 1 pagina · Mobile ready · 1 revisione</div>
+          <a class="btn" href="#order" onclick="prefill('Pacchetto Basic - 99€')">Ordina</a>
+        </div>
+
+        <div class="product">
+          <div style="font-weight:700">Pacchetto Pro</div>
+          <div class="price">199€</div>
+          <div class="small">Fino a 5 pagine · Gallery · Modulo contatto · 2 revisioni</div>
+          <a class="btn" href="#order" onclick="prefill('Pacchetto Pro - 199€')">Ordina</a>
+        </div>
+
+        <div class="product">
+          <div style="font-weight:700">Pacchetto Business</div>
+          <div class="price">349€</div>
+          <div class="small">E-commerce base o prenotazioni · 5 pagine · SEO base</div>
+          <a class="btn" href="#order" onclick="prefill('Pacchetto Business - 349€')">Ordina</a>
+        </div>
+      </section>
+
+      <section id="order" style="margin-top:14px">
+        <div class="order-form">
+          <div style="font-weight:700">Modulo d'ordine rapido</div>
+          <p class="small">Compila e clicca “Invia richiesta” — ti rispondo entro 24 ore.</p>
+
+          <form onsubmit="sendOrder(event)">
+            <input class="input" id="cust" required placeholder="Nome e cognome" style="width:100%;margin-bottom:8px" />
+            <input class="input" id="custmail" type="email" required placeholder="Email" style="width:100%;margin-bottom:8px" />
+            <input class="input" id="pack" placeholder="Pacchetto (es. Pacchetto Pro - 199€)" style="width:100%;margin-bottom:8px" />
+            <textarea id="notes" class="input" rows="4" placeholder="Note aggiuntive (es. orari, preferenze)"></textarea>
+            <div style="margin-top:10px">
+              <button class="btn" type="submit">Invia richiesta</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="ye"></span> Nome Attività · Pagina ordini · Realizzato con Coky Web Solutions
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('ye').innerText = new Date().getFullYear();
+    function prefill(text){ document.getElementById('pack').value = text; document.getElementById('pack').focus(); }
+    function sendOrder(e){
+      e.preventDefault();
+      const name = encodeURIComponent(document.getElementById('cust').value);
+      const email = encodeURIComponent(document.getElementById('custmail').value);
+      const pack = encodeURIComponent(document.getElementById('pack').value || 'Pacchetto Basic');
+      const notes = encodeURIComponent(document.getElementById('notes').value || '');
+      const body = `Nome: ${decodeURIComponent(name)}%0D%0AEmail: ${decodeURIComponent(email)}%0D%0APacchetto: ${decodeURIComponent(pack)}%0D%0ANote:%0D%0A${decodeURIComponent(notes)}`;
+      window.location.href = `mailto:tuo@email.it?subject=Nuova%20richiesta%20(${pack})&body=${body}`;
+    }
+  </script>
+</body>
+</html>
