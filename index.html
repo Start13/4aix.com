@@ -2459,331 +2459,6 @@
       }
     }
 
-    // Booking System
-    class BookingSystem {
-      constructor() {
-        this.currentStep = 1;
-        this.selectedService = null;
-        this.selectedDate = null;
-        this.selectedTime = null;
-        this.availableSlots = this.generateTimeSlots();
-        this.init();
-      }
-
-      init() {
-        this.bindEvents();
-        this.generateCalendar();
-        this.updateStepDisplay();
-      }
-
-      bindEvents() {
-        // Service selection
-        document.querySelectorAll('.service-option').forEach(option => {
-          option.addEventListener('click', (e) => {
-            document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('selected'));
-            e.currentTarget.classList.add('selected');
-            this.selectedService = e.currentTarget.dataset.service;
-          });
-        });
-
-        // Step navigation
-        document.querySelectorAll('.next-step').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            const nextStep = parseInt(e.currentTarget.dataset.next);
-            if (this.validateStep(this.currentStep)) {
-              this.goToStep(nextStep);
-            }
-          });
-        });
-
-        document.querySelectorAll('.prev-step').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            const prevStep = parseInt(e.currentTarget.dataset.prev);
-            this.goToStep(prevStep);
-          });
-        });
-
-        // Calendar navigation
-        document.querySelector('.prev-month').addEventListener('click', () => this.changeMonth(-1));
-        document.querySelector('.next-month').addEventListener('click', () => this.changeMonth(1));
-
-        // Confirm booking
-        document.getElementById('confirm-booking').addEventListener('click', () => this.confirmBooking());
-        document.getElementById('new-booking').addEventListener('click', () => this.resetBooking());
-      }
-
-      validateStep(step) {
-        switch(step) {
-          case 1:
-            if (!this.selectedService) {
-              alert(currentLanguage === 'it' ? 'Seleziona un servizio per continuare' : 'Please select a service to continue');
-              return false;
-            }
-            return true;
-          case 2:
-            if (!this.selectedDate || !this.selectedTime) {
-              alert(currentLanguage === 'it' ? 'Seleziona data e orario per continuare' : 'Please select date and time to continue');
-              return false;
-            }
-            return true;
-          case 3:
-            const name = document.getElementById('booking-name').value;
-            const email = document.getElementById('booking-email').value;
-            if (!name || !email) {
-              alert(currentLanguage === 'it' ? 'Inserisci nome e email per confermare' : 'Please enter name and email to confirm');
-              return false;
-            }
-            return true;
-          default:
-            return true;
-        }
-      }
-
-      goToStep(step) {
-        document.querySelectorAll('.booking-step').forEach(s => s.classList.remove('active'));
-        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-        
-        document.getElementById(`step${step}`).classList.add('active');
-        document.querySelector(`.step[data-step="${step}"]`).classList.add('active');
-        
-        this.currentStep = step;
-        
-        if (step === 3) {
-          this.updateSummary();
-        }
-      }
-
-      generateCalendar() {
-        const now = new Date();
-        this.currentMonth = now.getMonth();
-        this.currentYear = now.getFullYear();
-        this.renderCalendar();
-      }
-
-      renderCalendar() {
-        const calendar = document.getElementById('booking-calendar');
-        const monthNames = currentLanguage === 'it' 
-          ? ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre']
-          : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-        document.getElementById('current-month').textContent = 
-          `${monthNames[this.currentMonth]} ${this.currentYear}`;
-
-        const firstDay = new Date(this.currentYear, this.currentMonth, 1);
-        const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
-        const startingDay = firstDay.getDay();
-        const daysInMonth = lastDay.getDate();
-
-        calendar.innerHTML = '';
-
-        // Day headers
-        const days = currentLanguage === 'it' 
-          ? ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab']
-          : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        
-        days.forEach(day => {
-          const dayElement = document.createElement('div');
-          dayElement.className = 'calendar-day';
-          dayElement.textContent = day;
-          calendar.appendChild(dayElement);
-        });
-
-        // Empty cells for days before month starts
-        for (let i = 0; i < startingDay; i++) {
-          const emptyCell = document.createElement('div');
-          emptyCell.className = 'calendar-date empty';
-          calendar.appendChild(emptyCell);
-        }
-
-        // Date cells
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        
-        for (let day = 1; day <= daysInMonth; day++) {
-          const dateElement = document.createElement('div');
-          dateElement.className = 'calendar-date';
-          dateElement.textContent = day;
-
-          const currentDate = new Date(this.currentYear, this.currentMonth, day);
-          
-          if (currentDate < today) {
-            dateElement.classList.add('unavailable');
-          } else {
-            dateElement.classList.add('available');
-            dateElement.addEventListener('click', () => this.selectDate(day));
-          }
-
-          if (this.selectedDate && 
-              this.selectedDate.getDate() === day && 
-              this.selectedDate.getMonth() === this.currentMonth && 
-              this.selectedDate.getFullYear() === this.currentYear) {
-            dateElement.classList.add('selected');
-          }
-
-          calendar.appendChild(dateElement);
-        }
-      }
-
-      changeMonth(direction) {
-        this.currentMonth += direction;
-        if (this.currentMonth < 0) {
-          this.currentMonth = 11;
-          this.currentYear--;
-        } else if (this.currentMonth > 11) {
-          this.currentMonth = 0;
-          this.currentYear++;
-        }
-        this.renderCalendar();
-      }
-
-      selectDate(day) {
-        this.selectedDate = new Date(this.currentYear, this.currentMonth, day);
-        this.renderCalendar();
-        this.showTimeSlots();
-      }
-
-      generateTimeSlots() {
-        const slots = [];
-        const startHour = 9;
-        const endHour = 18;
-        
-        for (let hour = startHour; hour < endHour; hour++) {
-          slots.push(`${hour.toString().padStart(2, '0')}:00`);
-          slots.push(`${hour.toString().padStart(2, '0')}:30`);
-        }
-        
-        return slots;
-      }
-
-      showTimeSlots() {
-        const container = document.querySelector('.slots-container');
-        container.innerHTML = '';
-
-        this.availableSlots.forEach(slot => {
-          const slotElement = document.createElement('div');
-          slotElement.className = 'time-slot';
-          slotElement.textContent = slot;
-          slotElement.addEventListener('click', () => this.selectTime(slot, slotElement));
-          container.appendChild(slotElement);
-        });
-
-        document.getElementById('time-slots').style.display = 'block';
-      }
-
-      selectTime(time, element) {
-        document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('selected'));
-        element.classList.add('selected');
-        this.selectedTime = time;
-      }
-
-      updateSummary() {
-        const serviceNames = currentLanguage === 'it' ? {
-          'consulenza-web': 'Consulenza Web',
-          'supporto-tecnico': 'Supporto Tecnico',
-          'autista': 'Autista Privato',
-          'supporto-senior': 'Supporto Anziani',
-          'crypto-trading': 'Cryptovalute & Trading'
-        } : {
-          'consulenza-web': 'Web Consultation',
-          'supporto-tecnico': 'Technical Support',
-          'autista': 'Private Driver',
-          'supporto-senior': 'Senior Support',
-          'crypto-trading': 'Cryptocurrencies & Trading'
-        };
-
-        document.getElementById('summary-service').textContent = 
-          serviceNames[this.selectedService] || this.selectedService;
-        
-        if (this.selectedDate) {
-          const options = currentLanguage === 'it' 
-            ? { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
-            : { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-          document.getElementById('summary-date').textContent = 
-            this.selectedDate.toLocaleDateString(currentLanguage === 'it' ? 'it-IT' : 'en-US', options);
-        }
-        
-        document.getElementById('summary-time').textContent = this.selectedTime;
-      }
-
-      async confirmBooking() {
-        const name = document.getElementById('booking-name').value;
-        const email = document.getElementById('booking-email').value;
-        const phone = document.getElementById('booking-phone').value;
-        const notes = document.getElementById('booking-notes').value;
-
-        const bookingData = {
-          service: this.selectedService,
-          date: this.selectedDate,
-          time: this.selectedTime,
-          name: name,
-          email: email,
-          phone: phone,
-          notes: notes
-        };
-
-        try {
-          // Invia i dati via email usando Formspree
-          const formData = new FormData();
-          formData.append('service', bookingData.service);
-          formData.append('date', bookingData.date.toLocaleDateString('it-IT'));
-          formData.append('time', bookingData.time);
-          formData.append('name', bookingData.name);
-          formData.append('email', bookingData.email);
-          formData.append('phone', bookingData.phone || 'Non fornito');
-          formData.append('notes', bookingData.notes || 'Nessuna nota');
-          formData.append('_subject', `Nuova Prenotazione - ${bookingData.service}`);
-
-          await fetch('https://formspree.io/f/mpwyeodr', {
-            method: 'POST',
-            body: formData,
-            headers: {
-              'Accept': 'application/json'
-            }
-          });
-
-          this.showSuccess();
-        } catch (error) {
-          console.error('Errore nella prenotazione:', error);
-          // Fallback: invia email standard
-          const subject = `Prenotazione ${bookingData.service}`;
-          const body = `Nuova prenotazione:%0D%0A%0D%0A
-            Servizio: ${bookingData.service}%0D%0A
-            Data: ${bookingData.date.toLocaleDateString('it-IT')}%0D%0A
-            Ora: ${bookingData.time}%0D%0A%0D%0A
-            Cliente:%0D%0A
-            Nome: ${bookingData.name}%0D%0A
-            Email: ${bookingData.email}%0D%0A
-            Telefono: ${bookingData.phone || 'Non fornito'}%0D%0A%0D%0A
-            Note: ${bookingData.notes || 'Nessuna nota'}`;
-
-          window.location.href = `mailto:corbruni@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-          this.showSuccess();
-        }
-      }
-
-      showSuccess() {
-        document.querySelectorAll('.booking-step').forEach(step => step.classList.remove('active'));
-        document.getElementById('booking-success').classList.add('active');
-      }
-
-      resetBooking() {
-        this.currentStep = 1;
-        this.selectedService = null;
-        this.selectedDate = null;
-        this.selectedTime = null;
-        
-        document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('selected'));
-        document.getElementById('booking-name').value = '';
-        document.getElementById('booking-email').value = '';
-        document.getElementById('booking-phone').value = '';
-        document.getElementById('booking-notes').value = '';
-        
-        document.getElementById('booking-success').classList.remove('active');
-        this.goToStep(1);
-        this.generateCalendar();
-      }
-    }
-
     // Blog System - Versione Corretta e Semplificata
     class BlogSystem {
       constructor() {
@@ -3107,30 +2782,414 @@
       }
     }
 
+    // Booking System
+    class BookingSystem {
+      constructor() {
+        this.currentStep = 1;
+        this.selectedService = null;
+        this.selectedDate = null;
+        this.selectedTime = null;
+        this.availableSlots = this.generateTimeSlots();
+        this.init();
+      }
+
+      init() {
+        this.bindEvents();
+        this.generateCalendar();
+        this.updateStepDisplay();
+      }
+
+      bindEvents() {
+        // Service selection
+        document.querySelectorAll('.service-option').forEach(option => {
+          option.addEventListener('click', (e) => {
+            document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('selected'));
+            e.currentTarget.classList.add('selected');
+            this.selectedService = e.currentTarget.dataset.service;
+          });
+        });
+
+        // Step navigation
+        document.querySelectorAll('.next-step').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const nextStep = parseInt(e.currentTarget.dataset.next);
+            if (this.validateStep(this.currentStep)) {
+              this.goToStep(nextStep);
+            }
+          });
+        });
+
+        document.querySelectorAll('.prev-step').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const prevStep = parseInt(e.currentTarget.dataset.prev);
+            this.goToStep(prevStep);
+          });
+        });
+
+        // Calendar navigation
+        const prevMonthBtn = document.querySelector('.prev-month');
+        const nextMonthBtn = document.querySelector('.next-month');
+        
+        if (prevMonthBtn) {
+          prevMonthBtn.addEventListener('click', () => this.changeMonth(-1));
+        }
+        
+        if (nextMonthBtn) {
+          nextMonthBtn.addEventListener('click', () => this.changeMonth(1));
+        }
+
+        // Confirm booking
+        const confirmBtn = document.getElementById('confirm-booking');
+        const newBookingBtn = document.getElementById('new-booking');
+        
+        if (confirmBtn) {
+          confirmBtn.addEventListener('click', () => this.confirmBooking());
+        }
+        
+        if (newBookingBtn) {
+          newBookingBtn.addEventListener('click', () => this.resetBooking());
+        }
+      }
+
+      validateStep(step) {
+        switch(step) {
+          case 1:
+            if (!this.selectedService) {
+              alert(currentLanguage === 'it' ? 'Seleziona un servizio per continuare' : 'Please select a service to continue');
+              return false;
+            }
+            return true;
+          case 2:
+            if (!this.selectedDate || !this.selectedTime) {
+              alert(currentLanguage === 'it' ? 'Seleziona data e orario per continuare' : 'Please select date and time to continue');
+              return false;
+            }
+            return true;
+          case 3:
+            const name = document.getElementById('booking-name')?.value;
+            const email = document.getElementById('booking-email')?.value;
+            if (!name || !email) {
+              alert(currentLanguage === 'it' ? 'Inserisci nome e email per confermare' : 'Please enter name and email to confirm');
+              return false;
+            }
+            return true;
+          default:
+            return true;
+        }
+      }
+
+      goToStep(step) {
+        document.querySelectorAll('.booking-step').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        
+        const stepElement = document.getElementById(`step${step}`);
+        const stepIndicator = document.querySelector(`.step[data-step="${step}"]`);
+        
+        if (stepElement) stepElement.classList.add('active');
+        if (stepIndicator) stepIndicator.classList.add('active');
+        
+        this.currentStep = step;
+        
+        if (step === 3) {
+          this.updateSummary();
+        }
+      }
+
+      generateCalendar() {
+        const now = new Date();
+        this.currentMonth = now.getMonth();
+        this.currentYear = now.getFullYear();
+        this.renderCalendar();
+      }
+
+      renderCalendar() {
+        const calendar = document.getElementById('booking-calendar');
+        if (!calendar) return;
+
+        const monthNames = currentLanguage === 'it' 
+          ? ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre']
+          : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        const currentMonthElement = document.getElementById('current-month');
+        if (currentMonthElement) {
+          currentMonthElement.textContent = `${monthNames[this.currentMonth]} ${this.currentYear}`;
+        }
+
+        const firstDay = new Date(this.currentYear, this.currentMonth, 1);
+        const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
+        const startingDay = firstDay.getDay();
+        const daysInMonth = lastDay.getDate();
+
+        calendar.innerHTML = '';
+
+        // Day headers
+        const days = currentLanguage === 'it' 
+          ? ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab']
+          : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        
+        days.forEach(day => {
+          const dayElement = document.createElement('div');
+          dayElement.className = 'calendar-day';
+          dayElement.textContent = day;
+          calendar.appendChild(dayElement);
+        });
+
+        // Empty cells for days before month starts
+        for (let i = 0; i < startingDay; i++) {
+          const emptyCell = document.createElement('div');
+          emptyCell.className = 'calendar-date empty';
+          calendar.appendChild(emptyCell);
+        }
+
+        // Date cells
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        for (let day = 1; day <= daysInMonth; day++) {
+          const dateElement = document.createElement('div');
+          dateElement.className = 'calendar-date';
+          dateElement.textContent = day;
+
+          const currentDate = new Date(this.currentYear, this.currentMonth, day);
+          
+          if (currentDate < today) {
+            dateElement.classList.add('unavailable');
+          } else {
+            dateElement.classList.add('available');
+            dateElement.addEventListener('click', () => this.selectDate(day));
+          }
+
+          if (this.selectedDate && 
+              this.selectedDate.getDate() === day && 
+              this.selectedDate.getMonth() === this.currentMonth && 
+              this.selectedDate.getFullYear() === this.currentYear) {
+            dateElement.classList.add('selected');
+          }
+
+          calendar.appendChild(dateElement);
+        }
+      }
+
+      changeMonth(direction) {
+        this.currentMonth += direction;
+        if (this.currentMonth < 0) {
+          this.currentMonth = 11;
+          this.currentYear--;
+        } else if (this.currentMonth > 11) {
+          this.currentMonth = 0;
+          this.currentYear++;
+        }
+        this.renderCalendar();
+      }
+
+      selectDate(day) {
+        this.selectedDate = new Date(this.currentYear, this.currentMonth, day);
+        this.renderCalendar();
+        this.showTimeSlots();
+      }
+
+      generateTimeSlots() {
+        const slots = [];
+        const startHour = 9;
+        const endHour = 18;
+        
+        for (let hour = startHour; hour < endHour; hour++) {
+          slots.push(`${hour.toString().padStart(2, '0')}:00`);
+          slots.push(`${hour.toString().padStart(2, '0')}:30`);
+        }
+        
+        return slots;
+      }
+
+      showTimeSlots() {
+        const container = document.querySelector('.slots-container');
+        if (!container) return;
+        
+        container.innerHTML = '';
+
+        this.availableSlots.forEach(slot => {
+          const slotElement = document.createElement('div');
+          slotElement.className = 'time-slot';
+          slotElement.textContent = slot;
+          slotElement.addEventListener('click', () => this.selectTime(slot, slotElement));
+          container.appendChild(slotElement);
+        });
+
+        const timeSlots = document.getElementById('time-slots');
+        if (timeSlots) {
+          timeSlots.style.display = 'block';
+        }
+      }
+
+      selectTime(time, element) {
+        document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('selected'));
+        element.classList.add('selected');
+        this.selectedTime = time;
+      }
+
+      updateSummary() {
+        const serviceNames = currentLanguage === 'it' ? {
+          'consulenza-web': 'Consulenza Web',
+          'supporto-tecnico': 'Supporto Tecnico',
+          'autista': 'Autista Privato',
+          'supporto-senior': 'Supporto Anziani',
+          'crypto-trading': 'Cryptovalute & Trading'
+        } : {
+          'consulenza-web': 'Web Consultation',
+          'supporto-tecnico': 'Technical Support',
+          'autista': 'Private Driver',
+          'supporto-senior': 'Senior Support',
+          'crypto-trading': 'Cryptocurrencies & Trading'
+        };
+
+        const summaryService = document.getElementById('summary-service');
+        const summaryDate = document.getElementById('summary-date');
+        const summaryTime = document.getElementById('summary-time');
+        
+        if (summaryService) {
+          summaryService.textContent = serviceNames[this.selectedService] || this.selectedService;
+        }
+        
+        if (summaryDate && this.selectedDate) {
+          const options = currentLanguage === 'it' 
+            ? { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+            : { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+          summaryDate.textContent = this.selectedDate.toLocaleDateString(currentLanguage === 'it' ? 'it-IT' : 'en-US', options);
+        }
+        
+        if (summaryTime) {
+          summaryTime.textContent = this.selectedTime;
+        }
+      }
+
+      async confirmBooking() {
+        const name = document.getElementById('booking-name')?.value;
+        const email = document.getElementById('booking-email')?.value;
+        const phone = document.getElementById('booking-phone')?.value;
+        const notes = document.getElementById('booking-notes')?.value;
+
+        const bookingData = {
+          service: this.selectedService,
+          date: this.selectedDate,
+          time: this.selectedTime,
+          name: name,
+          email: email,
+          phone: phone,
+          notes: notes
+        };
+
+        try {
+          // Invia i dati via email usando Formspree
+          const formData = new FormData();
+          formData.append('service', bookingData.service);
+          formData.append('date', bookingData.date.toLocaleDateString('it-IT'));
+          formData.append('time', bookingData.time);
+          formData.append('name', bookingData.name);
+          formData.append('email', bookingData.email);
+          formData.append('phone', bookingData.phone || 'Non fornito');
+          formData.append('notes', bookingData.notes || 'Nessuna nota');
+          formData.append('_subject', `Nuova Prenotazione - ${bookingData.service}`);
+
+          await fetch('https://formspree.io/f/mpwyeodr', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          this.showSuccess();
+        } catch (error) {
+          console.error('Errore nella prenotazione:', error);
+          // Fallback: invia email standard
+          const subject = `Prenotazione ${bookingData.service}`;
+          const body = `Nuova prenotazione:%0D%0A%0D%0A
+            Servizio: ${bookingData.service}%0D%0A
+            Data: ${bookingData.date.toLocaleDateString('it-IT')}%0D%0A
+            Ora: ${bookingData.time}%0D%0A%0D%0A
+            Cliente:%0D%0A
+            Nome: ${bookingData.name}%0D%0A
+            Email: ${bookingData.email}%0D%0A
+            Telefono: ${bookingData.phone || 'Non fornito'}%0D%0A%0D%0A
+            Note: ${bookingData.notes || 'Nessuna nota'}`;
+
+          window.location.href = `mailto:corbruni@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+          this.showSuccess();
+        }
+      }
+
+      showSuccess() {
+        document.querySelectorAll('.booking-step').forEach(step => step.classList.remove('active'));
+        const successElement = document.getElementById('booking-success');
+        if (successElement) {
+          successElement.classList.add('active');
+        }
+      }
+
+      resetBooking() {
+        this.currentStep = 1;
+        this.selectedService = null;
+        this.selectedDate = null;
+        this.selectedTime = null;
+        
+        document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('selected'));
+        
+        const nameInput = document.getElementById('booking-name');
+        const emailInput = document.getElementById('booking-email');
+        const phoneInput = document.getElementById('booking-phone');
+        const notesInput = document.getElementById('booking-notes');
+        
+        if (nameInput) nameInput.value = '';
+        if (emailInput) emailInput.value = '';
+        if (phoneInput) phoneInput.value = '';
+        if (notesInput) notesInput.value = '';
+        
+        const successElement = document.getElementById('booking-success');
+        if (successElement) {
+          successElement.classList.remove('active');
+        }
+        
+        this.goToStep(1);
+        this.generateCalendar();
+      }
+
+      updateStepDisplay() {
+        this.goToStep(1);
+      }
+    }
+
     // Inizializzazione SISTEMI - Versione Semplificata e Sicura
     function initializeSystems() {
       console.log('🚀 Inizializzazione sistemi...');
       
-      try {
-        // 1. Inizializza Booking System
-        if (typeof BookingSystem !== 'undefined') {
-          new BookingSystem();
-          console.log('✅ BookingSystem inizializzato');
-        } else {
-          console.warn('⚠️ BookingSystem non disponibile');
+      // Aspetta che il DOM sia completamente pronto
+      setTimeout(() => {
+        try {
+          // 1. Inizializza Booking System solo se esiste il container
+          const bookingContainer = document.getElementById('booking-calendar');
+          if (bookingContainer) {
+            new BookingSystem();
+            console.log('✅ BookingSystem inizializzato');
+          } else {
+            console.warn('⚠️ BookingSystem non inizializzato: elemento non trovato');
+          }
+
+          // 2. Inizializza Blog System solo se esiste almeno un pulsante
+          const blogButtons = document.querySelectorAll('.read-more-btn');
+          if (blogButtons.length > 0) {
+            const blogSystem = new BlogSystem();
+            blogSystem.init();
+            console.log('✅ BlogSystem inizializzato');
+          } else {
+            console.warn('⚠️ BlogSystem non inizializzato: pulsanti non trovati');
+          }
+
+          console.log('✅ Tutti i sistemi inizializzati');
+          
+        } catch (error) {
+          console.error('❌ Errore inizializzazione:', error);
         }
-
-        // 2. Inizializza Blog System
-        const blogSystem = new BlogSystem();
-        blogSystem.init();
-        console.log('✅ BlogSystem inizializzato');
-
-        // 3. Altri sistemi esistenti...
-        console.log('✅ Tutti i sistemi inizializzati');
-        
-      } catch (error) {
-        console.error('❌ Errore inizializzazione:', error);
-      }
+      }, 500); // Aumentato il delay per sicurezza
     }
 
     // AVVIA TUTTO quando il DOM è pronto
