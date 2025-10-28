@@ -352,6 +352,7 @@
       transition: var(--transition);
       border: 1px solid rgba(255,255,255,0.1);
       animation: fadeInUp 0.8s ease-out;
+      cursor: pointer;
     }
 
     .service-card:hover {
@@ -839,7 +840,7 @@
       Creo siti web moderni e offro una mano concreta per piccoli lavori e supporto quotidiano</p>
       <div class="cta-buttons">
         <a href="#servizi" class="btn-primary" data-i18n="hero.services">Scopri i Miei Servizi</a>
-        <a href="#contatto" class="btn-secondary" data-i18n="hero.quote">Richiedi un Preventivo</a>
+        <a href="#contatto" class="btn-secondary" data-i18n="hero.contact">Contattami</a>
       </div>
     </div>
   </header>
@@ -859,7 +860,7 @@
 
     <div class="services">
       <!-- Siti Web -->
-      <div class="service-card">
+      <div class="service-card" onclick="scrollToSection('portfolio')">
         <img src="img/creositi.png" alt="Siti web moderni" loading="lazy" width="800" height="400">
         <div class="content">
           <h3><i class="fas fa-code"></i> <span data-i18n="services.web.title">Siti Web & Soluzioni Digitali</span></h3>
@@ -868,7 +869,7 @@
       </div>
 
       <!-- Autista Privato -->
-      <div class="service-card">
+      <div class="service-card" onclick="scrollToSection('contatto')">
         <img src="img/autista.png" alt="Autista privato Torino" loading="lazy" width="800" height="400">
         <div class="content">
           <h3><i class="fas fa-car"></i> <span data-i18n="services.driver.title">Autista Privato</span></h3>
@@ -877,7 +878,7 @@
       </div>
 
       <!-- Tuttofare Leggeri -->
-      <div class="service-card">
+      <div class="service-card" onclick="scrollToSection('contatto')">
         <img src="img/tuttofare.png" alt="Piccoli lavori in casa" loading="lazy" width="800" height="400">
         <div class="content">
           <h3><i class="fas fa-tools"></i> <span data-i18n="services.handyman.title">Tuttofare Leggeri</span></h3>
@@ -886,7 +887,7 @@
       </div>
 
       <!-- Collaborazioni Tecniche -->
-      <div class="service-card">
+      <div class="service-card" onclick="scrollToSection('contatto')">
         <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Collaborazioni tecniche" loading="lazy" width="800" height="400">
         <div class="content">
           <h3><i class="fas fa-laptop-code"></i> <span data-i18n="services.tech.title">Collaborazioni Tecniche</span></h3>
@@ -897,7 +898,7 @@
   </section>
 
 <!-- Portfolio Section - MODIFICATA -->
-<section class="portfolio">
+<section id="portfolio" class="portfolio">
     <h2 class="mosaic-title" data-i18n="portfolio.title">Cosa Posso Creare per Te</h2>
     <p class="intro" data-i18n="portfolio.intro">Esplora i template disponibili per ogni categoria</p>
     
@@ -1082,7 +1083,7 @@
         "hero.title": "Corrado Bruni",
         "hero.subtitle": "Web Developer & Supporto Tecnico a Torino<br>Creo siti web moderni e offro una mano concreta per piccoli lavori e supporto quotidiano",
         "hero.services": "Scopri i Miei Servizi",
-        "hero.quote": "Richiedi un Preventivo",
+        "hero.contact": "Contattami",
         "profile.title": "Profilo Professionale",
         "profile.text1": "Con un passato da progettista e imprenditore nel settore tech, ho gestito aziende e progetti complessi. Oggi scelgo di mettere questa esperienza al servizio delle persone, con un approccio più diretto e umano.",
         "profile.text2": "Mi rivolgo a chi cerca un professionista affidabile non solo per un sito internet o una consulenza tecnica, ma anche per quel supporto pratico e rassicurante di cui a volte si ha bisogno: un accompagnamento, un piccolo lavoretto in casa, una soluzione semplice a un problema quotidiano.",
@@ -1145,7 +1146,7 @@
         "hero.title": "Corrado Bruni",
         "hero.subtitle": "Web Developer & Technical Support in Turin<br>I create modern websites and offer practical help for small jobs and daily support",
         "hero.services": "Discover My Services",
-        "hero.quote": "Request a Quote",
+        "hero.contact": "Contact Me",
         "profile.title": "Professional Profile",
         "profile.text1": "With a background as a designer and entrepreneur in the tech sector, I have managed companies and complex projects. Today I choose to put this experience at the service of people, with a more direct and human approach.",
         "profile.text2": "I address those looking for a reliable professional not only for a website or technical consultation, but also for that practical and reassuring support that is sometimes needed: accompaniment, small household jobs, a simple solution to an everyday problem.",
@@ -1406,6 +1407,17 @@
         }
       });
     });
+
+    // Scroll function for service cards
+    function scrollToSection(sectionId) {
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
   </script>
 </body>
 </html>
