@@ -287,6 +287,259 @@
       gap: 12px;
     }
 
+    /* Sistema Prenotazioni */
+    .booking-section {
+      background: linear-gradient(135deg, var(--bg-color) 0%, var(--card-bg) 100%);
+      padding: 80px 20px;
+      margin: 80px auto;
+      border-radius: 15px;
+      max-width: 1000px;
+    }
+
+    .booking-container {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .booking-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .booking-steps::before {
+      content: '';
+      position: absolute;
+      top: 25px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: var(--secondary-color);
+      opacity: 0.3;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      opacity: 0.5;
+      transition: var(--transition);
+    }
+
+    .step.active {
+      opacity: 1;
+    }
+
+    .step-number {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--secondary-color);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 10px;
+      transition: var(--transition);
+    }
+
+    .step.active .step-number {
+      background: var(--accent-color);
+      transform: scale(1.1);
+    }
+
+    .step h3 {
+      font-size: 0.9rem;
+      text-align: center;
+      color: var(--text-color);
+    }
+
+    .booking-step {
+      display: none;
+    }
+
+    .booking-step.active {
+      display: block;
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    .service-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .service-option {
+      background: var(--bg-color);
+      border: 2px solid transparent;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .service-option:hover {
+      border-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    .service-option.selected {
+      border-color: var(--accent-color);
+      background: rgba(253, 187, 45, 0.1);
+    }
+
+    .service-option i {
+      font-size: 2rem;
+      color: var(--secondary-color);
+      margin-bottom: 10px;
+    }
+
+    .calendar-container {
+      background: var(--bg-color);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .nav-btn {
+      background: var(--secondary-color);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .nav-btn:hover {
+      background: var(--accent-color);
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+
+    .calendar-day {
+      text-align: center;
+      font-weight: bold;
+      color: var(--text-color);
+      opacity: 0.7;
+      padding: 10px 0;
+    }
+
+    .calendar-date {
+      text-align: center;
+      padding: 10px 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .calendar-date.available:hover {
+      background: var(--secondary-color);
+      color: white;
+    }
+
+    .calendar-date.selected {
+      background: var(--accent-color);
+      color: white;
+    }
+
+    .calendar-date.unavailable {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .time-slots {
+      margin: 20px 0;
+    }
+
+    .slots-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .time-slot {
+      background: var(--bg-color);
+      border: 2px solid transparent;
+      border-radius: 5px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .time-slot:hover {
+      border-color: var(--secondary-color);
+    }
+
+    .time-slot.selected {
+      background: var(--accent-color);
+      color: white;
+      border-color: var(--accent-color);
+    }
+
+    .booking-summary {
+      background: var(--bg-color);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .summary-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .booking-success {
+      text-align: center;
+      display: none;
+    }
+
+    .booking-success.active {
+      display: block;
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    .success-icon {
+      font-size: 4rem;
+      color: #10b981;
+      margin-bottom: 20px;
+    }
+
+    .step-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
     /* Language Selector */
     .language-selector {
       position: fixed;
@@ -1032,6 +1285,37 @@
       .blog-grid {
         grid-template-columns: 1fr;
       }
+
+      .booking-section {
+        padding: 60px 20px;
+        margin: 60px auto;
+      }
+      
+      .booking-container {
+        padding: 20px;
+      }
+      
+      .booking-steps {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .booking-steps::before {
+        display: none;
+      }
+      
+      .service-options {
+        grid-template-columns: 1fr;
+      }
+      
+      .step-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .step-buttons button {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -1294,6 +1578,123 @@
     </div>
   </section>
 
+  <!-- Sistema Prenotazioni -->
+  <section id="prenotazioni" class="booking-section">
+    <h2 data-i18n="booking.title">Prenota un Appuntamento</h2>
+    <p class="intro" data-i18n="booking.intro">Scegli il servizio e prenota direttamente online. Facile, veloce e immediato.</p>
+    
+    <div class="booking-container">
+      <div class="booking-steps">
+        <div class="step active" data-step="1">
+          <div class="step-number">1</div>
+          <h3 data-i18n="booking.step1">Seleziona Servizio</h3>
+        </div>
+        <div class="step" data-step="2">
+          <div class="step-number">2</div>
+          <h3 data-i18n="booking.step2">Scegli Data & Ora</h3>
+        </div>
+        <div class="step" data-step="3">
+          <div class="step-number">3</div>
+          <h3 data-i18n="booking.step3">Conferma</h3>
+        </div>
+      </div>
+
+      <div class="booking-form">
+        <!-- Step 1: Service Selection -->
+        <div class="booking-step active" id="step1">
+          <h4 data-i18n="booking.selectService">Quale servizio ti serve?</h4>
+          <div class="service-options">
+            <div class="service-option" data-service="consulenza-web">
+              <i class="fas fa-laptop-code"></i>
+              <span data-i18n="booking.service1">Consulenza Web</span>
+            </div>
+            <div class="service-option" data-service="supporto-tecnico">
+              <i class="fas fa-tools"></i>
+              <span data-i18n="booking.service2">Supporto Tecnico</span>
+            </div>
+            <div class="service-option" data-service="autista">
+              <i class="fas fa-car"></i>
+              <span data-i18n="booking.service3">Autista Privato</span>
+            </div>
+            <div class="service-option" data-service="supporto-senior">
+              <i class="fas fa-hands-helping"></i>
+              <span data-i18n="booking.service4">Supporto Anziani</span>
+            </div>
+          </div>
+          <button class="btn-primary next-step" data-next="2" data-i18n="booking.continue">Continua</button>
+        </div>
+
+        <!-- Step 2: Date & Time Selection -->
+        <div class="booking-step" id="step2">
+          <h4 data-i18n="booking.selectDateTime">Scegli data e orario</h4>
+          <div class="calendar-container">
+            <div class="calendar-header">
+              <button class="nav-btn prev-month"><i class="fas fa-chevron-left"></i></button>
+              <h5 id="current-month"></h5>
+              <button class="nav-btn next-month"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="calendar" id="booking-calendar"></div>
+          </div>
+          <div class="time-slots" id="time-slots">
+            <h5 data-i18n="booking.selectTime">Seleziona orario:</h5>
+            <div class="slots-container"></div>
+          </div>
+          <div class="step-buttons">
+            <button class="btn-secondary prev-step" data-prev="1" data-i18n="booking.back">Indietro</button>
+            <button class="btn-primary next-step" data-next="3" data-i18n="booking.continue">Continua</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Confirmation -->
+        <div class="booking-step" id="step3">
+          <h4 data-i18n="booking.confirmDetails">Conferma i tuoi dati</h4>
+          <div class="booking-summary">
+            <div class="summary-item">
+              <strong data-i18n="booking.service">Servizio:</strong>
+              <span id="summary-service"></span>
+            </div>
+            <div class="summary-item">
+              <strong data-i18n="booking.date">Data:</strong>
+              <span id="summary-date"></span>
+            </div>
+            <div class="summary-item">
+              <strong data-i18n="booking.time">Ora:</strong>
+              <span id="summary-time"></span>
+            </div>
+          </div>
+          <form class="client-info">
+            <div class="form-group">
+              <input type="text" id="booking-name" placeholder="Nome e cognome" required data-i18n-placeholder="contact.name">
+            </div>
+            <div class="form-group">
+              <input type="email" id="booking-email" placeholder="Email" required data-i18n-placeholder="contact.email">
+            </div>
+            <div class="form-group">
+              <input type="tel" id="booking-phone" placeholder="Telefono" data-i18n-placeholder="contact.phone">
+            </div>
+            <div class="form-group">
+              <textarea id="booking-notes" placeholder="Note aggiuntive (opzionale)" data-i18n-placeholder="booking.notes"></textarea>
+            </div>
+          </form>
+          <div class="step-buttons">
+            <button class="btn-secondary prev-step" data-prev="2" data-i18n="booking.back">Indietro</button>
+            <button class="btn-primary" id="confirm-booking" data-i18n="booking.confirm">Conferma Prenotazione</button>
+          </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="booking-success" id="booking-success">
+          <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <h4 data-i18n="booking.successTitle">Prenotazione Confermata!</h4>
+          <p data-i18n="booking.successMessage">Ti ho inviato una email di conferma con tutti i dettagli. A presto!</p>
+          <button class="btn-primary" id="new-booking" data-i18n="booking.newBooking">Nuova Prenotazione</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Testimonials Section -->
   <section>
     <h2 data-i18n="testimonials.title">Cosa Dicono i Miei Clienti</h2>
@@ -1474,6 +1875,29 @@
         "blog.post3.title": "Trend Web Design 2024: Cosa Sapere",
         "blog.post3.excerpt": "I trend emergenti nel web design che ogni sviluppatore e designer dovrebbe conoscere...",
         "blog.readmore": "Leggi Articolo",
+        "booking.title": "Prenota un Appuntamento",
+        "booking.intro": "Scegli il servizio e prenota direttamente online. Facile, veloce e immediato.",
+        "booking.step1": "Seleziona Servizio",
+        "booking.step2": "Scegli Data & Ora",
+        "booking.step3": "Conferma",
+        "booking.selectService": "Quale servizio ti serve?",
+        "booking.service1": "Consulenza Web",
+        "booking.service2": "Supporto Tecnico",
+        "booking.service3": "Autista Privato",
+        "booking.service4": "Supporto Anziani",
+        "booking.continue": "Continua",
+        "booking.selectDateTime": "Scegli data e orario",
+        "booking.selectTime": "Seleziona orario:",
+        "booking.back": "Indietro",
+        "booking.confirmDetails": "Conferma i tuoi dati",
+        "booking.service": "Servizio:",
+        "booking.date": "Data:",
+        "booking.time": "Ora:",
+        "booking.notes": "Note aggiuntive (opzionale)",
+        "booking.confirm": "Conferma Prenotazione",
+        "booking.successTitle": "Prenotazione Confermata!",
+        "booking.successMessage": "Ti ho inviato una email di conferma con tutti i dettagli. A presto!",
+        "booking.newBooking": "Nuova Prenotazione",
         "testimonials.title": "Cosa Dicono i Miei Clienti",
         "testimonials.intro": "La soddisfazione dei clienti è la mia migliore vetrina",
         "testimonials.1.text": "\"Corrado ha realizzato il sito della mia attività in tempi record. Professionale, competente e sempre disponibile. Consigliatissimo!\"",
@@ -1561,6 +1985,29 @@
         "blog.post3.title": "Web Design Trends 2024: What to Know",
         "blog.post3.excerpt": "The emerging trends in web design that every developer and designer should know...",
         "blog.readmore": "Read Article",
+        "booking.title": "Book an Appointment",
+        "booking.intro": "Choose the service and book directly online. Easy, fast and immediate.",
+        "booking.step1": "Select Service",
+        "booking.step2": "Choose Date & Time",
+        "booking.step3": "Confirm",
+        "booking.selectService": "Which service do you need?",
+        "booking.service1": "Web Consultation",
+        "booking.service2": "Technical Support",
+        "booking.service3": "Private Driver",
+        "booking.service4": "Senior Support",
+        "booking.continue": "Continue",
+        "booking.selectDateTime": "Choose date and time",
+        "booking.selectTime": "Select time:",
+        "booking.back": "Back",
+        "booking.confirmDetails": "Confirm your details",
+        "booking.service": "Service:",
+        "booking.date": "Date:",
+        "booking.time": "Time:",
+        "booking.notes": "Additional notes (optional)",
+        "booking.confirm": "Confirm Booking",
+        "booking.successTitle": "Booking Confirmed!",
+        "booking.successMessage": "I sent you a confirmation email with all the details. See you soon!",
+        "booking.newBooking": "New Booking",
         "testimonials.title": "What My Clients Say",
         "testimonials.intro": "Customer satisfaction is my best showcase",
         "testimonials.1.text": "\"Corrado created my business website in record time. Professional, competent and always available. Highly recommended!\"",
@@ -1806,6 +2253,334 @@
         });
       }
     }
+
+    // Booking System
+    class BookingSystem {
+      constructor() {
+        this.currentStep = 1;
+        this.selectedService = null;
+        this.selectedDate = null;
+        this.selectedTime = null;
+        this.availableSlots = this.generateTimeSlots();
+        this.init();
+      }
+
+      init() {
+        this.bindEvents();
+        this.generateCalendar();
+        this.updateStepDisplay();
+      }
+
+      bindEvents() {
+        // Service selection
+        document.querySelectorAll('.service-option').forEach(option => {
+          option.addEventListener('click', (e) => {
+            document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('selected'));
+            e.currentTarget.classList.add('selected');
+            this.selectedService = e.currentTarget.dataset.service;
+          });
+        });
+
+        // Step navigation
+        document.querySelectorAll('.next-step').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const nextStep = parseInt(e.currentTarget.dataset.next);
+            if (this.validateStep(this.currentStep)) {
+              this.goToStep(nextStep);
+            }
+          });
+        });
+
+        document.querySelectorAll('.prev-step').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const prevStep = parseInt(e.currentTarget.dataset.prev);
+            this.goToStep(prevStep);
+          });
+        });
+
+        // Calendar navigation
+        document.querySelector('.prev-month').addEventListener('click', () => this.changeMonth(-1));
+        document.querySelector('.next-month').addEventListener('click', () => this.changeMonth(1));
+
+        // Confirm booking
+        document.getElementById('confirm-booking').addEventListener('click', () => this.confirmBooking());
+        document.getElementById('new-booking').addEventListener('click', () => this.resetBooking());
+      }
+
+      validateStep(step) {
+        switch(step) {
+          case 1:
+            if (!this.selectedService) {
+              alert(currentLanguage === 'it' ? 'Seleziona un servizio per continuare' : 'Please select a service to continue');
+              return false;
+            }
+            return true;
+          case 2:
+            if (!this.selectedDate || !this.selectedTime) {
+              alert(currentLanguage === 'it' ? 'Seleziona data e orario per continuare' : 'Please select date and time to continue');
+              return false;
+            }
+            return true;
+          case 3:
+            const name = document.getElementById('booking-name').value;
+            const email = document.getElementById('booking-email').value;
+            if (!name || !email) {
+              alert(currentLanguage === 'it' ? 'Inserisci nome e email per confermare' : 'Please enter name and email to confirm');
+              return false;
+            }
+            return true;
+          default:
+            return true;
+        }
+      }
+
+      goToStep(step) {
+        document.querySelectorAll('.booking-step').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        
+        document.getElementById(`step${step}`).classList.add('active');
+        document.querySelector(`.step[data-step="${step}"]`).classList.add('active');
+        
+        this.currentStep = step;
+        
+        if (step === 3) {
+          this.updateSummary();
+        }
+      }
+
+      generateCalendar() {
+        const now = new Date();
+        this.currentMonth = now.getMonth();
+        this.currentYear = now.getFullYear();
+        this.renderCalendar();
+      }
+
+      renderCalendar() {
+        const calendar = document.getElementById('booking-calendar');
+        const monthNames = currentLanguage === 'it' 
+          ? ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre']
+          : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        document.getElementById('current-month').textContent = 
+          `${monthNames[this.currentMonth]} ${this.currentYear}`;
+
+        const firstDay = new Date(this.currentYear, this.currentMonth, 1);
+        const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
+        const startingDay = firstDay.getDay();
+        const daysInMonth = lastDay.getDate();
+
+        calendar.innerHTML = '';
+
+        // Day headers
+        const days = currentLanguage === 'it' 
+          ? ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab']
+          : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        
+        days.forEach(day => {
+          const dayElement = document.createElement('div');
+          dayElement.className = 'calendar-day';
+          dayElement.textContent = day;
+          calendar.appendChild(dayElement);
+        });
+
+        // Empty cells for days before month starts
+        for (let i = 0; i < startingDay; i++) {
+          const emptyCell = document.createElement('div');
+          emptyCell.className = 'calendar-date empty';
+          calendar.appendChild(emptyCell);
+        }
+
+        // Date cells
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        for (let day = 1; day <= daysInMonth; day++) {
+          const dateElement = document.createElement('div');
+          dateElement.className = 'calendar-date';
+          dateElement.textContent = day;
+
+          const currentDate = new Date(this.currentYear, this.currentMonth, day);
+          
+          if (currentDate < today) {
+            dateElement.classList.add('unavailable');
+          } else {
+            dateElement.classList.add('available');
+            dateElement.addEventListener('click', () => this.selectDate(day));
+          }
+
+          if (this.selectedDate && 
+              this.selectedDate.getDate() === day && 
+              this.selectedDate.getMonth() === this.currentMonth && 
+              this.selectedDate.getFullYear() === this.currentYear) {
+            dateElement.classList.add('selected');
+          }
+
+          calendar.appendChild(dateElement);
+        }
+      }
+
+      changeMonth(direction) {
+        this.currentMonth += direction;
+        if (this.currentMonth < 0) {
+          this.currentMonth = 11;
+          this.currentYear--;
+        } else if (this.currentMonth > 11) {
+          this.currentMonth = 0;
+          this.currentYear++;
+        }
+        this.renderCalendar();
+      }
+
+      selectDate(day) {
+        this.selectedDate = new Date(this.currentYear, this.currentMonth, day);
+        this.renderCalendar();
+        this.showTimeSlots();
+      }
+
+      generateTimeSlots() {
+        const slots = [];
+        const startHour = 9;
+        const endHour = 18;
+        
+        for (let hour = startHour; hour < endHour; hour++) {
+          slots.push(`${hour.toString().padStart(2, '0')}:00`);
+          slots.push(`${hour.toString().padStart(2, '0')}:30`);
+        }
+        
+        return slots;
+      }
+
+      showTimeSlots() {
+        const container = document.querySelector('.slots-container');
+        container.innerHTML = '';
+
+        this.availableSlots.forEach(slot => {
+          const slotElement = document.createElement('div');
+          slotElement.className = 'time-slot';
+          slotElement.textContent = slot;
+          slotElement.addEventListener('click', () => this.selectTime(slot, slotElement));
+          container.appendChild(slotElement);
+        });
+
+        document.getElementById('time-slots').style.display = 'block';
+      }
+
+      selectTime(time, element) {
+        document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('selected'));
+        element.classList.add('selected');
+        this.selectedTime = time;
+      }
+
+      updateSummary() {
+        const serviceNames = currentLanguage === 'it' ? {
+          'consulenza-web': 'Consulenza Web',
+          'supporto-tecnico': 'Supporto Tecnico',
+          'autista': 'Autista Privato',
+          'supporto-senior': 'Supporto Anziani'
+        } : {
+          'consulenza-web': 'Web Consultation',
+          'supporto-tecnico': 'Technical Support',
+          'autista': 'Private Driver',
+          'supporto-senior': 'Senior Support'
+        };
+
+        document.getElementById('summary-service').textContent = 
+          serviceNames[this.selectedService] || this.selectedService;
+        
+        if (this.selectedDate) {
+          const options = currentLanguage === 'it' 
+            ? { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+            : { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+          document.getElementById('summary-date').textContent = 
+            this.selectedDate.toLocaleDateString(currentLanguage === 'it' ? 'it-IT' : 'en-US', options);
+        }
+        
+        document.getElementById('summary-time').textContent = this.selectedTime;
+      }
+
+      async confirmBooking() {
+        const name = document.getElementById('booking-name').value;
+        const email = document.getElementById('booking-email').value;
+        const phone = document.getElementById('booking-phone').value;
+        const notes = document.getElementById('booking-notes').value;
+
+        const bookingData = {
+          service: this.selectedService,
+          date: this.selectedDate,
+          time: this.selectedTime,
+          name: name,
+          email: email,
+          phone: phone,
+          notes: notes
+        };
+
+        try {
+          // Invia i dati via email usando Formspree
+          const formData = new FormData();
+          formData.append('service', bookingData.service);
+          formData.append('date', bookingData.date.toLocaleDateString('it-IT'));
+          formData.append('time', bookingData.time);
+          formData.append('name', bookingData.name);
+          formData.append('email', bookingData.email);
+          formData.append('phone', bookingData.phone || 'Non fornito');
+          formData.append('notes', bookingData.notes || 'Nessuna nota');
+          formData.append('_subject', `Nuova Prenotazione - ${bookingData.service}`);
+
+          await fetch('https://formspree.io/f/mpwyeodr', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          this.showSuccess();
+        } catch (error) {
+          console.error('Errore nella prenotazione:', error);
+          // Fallback: invia email standard
+          const subject = `Prenotazione ${bookingData.service}`;
+          const body = `Nuova prenotazione:%0D%0A%0D%0A
+            Servizio: ${bookingData.service}%0D%0A
+            Data: ${bookingData.date.toLocaleDateString('it-IT')}%0D%0A
+            Ora: ${bookingData.time}%0D%0A%0D%0A
+            Cliente:%0D%0A
+            Nome: ${bookingData.name}%0D%0A
+            Email: ${bookingData.email}%0D%0A
+            Telefono: ${bookingData.phone || 'Non fornito'}%0D%0A%0D%0A
+            Note: ${bookingData.notes || 'Nessuna nota'}`;
+
+          window.location.href = `mailto:corbruni@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+          this.showSuccess();
+        }
+      }
+
+      showSuccess() {
+        document.querySelectorAll('.booking-step').forEach(step => step.classList.remove('active'));
+        document.getElementById('booking-success').classList.add('active');
+      }
+
+      resetBooking() {
+        this.currentStep = 1;
+        this.selectedService = null;
+        this.selectedDate = null;
+        this.selectedTime = null;
+        
+        document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('selected'));
+        document.getElementById('booking-name').value = '';
+        document.getElementById('booking-email').value = '';
+        document.getElementById('booking-phone').value = '';
+        document.getElementById('booking-notes').value = '';
+        
+        document.getElementById('booking-success').classList.remove('active');
+        this.goToStep(1);
+        this.generateCalendar();
+      }
+    }
+
+    // Inizializza il sistema prenotazioni quando la pagina è caricata
+    document.addEventListener('DOMContentLoaded', () => {
+      new BookingSystem();
+    });
   </script>
 </body>
 </html>
