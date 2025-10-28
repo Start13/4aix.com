@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>4AIX — Template Web Professionali</title>
-  <meta name="description" content="Esplora i template web di 4AIX, pronti all’uso e ottimizzati per mobile e personalizzazione.">
+  <meta name="description" content="Esplora i template web di 4AIX, pronti all'uso e ottimizzati per mobile e personalizzazione.">
   <link rel="icon" href="../../img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
@@ -26,6 +26,33 @@
       margin: 0;
       padding: 0;
       transition: background .25s, color .25s;
+    }
+
+    /* === BACK BUTTON === */
+    .back-home {
+        position: fixed;
+        top: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 8px 16px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all .2s ease;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .back-home:hover {
+        transform: translateX(-50%) scale(1.05);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
     }
 
     /* === ICONS === */
@@ -51,7 +78,7 @@
 
     header {
       text-align: center;
-      padding: 24px 20px;
+      padding: 80px 20px 24px 20px;
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     header h1 { margin: 0; font-size: 26px; }
@@ -107,6 +134,12 @@
   </style>
 </head>
 <body>
+  <!-- === BACK BUTTON === -->
+  <button id="backHome" class="back-home" title="Torna alla homepage">
+    <i class="fa-solid fa-arrow-left"></i>
+    <span id="backText">Torna alla Homepage</span>
+  </button>
+
   <!-- === ICONS === -->
   <button id="langToggle" class="language-selector" title="Cambia lingua">
     <i class="fa-solid fa-globe"></i>
@@ -117,7 +150,7 @@
 
   <header>
     <h1>Template Web 4AIX</h1>
-    <p id="subtitle">Scopri tutti i nostri modelli pronti all’uso</p>
+    <p id="subtitle">Scopri tutti i nostri modelli pronti all'uso</p>
     <div class="menu" id="categoryMenu"></div>
   </header>
 
@@ -158,15 +191,17 @@
 
     const translations = {
       it: {
-        subtitle: "Scopri tutti i nostri modelli pronti all’uso",
+        subtitle: "Scopri tutti i nostri modelli pronti all'uso",
         rights: "Tutti i diritti riservati",
         openDemo: "Apri Demo",
+        backHome: "Torna alla Homepage",
         categories: { all:"Tutti", aziendale:"Aziendale", ecommerce:"E-commerce", portfolio:"Portfolio", trading:"Trading" }
       },
       en: {
         subtitle: "Discover all our ready-to-use templates",
         rights: "All rights reserved",
         openDemo: "Open Demo",
+        backHome: "Back to Homepage",
         categories: { all:"All", aziendale:"Business", ecommerce:"E-commerce", portfolio:"Portfolio", trading:"Trading" }
       }
     };
@@ -217,6 +252,7 @@
       const tr = translations[currentLang];
       subtitleEl.textContent = tr.subtitle;
       rightsEl.textContent = tr.rights;
+      document.getElementById('backText').textContent = tr.backHome;
     }
 
     function toggleLang(){
@@ -240,6 +276,9 @@
     /* === INIT === */
     langBtn.addEventListener("click", toggleLang);
     themeBtn.addEventListener("click", toggleTheme);
+    document.getElementById('backHome').addEventListener('click', () => {
+      window.location.href = '../../index.html';
+    });
     themeIcon.className = currentTheme==="dark" ? "fas fa-moon" : "fas fa-sun";
     document.getElementById("year").textContent = new Date().getFullYear();
 
