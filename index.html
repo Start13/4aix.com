@@ -121,6 +121,102 @@
       z-index: 1;
     }
 
+    /* Crypto Badge */
+    .crypto-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: linear-gradient(135deg, #f7931a, #8b5cf6);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      z-index: 1;
+    }
+
+    /* Sistema Articoli Espandibili */
+    .article-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 20px;
+    }
+
+    .article-modal.active {
+      display: flex;
+    }
+
+    .article-content {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 40px;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+
+    .close-article {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-color);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .close-article:hover {
+      color: var(--accent-color);
+      transform: scale(1.1);
+    }
+
+    .article-content h2 {
+      color: var(--text-color);
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    .article-content h3 {
+      color: var(--text-color);
+      margin: 25px 0 15px;
+      font-size: 1.3rem;
+    }
+
+    .article-content p {
+      line-height: 1.7;
+      margin-bottom: 15px;
+      color: var(--text-color);
+    }
+
+    .article-content ul {
+      margin: 15px 0;
+      padding-left: 20px;
+    }
+
+    .article-content li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .read-more-btn {
+      cursor: pointer;
+    }
+
     /* Sezione SaaS */
     .saas-showcase {
       background: linear-gradient(135deg, var(--card-bg) 0%, var(--bg-color) 100%);
@@ -851,6 +947,7 @@
     .service-card:nth-child(2) { animation-delay: 0.2s; }
     .service-card:nth-child(3) { animation-delay: 0.3s; }
     .service-card:nth-child(4) { animation-delay: 0.4s; }
+    .service-card:nth-child(5) { animation-delay: 0.5s; }
 
     /* Portfolio Section */
     .portfolio {
@@ -1409,6 +1506,19 @@
           <p data-i18n="services.tech.text">Supporto per progetti digitali, sviluppo personalizzato e consulenze mirate anche da remoto.</p>
         </div>
       </div>
+
+      <!-- Cryptovalute & Trading -->
+      <div class="service-card" onclick="scrollToSection('contatto')">
+        <div class="crypto-badge">
+          <i class="fas fa-chart-line"></i>
+          <span>Expert Crypto</span>
+        </div>
+        <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=800&q=80" alt="Cryptovalute e Trading" loading="lazy" width="800" height="400">
+        <div class="content">
+          <h3><i class="fas fa-coins"></i> <span data-i18n="services.crypto.title">Cryptovalute & Trading</span></h3>
+          <p data-i18n="services.crypto.text">Consulenza specialistica su trading, mining, DeFi/CeFi, analisi di mercato e strategie d'investimento in cryptovalute. Supporto per portfolio e sicurezza digitale.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1541,7 +1651,7 @@
         <div class="blog-content">
           <h3 data-i18n="blog.post1.title">Come l'AI sta Rivoluzionando lo Sviluppo Web</h3>
           <p data-i18n="blog.post1.excerpt">Scopri come integrare strumenti di AI nel tuo workflow per migliorare produttività e qualità del codice...</p>
-          <a href="#leggi-articolo" class="blog-link" data-i18n="blog.readmore">
+          <a href="#article-ai" class="blog-link read-more-btn" data-article="ai" data-i18n="blog.readmore">
             Leggi Articolo
             <i class="fas fa-arrow-right"></i>
           </a>
@@ -1555,7 +1665,7 @@
         <div class="blog-content">
           <h3 data-i18n="blog.post2.title">Tecnologia Amica: Guida per Over 60</h3>
           <p data-i18n="blog.post2.excerpt">Consigli pratici e semplici per approcciare la tecnologia digitale con serenità e sicurezza...</p>
-          <a href="#leggi-articolo" class="blog-link" data-i18n="blog.readmore">
+          <a href="#article-tecnologia-over60" class="blog-link read-more-btn" data-article="tecnologia-over60" data-i18n="blog.readmore">
             Leggi Articolo
             <i class="fas fa-arrow-right"></i>
           </a>
@@ -1569,7 +1679,7 @@
         <div class="blog-content">
           <h3 data-i18n="blog.post3.title">Trend Web Design 2024: Cosa Sapere</h3>
           <p data-i18n="blog.post3.excerpt">I trend emergenti nel web design che ogni sviluppatore e designer dovrebbe conoscere...</p>
-          <a href="#leggi-articolo" class="blog-link" data-i18n="blog.readmore">
+          <a href="#article-trend-webdesign" class="blog-link read-more-btn" data-article="trend-webdesign" data-i18n="blog.readmore">
             Leggi Articolo
             <i class="fas fa-arrow-right"></i>
           </a>
@@ -1577,6 +1687,16 @@
       </article>
     </div>
   </section>
+
+  <!-- Modale Articoli Espandibili -->
+  <div class="article-modal" id="article-modal">
+    <div class="article-content">
+      <button class="close-article" id="close-article">
+        <i class="fas fa-times"></i>
+      </button>
+      <div id="article-body"></div>
+    </div>
+  </div>
 
   <!-- Sistema Prenotazioni -->
   <section id="prenotazioni" class="booking-section">
@@ -1619,6 +1739,10 @@
             <div class="service-option" data-service="supporto-senior">
               <i class="fas fa-hands-helping"></i>
               <span data-i18n="booking.service4">Supporto Anziani</span>
+            </div>
+            <div class="service-option" data-service="crypto-trading">
+              <i class="fas fa-coins"></i>
+              <span data-i18n="booking.service5">Cryptovalute & Trading</span>
             </div>
           </div>
           <button class="btn-primary next-step" data-next="2" data-i18n="booking.continue">Continua</button>
@@ -1774,6 +1898,7 @@
             <option value="consulenza" data-i18n="contact.consulting">Consulenza Tecnica</option>
             <option value="autista" data-i18n="contact.driver">Autista Privato</option>
             <option value="tuttofare" data-i18n="contact.handyman">Supporto Generazionale</option>
+            <option value="crypto-trading" data-i18n="contact.crypto">Cryptovalute & Trading</option>
             <option value="mt4-mt5" data-i18n="contact.mt4">EA/Indicators MT4/5</option>
             <option value="easycardpro" data-i18n="contact.easycardpro">EasyCardPro</option>
             <option value="altro" data-i18n="contact.other">Altro</option>
@@ -1838,6 +1963,8 @@
         "services.handyman.text": "Assistenza paziente e comprensiva per persone di terza età: tecnologia, piccoli lavori, accompagnamento. Un supporto pratico e affidabile, con gentilezza.",
         "services.tech.title": "Collaborazioni Tecniche",
         "services.tech.text": "Supporto per progetti digitali, sviluppo personalizzato e consulenze mirate anche da remoto.",
+        "services.crypto.title": "Cryptovalute & Trading",
+        "services.crypto.text": "Consulenza specialistica su trading, mining, DeFi/CeFi, analisi di mercato e strategie d'investimento in cryptovalute. Supporto per portfolio e sicurezza digitale.",
         "tech.title": "Tecnologie & Innovazione",
         "tech.intro": "Combino competenze tradizionali con tecnologie all'avanguardia per creare soluzioni eccellenti",
         "tech.ai.title": "Sviluppo Assistito da AI",
@@ -1847,7 +1974,7 @@
         "tech.performance.title": "Performance & SEO",
         "tech.performance.text": "Caricamento ultra-rapido, ottimizzazione SEO avanzata e best practices per massimizzare visibilità e conversione",
         "tech.security.title": "Sicurezza & Affidabilità",
-        "tech.security.text": "Implementazione di standard di sicurezza moderni e procedure di backup per garantire stabilità e protezione dei dati",
+        "tech.security.text": "Implementazione di standard di sicurezza moderni e procedures di backup per garantire stabilità e protezione dei dati",
         "portfolio.title": "Cosa Posso Creare per Te",
         "portfolio.intro": "Esplora i template disponibili per ogni categoria",
         "portfolio.project1.title": "E-Commerce",
@@ -1885,6 +2012,7 @@
         "booking.service2": "Supporto Tecnico",
         "booking.service3": "Autista Privato",
         "booking.service4": "Supporto Anziani",
+        "booking.service5": "Cryptovalute & Trading",
         "booking.continue": "Continua",
         "booking.selectDateTime": "Scegli data e orario",
         "booking.selectTime": "Seleziona orario:",
@@ -1920,6 +2048,7 @@
         "contact.consulting": "Consulenza Tecnica",
         "contact.driver": "Autista Privato",
         "contact.handyman": "Supporto Generazionale",
+        "contact.crypto": "Cryptovalute & Trading",
         "contact.mt4": "EA/Indicators MT4/5",
         "contact.easycardpro": "EasyCardPro",
         "contact.other": "Altro",
@@ -1948,6 +2077,8 @@
         "services.handyman.text": "Patient and understanding assistance for elderly people: technology, small jobs, accompaniment. Practical and reliable support, with kindness.",
         "services.tech.title": "Technical Collaborations",
         "services.tech.text": "Support for digital projects, customized development and targeted consultations also remotely.",
+        "services.crypto.title": "Cryptocurrencies & Trading",
+        "services.crypto.text": "Specialist consulting on trading, mining, DeFi/CeFi, market analysis and cryptocurrency investment strategies. Portfolio and digital security support.",
         "tech.title": "Technology & Innovation",
         "tech.intro": "I combine traditional expertise with cutting-edge technologies to create excellent solutions",
         "tech.ai.title": "AI-Powered Development",
@@ -1995,6 +2126,7 @@
         "booking.service2": "Technical Support",
         "booking.service3": "Private Driver",
         "booking.service4": "Senior Support",
+        "booking.service5": "Cryptocurrencies & Trading",
         "booking.continue": "Continue",
         "booking.selectDateTime": "Choose date and time",
         "booking.selectTime": "Select time:",
@@ -2030,6 +2162,7 @@
         "contact.consulting": "Technical Consulting",
         "contact.driver": "Private Driver",
         "contact.handyman": "Generational Support",
+        "contact.crypto": "Cryptocurrencies & Trading",
         "contact.mt4": "EA/Indicators MT4/5",
         "contact.easycardpro": "EasyCardPro",
         "contact.other": "Other",
@@ -2476,12 +2609,14 @@
           'consulenza-web': 'Consulenza Web',
           'supporto-tecnico': 'Supporto Tecnico',
           'autista': 'Autista Privato',
-          'supporto-senior': 'Supporto Anziani'
+          'supporto-senior': 'Supporto Anziani',
+          'crypto-trading': 'Cryptovalute & Trading'
         } : {
           'consulenza-web': 'Web Consultation',
           'supporto-tecnico': 'Technical Support',
           'autista': 'Private Driver',
-          'supporto-senior': 'Senior Support'
+          'supporto-senior': 'Senior Support',
+          'crypto-trading': 'Cryptocurrencies & Trading'
         };
 
         document.getElementById('summary-service').textContent = 
@@ -2577,9 +2712,261 @@
       }
     }
 
-    // Inizializza il sistema prenotazioni quando la pagina è caricata
+    // Blog System
+    class BlogSystem {
+      constructor() {
+        this.articles = {
+          'ai': {
+            title: { 
+              it: "Come l'AI sta Rivoluzionando lo Sviluppo Web", 
+              en: "How AI is Revolutionizing Web Development" 
+            },
+            content: {
+              it: `
+                <h2>La Nuova Era dello Sviluppo Assistito da AI</h2>
+                <p>L'intelligenza artificiale sta trasformando radicalmente il modo in cui sviluppiamo software e siti web. Non si tratta più di un futuro lontano, ma di una realtà che sta plasmando il presente del nostro lavoro.</p>
+                
+                <h3>I Tool che Stanno Cambiando il Gioco</h3>
+                <ul>
+                  <li><strong>GitHub Copilot</strong>: Code completion intelligente che anticipa il tuo codice</li>
+                  <li><strong>ChatGPT & Claude</strong>: Pianificazione architetturale e risoluzione problemi complessi</li>
+                  <li><strong>Midjourney & DALL-E</strong>: Generazione di design e concept visivi</li>
+                  <li><strong>AI-powered testing</strong>: Automazione avanzata dei test</li>
+                </ul>
+
+                <h3>Vantaggi Pratici per Sviluppatori</h3>
+                <p>L'AI non sostituisce lo sviluppatore, ma lo potenzia. Ecco come:</p>
+                <ul>
+                  <li>Riduzione del 40-60% del tempo di sviluppo</li>
+                  <li>Migliore qualità del codice attraverso suggerimenti intelligenti</li>
+                  <li>Automazione delle task ripetitive</li>
+                  <li>Accelerazione dell'apprendimento di nuovi framework</li>
+                </ul>
+
+                <h3>Il Futuro è già Qui</h3>
+                <p>Integrare l'AI nel workflow non è più un'opzione, ma una necessità competitiva. I progetti sviluppati con supporto AI sono più efficienti, innovativi e all'avanguardia.</p>
+              `,
+              en: `
+                <h2>The New Era of AI-Assisted Development</h2>
+                <p>Artificial intelligence is radically transforming the way we develop software and websites. It's no longer a distant future, but a reality that is shaping the present of our work.</p>
+                
+                <h3>Game-Changing Tools</h3>
+                <ul>
+                  <li><strong>GitHub Copilot</strong>: Intelligent code completion that anticipates your code</li>
+                  <li><strong>ChatGPT & Claude</strong>: Architectural planning and complex problem solving</li>
+                  <li><strong>Midjourney & DALL-E</strong>: Design and visual concept generation</li>
+                  <li><strong>AI-powered testing</strong>: Advanced test automation</li>
+                </ul>
+
+                <h3>Practical Benefits for Developers</h3>
+                <p>AI doesn't replace the developer, but empowers them. Here's how:</p>
+                <ul>
+                  <li>40-60% reduction in development time</li>
+                  <li>Better code quality through intelligent suggestions</li>
+                  <li>Automation of repetitive tasks</li>
+                  <li>Accelerated learning of new frameworks</li>
+                </ul>
+
+                <h3>The Future is Already Here</h3>
+                <p>Integrating AI into the workflow is no longer an option, but a competitive necessity. Projects developed with AI support are more efficient, innovative and cutting-edge.</p>
+              `
+            }
+          },
+          'tecnologia-over60': {
+            title: { 
+              it: "Tecnologia Amica: Guida per Over 60", 
+              en: "Friendly Technology: Guide for Over 60s" 
+            },
+            content: {
+              it: `
+                <h2>Tecnologia Senza Paura: Una Guida Pratica</h2>
+                <p>La tecnologia digitale non deve essere una barriera. Con il giusto approccio, può diventare un alleato prezioso nella vita quotidiana.</p>
+                
+                <h3>Passo dopo Passo: Come Iniziare</h3>
+                <ul>
+                  <li><strong>Smartphone semplificato</strong>: Impostazioni base per una comoda navigazione</li>
+                  <li><strong>App essenziali</strong>: WhatsApp, mappe, meteo e farmacie</li>
+                  <li><strong>Sicurezza online</strong>: Password facili da ricordare ma sicure</li>
+                  <li><strong>Videochiamate</strong>: Restare in contatto con familiari lontani</li>
+                </ul>
+
+                <h3>Servizi Utili per la Vita Quotidiana</h3>
+                <p>Scopri come la tecnologia può semplificarti la vita:</p>
+                <ul>
+                  <li>Prenotazione visite mediche online</li>
+                  <li>Spesa a domicilio con pochi clic</li>
+                  <li>Home banking sicuro e controllato</li>
+                  <li>Ricette video per cucinare piatti nuovi</li>
+                </ul>
+
+                <h3>Il Mio Approccio di Insegnamento</h3>
+                <p>Offro lezioni individuali con:</p>
+                <ul>
+                  <li>Pazienza e comprensione</li>
+                  <li>Linguaggio semplice e chiaro</li>
+                  <li>Esempi pratici dalla vita reale</li>
+                  <li>Supporto continuo anche dopo la lezione</li>
+                </ul>
+              `,
+              en: `
+                <h2>Technology Without Fear: A Practical Guide</h2>
+                <p>Digital technology doesn't have to be a barrier. With the right approach, it can become a valuable ally in daily life.</p>
+                
+                <h3>Step by Step: How to Start</h3>
+                <ul>
+                  <li><strong>Simplified smartphone</strong>: Basic settings for comfortable navigation</li>
+                  <li><strong>Essential apps</strong>: WhatsApp, maps, weather and pharmacies</li>
+                  <li><strong>Online security</strong>: Easy to remember but secure passwords</li>
+                  <li><strong>Video calls</strong>: Staying in touch with distant family members</li>
+                </ul>
+
+                <h3>Useful Services for Daily Life</h3>
+                <p>Discover how technology can simplify your life:</p>
+                <ul>
+                  <li>Online medical appointment booking</li>
+                  <li>Grocery delivery with a few clicks</li>
+                  <li>Secure and controlled home banking</li>
+                  <li>Video recipes for cooking new dishes</li>
+                </ul>
+
+                <h3>My Teaching Approach</h3>
+                <p>I offer individual lessons with:</p>
+                <ul>
+                  <li>Patience and understanding</li>
+                  <li>Simple and clear language</li>
+                  <li>Practical examples from real life</li>
+                  <li>Continuous support even after the lesson</li>
+                </ul>
+              `
+            }
+          },
+          'trend-webdesign': {
+            title: { 
+              it: "Trend Web Design 2024: Cosa Sapere", 
+              en: "Web Design Trends 2024: What to Know" 
+            },
+            content: {
+              it: `
+                <h2>Il Futuro del Web Design è Qui</h2>
+                <p>Il 2024 porta innovazioni che combinano estetica, funzionalità e esperienza utente in modi completamente nuovi.</p>
+                
+                <h3>Trend Emergenti</h3>
+                <ul>
+                  <li><strong>AI-Generated Design</strong>: Layout e contenuti creati con intelligenza artificiale</li>
+                  <li><strong>Neumorphism 2.0</strong>: Design soft con profondità e realismo</li>
+                  <li><strong>Dark Mode Native</strong>: Implementazione nativa del tema scuro</li>
+                  <li><strong>Micro-interactions</strong>: Animazioni sottili che migliorano l'UX</li>
+                </ul>
+
+                <h3>Tecnologie da Conoscere</h3>
+                <p>Le competenze più richieste per il 2024:</p>
+                <ul>
+                  <li>Web Components e Design System</li>
+                  <li>Accessibilità avanzata (WCAG 2.2)</li>
+                  <li>Performance Core Web Vitals</li>
+                  <li>Integrazione AI nel workflow design</li>
+                </ul>
+
+                <h3>Come Restare Aggiornati</h3>
+                <p>Risorse essenziali per non restare indietro:</p>
+                <ul>
+                  <li>Community online e forum specializzati</li>
+                  <li>Tool di design collaborativo (Figma, Sketch)</li>
+                  <li>Newsletter e blog tecnici</li>
+                  <li>Eventi e webinar del settore</li>
+                </ul>
+              `,
+              en: `
+                <h2>The Future of Web Design is Here</h2>
+                <p>2024 brings innovations that combine aesthetics, functionality and user experience in completely new ways.</p>
+                
+                <h3>Emerging Trends</h3>
+                <ul>
+                  <li><strong>AI-Generated Design</strong>: Layouts and content created with artificial intelligence</li>
+                  <li><strong>Neumorphism 2.0</strong>: Soft design with depth and realism</li>
+                  <li><strong>Native Dark Mode</strong>: Native implementation of dark theme</li>
+                  <li><strong>Micro-interactions</strong>: Subtle animations that enhance UX</li>
+                </ul>
+
+                <h3>Technologies to Know</h3>
+                <p>The most requested skills for 2024:</p>
+                <ul>
+                  <li>Web Components and Design System</li>
+                  <li>Advanced accessibility (WCAG 2.2)</li>
+                  <li>Core Web Vitals performance</li>
+                  <li>AI integration in design workflow</li>
+                </ul>
+
+                <h3>How to Stay Updated</h3>
+                <p>Essential resources to not fall behind:</p>
+                <ul>
+                  <li>Online communities and specialized forums</li>
+                  <li>Collaborative design tools (Figma, Sketch)</li>
+                  <li>Technical newsletters and blogs</li>
+                  <li>Industry events and webinars</li>
+                </ul>
+              `
+            }
+          }
+        };
+        this.init();
+      }
+
+      init() {
+        // Modifica i link del blog per aprire gli articoli
+        document.querySelectorAll('.read-more-btn').forEach((link, index) => {
+          const articles = ['ai', 'tecnologia-over60', 'trend-webdesign'];
+          link.setAttribute('data-article', articles[index]);
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.openArticle(e.currentTarget.dataset.article);
+          });
+        });
+
+        // Chiudi modale
+        document.getElementById('close-article').addEventListener('click', () => {
+          this.closeArticle();
+        });
+
+        // Chiudi modale cliccando fuori
+        document.getElementById('article-modal').addEventListener('click', (e) => {
+          if (e.target.id === 'article-modal') {
+            this.closeArticle();
+          }
+        });
+
+        // Chiudi con ESC
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            this.closeArticle();
+          }
+        });
+      }
+
+      openArticle(articleId) {
+        const article = this.articles[articleId];
+        const currentLang = localStorage.getItem('language') || 'it';
+        
+        if (article) {
+          document.getElementById('article-body').innerHTML = `
+            <h2>${article.title[currentLang]}</h2>
+            ${article.content[currentLang]}
+          `;
+          document.getElementById('article-modal').classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      closeArticle() {
+        document.getElementById('article-modal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    // Inizializza i sistemi quando la pagina è caricata
     document.addEventListener('DOMContentLoaded', () => {
       new BookingSystem();
+      new BlogSystem();
     });
   </script>
 </body>
