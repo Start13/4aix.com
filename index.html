@@ -2784,7 +2784,7 @@
       }
     }
 
-    // Blog System Corretto
+    // Blog System - Versione Corretta e Semplificata
     class BlogSystem {
       constructor() {
         this.articles = {
@@ -3011,53 +3011,68 @@
             }
           }
         };
-        this.init();
       }
 
       init() {
-        console.log('BlogSystem inizializzato'); // Debug
+        console.log('🔄 Inizializzazione BlogSystem...');
         
-        // Cattura tutti i pulsanti "Leggi Articolo"
-        const readMoreButtons = document.querySelectorAll('.read-more-btn');
-        console.log('Trovati', readMoreButtons.length, 'pulsanti'); // Debug
+        // Aspetta che il DOM sia completamente pronto
+        setTimeout(() => {
+          this.setupEventListeners();
+        }, 100);
+      }
+
+      setupEventListeners() {
+        // Pulsanti Leggi Articolo
+        const readMoreBtns = document.querySelectorAll('.read-more-btn');
+        console.log(`🔍 Trovati ${readMoreBtns.length} pulsanti Leggi Articolo`);
         
-        readMoreButtons.forEach(btn => {
+        readMoreBtns.forEach(btn => {
           btn.addEventListener('click', (e) => {
             e.preventDefault();
             const articleId = btn.getAttribute('data-article');
-            console.log('Cliccato articolo:', articleId); // Debug
+            console.log(`📖 Apertura articolo: ${articleId}`);
             this.openArticle(articleId);
           });
         });
 
-        // Chiudi modale
-        document.getElementById('close-article').addEventListener('click', () => {
-          this.closeArticle();
-        });
+        // Pulsante Chiudi
+        const closeBtn = document.getElementById('close-article');
+        if (closeBtn) {
+          closeBtn.addEventListener('click', () => this.closeArticle());
+        }
 
-        // Chiudi modale cliccando fuori
-        document.getElementById('article-modal').addEventListener('click', (e) => {
-          if (e.target.id === 'article-modal') {
-            this.closeArticle();
-          }
-        });
+        // Click outside per chiudere
+        const modal = document.getElementById('article-modal');
+        if (modal) {
+          modal.addEventListener('click', (e) => {
+            if (e.target === modal) this.closeArticle();
+          });
+        }
 
-        // Chiudi con ESC
+        // ESC per chiudere
         document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') {
-            this.closeArticle();
-          }
+          if (e.key === 'Escape') this.closeArticle();
         });
       }
 
       openArticle(articleId) {
-        console.log('Apertura articolo:', articleId); // Debug
         const article = this.articles[articleId];
+        if (!article) {
+          console.error(`❌ Articolo non trovato: ${articleId}`);
+          return;
+        }
+
         const currentLang = localStorage.getItem('language') || 'it';
+        const articleBody = document.getElementById('article-body');
         
-        if (article && article.content[currentLang]) {
-          document.getElementById('article-body').innerHTML = `
+        if (articleBody) {
+          articleBody.innerHTML = `
             <h1>${article.title[currentLang]}</h1>
+            <div class="article-meta">
+              <span class="article-date"><i class="far fa-calendar"></i> ${currentLang === 'it' ? '15 Marzo 2024' : 'March 15, 2024'}</span>
+              <span class="article-reading-time"><i class="far fa-clock"></i> ${currentLang === 'it' ? '5 min read' : '5 min read'}</span>
+            </div>
             ${article.content[currentLang]}
             <div class="article-actions">
               <button class="btn-secondary close-article-bottom">
@@ -3066,38 +3081,64 @@
               </button>
             </div>
           `;
-          
-          document.getElementById('article-modal').classList.add('active');
-          document.body.style.overflow = 'hidden';
-          
-          // Aggiungi listener per il pulsante chiudi in fondo
-          document.querySelector('.close-article-bottom')?.addEventListener('click', () => {
-            this.closeArticle();
-          });
-        } else {
-          console.error('Articolo non trovato:', articleId);
         }
+
+        const modal = document.getElementById('article-modal');
+        if (modal) {
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+
+        // Aggiungi listener per il pulsante chiudi in fondo
+        setTimeout(() => {
+          const closeBottom = document.querySelector('.close-article-bottom');
+          if (closeBottom) {
+            closeBottom.addEventListener('click', () => this.closeArticle());
+          }
+        }, 100);
       }
 
       closeArticle() {
-        document.getElementById('article-modal').classList.remove('active');
-        document.body.style.overflow = 'auto';
+        const modal = document.getElementById('article-modal');
+        if (modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
       }
     }
 
-    // Inizializza i sistemi quando la pagina è caricata
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOM caricato - Inizializzo sistemi'); // Debug
-      new BookingSystem();
-      new BlogSystem();
+    // Inizializzazione SISTEMI - Versione Semplificata e Sicura
+    function initializeSystems() {
+      console.log('🚀 Inizializzazione sistemi...');
       
-      // Debug: verifica che i pulsanti siano presenti
-      const buttons = document.querySelectorAll('.read-more-btn');
-      console.log('Pulsanti trovati al caricamento:', buttons.length);
-      buttons.forEach((btn, index) => {
-        console.log(`Pulsante ${index + 1}:`, btn.getAttribute('data-article'));
-      });
-    });
+      try {
+        // 1. Inizializza Booking System
+        if (typeof BookingSystem !== 'undefined') {
+          new BookingSystem();
+          console.log('✅ BookingSystem inizializzato');
+        } else {
+          console.warn('⚠️ BookingSystem non disponibile');
+        }
+
+        // 2. Inizializza Blog System
+        const blogSystem = new BlogSystem();
+        blogSystem.init();
+        console.log('✅ BlogSystem inizializzato');
+
+        // 3. Altri sistemi esistenti...
+        console.log('✅ Tutti i sistemi inizializzati');
+        
+      } catch (error) {
+        console.error('❌ Errore inizializzazione:', error);
+      }
+    }
+
+    // AVVIA TUTTO quando il DOM è pronto
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeSystems);
+    } else {
+      initializeSystems();
+    }
   </script>
 </body>
 </html>
