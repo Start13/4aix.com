@@ -155,10 +155,136 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
-    @media (max-width: 768px) {
-      .saas-content {
-        grid-template-columns: 1fr;
-      }
+    /* Sezione Tecnologie */
+    .tech-section {
+      background: linear-gradient(135deg, var(--bg-color) 0%, var(--card-bg) 100%);
+      padding: 80px 20px;
+      margin: 80px auto;
+      border-radius: 15px;
+      max-width: 1200px;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .tech-card {
+      background: var(--card-bg);
+      padding: 40px 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .tech-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .tech-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+    }
+
+    .tech-card h3 {
+      margin-bottom: 15px;
+      color: var(--text-color);
+      font-size: 1.3rem;
+    }
+
+    .tech-card p {
+      color: var(--text-color);
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    /* Sezione Blog */
+    .blog-section {
+      padding: 80px 20px;
+      margin: 80px auto;
+      max-width: 1200px;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .blog-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    .blog-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .blog-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .blog-card:hover .blog-image img {
+      transform: scale(1.05);
+    }
+
+    .blog-content {
+      padding: 25px;
+    }
+
+    .blog-content h3 {
+      margin-bottom: 15px;
+      color: var(--text-color);
+      font-size: 1.2rem;
+      line-height: 1.4;
+    }
+
+    .blog-content p {
+      color: var(--text-color);
+      opacity: 0.9;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .blog-link {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .blog-link:hover {
+      color: var(--accent-color);
+      gap: 12px;
     }
 
     /* Language Selector */
@@ -887,6 +1013,25 @@
         padding: 60px 20px;
         margin: 60px auto;
       }
+
+      .tech-section {
+        padding: 60px 20px;
+        margin: 60px auto;
+      }
+      
+      .tech-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .blog-section {
+        padding: 60px 20px;
+        margin: 60px auto;
+      }
+      
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -983,6 +1128,46 @@
     </div>
   </section>
 
+  <!-- Sezione Tecnologie & Innovazione -->
+  <section id="tech-stack" class="tech-section">
+    <h2 data-i18n="tech.title">Tecnologie & Innovazione</h2>
+    <p class="intro" data-i18n="tech.intro">Combino competenze tradizionali con tecnologie all'avanguardia per creare soluzioni eccellenti</p>
+    
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3 data-i18n="tech.ai.title">Sviluppo Assistito da AI</h3>
+        <p data-i18n="tech.ai.text">Utilizzo intelligente di Intelligenza Artificiale per ottimizzare processi, migliorare la qualità del codice e creare soluzioni innovative più efficienti</p>
+      </div>
+      
+      <div class="tech-card">
+        <div class="tech-icon">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <h3 data-i18n="tech.responsive.title">Design Responsive</h3>
+        <p data-i18n="tech.responsive.text">Siti ottimizzati per tutti i dispositivi con esperienza utente impeccabile e prestazioni elevate su mobile e desktop</p>
+      </div>
+      
+      <div class="tech-card">
+        <div class="tech-icon">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <h3 data-i18n="tech.performance.title">Performance & SEO</h3>
+        <p data-i18n="tech.performance.text">Caricamento ultra-rapido, ottimizzazione SEO avanzata e best practices per massimizzare visibilità e conversione</p>
+      </div>
+      
+      <div class="tech-card">
+        <div class="tech-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3 data-i18n="tech.security.title">Sicurezza & Affidabilità</h3>
+        <p data-i18n="tech.security.text">Implementazione di standard di sicurezza moderni e procedure di backup per garantire stabilità e protezione dei dati</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Portfolio Section - MODIFICATA -->
   <section id="portfolio" class="portfolio">
     <h2 class="mosaic-title" data-i18n="portfolio.title">Cosa Posso Creare per Te</h2>
@@ -1056,6 +1241,56 @@
       <div class="saas-preview">
         <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Anteprima EasyCardPro" loading="lazy" width="800" height="400">
       </div>
+    </div>
+  </section>
+
+  <!-- Sezione Blog -->
+  <section id="blog" class="blog-section">
+    <h2 data-i18n="blog.title">Insights & Tutorial</h2>
+    <p class="intro" data-i18n="blog.intro">Condivido conoscenze e esperienze su sviluppo web, AI e tecnologia</p>
+    
+    <div class="blog-grid">
+      <article class="blog-card">
+        <div class="blog-image">
+          <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=800&q=80" alt="AI nello sviluppo web" loading="lazy">
+        </div>
+        <div class="blog-content">
+          <h3 data-i18n="blog.post1.title">Come l'AI sta Rivoluzionando lo Sviluppo Web</h3>
+          <p data-i18n="blog.post1.excerpt">Scopri come integrare strumenti di AI nel tuo workflow per migliorare produttività e qualità del codice...</p>
+          <a href="#leggi-articolo" class="blog-link" data-i18n="blog.readmore">
+            Leggi Articolo
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </article>
+      
+      <article class="blog-card">
+        <div class="blog-image">
+          <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80" alt="Tecnologia per anziani" loading="lazy">
+        </div>
+        <div class="blog-content">
+          <h3 data-i18n="blog.post2.title">Tecnologia Amica: Guida per Over 60</h3>
+          <p data-i18n="blog.post2.excerpt">Consigli pratici e semplici per approcciare la tecnologia digitale con serenità e sicurezza...</p>
+          <a href="#leggi-articolo" class="blog-link" data-i18n="blog.readmore">
+            Leggi Articolo
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </article>
+      
+      <article class="blog-card">
+        <div class="blog-image">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Trend web design 2024" loading="lazy">
+        </div>
+        <div class="blog-content">
+          <h3 data-i18n="blog.post3.title">Trend Web Design 2024: Cosa Sapere</h3>
+          <p data-i18n="blog.post3.excerpt">I trend emergenti nel web design che ogni sviluppatore e designer dovrebbe conoscere...</p>
+          <a href="#leggi-articolo" class="blog-link" data-i18n="blog.readmore">
+            Leggi Articolo
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -1202,6 +1437,16 @@
         "services.handyman.text": "Assistenza paziente e comprensiva per persone di terza età: tecnologia, piccoli lavori, accompagnamento. Un supporto pratico e affidabile, con gentilezza.",
         "services.tech.title": "Collaborazioni Tecniche",
         "services.tech.text": "Supporto per progetti digitali, sviluppo personalizzato e consulenze mirate anche da remoto.",
+        "tech.title": "Tecnologie & Innovazione",
+        "tech.intro": "Combino competenze tradizionali con tecnologie all'avanguardia per creare soluzioni eccellenti",
+        "tech.ai.title": "Sviluppo Assistito da AI",
+        "tech.ai.text": "Utilizzo intelligente di Intelligenza Artificiale per ottimizzare processi, migliorare la qualità del codice e creare soluzioni innovative più efficienti",
+        "tech.responsive.title": "Design Responsive",
+        "tech.responsive.text": "Siti ottimizzati per tutti i dispositivi con esperienza utente impeccabile e prestazioni elevate su mobile e desktop",
+        "tech.performance.title": "Performance & SEO",
+        "tech.performance.text": "Caricamento ultra-rapido, ottimizzazione SEO avanzata e best practices per massimizzare visibilità e conversione",
+        "tech.security.title": "Sicurezza & Affidabilità",
+        "tech.security.text": "Implementazione di standard di sicurezza moderni e procedure di backup per garantire stabilità e protezione dei dati",
         "portfolio.title": "Cosa Posso Creare per Te",
         "portfolio.intro": "Esplora i template disponibili per ogni categoria",
         "portfolio.project1.title": "E-Commerce",
@@ -1220,6 +1465,15 @@
         "easycardpro.subtitle": "La piattaforma SaaS che sto sviluppando",
         "easycardpro.description": "Soluzione all'avanguardia per la creazione di card digitali e biglietti da visita interattivi. Semplice, potente e professionale.",
         "easycardpro.button": "Scopri EasyCardPro",
+        "blog.title": "Insights & Tutorial",
+        "blog.intro": "Condivido conoscenze e esperienze su sviluppo web, AI e tecnologia",
+        "blog.post1.title": "Come l'AI sta Rivoluzionando lo Sviluppo Web",
+        "blog.post1.excerpt": "Scopri come integrare strumenti di AI nel tuo workflow per migliorare produttività e qualità del codice...",
+        "blog.post2.title": "Tecnologia Amica: Guida per Over 60",
+        "blog.post2.excerpt": "Consigli pratici e semplici per approcciare la tecnologia digitale con serenità e sicurezza...",
+        "blog.post3.title": "Trend Web Design 2024: Cosa Sapere",
+        "blog.post3.excerpt": "I trend emergenti nel web design che ogni sviluppatore e designer dovrebbe conoscere...",
+        "blog.readmore": "Leggi Articolo",
         "testimonials.title": "Cosa Dicono i Miei Clienti",
         "testimonials.intro": "La soddisfazione dei clienti è la mia migliore vetrina",
         "testimonials.1.text": "\"Corrado ha realizzato il sito della mia attività in tempi record. Professionale, competente e sempre disponibile. Consigliatissimo!\"",
@@ -1270,6 +1524,16 @@
         "services.handyman.text": "Patient and understanding assistance for elderly people: technology, small jobs, accompaniment. Practical and reliable support, with kindness.",
         "services.tech.title": "Technical Collaborations",
         "services.tech.text": "Support for digital projects, customized development and targeted consultations also remotely.",
+        "tech.title": "Technology & Innovation",
+        "tech.intro": "I combine traditional expertise with cutting-edge technologies to create excellent solutions",
+        "tech.ai.title": "AI-Powered Development",
+        "tech.ai.text": "Intelligent use of Artificial Intelligence to optimize processes, improve code quality and create more efficient innovative solutions",
+        "tech.responsive.title": "Responsive Design",
+        "tech.responsive.text": "Sites optimized for all devices with impeccable user experience and high performance on mobile and desktop",
+        "tech.performance.title": "Performance & SEO",
+        "tech.performance.text": "Ultra-fast loading, advanced SEO optimization and best practices to maximize visibility and conversion",
+        "tech.security.title": "Security & Reliability",
+        "tech.security.text": "Implementation of modern security standards and backup procedures to ensure stability and data protection",
         "portfolio.title": "What I Can Create for You",
         "portfolio.intro": "Explore available templates for each category",
         "portfolio.project1.title": "E-Commerce",
@@ -1288,6 +1552,15 @@
         "easycardpro.subtitle": "The SaaS platform I'm developing",
         "easycardpro.description": "Cutting-edge solution for creating digital cards and interactive business cards. Simple, powerful and professional.",
         "easycardpro.button": "Discover EasyCardPro",
+        "blog.title": "Insights & Tutorials",
+        "blog.intro": "I share knowledge and experiences about web development, AI and technology",
+        "blog.post1.title": "How AI is Revolutionizing Web Development",
+        "blog.post1.excerpt": "Discover how to integrate AI tools into your workflow to improve productivity and code quality...",
+        "blog.post2.title": "Friendly Technology: Guide for Over 60s",
+        "blog.post2.excerpt": "Practical and simple advice for approaching digital technology with peace of mind and security...",
+        "blog.post3.title": "Web Design Trends 2024: What to Know",
+        "blog.post3.excerpt": "The emerging trends in web design that every developer and designer should know...",
+        "blog.readmore": "Read Article",
         "testimonials.title": "What My Clients Say",
         "testimonials.intro": "Customer satisfaction is my best showcase",
         "testimonials.1.text": "\"Corrado created my business website in record time. Professional, competent and always available. Highly recommended!\"",
