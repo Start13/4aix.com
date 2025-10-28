@@ -89,6 +89,78 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
+    /* Badge AI */
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Badge Supporto Senior */
+    .senior-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #e53e3e;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      z-index: 1;
+    }
+
+    /* Sezione SaaS */
+    .saas-showcase {
+      background: linear-gradient(135deg, var(--card-bg) 0%, var(--bg-color) 100%);
+      padding: 80px 20px;
+      margin: 80px auto;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      max-width: 1200px;
+    }
+
+    .saas-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .saas-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: var(--text-color);
+    }
+
+    .saas-info p {
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .saas-preview img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .saas-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* Language Selector */
     .language-selector {
       position: fixed;
@@ -353,6 +425,7 @@
       border: 1px solid rgba(255,255,255,0.1);
       animation: fadeInUp 0.8s ease-out;
       cursor: pointer;
+      position: relative;
     }
 
     .service-card:hover {
@@ -809,6 +882,11 @@
         height: 45px;
         font-size: 1rem;
       }
+
+      .saas-showcase {
+        padding: 60px 20px;
+        margin: 60px auto;
+      }
     }
   </style>
 </head>
@@ -836,6 +914,10 @@
   <header>
     <div class="hero-content">
       <h1 data-i18n="hero.title">Corrado Bruni</h1>
+      <div class="ai-badge">
+        <i class="fas fa-robot"></i>
+        <span>AI-Powered Development</span>
+      </div>
       <p data-i18n="hero.subtitle">Web Developer & Supporto Tecnico a Torino<br>
       Creo siti web moderni e offro una mano concreta per piccoli lavori e supporto quotidiano</p>
       <div class="cta-buttons">
@@ -877,12 +959,16 @@
         </div>
       </div>
 
-      <!-- Tuttofare Leggeri -->
+      <!-- Supporto Generazionale -->
       <div class="service-card" onclick="scrollToSection('contatto')">
-        <img src="img/tuttofare.png" alt="Piccoli lavori in casa" loading="lazy" width="800" height="400">
+        <div class="senior-badge">
+          <i class="fas fa-heart"></i>
+          <span>Supporto Dedicato</span>
+        </div>
+        <img src="img/tuttofare.png" alt="Supporto per anziani e famiglie" loading="lazy" width="800" height="400">
         <div class="content">
-          <h3><i class="fas fa-tools"></i> <span data-i18n="services.handyman.title">Tuttofare Leggeri</span></h3>
-          <p data-i18n="services.handyman.text">Piccole riparazioni e aiuti domestici per anziani e famiglie. Un supporto pratico e affidabile, con gentilezza.</p>
+          <h3><i class="fas fa-hands-helping"></i> <span data-i18n="services.handyman.title">Supporto Generazionale</span></h3>
+          <p data-i18n="services.handyman.text">Assistenza paziente e comprensiva per persone di terza età: tecnologia, piccoli lavori, accompagnamento. Un supporto pratico e affidabile, con gentilezza.</p>
         </div>
       </div>
 
@@ -897,8 +983,8 @@
     </div>
   </section>
 
-<!-- Portfolio Section - MODIFICATA -->
-<section id="portfolio" class="portfolio">
+  <!-- Portfolio Section - MODIFICATA -->
+  <section id="portfolio" class="portfolio">
     <h2 class="mosaic-title" data-i18n="portfolio.title">Cosa Posso Creare per Te</h2>
     <p class="intro" data-i18n="portfolio.intro">Esplora i template disponibili per ogni categoria</p>
     
@@ -953,7 +1039,25 @@
             </div>
         </div>
     </div>
-</section>
+  </section>
+
+  <!-- Sezione EasyCardPro -->
+  <section id="easycardpro" class="saas-showcase">
+    <h2 data-i18n="easycardpro.title">Innovazione in Corso: EasyCardPro</h2>
+    <div class="saas-content">
+      <div class="saas-info">
+        <h3 data-i18n="easycardpro.subtitle">La piattaforma SaaS che sto sviluppando</h3>
+        <p data-i18n="easycardpro.description">Soluzione all'avanguardia per la creazione di card digitali e biglietti da visita interattivi. Semplice, potente e professionale.</p>
+        <a href="https://easycardpro.com" class="btn-primary" target="_blank" data-i18n="easycardpro.button">
+          <i class="fas fa-external-link-alt"></i>
+          Scopri EasyCardPro
+        </a>
+      </div>
+      <div class="saas-preview">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Anteprima EasyCardPro" loading="lazy" width="800" height="400">
+      </div>
+    </div>
+  </section>
 
   <!-- Testimonials Section -->
   <section>
@@ -1033,8 +1137,9 @@
             <option value="sito-web" data-i18n="contact.website">Sito Web</option>
             <option value="consulenza" data-i18n="contact.consulting">Consulenza Tecnica</option>
             <option value="autista" data-i18n="contact.driver">Autista Privato</option>
-            <option value="tuttofare" data-i18n="contact.handyman">Tuttofare Leggero</option>
+            <option value="tuttofare" data-i18n="contact.handyman">Supporto Generazionale</option>
             <option value="mt4-mt5" data-i18n="contact.mt4">EA/Indicators MT4/5</option>
+            <option value="easycardpro" data-i18n="contact.easycardpro">EasyCardPro</option>
             <option value="altro" data-i18n="contact.other">Altro</option>
           </select>
         </div>
@@ -1093,8 +1198,8 @@
         "services.web.text": "Realizzo siti moderni, landing page e piattaforme leggere, con un design professionale e tempi rapidi.",
         "services.driver.title": "Autista Privato",
         "services.driver.text": "Disponibile per spostamenti in città e dintorni. Puntualità, discrezione e attenzione alla persona.",
-        "services.handyman.title": "Tuttofare Leggeri",
-        "services.handyman.text": "Piccole riparazioni e aiuti domestici per anziani e famiglie. Un supporto pratico e affidabile, con gentilezza.",
+        "services.handyman.title": "Supporto Generazionale",
+        "services.handyman.text": "Assistenza paziente e comprensiva per persone di terza età: tecnologia, piccoli lavori, accompagnamento. Un supporto pratico e affidabile, con gentilezza.",
         "services.tech.title": "Collaborazioni Tecniche",
         "services.tech.text": "Supporto per progetti digitali, sviluppo personalizzato e consulenze mirate anche da remoto.",
         "portfolio.title": "Cosa Posso Creare per Te",
@@ -1111,6 +1216,10 @@
         "portfolio.project5.text": "Soluzioni trading personalizzate",
         "portfolio.explore": "Esplora Template",
         "portfolio.contact": "Richiedi Info",
+        "easycardpro.title": "Innovazione in Corso: EasyCardPro",
+        "easycardpro.subtitle": "La piattaforma SaaS che sto sviluppando",
+        "easycardpro.description": "Soluzione all'avanguardia per la creazione di card digitali e biglietti da visita interattivi. Semplice, potente e professionale.",
+        "easycardpro.button": "Scopri EasyCardPro",
         "testimonials.title": "Cosa Dicono i Miei Clienti",
         "testimonials.intro": "La soddisfazione dei clienti è la mia migliore vetrina",
         "testimonials.1.text": "\"Corrado ha realizzato il sito della mia attività in tempi record. Professionale, competente e sempre disponibile. Consigliatissimo!\"",
@@ -1132,8 +1241,9 @@
         "contact.website": "Sito Web",
         "contact.consulting": "Consulenza Tecnica",
         "contact.driver": "Autista Privato",
-        "contact.handyman": "Tuttofare Leggero",
+        "contact.handyman": "Supporto Generazionale",
         "contact.mt4": "EA/Indicators MT4/5",
+        "contact.easycardpro": "EasyCardPro",
         "contact.other": "Altro",
         "contact.message": "Messaggio",
         "contact.placeholder": "Descrivi il tuo progetto o la tua richiesta...",
@@ -1156,8 +1266,8 @@
         "services.web.text": "I create modern websites, landing pages and lightweight platforms, with professional design and fast turnaround times.",
         "services.driver.title": "Private Driver",
         "services.driver.text": "Available for trips in the city and surrounding areas. Punctuality, discretion and attention to the person.",
-        "services.handyman.title": "Light Handyman Services",
-        "services.handyman.text": "Small repairs and domestic help for elderly people and families. Practical and reliable support, with kindness.",
+        "services.handyman.title": "Generational Support",
+        "services.handyman.text": "Patient and understanding assistance for elderly people: technology, small jobs, accompaniment. Practical and reliable support, with kindness.",
         "services.tech.title": "Technical Collaborations",
         "services.tech.text": "Support for digital projects, customized development and targeted consultations also remotely.",
         "portfolio.title": "What I Can Create for You",
@@ -1174,6 +1284,10 @@
         "portfolio.project5.text": "Customized trading solutions",
         "portfolio.explore": "Explore Templates",
         "portfolio.contact": "Request Info",
+        "easycardpro.title": "Innovation in Progress: EasyCardPro",
+        "easycardpro.subtitle": "The SaaS platform I'm developing",
+        "easycardpro.description": "Cutting-edge solution for creating digital cards and interactive business cards. Simple, powerful and professional.",
+        "easycardpro.button": "Discover EasyCardPro",
         "testimonials.title": "What My Clients Say",
         "testimonials.intro": "Customer satisfaction is my best showcase",
         "testimonials.1.text": "\"Corrado created my business website in record time. Professional, competent and always available. Highly recommended!\"",
@@ -1195,8 +1309,9 @@
         "contact.website": "Website",
         "contact.consulting": "Technical Consulting",
         "contact.driver": "Private Driver",
-        "contact.handyman": "Light Handyman",
+        "contact.handyman": "Generational Support",
         "contact.mt4": "EA/Indicators MT4/5",
+        "contact.easycardpro": "EasyCardPro",
         "contact.other": "Other",
         "contact.message": "Message",
         "contact.placeholder": "Describe your project or request...",
