@@ -68,13 +68,31 @@
       font-size: 20px;
       transition: transform .2s ease, opacity .2s;
       z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    
+    .language-selector {
+      left: 18px;
+      width: auto;
+      padding: 0 12px;
+      gap: 8px;
+    }
+    
+    .theme-toggle { 
+      right: 18px; 
+    }
+    
     .language-selector:hover, .theme-toggle:hover {
       transform: scale(1.1);
       opacity: 0.8;
     }
-    .language-selector { left: 18px; }
-    .theme-toggle { right: 18px; }
+
+    .language-text {
+      font-size: 14px;
+      font-weight: 600;
+    }
 
     header {
       text-align: center;
@@ -142,10 +160,12 @@
 
   <!-- === ICONS === -->
   <button id="langToggle" class="language-selector" title="Cambia lingua">
-    <i class="fa-solid fa-globe"></i>
+    <i class="fas fa-globe"></i>
+    <span class="language-text">IT</span>
   </button>
+  
   <button id="themeToggle" class="theme-toggle" title="Cambia tema">
-    <i id="themeIcon" class="fa-solid fa-moon"></i>
+    <i id="themeIcon" class="fas fa-moon"></i>
   </button>
 
   <header>
@@ -206,21 +226,94 @@
       }
     };
 
+    /* === THEME & LANGUAGE SYNC === */
     let currentLang = localStorage.getItem("lang") || "it";
     let currentTheme = localStorage.getItem("theme") || "dark";
-    let currentCategory = "all";
 
+    // Inizializzazione tema
     document.documentElement.setAttribute("data-theme", currentTheme);
 
+    // Elementi DOM
+    const langBtn = document.getElementById("langToggle");
+    const themeBtn = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const languageText = document.querySelector('.language-text');
     const subtitleEl = document.getElementById("subtitle");
     const rightsEl = document.getElementById("rights");
     const menuEl = document.getElementById("categoryMenu");
     const gridEl = document.getElementById("templateGrid");
-    const themeBtn = document.getElementById("themeToggle");
-    const themeIcon = document.getElementById("themeIcon");
-    const langBtn = document.getElementById("langToggle");
+    const backTextEl = document.getElementById("backText");
 
-    /* === RENDER === */
+    /* === FUNZIONI SINCRONIZZATE === */
+    function updateThemeIcon() {
+        themeIcon.className = currentTheme === "dark" ? "fas fa-sun" : "fas fa-moon";
+    }
+
+    function updateLanguageText() {
+        if (languageText) {
+            languageText.textContent = currentLang.toUpperCase();
+        }
+    }
+
+    function toggleLang() {
+        currentLang = currentLang === "it" ? "en" : "it";
+        localStorage.setItem("lang", currentLang);
+        updateLanguageText();
+        renderMenu(); 
+        renderGrid(); 
+        updateTexts();
+        // Trigger per sincronizzare altre pagine
+        window.localStorage.setItem('langUpdate', Date.now().toString());
+    }
+
+    function toggleTheme() {
+        currentTheme = currentTheme === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", currentTheme);
+        localStorage.setItem("theme", currentTheme);
+        updateThemeIcon();
+        // Trigger per sincronizzare altre pagine
+        window.localStorage.setItem('themeUpdate', Date.now().toString());
+    }
+
+    /* === SINCRONIZZAZIONE CROSS-PAGE === */
+    function setupCrossPageSync() {
+        // Ascolta cambiamenti da altre pagine
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'lang' && e.newValue) {
+                currentLang = e.newValue;
+                updateLanguageText();
+                renderMenu();
+                renderGrid();
+                updateTexts();
+            }
+            if (e.key === 'theme' && e.newValue) {
+                currentTheme = e.newValue;
+                document.documentElement.setAttribute("data-theme", currentTheme);
+                updateThemeIcon();
+            }
+            if (e.key === 'langUpdate' || e.key === 'themeUpdate') {
+                // Forza aggiornamento da localStorage
+                const lang = localStorage.getItem('lang') || 'it';
+                const theme = localStorage.getItem('theme') || 'dark';
+                
+                if (lang !== currentLang) {
+                    currentLang = lang;
+                    updateLanguageText();
+                    renderMenu();
+                    renderGrid();
+                    updateTexts();
+                }
+                
+                if (theme !== currentTheme) {
+                    currentTheme = theme;
+                    document.documentElement.setAttribute("data-theme", currentTheme);
+                    updateThemeIcon();
+                }
+            }
+        });
+    }
+
+    /* === RENDER FUNCTIONS === */
     function renderMenu() {
       const cats = translations[currentLang].categories;
       const order = ["all","aziendale","ecommerce","portfolio","trading"];
@@ -252,20 +345,7 @@
       const tr = translations[currentLang];
       subtitleEl.textContent = tr.subtitle;
       rightsEl.textContent = tr.rights;
-      document.getElementById('backText').textContent = tr.backHome;
-    }
-
-    function toggleLang(){
-      currentLang = currentLang==="it" ? "en" : "it";
-      localStorage.setItem("lang", currentLang);
-      renderMenu(); renderGrid(); updateTexts();
-    }
-
-    function toggleTheme(){
-      currentTheme = currentTheme==="dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", currentTheme);
-      localStorage.setItem("theme", currentTheme);
-      themeIcon.className = currentTheme==="dark" ? "fas fa-moon" : "fas fa-sun";
+      backTextEl.textContent = tr.backHome;
     }
 
     /* === SYNC BETWEEN PAGES === */
@@ -274,15 +354,26 @@
     });
 
     /* === INIT === */
+    let currentCategory = "all";
+    
     langBtn.addEventListener("click", toggleLang);
     themeBtn.addEventListener("click", toggleTheme);
+    
     document.getElementById('backHome').addEventListener('click', () => {
       window.location.href = '../../index.html';
     });
-    themeIcon.className = currentTheme==="dark" ? "fas fa-moon" : "fas fa-sun";
-    document.getElementById("year").textContent = new Date().getFullYear();
+    
+    // Aggiorna stati iniziali
+    updateThemeIcon();
+    updateLanguageText();
+    
+    // Attiva sincronizzazione
+    setupCrossPageSync();
 
-    renderMenu(); renderGrid(); updateTexts();
+    document.getElementById("year").textContent = new Date().getFullYear();
+    renderMenu(); 
+    renderGrid(); 
+    updateTexts();
   </script>
 </body>
 </html>
