@@ -524,6 +524,22 @@
           features: { it: ["Crypto", "Wallet", "Analisi"], en: ["Crypto", "Wallet", "Analysis"] }
         }
       ],
+      gestionale: [
+        { 
+          title: { it:"Software Gestionale", en:"Management Software" },
+          desc: { it:"Template per applicazioni gestionali con dashboard, report e gestione dati.", en:"Template for management applications with dashboard, reports and data management." },
+          img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/gestionale/index.html",
+          features: { it: ["Dashboard", "Report", "Gestione Dati"], en: ["Dashboard", "Reports", "Data Management"] }
+        },
+        { 
+          title: { it:"CRM Aziendale", en:"Business CRM" },
+          desc: { it:"Sistema di gestione relazioni clienti con tracciamento leads e pipeline vendita.", en:"Customer relationship management system with lead tracking and sales pipeline." },
+          img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/gestionale/crm.html",
+          features: { it: ["CRM", "Pipeline", "Clienti"], en: ["CRM", "Pipeline", "Customers"] }
+        }
+      ],
       landing: [
         { 
           title: { it:"Landing Page Moderna", en:"Modern Landing Page" },
@@ -531,6 +547,54 @@
           img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
           link: "../templates/landing/index.html",
           features: { it: ["Conversion", "CTA", "Lead Gen"], en: ["Conversion", "CTA", "Lead Gen"] }
+        }
+      ],
+      blog: [
+        { 
+          title: { it:"Blog Moderno", en:"Modern Blog" },
+          desc: { it:"Layout pulito per blog personali o aziendali con articoli, categorie e sistema di commenti.", en:"Clean layout for personal or business blogs with articles, categories and comment system." },
+          img: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/blog/index.html",
+          features: { it: ["Articoli", "Categorie", "Commenti"], en: ["Articles", "Categories", "Comments"] }
+        },
+        { 
+          title: { it:"Blog Personale", en:"Personal Blog" },
+          desc: { it:"Template elegante per scrittori e creatori di contenuti con focus sulla tipografia e lettura.", en:"Elegant template for writers and content creators with focus on typography and reading." },
+          img: "https://images.unsplash.com/photo-1550090138-6d5be35a005a?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/blog/personal.html",
+          features: { it: ["Tipografia", "Autore", "Social"], en: ["Typography", "Author", "Social"] }
+        }
+      ],
+      educazione: [
+        { 
+          title: { it:"Piattaforma Educativa", en:"Educational Platform" },
+          desc: { it:"Template per corsi online con dashboard studenti, lezioni e sistema di valutazione.", en:"Template for online courses with student dashboard, lessons and evaluation system." },
+          img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/educazione/index.html",
+          features: { it: ["Corsi", "Lezioni", "Valutazioni"], en: ["Courses", "Lessons", "Assessments"] }
+        },
+        { 
+          title: { it:"Accademia Online", en:"Online Academy" },
+          desc: { it:"Piattaforma completa per scuole e università con gestione docenti e materiali didattici.", en:"Complete platform for schools and universities with teacher management and educational materials." },
+          img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/educazione/academy.html",
+          features: { it: ["Docenti", "Materiali", "Certificati"], en: ["Teachers", "Materials", "Certificates"] }
+        }
+      ],
+      servizi: [
+        { 
+          title: { it:"Sito Servizi", en:"Services Website" },
+          desc: { it:"Template per agenzie e professionisti dei servizi con presentazione servizi e portfolio.", en:"Template for agencies and service professionals with service presentation and portfolio." },
+          img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/servizi/index.html",
+          features: { it: ["Servizi", "Portfolio", "Preventivi"], en: ["Services", "Portfolio", "Quotes"] }
+        },
+        { 
+          title: { it:"Servizi Professionali", en:"Professional Services" },
+          desc: { it:"Design sofisticato per studi legali, consulenti e professionisti di alto livello.", en:"Sophisticated design for law firms, consultants and high-level professionals." },
+          img: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/servizi/professional.html",
+          features: { it: ["Consulenza", "Team", "Casi Studio"], en: ["Consulting", "Team", "Case Studies"] }
         }
       ]
     };
@@ -548,7 +612,11 @@
           ecommerce:"E-commerce", 
           portfolio:"Portfolio", 
           trading:"Trading",
-          landing:"Landing Page"
+          gestionale:"Gestionale",
+          landing:"Landing Page",
+          blog:"Blog",
+          educazione:"Educazione",
+          servizi:"Servizi"
         }
       },
       en: {
@@ -563,7 +631,11 @@
           ecommerce:"E-commerce", 
           portfolio:"Portfolio", 
           trading:"Trading",
-          landing:"Landing Page"
+          gestionale:"Management",
+          landing:"Landing Page",
+          blog:"Blog",
+          educazione:"Education",
+          servizi:"Services"
         }
       }
     };
@@ -630,7 +702,7 @@
                 if (lang !== currentLang) {
                     currentLang = lang;
                     updateLanguageText();
-                    renderMenu();
+                    renderMenu();a
                     renderGrid();
                     updateTexts();
                 }
@@ -647,7 +719,7 @@
     /* === RENDER FUNCTIONS === */
     function renderMenu() {
       const cats = translations[currentLang].categories;
-      const order = ["all", "aziendale", "ecommerce", "portfolio", "trading", "landing"];
+      const order = ["all", "aziendale", "ecommerce", "portfolio", "trading", "gestionale", "landing", "blog", "educazione", "servizi"];
       menuEl.innerHTML = order.map(k => 
         `<button data-cat="${k}" class="${k===currentCategory?'active':''}">${cats[k]}</button>`
       ).join('');
