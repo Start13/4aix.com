@@ -1565,7 +1565,7 @@
     <div class="services">
       <!-- Siti Web -->
       <div class="service-card" onclick="scrollToSection('portfolio')">
-        <img src="img/creositi.png" alt="Siti web moderni" loading="lazy" width="800" height="400">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Siti web moderni" loading="lazy" width="800" height="400">
         <div class="content">
           <h3><i class="fas fa-code"></i> <span data-i18n="services.web.title">Siti Web & Soluzioni Digitali</span></h3>
           <p data-i18n="services.web.text">Realizzo siti moderni, landing page e piattaforme leggere, con un design professionale e tempi rapidi.</p>
@@ -1574,7 +1574,7 @@
 
       <!-- Autista Privato -->
       <div class="service-card" onclick="scrollToSection('contatto')">
-        <img src="img/autista.png" alt="Autista privato Torino" loading="lazy" width="800" height="400">
+        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80" alt="Autista privato Torino" loading="lazy" width="800" height="400">
         <div class="content">
           <h3><i class="fas fa-car"></i> <span data-i18n="services.driver.title">Autista Privato</span></h3>
           <p data-i18n="services.driver.text">Disponibile per spostamenti in città e dintorni. Puntualità, discrezione e attenzione alla persona.</p>
@@ -1587,7 +1587,7 @@
           <i class="fas fa-heart"></i>
           <span>Supporto Dedicato</span>
         </div>
-        <img src="img/tuttofare.png" alt="Supporto per anziani e famiglie" loading="lazy" width="800" height="400">
+        <img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&w=800&q=80" alt="Supporto per anziani e famiglie" loading="lazy" width="800" height="400">
         <div class="content">
           <h3><i class="fas fa-hands-helping"></i> <span data-i18n="services.handyman.title">Supporto Generazionale</span></h3>
           <p data-i18n="services.handyman.text">Assistenza paziente e comprensiva per persone di terza età: tecnologia, piccoli lavori, accompagnamento. Un supporto pratico e affidabile, con gentilezza.</p>
@@ -2039,6 +2039,8 @@
   </footer>
 
   <script>
+    // ===== SISTEMA DI GESTIONE LINGUA E TEMA CORRETTO =====
+    
     // Translations
     const translations = {
       it: {
@@ -2271,7 +2273,7 @@
       }
     };
 
-    // Language Management
+    // ===== GESTIONE LINGUA CORRETTA =====
     let currentLanguage = localStorage.getItem('language') || 'it';
     const languageSelector = document.getElementById('languageSelector');
     const languageText = languageSelector.querySelector('.language-text');
@@ -2299,49 +2301,43 @@
       console.log('🌍 Lingua cambiata e sincronizzata:', lang);
     }
 
+    // ===== GESTIONE TEMA CORRETTA =====
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+
+    // Funzione per applicare il tema
+    function applyTheme(theme) {
+      document.body.setAttribute('data-theme', theme);
+      themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+      localStorage.setItem('theme', theme);
+      console.log('🎨 Tema applicato:', theme);
+    }
+
+    // Inizializzazione tema e lingua
+    function initializeSettings() {
+      // Leggi il tema salvato, default 'dark'
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      applyTheme(savedTheme);
+
+      // Applica la lingua salvata
+      setLanguage(currentLanguage);
+    }
+
+    // Event listeners per i pulsanti
     languageSelector.addEventListener('click', () => {
       const newLang = currentLanguage === 'it' ? 'en' : 'it';
       setLanguage(newLang);
     });
 
-    // Theme Toggle (Dark by default)
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = themeToggle.querySelector('i');
-    
-    // Set dark theme by default
-    document.body.setAttribute('data-theme', 'dark');
-    themeIcon.className = 'fas fa-sun';
-    localStorage.setItem('theme', 'dark');
-
     themeToggle.addEventListener('click', () => {
-      const currentTheme = document.body.getAttribute('data-theme');
-      
-      if (currentTheme === 'dark') {
-        document.body.removeAttribute('data-theme');
-        themeIcon.className = 'fas fa-moon';
-        localStorage.setItem('theme', 'light');
-      } else {
-        document.body.setAttribute('data-theme', 'dark');
-        themeIcon.className = 'fas fa-sun';
-        localStorage.setItem('theme', 'dark');
-      }
-      
-      console.log('🎨 Tema cambiato e sincronizzato:', document.body.getAttribute('data-theme') || 'light');
+      const currentTheme = document.body.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      applyTheme(newTheme);
     });
 
-    /* === SINCRONIZZAZIONE BIDIREZIONALE PER INDEX.HTML === */
+    // ===== SINCRONIZZAZIONE BIDIREZIONALE MIGLIORATA =====
     function setupBidirectionalSyncIndex() {
         console.log('🔄 Inizializzazione sincronizzazione bidirezionale (index)...');
-
-        // Funzione per applicare il tema
-        function applyTheme(theme) {
-            document.body.setAttribute('data-theme', theme);
-            const themeIcon = document.querySelector('#themeToggle i');
-            if (themeIcon) {
-                themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-            }
-            console.log('🎨 Tema applicato:', theme);
-        }
 
         // Ascolta cambiamenti dal localStorage
         window.addEventListener('storage', (e) => {
@@ -2361,62 +2357,14 @@
                 if (newTheme !== currentTheme) {
                     console.log('🎨 Aggiornamento tema da sync (index):', newTheme);
                     applyTheme(newTheme);
-                    localStorage.setItem('theme', newTheme);
                 }
             }
         });
 
-        // Controllo iniziale al caricamento
-        window.addEventListener('load', () => {
-            const savedLang = localStorage.getItem('language');
-            const savedTheme = localStorage.getItem('theme');
-            
-            console.log('🔍 Controllo impostazioni salvate (index):', { savedLang, savedTheme });
-            
-            if (savedLang && savedLang !== currentLanguage) {
-                console.log('🔄 Ripristino lingua iniziale (index):', savedLang);
-                setLanguage(savedLang);
-            }
-            
-            if (savedTheme && savedTheme !== (document.body.getAttribute('data-theme') || 'dark')) {
-                console.log('🎨 Ripristino tema iniziale (index):', savedTheme);
-                applyTheme(savedTheme);
-            }
-        });
+        console.log('✅ Sincronizzazione bidirezionale (index) attiva');
     }
 
-    // Sostituisci le funzioni esistenti per includere la sincronizzazione
-    function createSyncToggleFunctionsIndex() {
-        const languageSelector = document.getElementById('languageSelector');
-        const themeToggle = document.getElementById('themeToggle');
-
-        if (languageSelector) {
-            const originalClick = languageSelector.onclick;
-            languageSelector.onclick = function() {
-                if (originalClick) originalClick();
-                // Aggiorna localStorage dopo il cambio
-                setTimeout(() => {
-                    localStorage.setItem('language', currentLanguage);
-                    console.log('💾 Lingua salvata (index):', currentLanguage);
-                }, 100);
-            };
-        }
-
-        if (themeToggle) {
-            const originalClick = themeToggle.onclick;
-            themeToggle.onclick = function() {
-                if (originalClick) originalClick();
-                // Aggiorna localStorage dopo il cambio
-                setTimeout(() => {
-                    const currentTheme = document.body.getAttribute('data-theme') || 'dark';
-                    localStorage.setItem('theme', currentTheme);
-                    console.log('💾 Tema salvato (index):', currentTheme);
-                }, 100);
-            };
-        }
-    }
-
-    // Back to Top Button
+    // ===== FUNZIONI ESISTENTI (Back to Top, etc.) =====
     const backToTop = document.getElementById('backToTop');
     
     window.addEventListener('scroll', () => {
@@ -2571,7 +2519,7 @@
       }
     }
 
-    // Blog System - Versione Corretta e Semplificata
+    // Blog System
     class BlogSystem {
       constructor() {
         this.articles = {
@@ -3270,9 +3218,12 @@
       }
     }
 
-    // Inizializzazione SISTEMI - Versione Semplificata e Sicura
+    // ===== INIZIALIZZAZIONE SISTEMI CORRETTA =====
     function initializeSystems() {
       console.log('🚀 Inizializzazione sistemi...');
+      
+      // INIZIALIZZA PRIMA LE IMPOSTAZIONI
+      initializeSettings();
       
       // Aspetta che il DOM sia completamente pronto
       setTimeout(() => {
@@ -3298,10 +3249,9 @@
 
           // 3. Inizializza Sincronizzazione Bidirezionale
           setupBidirectionalSyncIndex();
-          createSyncToggleFunctionsIndex();
           console.log('✅ Sincronizzazione bidirezionale (index) inizializzata');
 
-          console.log('✅ Tutti i sistemi inizializzati');
+          console.log('🎉 Tutti i sistemi inizializzati correttamente');
           
         } catch (error) {
           console.error('❌ Errore inizializzazione:', error);
