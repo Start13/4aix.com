@@ -305,11 +305,36 @@
       line-height: 1.6;
     }
 
-    .saas-preview img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
+    /* === FIX: EasyCardPro image responsive (evita deformazioni) === */
+.saas-preview img {
+  width: 100%;
+  height: auto;          /* mantiene proporzioni */
+  display: block;        /* elimina piccoli gap sotto l'immagine */
+  object-fit: cover;     /* riempie il contenitore senza schiacciare l'immagine */
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  max-height: 400px;     /* evita immagini troppo alte su desktop (regolabile) */
+}
+
+/* Mobile: riorganizza layout e limita altezza immagine per smartphone */
+@media (max-width: 768px) {
+  .saas-content {
+    grid-template-columns: 1fr; /* immagine sopra o sotto testo (single column) */
+    gap: 20px;
+    align-items: start;
+  }
+
+  .saas-preview {
+    order: -1;             /* porta l'immagine sopra il testo (opzionale) */
+    width: 100%;
+  }
+
+  .saas-preview img {
+    max-height: 260px;     /* altezza massima più contenuta su smartphone */
+    object-position: center center; /* centra il ritaglio */
+  }
+}
+
 
     /* Sezione Tecnologie */
     .tech-section {
