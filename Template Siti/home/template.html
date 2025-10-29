@@ -5,88 +5,127 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>4AIX — Template Web Professionali</title>
   <meta name="description" content="Esplora i template web di 4AIX, pronti all'uso e ottimizzati per mobile e personalizzazione.">
-  <link rel="icon" href="../../img/favicon.ico" type="image/x-icon">
+  
+  <!-- Preconnect per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../img/apple-touch-icon.png">
+
+  <!-- Font Awesome e Google Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --accent: #2563eb;
-      --bg-dark: #0f172a;
-      --text-dark: #f8fafc;
-      --bg-light: #f8fafc;
-      --text-light: #0f172a;
-      --muted: #64748b;
+      --primary-color: #1a2a6c;
+      --secondary-color: #00b4d8;
+      --accent-color: #fdbb2d;
+      --text-color: #333;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       --radius: 16px;
+      --muted: #64748b;
     }
 
-    html[data-theme="dark"] { background: var(--bg-dark); color: var(--text-dark); }
-    html[data-theme="light"] { background: var(--bg-light); color: var(--text-light); }
+    [data-theme="dark"] {
+      --primary-color: #2d3748;
+      --secondary-color: #63b3ed;
+      --accent-color: #f6ad55;
+      --text-color: #e2e8f0;
+      --bg-color: #1a202c;
+      --card-bg: #2d3748;
+      --shadow: 0 10px 30px rgba(0,0,0,0.3);
+      --muted: #94a3b8;
+    }
 
-    body {
-      font-family: Inter, system-ui, sans-serif;
+    * {
       margin: 0;
       padding: 0;
-      transition: background .25s, color .25s;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      min-height: 100vh;
     }
 
     /* === BACK BUTTON === */
     .back-home {
-        position: fixed;
-        top: 16px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: var(--accent);
-        color: white;
-        border: none;
-        border-radius: 10px;
-        padding: 8px 16px;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 14px;
-        transition: all .2s ease;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 24px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: var(--transition);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
     }
 
     .back-home:hover {
-        transform: translateX(-50%) scale(1.05);
-        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+      transform: translateX(-50%) translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,180,216,0.4);
+      background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
     }
 
-    /* === ICONS === */
+    /* === LANGUAGE & THEME TOGGLES === */
     .language-selector, .theme-toggle {
       position: fixed;
-      top: 16px;
-      width: 36px;
-      height: 36px;
-      background: transparent;
+      top: 20px;
+      width: 50px;
+      height: 50px;
+      background: var(--card-bg);
       border: none;
-      color: inherit;
+      border-radius: 50%;
+      color: var(--text-color);
       cursor: pointer;
-      font-size: 20px;
-      transition: transform .2s ease, opacity .2s;
+      font-size: 1.2rem;
+      transition: var(--transition);
       z-index: 1000;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: var(--shadow);
     }
     
     .language-selector {
-      left: 18px;
+      left: 20px;
       width: auto;
-      padding: 0 12px;
-      gap: 8px;
+      padding: 0 20px;
+      border-radius: 25px;
+      gap: 10px;
     }
     
     .theme-toggle { 
-      right: 18px; 
+      right: 20px; 
     }
     
     .language-selector:hover, .theme-toggle:hover {
       transform: scale(1.1);
-      opacity: 0.8;
+      color: var(--secondary-color);
     }
 
     .language-text {
@@ -94,61 +133,299 @@
       font-weight: 600;
     }
 
+    /* === HEADER === */
     header {
       text-align: center;
-      padding: 80px 20px 24px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 120px 20px 40px;
+      background: linear-gradient(135deg, var(--primary-color), var(--bg-color));
+      position: relative;
+      overflow: hidden;
     }
-    header h1 { margin: 0; font-size: 26px; }
-    header p { margin: 6px 0 0; font-size: 14px; color: var(--muted); }
 
-    /* === MENU === */
-    .menu {
-      display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 18px;
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1600&q=80') center/cover;
+      opacity: 0.1;
+      z-index: 0;
     }
+
+    header > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--text-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      margin: 15px 0 0;
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* === CATEGORY MENU === */
+    .menu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
     .menu button {
       background: transparent;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      padding: 8px 14px;
-      border-radius: 10px;
+      border: 2px solid var(--secondary-color);
+      color: var(--secondary-color);
+      padding: 12px 24px;
+      border-radius: 25px;
       cursor: pointer;
-      font-weight: 700;
-      transition: all .15s;
-    }
-    .menu button.active {
-      background: var(--accent);
-      color: #fff;
+      font-weight: 600;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
     }
 
-    /* === GRID === */
-    main {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 18px;
-      display: grid;
-      gap: 20px;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    .menu button:hover {
+      background: rgba(0,180,216,0.1);
+      transform: translateY(-2px);
     }
+
+    .menu button.active {
+      background: var(--secondary-color);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,180,216,0.3);
+    }
+
+    /* === MAIN GRID === */
+    main {
+      max-width: 1400px;
+      margin: 60px auto;
+      padding: 20px;
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
     .card {
-      background: rgba(255,255,255,0.03);
+      background: var(--card-bg);
       border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-      transition: transform .22s, box-shadow .22s;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
       display: flex;
       flex-direction: column;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.1);
     }
-    html[data-theme="light"] .card { background: #fff; box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
-    .card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,0,0,0.25); }
 
-    .thumb { height:180px; background-size:cover; background-position:center; }
-    .content { padding:14px; display:flex; flex-direction:column; gap:10px; }
-    .title { font-weight:800; font-size:16px; }
-    .desc { color:var(--muted); font-size:14px; line-height:1.4; }
-    .btn { display:inline-block; background:var(--accent); color:#fff; padding:8px 12px; border-radius:10px; text-decoration:none; font-weight:700; width:fit-content; }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      border-color: var(--secondary-color);
+    }
 
-    footer { text-align:center; color:var(--muted); padding:18px; font-size:13px; }
+    .thumb {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .thumb::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(transparent, var(--card-bg));
+    }
+
+    .content {
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      flex-grow: 1;
+    }
+
+    .title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--text-color);
+      line-height: 1.3;
+    }
+
+    .desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      color: white;
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      width: fit-content;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,180,216,0.4);
+      background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+      gap: 12px;
+    }
+
+    /* === FEATURES BADGE === */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .feature-badge {
+      background: rgba(0,180,216,0.1);
+      color: var(--secondary-color);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid rgba(0,180,216,0.2);
+    }
+
+    /* === FOOTER === */
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 40px 20px;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 60px;
+    }
+
+    /* === RESPONSIVE DESIGN === */
+    @media (max-width: 768px) {
+      header {
+        padding: 100px 20px 30px;
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      .menu {
+        gap: 10px;
+        margin-top: 30px;
+      }
+
+      .menu button {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+      }
+
+      main {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin: 40px auto;
+        padding: 15px;
+      }
+
+      .back-home {
+        top: 15px;
+        padding: 10px 20px;
+        font-size: 0.8rem;
+      }
+
+      .language-selector, .theme-toggle {
+        top: 15px;
+        width: 45px;
+        height: 45px;
+      }
+
+      .language-selector {
+        left: 15px;
+        padding: 0 15px;
+      }
+
+      .theme-toggle {
+        right: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      .menu {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .menu button {
+        width: 200px;
+      }
+
+      .card {
+        margin: 0 10px;
+      }
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(5) { animation-delay: 0.5s; }
   </style>
 </head>
 <body>
@@ -158,19 +435,19 @@
     <span id="backText">Torna alla Homepage</span>
   </button>
 
-  <!-- === ICONS === -->
+  <!-- === LANGUAGE & THEME TOGGLES === -->
   <button id="langToggle" class="language-selector" title="Cambia lingua">
     <i class="fas fa-globe"></i>
     <span class="language-text">IT</span>
   </button>
   
   <button id="themeToggle" class="theme-toggle" title="Cambia tema">
-    <i id="themeIcon" class="fas fa-moon"></i>
+    <i id="themeIcon" class="fas fa-sun"></i>
   </button>
 
   <header>
-    <h1>Template Web 4AIX</h1>
-    <p id="subtitle">Scopri tutti i nostri modelli pronti all'uso</p>
+    <h1 id="headerTitle">Template Web 4AIX</h1>
+    <p id="subtitle">Scopri tutti i nostri modelli pronti all'uso e completamente personalizzabili</p>
     <div class="menu" id="categoryMenu"></div>
   </header>
 
@@ -184,50 +461,115 @@
     /* === DATA === */
     const templates = {
       aziendale: [
-        { title: { it:"Sito Aziendale Base", en:"Corporate Website" },
-          desc: { it:"Struttura pulita e moderna, ideale per aziende o studi professionali.", en:"Clean, modern layout ideal for businesses or professional firms." },
-          img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800",
-          link: "../templates/aziendale/index.html" }
+        { 
+          title: { it:"Sito Aziendale Base", en:"Corporate Website" },
+          desc: { it:"Struttura pulita e moderna, ideale per aziende o studi professionali. Design responsive e ottimizzato per la conversione.", en:"Clean, modern layout ideal for businesses or professional firms. Responsive design optimized for conversion." },
+          img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/aziendale/index.html",
+          features: { it: ["Design Responsive", "SEO Ottimizzato", "Form Contatto"], en: ["Responsive Design", "SEO Optimized", "Contact Form"] }
+        },
+        { 
+          title: { it:"Corporate Premium", en:"Corporate Premium" },
+          desc: { it:"Template avanzato con animazioni, sezioni multiple e design elegante per aziende di alto livello.", en:"Advanced template with animations, multiple sections and elegant design for high-level companies." },
+          img: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/aziendale/premium.html",
+          features: { it: ["Animazioni", "Multi-sezione", "Premium Design"], en: ["Animations", "Multi-section", "Premium Design"] }
+        }
       ],
       ecommerce: [
-        { title: { it:"E-commerce Moderno", en:"Modern E-commerce" },
-          desc: { it:"Layout elegante, ottimizzato per la vendita di prodotti.", en:"Elegant responsive layout optimized for product sales." },
-          img: "https://images.unsplash.com/photo-1542744095-291d1f67b221?w=800",
-          link: "../templates/ecommerce/index.html" }
+        { 
+          title: { it:"E-commerce Moderno", en:"Modern E-commerce" },
+          desc: { it:"Layout elegante, ottimizzato per la vendita di prodotti. Carrello, checkout e gestione prodotti integrata.", en:"Elegant responsive layout optimized for product sales. Integrated cart, checkout and product management." },
+          img: "https://images.unsplash.com/photo-1542744095-291d1f67b221?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/ecommerce/index.html",
+          features: { it: ["Carrello", "Checkout", "Catalogo"], en: ["Shopping Cart", "Checkout", "Product Catalog"] }
+        },
+        { 
+          title: { it:"E-commerce Avanzato", en:"Advanced E-commerce" },
+          desc: { it:"Soluzione completa con filtri avanzati, wishlist, recensioni e integrazione payment gateway.", en:"Complete solution with advanced filters, wishlist, reviews and payment gateway integration." },
+          img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/ecommerce/advanced.html",
+          features: { it: ["Filtri Avanzati", "Wishlist", "Recensioni"], en: ["Advanced Filters", "Wishlist", "Reviews"] }
+        }
       ],
       portfolio: [
-        { title: { it:"Portfolio Creativo", en:"Creative Portfolio" },
-          desc: { it:"Design minimalista per fotografi, artisti o designer.", en:"Minimalist design for photographers, artists, or designers." },
-          img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800",
-          link: "../templates/portfolio/index.html" }
+        { 
+          title: { it:"Portfolio Creativo", en:"Creative Portfolio" },
+          desc: { it:"Design minimalista per fotografi, artisti o designer. Galleria interattiva e presentazione progetti.", en:"Minimalist design for photographers, artists, or designers. Interactive gallery and project presentation." },
+          img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/portfolio/index.html",
+          features: { it: ["Galleria", "Minimalista", "Progetti"], en: ["Gallery", "Minimalist", "Projects"] }
+        },
+        { 
+          title: { it:"Portfolio Personale", en:"Personal Portfolio" },
+          desc: { it:"Template elegante per professionisti con sezione blog, contatti e presentazione competenze.", en:"Elegant template for professionals with blog section, contacts and skills presentation." },
+          img: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/portfolio/personal.html",
+          features: { it: ["Blog", "Competenze", "Contatti"], en: ["Blog", "Skills", "Contacts"] }
+        }
       ],
       trading: [
-        { title: { it:"Trading Dashboard", en:"Trading Dashboard" },
-          desc: { it:"Interfaccia chiara e dinamica per analisi di mercato.", en:"Dynamic, clear interface for market analysis." },
-          img: "https://images.unsplash.com/photo-1605902711622-cfb43c4437d6?w=800",
-          link: "../templates/trading/index.html" }
+        { 
+          title: { it:"Trading Dashboard", en:"Trading Dashboard" },
+          desc: { it:"Interfaccia chiara e dinamica per analisi di mercato. Grafici, indicatori e gestione portfolio.", en:"Dynamic, clear interface for market analysis. Charts, indicators and portfolio management." },
+          img: "https://images.unsplash.com/photo-1605902711622-cfb43c4437d6?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/trading/index.html",
+          features: { it: ["Grafici", "Indicatori", "Portfolio"], en: ["Charts", "Indicators", "Portfolio"] }
+        },
+        { 
+          title: { it:"Crypto Platform", en:"Crypto Platform" },
+          desc: { it:"Piattaforma specializzata per trading crypto con wallet integration e analisi avanzata.", en:"Specialized platform for crypto trading with wallet integration and advanced analysis." },
+          img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/trading/crypto.html",
+          features: { it: ["Crypto", "Wallet", "Analisi"], en: ["Crypto", "Wallet", "Analysis"] }
+        }
+      ],
+      landing: [
+        { 
+          title: { it:"Landing Page Moderna", en:"Modern Landing Page" },
+          desc: { it:"Design conversion-oriented per campagne marketing. Call-to-action strategici e form lead generation.", en:"Conversion-oriented design for marketing campaigns. Strategic call-to-actions and lead generation forms." },
+          img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
+          link: "../templates/landing/index.html",
+          features: { it: ["Conversion", "CTA", "Lead Gen"], en: ["Conversion", "CTA", "Lead Gen"] }
+        }
       ]
     };
 
     const translations = {
       it: {
-        subtitle: "Scopri tutti i nostri modelli pronti all'uso",
+        headerTitle: "Template Web 4AIX",
+        subtitle: "Scopri tutti i nostri modelli pronti all'uso e completamente personalizzabili",
         rights: "Tutti i diritti riservati",
         openDemo: "Apri Demo",
         backHome: "Torna alla Homepage",
-        categories: { all:"Tutti", aziendale:"Aziendale", ecommerce:"E-commerce", portfolio:"Portfolio", trading:"Trading" }
+        categories: { 
+          all:"Tutti i Template", 
+          aziendale:"Aziendale", 
+          ecommerce:"E-commerce", 
+          portfolio:"Portfolio", 
+          trading:"Trading",
+          landing:"Landing Page"
+        }
       },
       en: {
-        subtitle: "Discover all our ready-to-use templates",
+        headerTitle: "4AIX Web Templates",
+        subtitle: "Discover all our ready-to-use and fully customizable templates",
         rights: "All rights reserved",
         openDemo: "Open Demo",
         backHome: "Back to Homepage",
-        categories: { all:"All", aziendale:"Business", ecommerce:"E-commerce", portfolio:"Portfolio", trading:"Trading" }
+        categories: { 
+          all:"All Templates", 
+          aziendale:"Business", 
+          ecommerce:"E-commerce", 
+          portfolio:"Portfolio", 
+          trading:"Trading",
+          landing:"Landing Page"
+        }
       }
     };
 
-    /* === THEME & LANGUAGE SYNC === */
-    let currentLang = localStorage.getItem("lang") || "it";
+    /* === THEME & LANGUAGE SYSTEM === */
+    let currentLang = localStorage.getItem("language") || "it";
     let currentTheme = localStorage.getItem("theme") || "dark";
 
     // Inizializzazione tema
@@ -238,6 +580,7 @@
     const themeBtn = document.getElementById("themeToggle");
     const themeIcon = document.getElementById("themeIcon");
     const languageText = document.querySelector('.language-text');
+    const headerTitle = document.getElementById("headerTitle");
     const subtitleEl = document.getElementById("subtitle");
     const rightsEl = document.getElementById("rights");
     const menuEl = document.getElementById("categoryMenu");
@@ -257,7 +600,7 @@
 
     function toggleLang() {
         currentLang = currentLang === "it" ? "en" : "it";
-        localStorage.setItem("lang", currentLang);
+        localStorage.setItem("language", currentLang);
         updateLanguageText();
         renderMenu(); 
         renderGrid(); 
@@ -279,21 +622,9 @@
     function setupCrossPageSync() {
         // Ascolta cambiamenti da altre pagine
         window.addEventListener('storage', (e) => {
-            if (e.key === 'lang' && e.newValue) {
-                currentLang = e.newValue;
-                updateLanguageText();
-                renderMenu();
-                renderGrid();
-                updateTexts();
-            }
-            if (e.key === 'theme' && e.newValue) {
-                currentTheme = e.newValue;
-                document.documentElement.setAttribute("data-theme", currentTheme);
-                updateThemeIcon();
-            }
             if (e.key === 'langUpdate' || e.key === 'themeUpdate') {
                 // Forza aggiornamento da localStorage
-                const lang = localStorage.getItem('lang') || 'it';
+                const lang = localStorage.getItem('language') || 'it';
                 const theme = localStorage.getItem('theme') || 'dark';
                 
                 if (lang !== currentLang) {
@@ -316,46 +647,61 @@
     /* === RENDER FUNCTIONS === */
     function renderMenu() {
       const cats = translations[currentLang].categories;
-      const order = ["all","aziendale","ecommerce","portfolio","trading"];
-      menuEl.innerHTML = order.map(k => `<button data-cat="${k}" class="${k===currentCategory?'active':''}">${cats[k]}</button>`).join('');
-      menuEl.querySelectorAll("button").forEach(btn=>{
-        btn.addEventListener("click",()=>{
+      const order = ["all", "aziendale", "ecommerce", "portfolio", "trading", "landing"];
+      menuEl.innerHTML = order.map(k => 
+        `<button data-cat="${k}" class="${k===currentCategory?'active':''}">${cats[k]}</button>`
+      ).join('');
+      
+      menuEl.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => {
           currentCategory = btn.dataset.cat;
-          renderMenu(); renderGrid();
+          renderMenu(); 
+          renderGrid();
         });
       });
     }
 
     function renderGrid() {
-      const keys = currentCategory==="all" ? Object.keys(templates) : [currentCategory];
+      const keys = currentCategory === "all" ? Object.keys(templates) : [currentCategory];
       const list = keys.flatMap(k => templates[k] || []);
       const tr = translations[currentLang];
+      
       gridEl.innerHTML = list.map(t => `
         <div class="card">
           <div class="thumb" style="background-image:url('${t.img}')"></div>
           <div class="content">
             <div class="title">${t.title[currentLang]}</div>
             <div class="desc">${t.desc[currentLang]}</div>
-            <a class="btn" href="${t.link}" target="_blank">${tr.openDemo}</a>
+            
+            ${t.features ? `
+            <div class="features">
+              ${t.features[currentLang].map(feature => 
+                `<span class="feature-badge">${feature}</span>`
+              ).join('')}
+            </div>
+            ` : ''}
+            
+            <a class="btn" href="${t.link}" target="_blank">
+              ${tr.openDemo}
+              <i class="fas fa-arrow-right"></i>
+            </a>
           </div>
-        </div>`).join('');
+        </div>
+      `).join('');
     }
 
-    function updateTexts(){
+    function updateTexts() {
       const tr = translations[currentLang];
+      headerTitle.textContent = tr.headerTitle;
       subtitleEl.textContent = tr.subtitle;
       rightsEl.textContent = tr.rights;
       backTextEl.textContent = tr.backHome;
     }
 
-    /* === SYNC BETWEEN PAGES === */
-    window.addEventListener('storage', e => {
-      if(e.key === 'lang' || e.key === 'theme') location.reload();
-    });
-
-    /* === INIT === */
+    /* === INITIALIZATION === */
     let currentCategory = "all";
     
+    // Event Listeners
     langBtn.addEventListener("click", toggleLang);
     themeBtn.addEventListener("click", toggleTheme);
     
@@ -370,10 +716,13 @@
     // Attiva sincronizzazione
     setupCrossPageSync();
 
+    // Inizializzazione
     document.getElementById("year").textContent = new Date().getFullYear();
     renderMenu(); 
     renderGrid(); 
     updateTexts();
+
+    console.log('✅ Template System inizializzato correttamente');
   </script>
 </body>
 </html>
