@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piattaforma Educativa - 4AIX</title>
+    <meta name="description" content="Template per piattaforma educativa con corsi online e dashboard studenti">
+    
+    <!-- Preconnect per performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://images.unsplash.com">
+
+    <!-- Font Awesome e Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #1a2a6c;
+            --secondary-color: #00b4d8;
+            --accent-color: #fdbb2d;
+            --text-color: #333;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --radius: 16px;
+            --muted: #64748b;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #2d3748;
+            --secondary-color: #63b3ed;
+            --accent-color: #f6ad55;
+            --text-color: #e2e8f0;
+            --bg-color: #1a202c;
+            --card-bg: #2d3748;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+            --muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 20px 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .header-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--card-bg);
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+
+        /* Courses Grid */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .course-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .course-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .course-level {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .course-content {
+            padding: 25px;
+        }
+
+        .course-category {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .course-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .course-instructor {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .instructor-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .enroll-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+            justify-content: center;
+        }
+
+        .enroll-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,180,216,0.4);
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin: 60px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial {
+            background: var(--bg-color);
+            padding: 25px;
+            border-radius: var(--radius);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info span {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">EduPlatform</div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Corsi</a>
+                <a href="#">Insegnanti</a>
+                <a href="#">Prezzi</a>
+                <a href="#">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <h1>Impara senza Limiti</h1>
+        <p>Accedi a corsi di alta qualità tenuti da esperti del settore e trasforma la tua carriera</p>
+        <div class="header-stats">
+            <div class="stat">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Corsi Online</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">50K+</span>
+                <span class="stat-label">Studenti</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">200+</span>
+                <span class="stat-label">Insegnanti</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Featured Courses -->
+        <section>
+            <h2 class="section-title">Corsi in Evidenza</h2>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80')">
+                        <span class="course-level">Principiante</span>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Sviluppo Web</span>
+                        <h3 class="course-title">HTML e CSS per Principianti</h3>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 20 ore</span>
+                            <span><i class="far fa-user"></i> 1500 studenti</span>
+                        </div>
+                        <div class="course-instructor">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Insegnante" class="instructor-avatar">
+                            <span>Marco Rossi</span>
+                        </div>
+                        <a href="#" class="enroll-btn">Iscriviti al Corso <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&w=800&q=80')">
+                        <span class="course-level">Intermedio</span>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Programmazione</span>
+                        <h3 class="course-title">JavaScript Avanzato</h3>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 35 ore</span>
+                            <span><i class="far fa-user"></i> 890 studenti</span>
+                        </div>
+                        <div class="course-instructor">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=100&q=80" alt="Insegnante" class="instructor-avatar">
+                            <span>Laura Bianchi</span>
+                        </div>
+                        <a href="#" class="enroll-btn">Iscriviti al Corso <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80')">
+                        <span class="course-level">Avanzato</span>
+                    </div>
+                    <div class="course-content">
+                        <span class="course-category">Data Science</span>
+                        <h3 class="course-title">Machine Learning con Python</h3>
+                        <div class="course-meta">
+                            <span><i class="far fa-clock"></i> 45 ore</span>
+                            <span><i class="far fa-user"></i> 620 studenti</span>
+                        </div>
+                        <div class="course-instructor">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Insegnante" class="instructor-avatar">
+                            <span>Andrea Verdi</span>
+                        </div>
+                        <a href="#" class="enroll-btn">Iscriviti al Corso <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section>
+            <h2 class="section-title">Perché Scegliere la Nostra Piattaforma</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="feature-title">Contenuti di Qualità</h3>
+                    <p>Corsi creati da esperti del settore con contenuti sempre aggiornati.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 class="feature-title">Apprendimento Personalizzato</h3>
+                    <p>Percorsi di studio personalizzati in base ai tuoi obiettivi e livello.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="feature-title">Certificati Riconosciuti</h3>
+                    <p>Ottieni certificati che valorizzano il tuo CV e le tue competenze.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="feature-title">Supporto Docenti</h3>
+                    <p>Interagisci direttamente con i docenti e ricevi feedback personalizzati.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <h2 class="section-title">Cosa Dicono i Nostri Studenti</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">"Grazie a questi corsi ho trovato un lavoro come sviluppatore frontend. I contenuti sono eccellenti e i progetti pratici mi hanno preparato perfettamente."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Studente" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Luca Martini</h4>
+                            <span>Ex-studente, ora Frontend Developer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"La piattaforma è intuitiva e i corsi sono ben strutturati. Ho apprezzato particolarmente la possibilità di studiare al mio ritmo e ricevere supporto quando necessario."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=100&q=80" alt="Studente" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Chiara Russo</h4>
+                            <span>Studentessa di Data Science</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2024 EduPlatform. Tutti i diritti riservati.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Termini di Servizio</a>
+                <a href="#">Contatti</a>
+                <a href="#">Lavora con Noi</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
