@@ -2299,6 +2299,7 @@
       
       // Trigger per sincronizzare altre pagine
       window.localStorage.setItem('langUpdate', Date.now().toString());
+	  window.localStorage.setItem('language', currentLanguage);
     }
 
     languageSelector.addEventListener('click', () => {
