@@ -2271,15 +2271,15 @@
           element.setAttribute('placeholder', translations[lang][key]);
         }
       });
+      
+      // Trigger per sincronizzare altre pagine
+      window.localStorage.setItem('langUpdate', Date.now().toString());
     }
 
     languageSelector.addEventListener('click', () => {
       const newLang = currentLanguage === 'it' ? 'en' : 'it';
       setLanguage(newLang);
     });
-
-    // Initialize language
-    setLanguage(currentLanguage);
 
     // Theme Toggle (Dark by default)
     const themeToggle = document.getElementById('themeToggle');
@@ -2302,6 +2302,9 @@
         themeIcon.className = 'fas fa-sun';
         localStorage.setItem('theme', 'dark');
       }
+      
+      // Trigger per sincronizzare altre pagine
+      window.localStorage.setItem('themeUpdate', Date.now().toString());
     });
 
     // Back to Top Button
@@ -3158,6 +3161,28 @@
       }
     }
 
+    // Cross-Page Sync System
+    function setupCrossPageSync() {
+      // Ascolta cambiamenti da altre pagine
+      window.addEventListener('storage', (e) => {
+        if (e.key === 'langUpdate' || e.key === 'themeUpdate') {
+          // Forza aggiornamento da localStorage
+          const lang = localStorage.getItem('language') || 'it';
+          const theme = localStorage.getItem('theme') || 'dark';
+          
+          if (lang !== currentLanguage) {
+            setLanguage(lang);
+          }
+          
+          if (theme !== document.body.getAttribute('data-theme')) {
+            document.body.setAttribute('data-theme', theme);
+            const themeIcon = document.querySelector('#themeToggle i');
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+          }
+        }
+      });
+    }
+
     // Inizializzazione SISTEMI - Versione Semplificata e Sicura
     function initializeSystems() {
       console.log('🚀 Inizializzazione sistemi...');
@@ -3184,12 +3209,16 @@
             console.warn('⚠️ BlogSystem non inizializzato: pulsanti non trovati');
           }
 
+          // 3. Inizializza Cross-Page Sync
+          setupCrossPageSync();
+          console.log('✅ Cross-Page Sync inizializzato');
+
           console.log('✅ Tutti i sistemi inizializzati');
           
         } catch (error) {
           console.error('❌ Errore inizializzazione:', error);
         }
-      }, 500); // Aumentato il delay per sicurezza
+      }, 500);
     }
 
     // AVVIA TUTTO quando il DOM è pronto
