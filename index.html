@@ -306,35 +306,34 @@
     }
 
     /* === FIX: EasyCardPro image responsive (evita deformazioni) === */
-.saas-preview img {
-  width: 100%;
-  height: auto;          /* mantiene proporzioni */
-  display: block;        /* elimina piccoli gap sotto l'immagine */
-  object-fit: cover;     /* riempie il contenitore senza schiacciare l'immagine */
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  max-height: 400px;     /* evita immagini troppo alte su desktop (regolabile) */
-}
+    .saas-preview img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-height: 400px;
+    }
 
-/* Mobile: riorganizza layout e limita altezza immagine per smartphone */
-@media (max-width: 768px) {
-  .saas-content {
-    grid-template-columns: 1fr; /* immagine sopra o sotto testo (single column) */
-    gap: 20px;
-    align-items: start;
-  }
+    /* Mobile: riorganizza layout e limita altezza immagine per smartphone */
+    @media (max-width: 768px) {
+      .saas-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        align-items: start;
+      }
 
-  .saas-preview {
-    order: -1;             /* porta l'immagine sopra il testo (opzionale) */
-    width: 100%;
-  }
+      .saas-preview {
+        order: -1;
+        width: 100%;
+      }
 
-  .saas-preview img {
-    max-height: 260px;     /* altezza massima più contenuta su smartphone */
-    object-position: center center; /* centra il ritaglio */
-  }
-}
-
+      .saas-preview img {
+        max-height: 260px;
+        object-position: center center;
+      }
+    }
 
     /* Sezione Tecnologie */
     .tech-section {
@@ -1654,7 +1653,7 @@
           <i class="fas fa-shield-alt"></i>
         </div>
         <h3 data-i18n="tech.security.title">Sicurezza & Affidabilità</h3>
-        <p data-i18n="tech.security.text">Implementazione di standard di sicurezza moderni e procedure di backup per garantire stabilità e protezione dei dati</p>
+        <p data-i18n="tech.security.text">Implementazione di standard di sicurezza moderni e procedures di backup per garantire stabilità e protezione dei dati</p>
       </div>
     </div>
   </section>
@@ -2297,9 +2296,7 @@
         }
       });
       
-      // Trigger per sincronizzare altre pagine
-      window.localStorage.setItem('langUpdate', Date.now().toString());
-	  window.localStorage.setItem('language', currentLanguage);
+      console.log('🌍 Lingua cambiata e sincronizzata:', lang);
     }
 
     languageSelector.addEventListener('click', () => {
@@ -2329,9 +2326,95 @@
         localStorage.setItem('theme', 'dark');
       }
       
-      // Trigger per sincronizzare altre pagine
-      window.localStorage.setItem('themeUpdate', Date.now().toString());
+      console.log('🎨 Tema cambiato e sincronizzato:', document.body.getAttribute('data-theme') || 'light');
     });
+
+    /* === SINCRONIZZAZIONE BIDIREZIONALE PER INDEX.HTML === */
+    function setupBidirectionalSyncIndex() {
+        console.log('🔄 Inizializzazione sincronizzazione bidirezionale (index)...');
+
+        // Funzione per applicare il tema
+        function applyTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+            const themeIcon = document.querySelector('#themeToggle i');
+            if (themeIcon) {
+                themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+            console.log('🎨 Tema applicato:', theme);
+        }
+
+        // Ascolta cambiamenti dal localStorage
+        window.addEventListener('storage', (e) => {
+            console.log('📡 Evento storage ricevuto (index):', e.key, e.newValue);
+            
+            if (e.key === 'language' && e.newValue) {
+                const newLang = e.newValue;
+                if (newLang !== currentLanguage) {
+                    console.log('🔄 Aggiornamento lingua da sync (index):', newLang);
+                    setLanguage(newLang);
+                }
+            }
+            
+            if (e.key === 'theme' && e.newValue) {
+                const newTheme = e.newValue;
+                const currentTheme = document.body.getAttribute('data-theme') || 'dark';
+                if (newTheme !== currentTheme) {
+                    console.log('🎨 Aggiornamento tema da sync (index):', newTheme);
+                    applyTheme(newTheme);
+                    localStorage.setItem('theme', newTheme);
+                }
+            }
+        });
+
+        // Controllo iniziale al caricamento
+        window.addEventListener('load', () => {
+            const savedLang = localStorage.getItem('language');
+            const savedTheme = localStorage.getItem('theme');
+            
+            console.log('🔍 Controllo impostazioni salvate (index):', { savedLang, savedTheme });
+            
+            if (savedLang && savedLang !== currentLanguage) {
+                console.log('🔄 Ripristino lingua iniziale (index):', savedLang);
+                setLanguage(savedLang);
+            }
+            
+            if (savedTheme && savedTheme !== (document.body.getAttribute('data-theme') || 'dark')) {
+                console.log('🎨 Ripristino tema iniziale (index):', savedTheme);
+                applyTheme(savedTheme);
+            }
+        });
+    }
+
+    // Sostituisci le funzioni esistenti per includere la sincronizzazione
+    function createSyncToggleFunctionsIndex() {
+        const languageSelector = document.getElementById('languageSelector');
+        const themeToggle = document.getElementById('themeToggle');
+
+        if (languageSelector) {
+            const originalClick = languageSelector.onclick;
+            languageSelector.onclick = function() {
+                if (originalClick) originalClick();
+                // Aggiorna localStorage dopo il cambio
+                setTimeout(() => {
+                    localStorage.setItem('language', currentLanguage);
+                    console.log('💾 Lingua salvata (index):', currentLanguage);
+                }, 100);
+            };
+        }
+
+        if (themeToggle) {
+            const originalClick = themeToggle.onclick;
+            themeToggle.onclick = function() {
+                if (originalClick) originalClick();
+                // Aggiorna localStorage dopo il cambio
+                setTimeout(() => {
+                    const currentTheme = document.body.getAttribute('data-theme') || 'dark';
+                    localStorage.setItem('theme', currentTheme);
+                    console.log('💾 Tema salvato (index):', currentTheme);
+                }, 100);
+            };
+        }
+    }
 
     // Back to Top Button
     const backToTop = document.getElementById('backToTop');
@@ -3187,28 +3270,6 @@
       }
     }
 
-    // Cross-Page Sync System
-    function setupCrossPageSync() {
-      // Ascolta cambiamenti da altre pagine
-      window.addEventListener('storage', (e) => {
-        if (e.key === 'langUpdate' || e.key === 'themeUpdate') {
-          // Forza aggiornamento da localStorage
-          const lang = localStorage.getItem('language') || 'it';
-          const theme = localStorage.getItem('theme') || 'dark';
-          
-          if (lang !== currentLanguage) {
-            setLanguage(lang);
-          }
-          
-          if (theme !== document.body.getAttribute('data-theme')) {
-            document.body.setAttribute('data-theme', theme);
-            const themeIcon = document.querySelector('#themeToggle i');
-            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-          }
-        }
-      });
-    }
-
     // Inizializzazione SISTEMI - Versione Semplificata e Sicura
     function initializeSystems() {
       console.log('🚀 Inizializzazione sistemi...');
@@ -3235,9 +3296,10 @@
             console.warn('⚠️ BlogSystem non inizializzato: pulsanti non trovati');
           }
 
-          // 3. Inizializza Cross-Page Sync
-          setupCrossPageSync();
-          console.log('✅ Cross-Page Sync inizializzato');
+          // 3. Inizializza Sincronizzazione Bidirezionale
+          setupBidirectionalSyncIndex();
+          createSyncToggleFunctionsIndex();
+          console.log('✅ Sincronizzazione bidirezionale (index) inizializzata');
 
           console.log('✅ Tutti i sistemi inizializzati');
           
