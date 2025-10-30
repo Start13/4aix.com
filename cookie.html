@@ -90,9 +90,29 @@
             margin-bottom: 30px;
         }
     </style>
+    <script>
+      (function syncLanguageFromGlobal(){
+        try {
+          var savedLang = localStorage.getItem('language') || 'it';
+          document.documentElement.setAttribute('lang', savedLang);
+          window.addEventListener('storage', function(e){
+            if(e.key === 'language' && e.newValue){
+              document.documentElement.setAttribute('lang', e.newValue);
+              // Aggiorna subito la visibilità delle sezioni
+              var it = document.querySelector('.policy-it');
+              var en = document.querySelector('.policy-en');
+              if(it && en){
+                it.style.display = (e.newValue === 'it') ? 'block' : 'none';
+                en.style.display = (e.newValue === 'en') ? 'block' : 'none';
+              }
+            }
+          });
+        } catch(_) {}
+      })();
+    </script>
 </head>
 <body>
-    <div class="container">
+    <div class="container policy-it">
         <a href="index.html" class="back-link">
             <i class="fas fa-arrow-left"></i> Torna al Sito Principale
         </a>
@@ -145,6 +165,55 @@
         <h2>Modifiche a questa cookie policy</h2>
         <p>Il Titolare del Trattamento si riserva il diritto di apportare modifiche alla presente cookie policy in qualsiasi tempo notificandolo agli Utenti su questa pagina.</p>
     </div>
-
+    <div class="container policy-en" style="display:none">
+      <a href="index.html" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Main Site
+      </a>
+      <h1>Cookie Policy</h1>
+      <div class="update-date"><strong>Last update:</strong> January 2024</div>
+      <h2>What are cookies</h2>
+      <p>Cookies are small text files that websites send to the user's device, where they are stored to be resent to the same sites upon future visits.</p>
+      <h2>Types of cookies used</h2>
+      <div class="cookie-types">
+        <div class="cookie-type">
+          <h3>Technical Cookies</h3>
+          <p>These are essential for the website's proper functioning and navigation.</p>
+        </div>
+        <div class="cookie-type">
+          <h3>Preference Cookies</h3>
+          <p>These cookies store user preferences (e.g., dark mode).</p>
+        </div>
+      </div>
+      <h2>Cookie Usage</h2>
+      <p>This site uses only strictly necessary technical cookies. No profiling or tracking cookies are used.</p>
+      <h2>Technical cookies used</h2>
+      <p>The technical cookies used only allow navigation and proper operation of the site:</p>
+      <ul>
+        <li><strong>cookiesAccepted</strong>: Stores user preference about cookie acceptance.</li>
+        <li><strong>darkMode</strong>: Stores the user's dark mode preference.</li>
+      </ul>
+      <h2>Managing cookies</h2>
+      <p>Users can decide whether to accept cookies using their browser's settings. Disabling technical cookies may impact site functionality.</p>
+      <h2>How to disable cookies</h2>
+      <p>You can disable cookies via your browser's settings. Below are guides for the most common browsers:</p>
+      <ul>
+        <li><a href="https://support.google.com/chrome/answer/95647">Google Chrome</a></li>
+        <li><a href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences">Mozilla Firefox</a></li>
+        <li><a href="https://support.apple.com/en-us/guide/safari/sfri11471/mac">Safari</a></li>
+        <li><a href="https://support.microsoft.com/en-us/windows/delete-cookies-or-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d">Microsoft Edge</a></li>
+      </ul>
+      <h2>Controller</h2>
+      <p><strong>Corrado Bruni</strong><br>Turin (TO)<br>Email: corbruni@gmail.com</p>
+      <h2>Changes to this cookie policy</h2>
+      <p>The Controller may make changes to this cookie policy at any time by notifying users on this page.</p>
+    </div>
+    <script>
+      // Switch policy language based on html lang attribute
+      document.addEventListener('DOMContentLoaded', function() {
+        var lang = document.documentElement.lang;
+        document.querySelector('.policy-it').style.display = (lang==="it")?"block":"none";
+        document.querySelector('.policy-en').style.display = (lang==="en")?"block":"none";
+      });
+    </script>
 </body>
 </html>
