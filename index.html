@@ -5,14 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Corrado Bruni - Web Developer & Supporto Tecnico a Torino</title>
 
-  <!-- Google Analytics -->
-  <!-- Google tag (gtag.js) -->
+  <!-- Content Security Policy Ottimizzata -->
+  <meta http-equiv="Content-Security-Policy" 
+        content="default-src 'self' https: data: blob: 'unsafe-inline';
+                 script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com;
+                 style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com;
+                 font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com;
+                 img-src 'self' https: data: blob: https://images.unsplash.com https://www.4aix.com;
+                 connect-src 'self' https: https://www.google-analytics.com https://formspree.io;
+                 frame-src 'none';
+                 object-src 'none';">
+
+  <!-- Google Analytics - Versione Sicura -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0PFF5S9Z2R"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-0PFF5S9Z2R');
+    gtag('config', 'G-0PFF5S9Z2R', {
+      page_title: document.title,
+      page_location: window.location.href
+    });
   </script>
   
   <!-- Preconnect per performance -->
@@ -1566,7 +1579,7 @@
   <div class="services">
     <!-- Siti Web -->
     <div class="service-card" onclick="scrollToSection('portfolio')">
-      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Siti web moderni" loading="lazy" width="800" height="400">
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Siti web moderni" loading="lazy" width="800" height="400" crossorigin="anonymous">
       <div class="content">
         <h3><i class="fas fa-code"></i> <span data-i18n="services.web.title">Siti Web & Soluzioni Digitali</span></h3>
         <p data-i18n="services.web.text">Realizzo siti moderni, landing page e piattaforme leggere, con un design professionale e tempi rapidi.</p>
@@ -1575,7 +1588,7 @@
 
     <!-- Collaborazioni Tecniche -->
     <div class="service-card" onclick="scrollToSection('contatto')">
-      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Collaborazioni tecniche" loading="lazy" width="800" height="400">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Collaborazioni tecniche" loading="lazy" width="800" height="400" crossorigin="anonymous">
       <div class="content">
         <h3><i class="fas fa-laptop-code"></i> <span data-i18n="services.tech.title">Collaborazioni Tecniche</span></h3>
         <p data-i18n="services.tech.text">Supporto per progetti digitali, sviluppo personalizzato e consulenze mirate anche da remoto.</p>
@@ -1588,7 +1601,7 @@
         <i class="fas fa-chart-line"></i>
         <span>Expert Crypto</span>
       </div>
-      <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=800&q=80" alt="Cryptovalute e Trading" loading="lazy" width="800" height="400">
+      <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=800&q=80" alt="Cryptovalute e Trading" loading="lazy" width="800" height="400" crossorigin="anonymous">
       <div class="content">
         <h3><i class="fas fa-coins"></i> <span data-i18n="services.crypto.title">Cryptovalute & Trading</span></h3>
         <p data-i18n="services.crypto.text">Consulenza specialistica su trading, mining, DeFi/CeFi, analisi di mercato e strategie d'investimento in cryptovalute. Supporto per portfolio e sicurezza digitale.</p>
@@ -1667,7 +1680,7 @@
     <div class="portfolio-grid">
         <!-- E-Commerce -->
         <div class="portfolio-item">
-            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80" alt="E-Commerce" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80" alt="E-Commerce" loading="lazy" crossorigin="anonymous">
             <div class="portfolio-overlay">
                 <h3 data-i18n="portfolio.project1.title">E-Commerce</h3>
                 <p data-i18n="portfolio.project1.text">Negozi online completi e professionali</p>
@@ -1677,7 +1690,7 @@
         
         <!-- Sito Aziendale -->
         <div class="portfolio-item">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Sito Aziendale" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Sito Aziendale" loading="lazy" crossorigin="anonymous">
             <div class="portfolio-overlay">
                 <h3 data-i18n="portfolio.project2.title">Sito Aziendale</h3>
                 <p data-i18n="portfolio.project2.text">Presenza online professionale</p>
@@ -1687,7 +1700,7 @@
         
         <!-- Portfolio Personale -->
         <div class="portfolio-item">
-            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" alt="Portfolio Personale" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" alt="Portfolio Personale" loading="lazy" crossorigin="anonymous">
             <div class="portfolio-overlay">
                 <h3 data-i18n="portfolio.project3.title">Portfolio Personale</h3>
                 <p data-i18n="portfolio.project3.text">Siti vetrina per professionisti</p>
@@ -1697,7 +1710,7 @@
 
         <!-- Software Gestionale -->
         <div class="portfolio-item">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Software Gestionale" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Software Gestionale" loading="lazy" crossorigin="anonymous">
             <div class="portfolio-overlay">
                 <h3 data-i18n="portfolio.project4.title">Software Gestionale</h3>
                 <p data-i18n="portfolio.project4.text">Soluzioni personalizzate</p>
@@ -1707,7 +1720,7 @@
 
         <!-- EA/Indicators MT4/5 -->
         <div class="portfolio-item">
-            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="EA/Indicators MT4/5" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="EA/Indicators MT4/5" loading="lazy" crossorigin="anonymous">
             <div class="portfolio-overlay">
                 <h3 data-i18n="portfolio.project5.title">EA/Indicators MT4/5</h3>
                 <p data-i18n="portfolio.project5.text">Soluzioni trading personalizzate</p>
@@ -1730,7 +1743,7 @@
         </a>
       </div>
       <div class="saas-preview">
-        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Anteprima EasyCardPro" loading="lazy" width="800" height="400">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Anteprima EasyCardPro" loading="lazy" width="800" height="400" crossorigin="anonymous">
       </div>
     </div>
   </section>
@@ -1743,7 +1756,7 @@
     <div class="blog-grid">
       <article class="blog-card">
         <div class="blog-image">
-          <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=800&q=80" alt="AI nello sviluppo web" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=800&q=80" alt="AI nello sviluppo web" loading="lazy" crossorigin="anonymous">
         </div>
         <div class="blog-content">
           <h3 data-i18n="blog.post1.title">Come l'AI sta Rivoluzionando lo Sviluppo Web</h3>
@@ -1757,7 +1770,7 @@
       
       <article class="blog-card">
         <div class="blog-image">
-          <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80" alt="Tecnologia per anziani" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80" alt="Tecnologia per anziani" loading="lazy" crossorigin="anonymous">
         </div>
         <div class="blog-content">
           <h3 data-i18n="blog.post2.title">Tecnologia Amica: Guida per Over 60</h3>
@@ -1771,7 +1784,7 @@
       
       <article class="blog-card">
         <div class="blog-image">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Trend web design 2024" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Trend web design 2024" loading="lazy" crossorigin="anonymous">
         </div>
         <div class="blog-content">
           <h3 data-i18n="blog.post3.title">Trend Web Design 2024: Cosa Sapere</h3>
@@ -1928,10 +1941,10 @@
             "Corrado ha realizzato il sito della mia attività in tempi record. Professionale, competente e sempre disponibile. Consigliatissimo!"
           </div>
           <div class="testimonial-author">
-            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Alessandro Conti" class="author-avatar" loading="lazy" width="100" height="100">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Alessandro Conti" class="author-avatar" loading="lazy" width="100" height="100" crossorigin="anonymous">
             <div class="author-info">
               <h4 data-i18n="testimonials.1.name">Alessandro Conti</h4>
-              <p data-i18n="testimonials.1.role">Ristorante "Da Alessandro"</p>
+              <p data-i18n="testimonials.1.role">Ristorante \"Da Alessandro\"</p>
             </div>
           </div>
         </div>
@@ -1941,7 +1954,7 @@
             "Oltre al sito, mi ha aiutato con piccoli lavori domestici. Una persona affidabile e competente su più fronti!"
           </div>
           <div class="testimonial-author">
-            <img src="https://images.unsplash.com/photo-1551290464-66719418ca54?auto=format&fit=crop&w=100&q=80" alt="Elena Romano" class="author-avatar" loading="lazy" width="100" height="100">
+            <img src="https://images.unsplash.com/photo-1551290464-66719418ca54?auto=format&fit=crop&w=100&q=80" alt="Elena Romano" class="author-avatar" loading="lazy" width="100" height="100" crossorigin="anonymous">
             <div class="author-info">
               <h4 data-i18n="testimonials.2.name">Elena Romano</h4>
               <p data-i18n="testimonials.2.role">Insegnante in pensione</p>
@@ -1954,7 +1967,7 @@
             "Supporto tecnico eccellente e grande pazienza nel spiegare le cose. Finalmente qualcuno che unisce competenza e umanità."
           </div>
           <div class="testimonial-author">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Marco Esposito" class="author-avatar" loading="lazy" width="100" height="100">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Marco Esposito" class="author-avatar" loading="lazy" width="100" height="100" crossorigin="anonymous">
             <div class="author-info">
               <h4 data-i18n="testimonials.3.name">Marco Esposito</h4>
               <p data-i18n="testimonials.3.role">Artigiano - Falegnameria Esposito</p>
