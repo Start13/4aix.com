@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Services - 4AIX Template</title>
+  <meta name="description" content="Template elegante per servizi professionali e consulenza aziendale">
+
+  <!-- Preconnect per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <!-- Font Awesome e Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #1e40af;
+      --secondary-color: #1e3a8a;
+      --accent-color: #dc2626;
+      --success-color: #059669;
+      --text-color: #374151;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --shadow: 0 10px 25px rgba(0,0,0,0.08);
+      --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      --radius: 8px;
+      --muted: #6b7280;
+    }
+
+    [data-theme="dark"] {
+      --primary-color: #3b82f6;
+      --secondary-color: #1e40af;
+      --accent-color: #ef4444;
+      --success-color: #10b981;
+      --text-color: #e5e7eb;
+      --bg-color: #111827;
+      --card-bg: #1f2937;
+      --shadow: 0 10px 25px rgba(0,0,0,0.3);
+      --muted: #9ca3af;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .header {
+      background: var(--card-bg);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-color);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-color);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--accent-color);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #b91c1c;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--accent-color);
+      color: var(--accent-color);
+    }
+
+    .btn-outline:hover {
+      background: var(--accent-color);
+      color: white;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 120px 0 80px;
+      background: linear-gradient(135deg, var(--primary-color), var(--bg-color));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80') center/cover;
+      opacity: 0.05;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+      color: var(--muted);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* Services */
+    .services {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      padding: 40px 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border-top: 4px solid var(--accent-color);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .service-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      color: white;
+      font-size: 1.8rem;
+    }
+
+    .service-card h3 {
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    .service-features {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .service-features li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .service-features li i {
+      color: var(--success-color);
+    }
+
+    /* Process */
+    .process {
+      padding: 80px 0;
+      background: var(--bg-color);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .process-step {
+      text-align: center;
+      position: relative;
+    }
+
+    .process-step::after {
+      content: '';
+      position: absolute;
+      top: 40px;
+      right: -30px;
+      width: 60px;
+      height: 2px;
+      background: var(--primary-color);
+      opacity: 0.3;
+    }
+
+    .process-step:last-child::after {
+      display: none;
+    }
+
+    .step-number {
+      width: 80px;
+      height: 80px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .step-number::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border: 2px solid var(--primary-color);
+      border-radius: 50%;
+      opacity: 0.2;
+    }
+
+    .process-step h3 {
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    /* Team */
+    .team {
+      padding: 80px 0;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .team-member {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+
+    .member-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .member-info {
+      padding: 25px;
+    }
+
+    .member-info h3 {
+      margin-bottom: 5px;
+      font-size: 1.3rem;
+    }
+
+    .member-role {
+      color: var(--accent-color);
+      font-weight: 600;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .member-bio {
+      margin-bottom: 20px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .member-social {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .member-social a {
+      width: 35px;
+      height: 35px;
+      background: var(--bg-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .member-social a:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 80px 0;
+      background: var(--bg-color);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      font-size: 4rem;
+      color: var(--primary-color);
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      opacity: 0.2;
+      font-family: serif;
+    }
+
+    .testimonial-text {
+      margin-bottom: 20px;
+      font-style: italic;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+    }
+
+    .author-info h4 {
+      margin-bottom: 5px;
+      font-size: 1.1rem;
+    }
+
+    .author-info p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* CTA */
+    .cta {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      text-align: center;
+    }
+
+    .cta-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--card-bg);
+      padding: 60px 0 30px;
+      box-shadow: 0 -5px 15px rgba(0,0,0,0.08);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+
+    .footer-col p {
+      margin-bottom: 20px;
+      color: var(--muted);
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--accent-color);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .process-step::after {
+        display: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="#" class="logo">PrestigeConsult</a>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#team">Team</a>
+          <a href="#testimonials">Testimonials</a>
+        </div>
+        <a href="#contact" class="btn btn-primary">
+          Get Consultation
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Strategic Business Solutions for Sustainable Growth</h1>
+        <p>We help businesses navigate complexity, drive innovation, and achieve exceptional results through expert consulting and strategic partnerships.</p>
+        <div class="hero-buttons">
+          <a href="#services" class="btn btn-primary">
+            Our Services
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="#process" class="btn btn-outline" style="border-color: white; color: white;">
+            How We Work
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Professional Services</h2>
+        <p>Comprehensive solutions tailored to your unique business challenges and objectives</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Business Strategy</h3>
+          <p>Develop winning strategies that drive growth, improve performance, and create sustainable competitive advantage.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> Market Analysis</li>
+            <li><i class="fas fa-check"></i> Competitive Positioning</li>
+            <li><i class="fas fa-check"></i> Growth Planning</li>
+            <li><i class="fas fa-check"></i> Performance Metrics</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="margin-top: 15px;">
+            Learn More
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3>Operations Optimization</h3>
+          <p>Streamline processes, reduce costs, and enhance efficiency across your entire organization.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> Process Mapping</li>
+            <li><i class="fas fa-check"></i> Workflow Automation</li>
+            <li><i class="fas fa-check"></i> Cost Reduction</li>
+            <li><i class="fas fa-check"></i> Quality Improvement</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="margin-top: 15px;">
+            Learn More
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Digital Transformation</h3>
+          <p>Leverage technology to transform business models, enhance customer experiences, and drive innovation.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> Technology Assessment</li>
+            <li><i class="fas fa-check"></i> Digital Roadmapping</li>
+            <li><i class="fas fa-check"></i> Implementation Support</li>
+            <li><i class="fas fa-check"></i> Change Management</li>
+          </ul>
+          <a href="#" class="btn btn-outline" style="margin-top: 15px;">
+            Learn More
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="process">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Proven Process</h2>
+        <p>A structured approach that delivers measurable results and sustainable success</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <h3>Discovery & Analysis</h3>
+          <p>We begin by deeply understanding your business, challenges, and opportunities through comprehensive analysis.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <h3>Strategy Development</h3>
+          <p>Based on insights, we craft customized strategies aligned with your vision and business objectives.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <h3>Implementation</h3>
+          <p>We work alongside your team to execute strategies effectively and ensure seamless integration.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <h3>Optimization</h3>
+          <p>Continuous monitoring and refinement to maximize results and adapt to changing conditions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="team">
+    <div class="container">
+      <div class="section-header">
+        <h2>Meet Our Experts</h2>
+        <p>Our team of seasoned professionals brings diverse expertise and proven track records</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=500&q=80" alt="Sarah Johnson" class="member-image">
+          <div class="member-info">
+            <h3>Sarah Johnson</h3>
+            <span class="member-role">Managing Partner</span>
+            <p class="member-bio">20+ years in business strategy and transformation. Former executive at Fortune 500 companies.</p>
+            <div class="member-social">
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-member">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=500&q=80" alt="Michael Chen" class="member-image">
+          <div class="member-info">
+            <h3>Michael Chen</h3>
+            <span class="member-role">Technology Director</span>
+            <p class="member-bio">Digital transformation expert with 15+ years experience in technology consulting and implementation.</p>
+            <div class="member-social">
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-member">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=500&q=80" alt="Emily Rodriguez" class="member-image">
+          <div class="member-info">
+            <h3>Emily Rodriguez</h3>
+            <span class="member-role">Operations Specialist</span>
+            <p class="member-bio">Process optimization expert with extensive experience in lean manufacturing and supply chain management.</p>
+            <div class="member-social">
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2>Client Success Stories</h2>
+        <p>See how we've helped businesses achieve remarkable results and drive sustainable growth</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "PrestigeConsult transformed our business operations. Their strategic insights helped us increase efficiency by 40% while reducing costs significantly."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">JR</div>
+            <div class="author-info">
+              <h4>Jennifer Roberts</h4>
+              <p>CEO, TechInnovate Inc.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "The digital transformation roadmap they developed positioned us perfectly for future growth. Their expertise was invaluable throughout the process."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">MS</div>
+            <div class="author-info">
+              <h4>Mark Sullivan</h4>
+              <p>CTO, Global Retail Corp</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "Working with PrestigeConsult was a game-changer. Their team's dedication and strategic approach delivered results beyond our expectations."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">AL</div>
+            <div class="author-info">
+              <h4>Amanda Lee</h4>
+              <p>Operations Director, Manufacturing Plus</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>Schedule a complimentary consultation to discuss your challenges and explore how we can help you achieve exceptional results.</p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+          <a href="#" class="btn" style="background: white; color: var(--primary-color);">
+            Schedule Consultation
+            <i class="fas fa-calendar-check"></i>
+          </a>
+          <a href="#" class="btn" style="background: transparent; border: 2px solid white; color: white;">
+            Download Brochure
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>PrestigeConsult</h3>
+          <p>Strategic business consulting firm dedicated to helping organizations achieve sustainable growth and operational excellence.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="#">Business Strategy</a></li>
+            <li><a href="#">Operations Optimization</a></li>
+            <li><a href="#">Digital Transformation</a></li>
+            <li><a href="#">Financial Consulting</a></li>
+            <li><a href="#">Change Management</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Newsletter</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 PrestigeConsult. All rights reserved. Template by 4AIX Web Solutions</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple interactivity for professional services
+    document.querySelectorAll('.btn-outline').forEach(button => {
+      button.addEventListener('click', function(e) {
+        if (this.textContent.includes('Learn More')) {
+          e.preventDefault();
+          const service = this.closest('.service-card');
+          const title = service.querySelector('h3').textContent;
+          alert(`Learning more about: ${title}`);
+        }
+      });
+    });
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

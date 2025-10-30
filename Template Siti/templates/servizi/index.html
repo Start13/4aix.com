@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sito Servizi - 4AIX</title>
+    <meta name="description" content="Template per agenzie e professionisti dei servizi con presentazione servizi e portfolio">
+    
+    <!-- Preconnect per performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://images.unsplash.com">
+
+    <!-- Font Awesome e Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #1a2a6c;
+            --secondary-color: #00b4d8;
+            --accent-color: #fdbb2d;
+            --text-color: #333;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --radius: 16px;
+            --muted: #64748b;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #2d3748;
+            --secondary-color: #63b3ed;
+            --accent-color: #f6ad55;
+            --text-color: #e2e8f0;
+            --bg-color: #1a202c;
+            --card-bg: #2d3748;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+            --muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 100px 20px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        header > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent-color);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(253, 187, 45, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(253, 187, 45, 0.4);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--card-bg);
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--muted);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-size: 1.1rem;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: var(--secondary-color);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+        }
+
+        .service-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .service-description {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        .service-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .service-link:hover {
+            gap: 12px;
+        }
+
+        /* Portfolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .portfolio-item {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .portfolio-content {
+            padding: 25px;
+        }
+
+        .portfolio-category {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .portfolio-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .portfolio-description {
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        /* Process */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 60px 0;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: var(--secondary-color);
+            z-index: 0;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            color: var(--muted);
+            max-width: 250px;
+            margin: 0 auto;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: var(--radius);
+            margin: 80px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            padding: 60px 20px 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .process-steps {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">ServicePro</div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Servizi</a>
+                <a href="#">Portfolio</a>
+                <a href="#">Chi Siamo</a>
+                <a href="#">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <h1>Soluzioni Professionali per la Tua Azienda</h1>
+        <p>Offriamo servizi di alta qualità per aiutare la tua azienda a crescere e prosperare nel panorama digitale moderno</p>
+        <a href="#" class="cta-button">Richiedi un Preventivo <i class="fas fa-arrow-right"></i></a>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Services -->
+        <section>
+            <h2 class="section-title">I Nostri Servizi</h2>
+            <p class="section-subtitle">Scopri la gamma completa dei nostri servizi professionali progettati per soddisfare le esigenze della tua azienda</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="service-title">Sviluppo Web</h3>
+                    <p class="service-description">Creiamo siti web moderni, responsive e ottimizzati per i motori di ricerca che si adattano perfettamente a tutti i dispositivi.</p>
+                    <a href="#" class="service-link">Scopri di più <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="service-title">Design Grafico</h3>
+                    <p class="service-description">Progettiamo identità visive accattivanti, loghi memorabili e materiali di marketing che distinguono il tuo brand.</p>
+                    <a href="#" class="service-link">Scopri di più <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">Digital Marketing</h3>
+                    <p class="service-description">Strategie di marketing digitale personalizzate per aumentare la visibilità online e generare lead qualificati.</p>
+                    <a href="#" class="service-link">Scopri di più <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="service-title">E-commerce</h3>
+                    <p class="service-description">Soluzioni complete per negozi online con sistemi di pagamento sicuri e gestione inventario integrata.</p>
+                    <a href="#" class="service-link">Scopri di più <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-title">App Mobile</h3>
+                    <p class="service-description">Sviluppiamo applicazioni mobile innovative per iOS e Android che offrono esperienze utente eccezionali.</p>
+                    <a href="#" class="service-link">Scopri di più <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 class="service-title">Cloud Solutions</h3>
+                    <p class="service-description">Servizi di cloud computing per ottimizzare le operazioni aziendali e migliorare la collaborazione del team.</p>
+                    <a href="#" class="service-link">Scopri di più <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio -->
+        <section>
+            <h2 class="section-title">I Nostri Lavori</h2>
+            <p class="section-subtitle">Esplora alcuni dei nostri progetti più recenti e scopri come abbiamo aiutato i nostri clienti a raggiungere i loro obiettivi</p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80')"></div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">Sviluppo Web</span>
+                        <h3 class="portfolio-title">Piattaforma E-commerce</h3>
+                        <p class="portfolio-description">Creazione di una piattaforma e-commerce completa con sistema di gestione inventario e pagamenti integrati.</p>
+                        <a href="#" class="service-link">Vedi caso studio <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80')"></div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">Digital Marketing</span>
+                        <h3 class="portfolio-title">Campagna Social Media</h3>
+                        <p class="portfolio-description">Strategia di social media marketing che ha aumentato il engagement del 150% in 3 mesi.</p>
+                        <a href="#" class="service-link">Vedi caso studio <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80')"></div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">App Mobile</span>
+                        <h3 class="portfolio-title">Applicazione Fitness</h3>
+                        <p class="portfolio-description">Sviluppo di un'app mobile per il fitness con tracker attività e piano allenamenti personalizzato.</p>
+                        <a href="#" class="service-link">Vedi caso studio <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process -->
+        <section>
+            <h2 class="section-title">Il Nostro Processo</h2>
+            <p class="section-subtitle">Come lavoriamo per garantire il successo dei tuoi progetti</p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Consulenza</h3>
+                    <p class="step-description">Analizziamo le tue esigenze e definiamo gli obiettivi del progetto.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Pianificazione</h3>
+                    <p class="step-description">Creiamo una strategia dettagliata e un piano di progetto.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Sviluppo</h3>
+                    <p class="step-description">Realizziamo la soluzione seguendo le migliori pratiche del settore.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Consegna</h3>
+                    <p class="step-description">Consegniamo il progetto completo e forniamo supporto post-lancio.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Pronto a Trasformare la Tua Azienda?</h2>
+            <p>Contattaci oggi stesso per una consulenza gratuita e scopri come possiamo aiutarti a raggiungere i tuoi obiettivi</p>
+            <a href="#" class="cta-button">Contattaci Ora <i class="fas fa-arrow-right"></i></a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>ServicePro</h3>
+                <p>Forniamo soluzioni professionali per aiutare le aziende a crescere nel panorama digitale moderno.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Servizi</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Sviluppo Web</a></li>
+                    <li><a href="#">Design Grafico</a></li>
+                    <li><a href="#">Digital Marketing</a></li>
+                    <li><a href="#">E-commerce</a></li>
+                    <li><a href="#">App Mobile</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Azienda</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Chi Siamo</a></li>
+                    <li><a href="#">Lavora con Noi</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contatti</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contatti</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> Via Roma 123, Milano</li>
+                    <li><i class="fas fa-phone"></i> +39 02 1234 5678</li>
+                    <li><i class="fas fa-envelope"></i> info@servicepro.it</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 ServicePro. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+</body>
+</html>

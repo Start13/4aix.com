@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CreativePortfolio - Template Portfolio Moderno</title>
+  <meta name="description" content="Template portfolio creativo per designer, fotografi e sviluppatori. Design elegante e interattivo.">
+  
+  <!-- Preconnect per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <!-- Font Awesome e Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #1a2a6c;
+      --secondary-color: #00b4d8;
+      --accent-color: #fdbb2d;
+      --text-color: #333;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      --radius: 16px;
+      --muted: #64748b;
+    }
+
+    [data-theme="dark"] {
+      --primary-color: #2d3748;
+      --secondary-color: #63b3ed;
+      --accent-color: #f6ad55;
+      --text-color: #e2e8f0;
+      --bg-color: #1a202c;
+      --card-bg: #2d3748;
+      --shadow: 0 10px 30px rgba(0,0,0,0.3);
+      --muted: #94a3b8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Header */
+    .header {
+      background: var(--card-bg);
+      padding: 20px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-color);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary-color);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--primary-color), var(--bg-color));
+      padding: 160px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=1600&q=80') center/cover;
+      opacity: 0.1;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--text-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: var(--muted);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      color: white;
+      padding: 15px 30px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,180,216,0.4);
+      background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--secondary-color);
+      color: var(--secondary-color);
+    }
+
+    .btn-outline:hover {
+      background: var(--secondary-color);
+      color: white;
+    }
+
+    /* Sections */
+    .section {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    .section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: var(--text-color);
+    }
+
+    .section p {
+      text-align: center;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    /* Filter Buttons */
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 2px solid var(--secondary-color);
+      color: var(--secondary-color);
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--secondary-color);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Portfolio Grid */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .portfolio-item {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .portfolio-image {
+      width: 100%;
+      height: 300px;
+      background-size: cover;
+      background-position: center;
+      transition: var(--transition);
+    }
+
+    .portfolio-item:hover .portfolio-image {
+      transform: scale(1.05);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      padding: 30px 20px 20px;
+      transform: translateY(10px);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .portfolio-overlay h3 {
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .portfolio-overlay p {
+      text-align: left;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 15px;
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .skill-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .skill-card h3 {
+      margin-bottom: 15px;
+      color: var(--text-color);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: var(--card-bg);
+      padding: 50px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Footer */
+    .footer {
+      background: linear-gradient(135deg, var(--primary-color), #2c3e50);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 80px;
+    }
+
+    /* Project Modal */
+    .project-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 20px;
+    }
+
+    .project-modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 40px;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-color);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .close-modal:hover {
+      color: var(--accent-color);
+      transform: scale(1.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-buttons {
+        gap: 10px;
+      }
+
+      .filter-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+
+      .contact-form {
+        padding: 30px 20px;
+      }
+
+      .section {
+        margin: 60px auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <a href="#" class="logo">CreativePortfolio</a>
+      <div class="nav-links">
+        <a href="#portfolio">Portfolio</a>
+        <a href="#skills">Competenze</a>
+        <a href="#about">Chi Sono</a>
+        <a href="#contatti">Contatti</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Creatività e Innovazione Digitale</h1>
+      <p>Designer e sviluppatore appassionato di creare esperienze digitali uniche e memorabili</p>
+      <a href="#portfolio" class="btn">
+        Vedi i Miei Lavori
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="section">
+    <h2>Il Mio Portfolio</h2>
+    <p>Una selezione dei miei progetti più recenti e significativi</p>
+    
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">Tutti</button>
+      <button class="filter-btn" data-filter="web">Web Design</button>
+      <button class="filter-btn" data-filter="app">App Mobile</button>
+      <button class="filter-btn" data-filter="branding">Branding</button>
+    </div>
+    
+    <div class="portfolio-grid">
+      <!-- Project 1 -->
+      <div class="portfolio-item" data-category="web">
+        <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="portfolio-overlay">
+          <h3>E-commerce Moderno</h3>
+          <p>Piattaforma e-commerce completa con design responsive e UX ottimizzata</p>
+          <button class="btn btn-outline view-project" data-project="1">
+            Dettagli Progetto
+            <i class="fas fa-external-link-alt"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="portfolio-item" data-category="app">
+        <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="portfolio-overlay">
+          <h3>App Fitness</h3>
+          <p>Applicazione mobile per tracking allenamenti e progressi fitness</p>
+          <button class="btn btn-outline view-project" data-project="2">
+            Dettagli Progetto
+            <i class="fas fa-external-link-alt"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="portfolio-item" data-category="branding">
+        <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1634942537034-2531766767d1?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="portfolio-overlay">
+          <h3>Rebranding Aziendale</h3>
+          <p>Identity completa per startup tech con logo e guidelines</p>
+          <button class="btn btn-outline view-project" data-project="3">
+            Dettagli Progetto
+            <i class="fas fa-external-link-alt"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="portfolio-item" data-category="web">
+        <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="portfolio-overlay">
+          <h3>Corporate Website</h3>
+          <p>Sito aziendale moderno con CMS personalizzato</p>
+          <button class="btn btn-outline view-project" data-project="4">
+            Dettagli Progetto
+            <i class="fas fa-external-link-alt"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="portfolio-item" data-category="app">
+        <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="portfolio-overlay">
+          <h3>Food Delivery App</h3>
+          <p>App di delivery con geolocalizzazione e pagamenti integrati</p>
+          <button class="btn btn-outline view-project" data-project="5">
+            Dettagli Progetto
+            <i class="fas fa-external-link-alt"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="portfolio-item" data-category="branding">
+        <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="portfolio-overlay">
+          <h3>Packaging Design</h3>
+          <p>Linea packaging prodotto per brand di cosmesi naturale</p>
+          <button class="btn btn-outline view-project" data-project="6">
+            Dettagli Progetto
+            <i class="fas fa-external-link-alt"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section">
+    <h2>Le Mie Competenze</h2>
+    <p>Un mix di creatività e competenze tecniche per progetti di successo</p>
+    
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">
+          <i class="fas fa-pencil-alt"></i>
+        </div>
+        <h3>UI/UX Design</h3>
+        <p>Design di interfacce intuitive e esperienze utente memorabili</p>
+      </div>
+      
+      <div class="skill-card">
+        <div class="skill-icon">
+          <i class="fas fa-code"></i>
+        </div>
+        <h3>Development</h3>
+        <p>Sviluppo frontend e backend con tecnologie moderne</p>
+      </div>
+      
+      <div class="skill-card">
+        <div class="skill-icon">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <h3>App Mobile</h3>
+        <p>Applicazioni native e ibride per iOS e Android</p>
+      </div>
+      
+      <div class="skill-card">
+        <div class="skill-icon">
+          <i class="fas fa-rocket"></i>
+        </div>
+        <h3>Branding</h3>
+        <p>Identity aziendale e strategie di marca complete</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contatti" class="section">
+    <h2>Contattami</h2>
+    <p>Hai un progetto in mente? Scrivimi e parliamone!</p>
+    
+    <div class="contact-form">
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">Nome e Cognome</label>
+          <input type="text" id="name" name="name" required autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label for="service">Tipo di Progetto</label>
+          <select id="service" name="service" required autocomplete="off">
+            <option value="">Seleziona un servizio</option>
+            <option value="web-design">Web Design</option>
+            <option value="sviluppo">Sviluppo Web</option>
+            <option value="app-mobile">App Mobile</option>
+            <option value="branding">Branding</option>
+            <option value="consulenza">Consulenza</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Messaggio</label>
+          <textarea id="message" name="message" placeholder="Descrivi il tuo progetto..." required autocomplete="off"></textarea>
+        </div>
+
+        <button type="submit" class="btn">
+          Invia Messaggio
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2024 CreativePortfolio. Tutti i diritti riservati.</p>
+    <p>Template portfolio realizzato con 4AIX Web Solutions</p>
+  </footer>
+
+  <!-- Project Modal -->
+  <div class="project-modal" id="projectModal">
+    <div class="modal-content">
+      <button class="close-modal" id="closeModal">
+        <i class="fas fa-times"></i>
+      </button>
+      <div id="modalBody">
+        <!-- Modal content will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Portfolio Filtering
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        const filterValue = button.getAttribute('data-filter');
+        
+        portfolioItems.forEach(item => {
+          if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Project Modal
+    const projectModal = document.getElementById('projectModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalBody = document.getElementById('modalBody');
+    const viewProjectButtons = document.querySelectorAll('.view-project');
+
+    const projectDetails = {
+      1: {
+        title: "E-commerce Moderno",
+        description: "Piattaforma e-commerce completa sviluppata con tecnologie moderne. Il progetto include un design responsive, sistema di pagamento integrato, gestione inventario e dashboard amministrativo.",
+        features: ["Design Responsive", "Carrello Acquisti", "Pagamenti Sicuri", "Dashboard Admin", "SEO Ottimizzato"],
+        technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+        image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=800&q=80"
+      },
+      2: {
+        title: "App Fitness",
+        description: "Applicazione mobile per il tracking di allenamenti e progressi fitness. Include pianificazione workout, tracciamento calorie e community features.",
+        features: ["Tracking Allenamenti", "Pianificazione Workout", "Community", "Statistiche Dettagliate"],
+        technologies: ["React Native", "Firebase", "Redux", "Chart.js"],
+        image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80"
+      },
+      3: {
+        title: "Rebranding Aziendale",
+        description: "Completa identity aziendale per startup tech innovativa. Il progetto include logo design, guidelines aziendali e applicazione su vari media.",
+        features: ["Logo Design", "Brand Guidelines", "Stationery", "Digital Assets"],
+        technologies: ["Adobe Illustrator", "Photoshop", "InDesign"],
+        image: "https://images.unsplash.com/photo-1634942537034-2531766767d1?auto=format&fit=crop&w=800&q=80"
+      }
+    };
+
+    viewProjectButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const projectId = button.getAttribute('data-project');
+        const project = projectDetails[projectId];
+        
+        if (project) {
+          modalBody.innerHTML = `
+            <h2>${project.title}</h2>
+            <div style="margin: 20px 0;">
+              <img src="${project.image}" alt="${project.title}" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+              <p>${project.description}</p>
+            </div>
+            <div style="margin: 20px 0;">
+              <h3>Caratteristiche</h3>
+              <ul style="margin: 10px 0 20px 20px;">
+                ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+              </ul>
+            </div>
+            <div style="margin: 20px 0;">
+              <h3>Tecnologie</h3>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0;">
+                ${project.technologies.map(tech => `<span style="background: var(--secondary-color); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.9rem;">${tech}</span>`).join('')}
+              </div>
+            </div>
+          `;
+          projectModal.classList.add('active');
+        }
+      });
+    });
+
+    closeModal.addEventListener('click', () => {
+      projectModal.classList.remove('active');
+    });
+
+    projectModal.addEventListener('click', (e) => {
+      if (e.target === projectModal) {
+        projectModal.classList.remove('active');
+      }
+    });
+
+    // Form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        service: document.getElementById('service').value,
+        message: document.getElementById('message').value
+      };
+
+      // Simulazione invio form
+      const subject = `Richiesta per: ${formData.service}`;
+      const body = `Nome: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0AServizio: ${formData.service}%0D%0AMessaggio: ${formData.message}`;
+      
+      window.location.href = `mailto:info@creativeportfolio.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      alert('Grazie per il tuo messaggio! Stai per essere reindirizzato alla composizione email.');
+    });
+
+    // Smooth scroll per i link di navigazione
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('.header');
+      if (window.scrollY > 100) {
+        header.style.background = 'var(--card-bg)';
+        header.style.boxShadow = 'var(--shadow)';
+      } else {
+        header.style.background = 'var(--card-bg)';
+        header.style.boxShadow = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
