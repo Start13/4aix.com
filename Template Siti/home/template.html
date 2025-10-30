@@ -4,8 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>4AIX — Template Web Professionali</title>
-  <meta name="description" content="Esplora i template web di 4AIX, pronti all'uso e ottimizzati per mobile e personalizzazione.">
+  <meta name="description" content="Esplora i template web di 4AIX, pronti all'uso e ottimizzati per mobile e personalizzazione">
   
+  <!-- Content Security Policy Ottimizzata -->
+  <meta http-equiv="Content-Security-Policy" 
+        content="default-src 'self' https: data: blob: 'unsafe-inline';
+                 script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
+                 style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com;
+                 font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com;
+                 img-src 'self' https: data: blob: https://images.unsplash.com;
+                 connect-src 'self' https:;
+                 frame-src 'none';
+                 object-src 'none';">
+
   <!-- Preconnect per performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -677,8 +688,7 @@
         renderMenu(); 
         renderGrid(); 
         updateTexts();
-        // Trigger per sincronizzare altre pagine
-        window.localStorage.setItem('langUpdate', Date.now().toString());
+        console.log('🌍 Lingua cambiata:', currentLang);
     }
 
     function toggleTheme() {
@@ -686,32 +696,63 @@
         document.documentElement.setAttribute("data-theme", currentTheme);
         localStorage.setItem("theme", currentTheme);
         updateThemeIcon();
-        // Trigger per sincronizzare altre pagine
-        window.localStorage.setItem('themeUpdate', Date.now().toString());
+        console.log('🎨 Tema cambiato:', currentTheme);
     }
 
-    /* === SINCRONIZZAZIONE CROSS-PAGE === */
-    function setupCrossPageSync() {
-        // Ascolta cambiamenti da altre pagine
+    /* === SINCRONIZZAZIONE BIDIREZIONALE MIGLIORATA === */
+    function setupBidirectionalSync() {
+        console.log('🔄 Inizializzazione sincronizzazione bidirezionale...');
+
+        // Ascolta cambiamenti dal localStorage (da altre pagine)
         window.addEventListener('storage', (e) => {
-            if (e.key === 'langUpdate' || e.key === 'themeUpdate') {
-                // Forza aggiornamento da localStorage
-                const lang = localStorage.getItem('language') || 'it';
-                const theme = localStorage.getItem('theme') || 'dark';
-                
-                if (lang !== currentLang) {
-                    currentLang = lang;
+            console.log('📡 Evento storage ricevuto:', e.key, e.newValue);
+            
+            if (e.key === 'language' && e.newValue) {
+                const newLang = e.newValue;
+                if (newLang !== currentLang) {
+                    console.log('🔄 Aggiornamento lingua da sync:', newLang);
+                    currentLang = newLang;
+                    localStorage.setItem('language', currentLang);
                     updateLanguageText();
-                    renderMenu();a
+                    renderMenu();
                     renderGrid();
                     updateTexts();
                 }
-                
-                if (theme !== currentTheme) {
-                    currentTheme = theme;
-                    document.documentElement.setAttribute("data-theme", currentTheme);
+            }
+            
+            if (e.key === 'theme' && e.newValue) {
+                const newTheme = e.newValue;
+                if (newTheme !== currentTheme) {
+                    console.log('🎨 Aggiornamento tema da sync:', newTheme);
+                    currentTheme = newTheme;
+                    localStorage.setItem('theme', currentTheme);
+                    document.documentElement.setAttribute('data-theme', currentTheme);
                     updateThemeIcon();
                 }
+            }
+        });
+
+        // Forza un controllo iniziale al caricamento
+        window.addEventListener('load', () => {
+            const savedLang = localStorage.getItem('language');
+            const savedTheme = localStorage.getItem('theme');
+            
+            console.log('🔍 Controllo impostazioni salvate:', { savedLang, savedTheme });
+            
+            if (savedLang && savedLang !== currentLang) {
+                console.log('🔄 Ripristino lingua iniziale:', savedLang);
+                currentLang = savedLang;
+                updateLanguageText();
+                renderMenu();
+                renderGrid();
+                updateTexts();
+            }
+            
+            if (savedTheme && savedTheme !== currentTheme) {
+                console.log('🎨 Ripristino tema iniziale:', savedTheme);
+                currentTheme = savedTheme;
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                updateThemeIcon();
             }
         });
     }
@@ -785,8 +826,8 @@
     updateThemeIcon();
     updateLanguageText();
     
-    // Attiva sincronizzazione
-    setupCrossPageSync();
+    // Attiva sincronizzazione BIDIREZIONALE
+    setupBidirectionalSync();
 
     // Inizializzazione
     document.getElementById("year").textContent = new Date().getFullYear();
