@@ -176,6 +176,16 @@
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
+      background: rgba(255,255,255,0.75); /* visibilità in light mode */
+      padding: 8px 16px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    [data-theme="dark"] header p {
+      background: none;
+      color: var(--muted);
+      padding: 0;
+      box-shadow: none;
     }
 
     /* === CATEGORY MENU === */
@@ -199,6 +209,10 @@
       font-weight: 600;
       transition: var(--transition);
       backdrop-filter: blur(10px);
+      text-shadow: 1px 1px 6px #fff,0 2px 8px rgba(0,0,0,0.08); /* maggiore visibilità */
+    }
+    [data-theme="dark"] .menu button {
+      text-shadow: none;
     }
 
     .menu button:hover {
