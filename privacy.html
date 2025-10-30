@@ -84,9 +84,28 @@
             margin-bottom: 30px;
         }
     </style>
+    <script>
+      (function syncLanguageFromGlobal(){
+        try {
+          var savedLang = localStorage.getItem('language') || 'it';
+          document.documentElement.setAttribute('lang', savedLang);
+          window.addEventListener('storage', function(e){
+            if(e.key === 'language' && e.newValue){
+              document.documentElement.setAttribute('lang', e.newValue);
+              var it = document.querySelector('.policy-it');
+              var en = document.querySelector('.policy-en');
+              if(it && en){
+                it.style.display = (e.newValue === 'it') ? 'block' : 'none';
+                en.style.display = (e.newValue === 'en') ? 'block' : 'none';
+              }
+            }
+          });
+        } catch(_) {}
+      })();
+    </script>
 </head>
 <body>
-    <div class="container">
+    <div class="container policy-it">
         <a href="index.html" class="back-link">
             <i class="fas fa-arrow-left"></i> Torna al Sito Principale
         </a>
@@ -143,5 +162,56 @@
         <h2>Contatti per esercitare i diritti</h2>
         <p>Per esercitare i diritti dell'Utente, gli Utenti possono indirizzare una richiesta agli estremi di contatto del Titolare indicati in questo documento.</p>
     </div>
+    <div class="container policy-en" style="display:none">
+      <a href="index.html" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Main Site
+      </a>
+      <h1>Privacy Policy</h1>
+      <div class="update-date"><strong>Last update:</strong> January 2024</div>
+      <h2>Data Controller</h2>
+      <div class="contact-info">
+        <p><strong>Corrado Bruni</strong><br>Turin (TO)<br>Email: corbruni@gmail.com<br>PEC: corrado.bruni@pec.it</p>
+      </div>
+      <h2>Types of Data Collected</h2>
+      <p>Among the data collected by this site, either autonomously or through third parties, there are: email, first name, last name, and usage data.</p>
+      <p>Personal data may be provided voluntarily by the user via the contact form, or collected automatically during the use of this site.</p>
+      <h2>Purposes of Processing</h2>
+      <p>User data is collected to allow the controller to provide its services, as well as for the following purposes: contacting the user and statistics.</p>
+      <p>Personal data may be freely provided by the user or, in case of usage data, collected automatically during use of this application.</p>
+      <h2>Processing methods and place</h2>
+      <p>The controller adopts appropriate security measures to prevent unauthorized access, disclosure, modification, or destruction of personal data.</p>
+      <p>Data processing is carried out using IT and/or telematic tools, with organizational methods and logic strictly related to the purposes indicated.</p>
+      <h2>Legal basis of processing</h2>
+      <p>The controller processes personal data relating to the user if one of the following applies:</p>
+      <ul>
+        <li>The user has given consent for one or more specific purposes</li>
+        <li>Processing is necessary for the execution of a contract with the user and/or for any pre-contractual obligations thereof</li>
+        <li>Processing is necessary for compliance with a legal obligation to which the controller is subject</li>
+      </ul>
+      <h2>Retention period</h2>
+      <p>Data are processed and stored for as long as required by the purpose they have been collected for. Personal data collected for purposes related to the performance of a contract between the controller and the user shall be retained until such contract has been fully performed.</p>
+      <h2>User rights</h2>
+      <p>Users may exercise certain rights regarding their data processed by the controller. In particular, the user has the right to:</p>
+      <ul>
+        <li>Withdraw consent at any time</li>
+        <li>Object to processing of their data</li>
+        <li>Access their data</li>
+        <li>Verify and request rectification</li>
+        <li>Obtain restriction of processing</li>
+        <li>Obtain erasure of their personal data</li>
+        <li>Receive their data in a structured, commonly used and machine-readable format</li>
+      </ul>
+      <h2>Amendments to this privacy policy</h2>
+      <p>The controller reserves the right to make changes to this privacy policy at any time by giving notice to its users on this page.</p>
+      <h2>Contacts to exercise rights</h2>
+      <p>To exercise your rights, users may address a request to the contact details of the controller indicated in this document.</p>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var lang = document.documentElement.lang;
+        document.querySelector('.policy-it').style.display = (lang==="it")?"block":"none";
+        document.querySelector('.policy-en').style.display = (lang==="en")?"block":"none";
+      });
+    </script>
 </body>
 </html>
