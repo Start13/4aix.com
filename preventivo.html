@@ -534,18 +534,17 @@
     <p class="intro" data-i18n="form.intro">Compila il form dettagliato e ricevi un preventivo personalizzato in poche ore</p>
 
     <div class="contact-form">
-      <form id="autoQuoteForm" action="https://formspree.io/f/mpwyeodr" method="POST">
-        <!-- Campi nascosti CORRETTI per Formspree -->
-        <input type="hidden" name="_cc" value="corbruni@gmail.com">
-        <input type="hidden" name="_subject" value="Nuovo Preventivo da 4AIX.com">
-        <input type="hidden" name="_replyto" id="formspree_replyto">
+      <!-- FORM CON FORMSPREE NUOVO - SENZA CAMPI HIDDEN LEGACY -->
+      <form id="autoQuoteForm">
+        <!-- CAMPO HONEYPOT PER ANTI-SPAM -->
+        <input type="checkbox" name="_honeypot" value="" style="display:none" tabindex="-1" autocomplete="off">
         
         <!-- SEZIONE A: Informazioni Base -->
         <div class="form-section">
           <h3 data-i18n="form.sectionA">Informazioni Base</h3>
           <div class="form-group">
             <label for="nome" data-i18n="form.name">Nome e Cognome *</label>
-            <input type="text" id="nome" name="nome" required autocomplete="name" data-i18n-placeholder="form.namePlaceholder">
+            <input type="text" id="nome" name="name" required autocomplete="name" data-i18n-placeholder="form.namePlaceholder">
           </div>
 
           <div class="form-group">
@@ -555,17 +554,17 @@
 
           <div class="form-group">
             <label for="telefono" data-i18n="form.phone">Telefono</label>
-            <input type="tel" id="telefono" name="telefono" autocomplete="tel" data-i18n-placeholder="form.phonePlaceholder">
+            <input type="tel" id="telefono" name="phone" autocomplete="tel" data-i18n-placeholder="form.phonePlaceholder">
           </div>
 
           <div class="form-group">
             <label for="azienda" data-i18n="form.company">Azienda/Attività</label>
-            <input type="text" id="azienda" name="azienda" data-i18n-placeholder="form.companyPlaceholder">
+            <input type="text" id="azienda" name="company" data-i18n-placeholder="form.companyPlaceholder">
           </div>
 
           <div class="form-group">
             <label for="settore" data-i18n="form.sector">Settore di attività *</label>
-            <select id="settore" name="settore" required>
+            <select id="settore" name="sector" required>
               <option value="" data-i18n="form.selectSector">Seleziona settore</option>
               <option value="ristorazione" data-i18n="form.sector1">Ristorazione</option>
               <option value="commercio" data-i18n="form.sector2">Commercio</option>
@@ -577,30 +576,30 @@
           </div>
         </div>
 
-        <!-- SEZIONE B: Tipologia Sito - CORRETTA -->
+        <!-- SEZIONE B: Tipologia Sito -->
         <div class="form-section">
           <h3 data-i18n="form.sectionB">Tipologia Sito</h3>
           <div class="form-group">
             <label data-i18n="form.siteType">Che tipo di sito ti serve? *</label>
             <div class="checkbox-group">
               <div class="checkbox-item">
-                <input type="radio" id="vetrina" name="tipologia" value="vetrina" required>
+                <input type="radio" id="vetrina" name="website_type" value="vetrina" required>
                 <label for="vetrina" data-i18n="form.type1" style="margin: 0;">Vetrina/Presentazione</label>
               </div>
               <div class="checkbox-item">
-                <input type="radio" id="ecommerce" name="tipologia" value="ecommerce">
+                <input type="radio" id="ecommerce" name="website_type" value="ecommerce">
                 <label for="ecommerce" data-i18n="form.type2" style="margin: 0;">E-commerce</label>
               </div>
               <div class="checkbox-item">
-                <input type="radio" id="landing" name="tipologia" value="landing">
+                <input type="radio" id="landing" name="website_type" value="landing">
                 <label for="landing" data-i18n="form.type3" style="margin: 0;">Landing Page</label>
               </div>
               <div class="checkbox-item">
-                <input type="radio" id="portfolio" name="tipologia" value="portfolio">
+                <input type="radio" id="portfolio" name="website_type" value="portfolio">
                 <label for="portfolio" data-i18n="form.type4" style="margin: 0;">Portfolio</label>
               </div>
               <div class="checkbox-item">
-                <input type="radio" id="gestionale" name="tipologia" value="gestionale">
+                <input type="radio" id="gestionale" name="website_type" value="gestionale">
                 <label for="gestionale" data-i18n="form.type5" style="margin: 0;">Software Gestionale</label>
               </div>
             </div>
@@ -612,35 +611,35 @@
           <h3 data-i18n="form.sectionC">Funzionalità Richieste</h3>
           <div class="checkbox-group">
             <div class="checkbox-item">
-              <input type="checkbox" id="funz1" name="funzionalita" value="form-contatto">
+              <input type="checkbox" id="funz1" name="features" value="form-contatto">
               <label for="funz1" data-i18n="form.feat1">Form di contatto</label>
             </div>
             <div class="checkbox-item">
-              <input type="checkbox" id="funz2" name="funzionalita" value="newsletter">
+              <input type="checkbox" id="funz2" name="features" value="newsletter">
               <label for="funz2" data-i18n="form.feat2">Newsletter</label>
             </div>
             <div class="checkbox-item">
-              <input type="checkbox" id="funz3" name="funzionalita" value="blog">
+              <input type="checkbox" id="funz3" name="features" value="blog">
               <label for="funz3" data-i18n="form.feat3">Blog integrato</label>
             </div>
             <div class="checkbox-item">
-              <input type="checkbox" id="funz4" name="funzionalita" value="carrello">
+              <input type="checkbox" id="funz4" name="features" value="carrello">
               <label for="funz4" data-i18n="form.feat4">Carrello e-commerce</label>
             </div>
             <div class="checkbox-item">
-              <input type="checkbox" id="funz5" name="funzionalita" value="prenotazioni">
+              <input type="checkbox" id="funz5" name="features" value="prenotazioni">
               <label for="funz5" data-i18n="form.feat5">Sistema di prenotazioni</label>
             </div>
             <div class="checkbox-item">
-              <input type="checkbox" id="funz6" name="funzionalita" value="login">
+              <input type="checkbox" id="funz6" name="features" value="login">
               <label for="funz6" data-i18n="form.feat6">Area riservata/Login</label>
             </div>
             <div class="checkbox-item">
-              <input type="checkbox" id="funz7" name="funzionalita" value="multilingua">
+              <input type="checkbox" id="funz7" name="features" value="multilingua">
               <label for="funz7" data-i18n="form.feat7">Multilingua (IT/EN)</label>
             </div>
             <div class="checkbox-item">
-              <input type="checkbox" id="funz8" name="funzionalita" value="social">
+              <input type="checkbox" id="funz8" name="features" value="social">
               <label for="funz8" data-i18n="form.feat8">Integrazione social</label>
             </div>
           </div>
@@ -665,12 +664,12 @@
 
           <div class="form-group">
             <label for="referenze" data-i18n="form.references">Siti di riferimento che ti piacciono</label>
-            <textarea id="referenze" name="referenze" data-i18n-placeholder="form.referencesPlaceholder"></textarea>
+            <textarea id="referenze" name="references" data-i18n-placeholder="form.referencesPlaceholder"></textarea>
           </div>
 
           <div class="form-group">
             <label for="colori" data-i18n="form.colors">Colori aziendali preferiti</label>
-            <input type="text" id="colori" name="colori" data-i18n-placeholder="form.colorsPlaceholder">
+            <input type="text" id="colori" name="colors" data-i18n-placeholder="form.colorsPlaceholder">
           </div>
         </div>
 
@@ -698,7 +697,7 @@
 
           <div class="form-group">
             <label for="urgenza" data-i18n="form.urgency">Urgenza lancio *</label>
-            <select id="urgenza" name="urgenza" required>
+            <select id="urgenza" name="urgency" required>
               <option value="" data-i18n="form.selectUrgency">Seleziona urgenza</option>
               <option value="1-settimana" data-i18n="form.urgency1">1 settimana</option>
               <option value="2-4-settimane" data-i18n="form.urgency2">2-4 settimane</option>
@@ -713,7 +712,7 @@
           <h3 data-i18n="form.sectionF">Note Aggiuntive</h3>
           <div class="form-group">
             <label for="note" data-i18n="form.notes">Altre informazioni utili</label>
-            <textarea id="note" name="note" data-i18n-placeholder="form.notesPlaceholder"></textarea>
+            <textarea id="note" name="notes" data-i18n-placeholder="form.notesPlaceholder"></textarea>
           </div>
         </div>
 
@@ -991,8 +990,8 @@
       });
     });
 
-    // ===== FORM SUBMISSION CORRETTO =====
-    document.getElementById('autoQuoteForm').addEventListener('submit', function(e) {
+    // ===== FORMSPREE NUOVO - CON FORM ID UNIVOCO =====
+    document.getElementById('autoQuoteForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       
       const form = e.target;
@@ -1017,6 +1016,13 @@
         }
       });
       
+      // Validazione budget
+      const budget = document.getElementById('budget').value;
+      if (!budget) {
+        isValid = false;
+        document.querySelector('.budget-options').style.border = '2px solid #e53e3e';
+      }
+      
       if (!isValid) {
         messageDiv.textContent = currentLanguage === 'it' 
           ? 'Per favore, compila tutti i campi obbligatori.' 
@@ -1026,99 +1032,123 @@
         return;
       }
       
-      // Imposta dinamicamente _replyto con l'email dell'utente
-      const userEmail = document.getElementById('email').value;
-      document.getElementById('formspree_replyto').value = userEmail;
+      // Controllo honeypot (anti-spam)
+      const honeypot = form.querySelector('input[name="_honeypot"]');
+      if (honeypot && honeypot.checked) {
+        console.log('🚫 Honeypot triggered - probable spam');
+        messageDiv.textContent = currentLanguage === 'it' 
+          ? 'Richiesta bloccata come spam.' 
+          : 'Request blocked as spam.';
+        messageDiv.className = 'form-message error';
+        messageDiv.style.display = 'block';
+        return;
+      }
       
       // Mostra stato di invio
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + 
         (currentLanguage === 'it' ? 'Invio in corso...' : 'Sending...');
       submitBtn.disabled = true;
 
-      // Prepara i dati del form
-      const formData = new FormData(form);
-      
-      // DEBUG: Log dei dati del form
-      console.log('📤 Invio dati a Formspree:');
-      for (let [key, value] of formData.entries()) {
-        console.log(`  ${key}: ${value}`);
-      }
+      try {
+        // Prepara i dati per Formspree
+        const formData = {
+          // Campi principali
+          name: document.getElementById('nome').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('telefono').value || 'Non fornito',
+          company: document.getElementById('azienda').value || 'Non fornita',
+          sector: document.getElementById('settore').value,
+          website_type: document.querySelector('input[name="website_type"]:checked')?.value || 'Non specificato',
+          features: Array.from(document.querySelectorAll('input[name="features"]:checked')).map(cb => cb.value).join(', ') || 'Nessuna',
+          logo: document.querySelector('input[name="logo"]:checked')?.value || 'Non specificato',
+          references: document.getElementById('referenze').value || 'Nessuna',
+          colors: document.getElementById('colori').value || 'Nessuno',
+          budget: budget + '€',
+          urgency: document.getElementById('urgenza').value,
+          notes: document.getElementById('note').value || 'Nessuna',
+          
+          // Campi Formspree speciali
+          _subject: `Nuovo Preventivo da: ${document.getElementById('nome').value}`,
+          _replyto: document.getElementById('email').value,
+          _format: 'plain'
+        };
 
-      // Invia a Formspree
-      fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => {
+        console.log('📤 Invio dati a Formspree:', formData);
+
+        // INVIO CON FORMSPREE NUOVO - FORM ID UNIVOCO
+        const response = await fetch('https://formspree.io/f/mpwyeodr', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+
         console.log('📨 Risposta Formspree:', response.status, response.statusText);
-        
+
         if (response.ok) {
-          // SUCCESSO - Formspree ha accettato la richiesta
-          return response.json().then(data => {
-            console.log('✅ Formspree success:', data);
-            
-            messageDiv.textContent = translations[currentLanguage]['success.message'];
-            messageDiv.className = 'form-message success';
-            messageDiv.style.display = 'block';
-            
-            // Scroll to success message
-            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // Reset form
-            form.reset();
-            document.querySelectorAll('.budget-option').forEach(opt => opt.classList.remove('selected'));
-            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-            document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
-            
-            console.log('✅ Form inviato con successo a Formspree');
-          });
+          const data = await response.json();
+          console.log('✅ Formspree success:', data);
+          
+          messageDiv.innerHTML = `
+            <strong>${translations[currentLanguage]['success.message']}</strong>
+            <br><br>
+            <small>
+              ${currentLanguage === 'it' 
+                ? '✅ Richiesta inviata correttamente!<br>📧 Riceverai una conferma via email entro pochi minuti' 
+                : '✅ Request successfully sent!<br>📧 You will receive a confirmation email within minutes'}
+            </small>
+          `;
+          messageDiv.className = 'form-message success';
+          messageDiv.style.display = 'block';
+          
+          // Scroll to success message
+          messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          
+          // Reset form completo
+          form.reset();
+          document.querySelectorAll('.budget-option').forEach(opt => opt.classList.remove('selected'));
+          document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+          document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+          
         } else {
-          // ERRORE Formspree
-          return response.text().then(text => {
-            console.error('❌ Errore Formspree:', response.status, text);
-            throw new Error(`Formspree error: ${response.status} ${response.statusText}`);
-          });
+          throw new Error(`Formspree error: ${response.status} ${response.statusText}`);
         }
-      })
-      .catch(error => {
-        console.error('❌ Errore nell\'invio:', error);
         
-        // FALLBACK: Crea email manuale
+      } catch (error) {
+        console.error('❌ Errore completo:', error);
+        
+        // FALLBACK: Email manuale
         const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
         const telefono = document.getElementById('telefono').value || 'Non fornito';
         const azienda = document.getElementById('azienda').value || 'Non fornita';
         const settore = document.getElementById('settore').value;
-        const tipologia = document.querySelector('input[name="tipologia"]:checked')?.value || 'Non specificata';
-        
-        // Raccogli funzionalità selezionate
-        const funzionalitaSelezionate = Array.from(document.querySelectorAll('input[name="funzionalita"]:checked'))
-          .map(cb => cb.value).join(', ') || 'Nessuna';
-          
+        const websiteType = document.querySelector('input[name="website_type"]:checked')?.value || 'Non specificato';
+        const features = Array.from(document.querySelectorAll('input[name="features"]:checked')).map(cb => cb.value).join(', ') || 'Nessuna';
         const logo = document.querySelector('input[name="logo"]:checked')?.value || 'Non specificato';
         const referenze = document.getElementById('referenze').value || 'Nessuna';
         const colori = document.getElementById('colori').value || 'Nessuno';
-        const budget = document.getElementById('budget').value || 'Non specificato';
-        const urgenza = document.getElementById('urgenza').value || 'Non specificata';
+        const urgenza = document.getElementById('urgenza').value;
         const note = document.getElementById('note').value || 'Nessuna';
         
         const subject = `Preventivo Automatico - ${azienda}`;
         const body = `
-Nuovo preventivo richiesto da ${nome}:
+NUOVO PREVENTIVO RICHIESTO
 
 📋 INFORMAZIONI BASE:
-• Email: ${userEmail}
+• Nome: ${nome}
+• Email: ${email}
 • Telefono: ${telefono}
 • Azienda: ${azienda}
 • Settore: ${settore}
 
 🌐 TIPOLOGIA SITO:
-• ${tipologia}
+• ${websiteType}
 
 ⚙️ FUNZIONALITÀ RICHIESTE:
-• ${funzionalitaSelezionate}
+• ${features}
 
 🎨 DESIGN & CONTENUTI:
 • Logo: ${logo}
@@ -1138,25 +1168,26 @@ Inviato dal form preventivo di 4AIX.com
 
         const mailtoUrl = `mailto:corbruni@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         
-        // Mostra messaggio di successo con opzione fallback
-        messageDiv.innerHTML = translations[currentLanguage]['success.message'] + 
-          '<br><br><small>' + 
-          (currentLanguage === 'it' 
-            ? 'Se non ricevi conferma entro poche ore, <a href="' + mailtoUrl + '" style="color: inherit; text-decoration: underline;">invia una email direttamente</a>.'
-            : 'If you don\'t receive confirmation within few hours, <a href="' + mailtoUrl + '" style="color: inherit; text-decoration: underline;">send an email directly</a>.') +
-          '</small>';
+        messageDiv.innerHTML = `
+          <strong>${translations[currentLanguage]['success.message']}</strong>
+          <br><br>
+          <small>
+            ${currentLanguage === 'it' 
+              ? '📧 Apertura client email...<br>✅ La richiesta è pronta, premi "Invia"!' 
+              : '📧 Opening email client...<br>✅ Request is ready, press "Send"!'}
+          </small>
+        `;
         messageDiv.className = 'form-message success';
         messageDiv.style.display = 'block';
         
         // Apri automaticamente il client email come fallback
         setTimeout(() => {
           window.location.href = mailtoUrl;
-        }, 2000);
-      })
-      .finally(() => {
+        }, 1500);
+      } finally {
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
-      });
+      }
     });
 
     // ===== SMOOTH SCROLL =====
@@ -1180,7 +1211,6 @@ Inviato dal form preventivo di 4AIX.com
         document.getElementById('cookieConsent').style.display = 'block';
       }
       
-      // Se ha accettato i cookie analitici, carica Google Analytics
       if (consent === 'accepted') {
         loadGoogleAnalytics();
       }
@@ -1198,7 +1228,6 @@ Inviato dal form preventivo di 4AIX.com
     }
 
     function loadGoogleAnalytics() {
-      // Google Analytics è già incluso nell'head, si attiverà automaticamente
       console.log('Google Analytics caricato dopo consenso');
     }
 
@@ -1206,7 +1235,7 @@ Inviato dal form preventivo di 4AIX.com
     document.addEventListener('DOMContentLoaded', function() {
       initializeSettings();
       checkCookieConsent();
-      console.log('✅ Pagina preventivo.html inizializzata con form completo');
+      console.log('✅ Pagina preventivo.html inizializzata con FORMSPREE NUOVO');
     });
   </script>
 </body>
