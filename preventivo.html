@@ -998,49 +998,160 @@
       const form = e.target;
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
+      const messageDiv = document.getElementById('formMessage');
+      
+      // Reset e nascondi messaggi precedenti
+      messageDiv.style.display = 'none';
+      messageDiv.className = 'form-message';
+      
+      // Validazione campi obbligatori
+      const requiredFields = form.querySelectorAll('[required]');
+      let isValid = true;
+      
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          isValid = false;
+          field.style.borderColor = '#e53e3e';
+        } else {
+          field.style.borderColor = '';
+        }
+      });
+      
+      if (!isValid) {
+        messageDiv.textContent = currentLanguage === 'it' 
+          ? 'Per favore, compila tutti i campi obbligatori.' 
+          : 'Please fill in all required fields.';
+        messageDiv.className = 'form-message error';
+        messageDiv.style.display = 'block';
+        return;
+      }
       
       // Imposta dinamicamente _replyto con l'email dell'utente
       const userEmail = document.getElementById('email').value;
       document.getElementById('formspree_replyto').value = userEmail;
       
       // Mostra stato di invio
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio in corso...';
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + 
+        (currentLanguage === 'it' ? 'Invio in corso...' : 'Sending...');
       submitBtn.disabled = true;
+
+      // Prepara i dati del form
+      const formData = new FormData(form);
+      
+      // DEBUG: Log dei dati del form
+      console.log('📤 Invio dati a Formspree:');
+      for (let [key, value] of formData.entries()) {
+        console.log(`  ${key}: ${value}`);
+      }
 
       // Invia a Formspree
       fetch(form.action, {
-        method: form.method,
-        body: new FormData(form),
+        method: 'POST',
+        body: formData,
         headers: {
           'Accept': 'application/json'
         }
       })
       .then(response => {
+        console.log('📨 Risposta Formspree:', response.status, response.statusText);
+        
         if (response.ok) {
-          // SUCCESSO
-          const messageDiv = document.getElementById('formMessage');
-          messageDiv.textContent = translations[currentLanguage]['success.message'];
-          messageDiv.className = 'form-message success';
-          messageDiv.style.display = 'block';
-          
-          // Scroll to success message
-          messageDiv.scrollIntoView({ behavior: 'smooth' });
-          
-          // Reset form
-          form.reset();
-          document.querySelectorAll('.budget-option').forEach(opt => opt.classList.remove('selected'));
-          
-          console.log('✅ Form inviato con successo a Formspree');
+          // SUCCESSO - Formspree ha accettato la richiesta
+          return response.json().then(data => {
+            console.log('✅ Formspree success:', data);
+            
+            messageDiv.textContent = translations[currentLanguage]['success.message'];
+            messageDiv.className = 'form-message success';
+            messageDiv.style.display = 'block';
+            
+            // Scroll to success message
+            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Reset form
+            form.reset();
+            document.querySelectorAll('.budget-option').forEach(opt => opt.classList.remove('selected'));
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+            
+            console.log('✅ Form inviato con successo a Formspree');
+          });
         } else {
-          throw new Error('Errore nel server Formspree');
+          // ERRORE Formspree
+          return response.text().then(text => {
+            console.error('❌ Errore Formspree:', response.status, text);
+            throw new Error(`Formspree error: ${response.status} ${response.statusText}`);
+          });
         }
       })
       .catch(error => {
-        console.error('Errore Formspree:', error);
-        const messageDiv = document.getElementById('formMessage');
-        messageDiv.textContent = translations[currentLanguage]['success.message'];
+        console.error('❌ Errore nell\'invio:', error);
+        
+        // FALLBACK: Crea email manuale
+        const nome = document.getElementById('nome').value;
+        const telefono = document.getElementById('telefono').value || 'Non fornito';
+        const azienda = document.getElementById('azienda').value || 'Non fornita';
+        const settore = document.getElementById('settore').value;
+        const tipologia = document.querySelector('input[name="tipologia"]:checked')?.value || 'Non specificata';
+        
+        // Raccogli funzionalità selezionate
+        const funzionalitaSelezionate = Array.from(document.querySelectorAll('input[name="funzionalita"]:checked'))
+          .map(cb => cb.value).join(', ') || 'Nessuna';
+          
+        const logo = document.querySelector('input[name="logo"]:checked')?.value || 'Non specificato';
+        const referenze = document.getElementById('referenze').value || 'Nessuna';
+        const colori = document.getElementById('colori').value || 'Nessuno';
+        const budget = document.getElementById('budget').value || 'Non specificato';
+        const urgenza = document.getElementById('urgenza').value || 'Non specificata';
+        const note = document.getElementById('note').value || 'Nessuna';
+        
+        const subject = `Preventivo Automatico - ${azienda}`;
+        const body = `
+Nuovo preventivo richiesto da ${nome}:
+
+📋 INFORMAZIONI BASE:
+• Email: ${userEmail}
+• Telefono: ${telefono}
+• Azienda: ${azienda}
+• Settore: ${settore}
+
+🌐 TIPOLOGIA SITO:
+• ${tipologia}
+
+⚙️ FUNZIONALITÀ RICHIESTE:
+• ${funzionalitaSelezionate}
+
+🎨 DESIGN & CONTENUTI:
+• Logo: ${logo}
+• Colori preferiti: ${colori}
+• Siti di riferimento: ${referenze}
+
+💰 BUDGET & TEMPISTICHE:
+• Budget: ${budget}€
+• Urgenza: ${urgenza}
+
+📝 NOTE AGGIUNTIVE:
+${note}
+
+---
+Inviato dal form preventivo di 4AIX.com
+        `.trim();
+
+        const mailtoUrl = `mailto:corbruni@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
+        // Mostra messaggio di successo con opzione fallback
+        messageDiv.innerHTML = translations[currentLanguage]['success.message'] + 
+          '<br><br><small>' + 
+          (currentLanguage === 'it' 
+            ? 'Se non ricevi conferma entro poche ore, <a href="' + mailtoUrl + '" style="color: inherit; text-decoration: underline;">invia una email direttamente</a>.'
+            : 'If you don\'t receive confirmation within few hours, <a href="' + mailtoUrl + '" style="color: inherit; text-decoration: underline;">send an email directly</a>.') +
+          '</small>';
         messageDiv.className = 'form-message success';
         messageDiv.style.display = 'block';
+        
+        // Apri automaticamente il client email come fallback
+        setTimeout(() => {
+          window.location.href = mailtoUrl;
+        }, 2000);
       })
       .finally(() => {
         submitBtn.innerHTML = originalText;
