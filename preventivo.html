@@ -535,10 +535,10 @@
 
     <div class="contact-form">
       <form id="autoQuoteForm" action="https://formspree.io/f/mpwyeodr" method="POST">
-        <!-- Campi nascosti corretti - NON sovrascrivono l'email utente -->
+        <!-- Campi nascosti CORRETTI per Formspree -->
         <input type="hidden" name="_cc" value="corbruni@gmail.com">
         <input type="hidden" name="_subject" value="Nuovo Preventivo da 4AIX.com">
-        <input type="hidden" name="_replyto" id="userEmailFallback">
+        <input type="hidden" name="_replyto" id="formspree_replyto">
         
         <!-- SEZIONE A: Informazioni Base -->
         <div class="form-section">
@@ -991,18 +991,17 @@
       });
     });
 
-    // ===== IMPOSTA EMAIL UTENTE DINAMICAMENTE =====
-    document.getElementById('email').addEventListener('input', function(e) {
-        document.getElementById('userEmailFallback').value = e.target.value;
-    });
-
-    // ===== FORM SUBMISSION =====
+    // ===== FORM SUBMISSION CORRETTO =====
     document.getElementById('autoQuoteForm').addEventListener('submit', function(e) {
       e.preventDefault();
       
       const form = e.target;
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
+      
+      // Imposta dinamicamente _replyto con l'email dell'utente
+      const userEmail = document.getElementById('email').value;
+      document.getElementById('formspree_replyto').value = userEmail;
       
       // Mostra stato di invio
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio in corso...';
@@ -1033,7 +1032,7 @@
           
           console.log('✅ Form inviato con successo a Formspree');
         } else {
-          throw new Error('Errore nel server');
+          throw new Error('Errore nel server Formspree');
         }
       })
       .catch(error => {
