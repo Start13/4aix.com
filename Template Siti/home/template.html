@@ -1,980 +1,313 @@
-<!doctype html>
-<html lang="it" data-theme="dark">
+<!DOCTYPE html>
+<html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>4AIX — Template Web Professionali</title>
-  <meta name="description" content="Esplora i template web di 4AIX, pronti all'uso e ottimizzati per mobile e personalizzazione">
-  
-  <!-- Preconnect per performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link rel="preconnect" href="https://images.unsplash.com">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="../../img/apple-touch-icon.png">
-
-  <!-- Font Awesome e Google Fonts -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --primary-color: #1a2a6c;
-      --secondary-color: #00b4d8;
-      --accent-color: #fdbb2d;
-      --text-color: #333;
-      --bg-color: #f8fafc;
-      --card-bg: #ffffff;
-      --shadow: 0 10px 30px rgba(0,0,0,0.08);
-      --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      --radius: 16px;
-      --muted: #64748b;
-    }
-
-    [data-theme="dark"] {
-      --primary-color: #2d3748;
-      --secondary-color: #63b3ed;
-      --accent-color: #f6ad55;
-      --text-color: #e2e8f0;
-      --bg-color: #1a202c;
-      --card-bg: #2d3748;
-      --shadow: 0 10px 30px rgba(0,0,0,0.3);
-      --muted: #94a3b8;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.6;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      min-height: 100vh;
-    }
-
-    /* === BACK BUTTON === */
-    .back-home {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-      color: white;
-      border: none;
-      border-radius: 25px;
-      padding: 12px 24px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      transition: var(--transition);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-    }
-
-    .back-home:hover {
-      transform: translateX(-50%) translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,180,216,0.4);
-      background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
-    }
-
-    /* === LANGUAGE & THEME TOGGLES === */
-    .language-selector, .theme-toggle {
-      position: fixed;
-      top: 20px;
-      width: 50px;
-      height: 50px;
-      background: var(--card-bg);
-      border: none;
-      border-radius: 50%;
-      color: var(--text-color);
-      cursor: pointer;
-      font-size: 1.2rem;
-      transition: var(--transition);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: var(--shadow);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Siti - 4AIX Web Solutions</title>
     
-    .language-selector {
-      left: 20px;
-      width: auto;
-      padding: 0 20px;
-      border-radius: 25px;
-      gap: 10px;
-    }
-    
-    .theme-toggle { 
-      right: 20px; 
-    }
-    
-    .language-selector:hover, .theme-toggle:hover {
-      transform: scale(1.1);
-      color: var(--secondary-color);
-    }
-
-    .language-text {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    /* === HEADER === */
-    header {
-      text-align: center;
-      padding: 120px 20px 40px;
-      background: linear-gradient(135deg, var(--primary-color), var(--bg-color));
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1600&q=80') center/cover;
-      opacity: 0.1;
-      z-index: 0;
-    }
-
-    header > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 3rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--text-color), var(--secondary-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    header p {
-      margin: 15px 0 0;
-      font-size: 1.2rem;
-      color: var(--muted);
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      background: rgba(255,255,255,0.75); /* visibilità in light mode */
-      padding: 8px 16px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    [data-theme="dark"] header p {
-      background: none;
-      color: var(--muted);
-      padding: 0;
-      box-shadow: none;
-    }
-
-    /* === CATEGORY MENU === */
-    .menu {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 40px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .menu button {
-      background: transparent;
-      border: 2px solid var(--secondary-color);
-      color: var(--secondary-color);
-      padding: 12px 24px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: var(--transition);
-      backdrop-filter: blur(10px);
-      text-shadow: 1px 1px 6px #fff,0 2px 8px rgba(0,0,0,0.08); /* maggiore visibilità */
-    }
-    [data-theme="dark"] .menu button {
-      text-shadow: none;
-    }
-
-    .menu button:hover {
-      background: rgba(0,180,216,0.1);
-      transform: translateY(-2px);
-    }
-
-    .menu button.active {
-      background: var(--secondary-color);
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,180,216,0.3);
-    }
-
-    /* === MAIN GRID === */
-    main {
-      max-width: 1400px;
-      margin: 60px auto;
-      padding: 20px;
-      display: grid;
-      gap: 30px;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-      border-color: var(--secondary-color);
-    }
-
-    .thumb {
-      height: 220px;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .thumb::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background: linear-gradient(transparent, var(--card-bg));
-    }
-
-    .content {
-      padding: 25px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      flex-grow: 1;
-    }
-
-    .title {
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: var(--text-color);
-      line-height: 1.3;
-    }
-
-    .desc {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.5;
-      flex-grow: 1;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-      color: white;
-      padding: 12px 24px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: 600;
-      width: fit-content;
-      transition: var(--transition);
-      border: none;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,180,216,0.4);
-      background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
-      gap: 12px;
-    }
-
-    /* === FEATURES BADGE === */
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .feature-badge {
-      background: rgba(0,180,216,0.1);
-      color: var(--secondary-color);
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      border: 1px solid rgba(0,180,216,0.2);
-    }
-
-    /* === FOOTER === */
-    footer {
-      text-align: center;
-      color: var(--muted);
-      padding: 40px 20px;
-      font-size: 0.9rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      margin-top: 60px;
-    }
-
-    /* === RESPONSIVE DESIGN === */
-    @media (max-width: 768px) {
-      header {
-        padding: 100px 20px 30px;
-      }
-
-      header h1 {
-        font-size: 2.2rem;
-      }
-
-      header p {
-        font-size: 1rem;
-      }
-
-      .menu {
-        gap: 10px;
-        margin-top: 30px;
-      }
-
-      .menu button {
-        padding: 10px 18px;
-        font-size: 0.9rem;
-      }
-
-      main {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        margin: 40px auto;
-        padding: 15px;
-      }
-
-      .back-home {
-        top: 15px;
-        padding: 10px 20px;
-        font-size: 0.8rem;
-      }
-
-      .language-selector, .theme-toggle {
-        top: 15px;
-        width: 45px;
-        height: 45px;
-      }
-
-      .language-selector {
-        left: 15px;
-        padding: 0 15px;
-      }
-
-      .theme-toggle {
-        right: 15px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.8rem;
-      }
-
-      .menu {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .menu button {
-        width: 200px;
-      }
-
-      .card {
-        margin: 0 10px;
-      }
-    }
-
-    /* === ANIMATIONS === */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .card {
-      animation: fadeInUp 0.6s ease-out;
-    }
-
-    .card:nth-child(1) { animation-delay: 0.1s; }
-    .card:nth-child(2) { animation-delay: 0.2s; }
-    .card:nth-child(3) { animation-delay: 0.3s; }
-    .card:nth-child(4) { animation-delay: 0.4s; }
-    .card:nth-child(5) { animation-delay: 0.5s; }
-  </style>
+    <!-- Stili CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .template-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .template-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .template-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .template-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .template-card:hover .template-image img {
+            transform: scale(1.05);
+        }
+        
+        .template-content {
+            padding: 20px;
+        }
+        
+        .template-content h3 {
+            margin-bottom: 10px;
+            color: #1a2a6c;
+        }
+        
+        .template-content p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #1a2a6c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #2c3e50;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            color: #1a2a6c;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<!-- Cookie Consent Banner -->
-<div id="cookieConsent" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #2d3748; color: white; padding: 20px; z-index: 10000; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
-        <div style="flex: 1; min-width: 300px;">
-            <h4 style="margin: 0 0 8px 0; color: white;">🍪 Utilizziamo i cookie</h4>
-            <p style="margin: 0; font-size: 14px; opacity: 0.9;">
-                Utilizziamo cookie tecnici e analitici per migliorare la tua esperienza. 
-                <a href="cookie.html" style="color: #63b3ed; text-decoration: underline;">Maggiori informazioni</a>
-            </p>
-        </div>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <button onclick="acceptCookies()" style="background: #00b4d8; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 500;">
-                Accetta tutti
-            </button>
-            <button onclick="rejectCookies()" style="background: transparent; color: white; border: 1px solid #718096; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
-                Solo necessari
-            </button>
-            <a href="cookie.html" style="color: white; padding: 10px 15px; text-decoration: none; border: 1px solid #718096; border-radius: 5px;">
-                Personalizza
-            </a>
-        </div>
-    </div>
-</div>
-
-<script>
-// Gestione Cookie Consent per template.html
-function checkCookieConsent() {
-    const consent = localStorage.getItem('cookieConsent');
-    if (!consent) {
-        document.getElementById('cookieConsent').style.display = 'block';
-    }
-}
-
-function acceptCookies() {
-    localStorage.setItem('cookieConsent', 'accepted');
-    document.getElementById('cookieConsent').style.display = 'none';
-}
-
-function rejectCookies() {
-    localStorage.setItem('cookieConsent', 'rejected');
-    document.getElementById('cookieConsent').style.display = 'none';
-}
-
-// Mostra il banner al caricamento della pagina
-document.addEventListener('DOMContentLoaded', function() {
-    checkCookieConsent();
-});
-</script>
-<!-- Cookie Consent Banner -->
-<div id="cookieConsent" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #2d3748; color: white; padding: 20px; z-index: 10000; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
-        <div style="flex: 1; min-width: 300px;">
-            <h4 id="cookieTitle" style="margin: 0 0 8px 0; color: white;">🍪 Utilizziamo i cookie</h4>
-            <p id="cookieMessage" style="margin: 0; font-size: 14px; opacity: 0.9;">
-                Utilizziamo cookie tecnici e analitici per migliorare la tua esperienza. 
-                <a href="../cookie.html" style="color: #63b3ed; text-decoration: underline;" id="cookieLearnMore">Maggiori informazioni</a>
-            </p>
-        </div>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <button onclick="acceptCookies()" id="cookieAccept" style="background: #00b4d8; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 500;">
-                Accetta tutti
-            </button>
-            <button onclick="rejectCookies()" id="cookieReject" style="background: transparent; color: white; border: 1px solid #718096; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
-                Solo necessari
-            </button>
-            <a href="../cookie.html" id="cookieCustomize" style="color: white; padding: 10px 15px; text-decoration: none; border: 1px solid #718096; border-radius: 5px;">
-                Personalizza
-            </a>
-        </div>
-    </div>
-</div>
-
-<script>
-// Traduzioni per template.html
-const cookieTranslations = {
-    it: {
-        title: "🍪 Utilizziamo i cookie",
-        message: "Utilizziamo cookie tecnici e analitici per migliorare la tua esperienza.",
-        learnmore: "Maggiori informazioni",
-        accept: "Accetta tutti",
-        reject: "Solo necessari",
-        customize: "Personalizza"
-    },
-    en: {
-        title: "🍪 We use cookies",
-        message: "We use technical and analytics cookies to improve your experience.",
-        learnmore: "Learn more",
-        accept: "Accept all",
-        reject: "Only necessary",
-        customize: "Customize"
-    }
-};
-
-// Funzione per aggiornare le traduzioni del banner
-function updateCookieBannerLanguage() {
-    const lang = localStorage.getItem('language') || 'it';
-    const translations = cookieTranslations[lang];
-    
-    document.getElementById('cookieTitle').textContent = translations.title;
-    document.getElementById('cookieMessage').innerHTML = `${translations.message} <a href="../cookie.html" style="color: #63b3ed; text-decoration: underline;">${translations.learnmore}</a>`;
-    document.getElementById('cookieAccept').textContent = translations.accept;
-    document.getElementById('cookieReject').textContent = translations.reject;
-    document.getElementById('cookieCustomize').textContent = translations.customize;
-}
-
-// Gestione Cookie Consent per template.html
-function checkCookieConsent() {
-    const consent = localStorage.getItem('cookieConsent');
-    if (!consent) {
-        document.getElementById('cookieConsent').style.display = 'block';
-    }
-}
-
-function acceptCookies() {
-    localStorage.setItem('cookieConsent', 'accepted');
-    document.getElementById('cookieConsent').style.display = 'none';
-}
-
-function rejectCookies() {
-    localStorage.setItem('cookieConsent', 'rejected');
-    document.getElementById('cookieConsent').style.display = 'none';
-}
-
-// Ascolta i cambiamenti di lingua
-window.addEventListener('storage', function(e) {
-    if (e.key === 'language') {
-        updateCookieBannerLanguage();
-    }
-});
-
-// Inizializza al caricamento
-document.addEventListener('DOMContentLoaded', function() {
-    checkCookieConsent();
-    updateCookieBannerLanguage();
-});
-</script>
 <body>
-  <!-- === BACK BUTTON === -->
-  <button id="backHome" class="back-home" title="Torna alla homepage">
-    <i class="fa-solid fa-arrow-left"></i>
-    <span id="backText">Torna alla Homepage</span>
-  </button>
-
-  <!-- === LANGUAGE & THEME TOGGLES === -->
-  <button id="langToggle" class="language-selector" title="Cambia lingua">
-    <i class="fas fa-globe"></i>
-    <span class="language-text">IT</span>
-  </button>
-  
-  <button id="themeToggle" class="theme-toggle" title="Cambia tema">
-    <i id="themeIcon" class="fas fa-sun"></i>
-  </button>
-
-  <header>
-    <h1 id="headerTitle">Template Web 4AIX</h1>
-    <p id="subtitle">Scopri tutti i nostri modelli pronti all'uso e completamente personalizzabili</p>
-    <div class="menu" id="categoryMenu"></div>
-  </header>
-
-  <main id="templateGrid"></main>
-
-  <footer>
-    © <span id="year"></span> 4AIX di C.B. — <span id="rights">Tutti i diritti riservati</span>
-  </footer>
-
-  <script>
-    /* === DATA === */
-    const templates = {
-      aziendale: [
-        { 
-          title: { it:"Sito Aziendale Base", en:"Corporate Website" },
-          desc: { it:"Struttura pulita e moderna, ideale per aziende o studi professionali. Design responsive e ottimizzato per la conversione.", en:"Clean, modern layout ideal for businesses or professional firms. Responsive design optimized for conversion." },
-          img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/aziendale/index.html",
-          features: { it: ["Design Responsive", "SEO Ottimizzato", "Form Contatto"], en: ["Responsive Design", "SEO Optimized", "Contact Form"] }
-        },
-        { 
-          title: { it:"Corporate Premium", en:"Corporate Premium" },
-          desc: { it:"Template avanzato con animazioni, sezioni multiple e design elegante per aziende di alto livello.", en:"Advanced template with animations, multiple sections and elegant design for high-level companies." },
-          img: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/aziendale/premium.html",
-          features: { it: ["Animazioni", "Multi-sezione", "Premium Design"], en: ["Animations", "Multi-section", "Premium Design"] }
-        }
-      ],
-      ecommerce: [
-        { 
-          title: { it:"E-commerce Moderno", en:"Modern E-commerce" },
-          desc: { it:"Layout elegante, ottimizzato per la vendita di prodotti. Carrello, checkout e gestione prodotti integrata.", en:"Elegant responsive layout optimized for product sales. Integrated cart, checkout and product management." },
-          img: "https://images.unsplash.com/photo-1542744095-291d1f67b221?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/ecommerce/index.html",
-          features: { it: ["Carrello", "Checkout", "Catalogo"], en: ["Shopping Cart", "Checkout", "Product Catalog"] }
-        },
-        { 
-          title: { it:"E-commerce Avanzato", en:"Advanced E-commerce" },
-          desc: { it:"Soluzione completa con filtri avanzati, wishlist, recensioni e integrazione payment gateway.", en:"Complete solution with advanced filters, wishlist, reviews and payment gateway integration." },
-          img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/ecommerce/advanced.html",
-          features: { it: ["Filtri Avanzati", "Wishlist", "Recensioni"], en: ["Advanced Filters", "Wishlist", "Reviews"] }
-        }
-      ],
-      portfolio: [
-        { 
-          title: { it:"Portfolio Creativo", en:"Creative Portfolio" },
-          desc: { it:"Design minimalista per fotografi, artisti o designer. Galleria interattiva e presentazione progetti.", en:"Minimalist design for photographers, artists, or designers. Interactive gallery and project presentation." },
-          img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/portfolio/index.html",
-          features: { it: ["Galleria", "Minimalista", "Progetti"], en: ["Gallery", "Minimalist", "Projects"] }
-        },
-        { 
-          title: { it:"Portfolio Personale", en:"Personal Portfolio" },
-          desc: { it:"Template elegante per professionisti con sezione blog, contatti e presentazione competenze.", en:"Elegant template for professionals with blog section, contacts and skills presentation." },
-          img: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/portfolio/personal.html",
-          features: { it: ["Blog", "Competenze", "Contatti"], en: ["Blog", "Skills", "Contacts"] }
-        }
-      ],
-      trading: [
-        { 
-          title: { it:"Trading Dashboard", en:"Trading Dashboard" },
-          desc: { it:"Interfaccia chiara e dinamica per analisi di mercato. Grafici, indicatori e gestione portfolio.", en:"Dynamic, clear interface for market analysis. Charts, indicators and portfolio management." },
-          img: "https://images.unsplash.com/photo-1605902711622-cfb43c4437d6?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/trading/index.html",
-          features: { it: ["Grafici", "Indicatori", "Portfolio"], en: ["Charts", "Indicators", "Portfolio"] }
-        },
-        { 
-          title: { it:"Crypto Platform", en:"Crypto Platform" },
-          desc: { it:"Piattaforma specializzata per trading crypto con wallet integration e analisi avanzata.", en:"Specialized platform for crypto trading with wallet integration and advanced analysis." },
-          img: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/trading/crypto.html",
-          features: { it: ["Crypto", "Wallet", "Analisi"], en: ["Crypto", "Wallet", "Analysis"] }
-        }
-      ],
-      gestionale: [
-        { 
-          title: { it:"Software Gestionale", en:"Management Software" },
-          desc: { it:"Template per applicazioni gestionali con dashboard, report e gestione dati.", en:"Template for management applications with dashboard, reports and data management." },
-          img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/gestionale/index.html",
-          features: { it: ["Dashboard", "Report", "Gestione Dati"], en: ["Dashboard", "Reports", "Data Management"] }
-        },
-        { 
-          title: { it:"CRM Aziendale", en:"Business CRM" },
-          desc: { it:"Sistema di gestione relazioni clienti con tracciamento leads e pipeline vendita.", en:"Customer relationship management system with lead tracking and sales pipeline." },
-          img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/gestionale/crm.html",
-          features: { it: ["CRM", "Pipeline", "Clienti"], en: ["CRM", "Pipeline", "Customers"] }
-        }
-      ],
-      landing: [
-        { 
-          title: { it:"Landing Page Moderna", en:"Modern Landing Page" },
-          desc: { it:"Design conversion-oriented per campagne marketing. Call-to-action strategici e form lead generation.", en:"Conversion-oriented design for marketing campaigns. Strategic call-to-actions and lead generation forms." },
-          img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/landing/index.html",
-          features: { it: ["Conversion", "CTA", "Lead Gen"], en: ["Conversion", "CTA", "Lead Gen"] }
-        }
-      ],
-      blog: [
-        { 
-          title: { it:"Blog Moderno", en:"Modern Blog" },
-          desc: { it:"Layout pulito per blog personali o aziendali con articoli, categorie e sistema di commenti.", en:"Clean layout for personal or business blogs with articles, categories and comment system." },
-          img: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/blog/index.html",
-          features: { it: ["Articoli", "Categorie", "Commenti"], en: ["Articles", "Categories", "Comments"] }
-        },
-        { 
-          title: { it:"Blog Personale", en:"Personal Blog" },
-          desc: { it:"Template elegante per scrittori e creatori di contenuti con focus sulla tipografia e lettura.", en:"Elegant template for writers and content creators with focus on typography and reading." },
-          img: "https://images.unsplash.com/photo-1550090138-6d5be35a005a?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/blog/personal.html",
-          features: { it: ["Tipografia", "Autore", "Social"], en: ["Typography", "Author", "Social"] }
-        }
-      ],
-      educazione: [
-        { 
-          title: { it:"Piattaforma Educativa", en:"Educational Platform" },
-          desc: { it:"Template per corsi online con dashboard studenti, lezioni e sistema di valutazione.", en:"Template for online courses with student dashboard, lessons and evaluation system." },
-          img: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/educazione/index.html",
-          features: { it: ["Corsi", "Lezioni", "Valutazioni"], en: ["Courses", "Lessons", "Assessments"] }
-        },
-        { 
-          title: { it:"Accademia Online", en:"Online Academy" },
-          desc: { it:"Piattaforma completa per scuole e università con gestione docenti e materiali didattici.", en:"Complete platform for schools and universities with teacher management and educational materials." },
-          img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/educazione/academy.html",
-          features: { it: ["Docenti", "Materiali", "Certificati"], en: ["Teachers", "Materials", "Certificates"] }
-        }
-      ],
-      servizi: [
-        { 
-          title: { it:"Sito Servizi", en:"Services Website" },
-          desc: { it:"Template per agenzie e professionisti dei servizi con presentazione servizi e portfolio.", en:"Template for agencies and service professionals with service presentation and portfolio." },
-          img: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/servizi/index.html",
-          features: { it: ["Servizi", "Portfolio", "Preventivi"], en: ["Services", "Portfolio", "Quotes"] }
-        },
-        { 
-          title: { it:"Servizi Professionali", en:"Professional Services" },
-          desc: { it:"Design sofisticato per studi legali, consulenti e professionisti di alto livello.", en:"Sophisticated design for law firms, consultants and high-level professionals." },
-          img: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80",
-          link: "../templates/servizi/professional.html",
-          features: { it: ["Consulenza", "Team", "Casi Studio"], en: ["Consulting", "Team", "Case Studies"] }
-        }
-      ]
-    };
-
-    const translations = {
-      it: {
-        headerTitle: "Template Web 4AIX",
-        subtitle: "Scopri tutti i nostri modelli pronti all'uso e completamente personalizzabili",
-        rights: "Tutti i diritti riservati",
-        openDemo: "Apri Demo",
-        backHome: "Torna alla Homepage",
-        categories: { 
-          all:"Tutti i Template", 
-          aziendale:"Aziendale", 
-          ecommerce:"E-commerce", 
-          portfolio:"Portfolio", 
-          trading:"Trading",
-          gestionale:"Gestionale",
-          landing:"Landing Page",
-          blog:"Blog",
-          educazione:"Educazione",
-          servizi:"Servizi"
-        }
-      },
-      en: {
-        headerTitle: "4AIX Web Templates",
-        subtitle: "Discover all our ready-to-use and fully customizable templates",
-        rights: "All rights reserved",
-        openDemo: "Open Demo",
-        backHome: "Back to Homepage",
-        categories: { 
-          all:"All Templates", 
-          aziendale:"Business", 
-          ecommerce:"E-commerce", 
-          portfolio:"Portfolio", 
-          trading:"Trading",
-          gestionale:"Management",
-          landing:"Landing Page",
-          blog:"Blog",
-          educazione:"Education",
-          servizi:"Services"
-        }
-      }
-    };
-
-    /* === THEME & LANGUAGE SYSTEM === */
-    let currentLang = localStorage.getItem("language") || "it";
-    let currentTheme = localStorage.getItem("theme") || "dark";
-
-    // Inizializzazione tema
-    document.documentElement.setAttribute("data-theme", currentTheme);
-
-    // Elementi DOM
-    const langBtn = document.getElementById("langToggle");
-    const themeBtn = document.getElementById("themeToggle");
-    const themeIcon = document.getElementById("themeIcon");
-    const languageText = document.querySelector('.language-text');
-    const headerTitle = document.getElementById("headerTitle");
-    const subtitleEl = document.getElementById("subtitle");
-    const rightsEl = document.getElementById("rights");
-    const menuEl = document.getElementById("categoryMenu");
-    const gridEl = document.getElementById("templateGrid");
-    const backTextEl = document.getElementById("backText");
-
-    /* === FUNZIONI SINCRONIZZATE === */
-    function updateThemeIcon() {
-        themeIcon.className = currentTheme === "dark" ? "fas fa-sun" : "fas fa-moon";
-    }
-
-    function updateLanguageText() {
-        if (languageText) {
-            languageText.textContent = currentLang.toUpperCase();
-        }
-    }
-
-    function toggleLang() {
-        currentLang = currentLang === "it" ? "en" : "it";
-        localStorage.setItem("language", currentLang);
-        updateLanguageText();
-        renderMenu(); 
-        renderGrid(); 
-        updateTexts();
-        console.log('🌍 Lingua cambiata:', currentLang);
-    }
-
-    function toggleTheme() {
-        currentTheme = currentTheme === "dark" ? "light" : "dark";
-        document.documentElement.setAttribute("data-theme", currentTheme);
-        localStorage.setItem("theme", currentTheme);
-        updateThemeIcon();
-        console.log('🎨 Tema cambiato:', currentTheme);
-    }
-
-    /* === SINCRONIZZAZIONE BIDIREZIONALE MIGLIORATA === */
-    function setupBidirectionalSync() {
-        console.log('🔄 Inizializzazione sincronizzazione bidirezionale...');
-
-        // Ascolta cambiamenti dal localStorage (da altre pagine)
-        window.addEventListener('storage', (e) => {
-            console.log('📡 Evento storage ricevuto:', e.key, e.newValue);
-            
-            if (e.key === 'language' && e.newValue) {
-                const newLang = e.newValue;
-                if (newLang !== currentLang) {
-                    console.log('🔄 Aggiornamento lingua da sync:', newLang);
-                    currentLang = newLang;
-                    localStorage.setItem('language', currentLang);
-                    updateLanguageText();
-                    renderMenu();
-                    renderGrid();
-                    updateTexts();
-                }
-            }
-            
-            if (e.key === 'theme' && e.newValue) {
-                const newTheme = e.newValue;
-                if (newTheme !== currentTheme) {
-                    console.log('🎨 Aggiornamento tema da sync:', newTheme);
-                    currentTheme = newTheme;
-                    localStorage.setItem('theme', currentTheme);
-                    document.documentElement.setAttribute('data-theme', currentTheme);
-                    updateThemeIcon();
-                }
-            }
-        });
-
-        // Forza un controllo iniziale al caricamento
-        window.addEventListener('load', () => {
-            const savedLang = localStorage.getItem('language');
-            const savedTheme = localStorage.getItem('theme');
-            
-            console.log('🔍 Controllo impostazioni salvate:', { savedLang, savedTheme });
-            
-            if (savedLang && savedLang !== currentLang) {
-                console.log('🔄 Ripristino lingua iniziale:', savedLang);
-                currentLang = savedLang;
-                updateLanguageText();
-                renderMenu();
-                renderGrid();
-                updateTexts();
-            }
-            
-            if (savedTheme && savedTheme !== currentTheme) {
-                console.log('🎨 Ripristino tema iniziale:', savedTheme);
-                currentTheme = savedTheme;
-                document.documentElement.setAttribute('data-theme', savedTheme);
-                updateThemeIcon();
-            }
-        });
-    }
-
-    /* === RENDER FUNCTIONS === */
-    function renderMenu() {
-      const cats = translations[currentLang].categories;
-      const order = ["all", "aziendale", "ecommerce", "portfolio", "trading", "gestionale", "landing", "blog", "educazione", "servizi"];
-      menuEl.innerHTML = order.map(k => 
-        `<button data-cat="${k}" class="${k===currentCategory?'active':''}">${cats[k]}</button>`
-      ).join('');
-      
-      menuEl.querySelectorAll("button").forEach(btn => {
-        btn.addEventListener("click", () => {
-          currentCategory = btn.dataset.cat;
-          renderMenu(); 
-          renderGrid();
-        });
-      });
-    }
-
-    function renderGrid() {
-      const keys = currentCategory === "all" ? Object.keys(templates) : [currentCategory];
-      const list = keys.flatMap(k => templates[k] || []);
-      const tr = translations[currentLang];
-      
-      gridEl.innerHTML = list.map(t => `
-        <div class="card">
-          <div class="thumb" style="background-image:url('${t.img}')"></div>
-          <div class="content">
-            <div class="title">${t.title[currentLang]}</div>
-            <div class="desc">${t.desc[currentLang]}</div>
-            
-            ${t.features ? `
-            <div class="features">
-              ${t.features[currentLang].map(feature => 
-                `<span class="feature-badge">${feature}</span>`
-              ).join('')}
-            </div>
-            ` : ''}
-            
-            <a class="btn" href="${t.link}" target="_blank">
-              ${tr.openDemo}
-              <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
+    <a href="../index.html" class="back-link">
+        ← Torna alla Home
+    </a>
+    
+    <header>
+        <div class="container">
+            <h1>Template Siti Web</h1>
+            <p>Scegli tra i nostri template professionali e personalizzali secondo le tue esigenze</p>
         </div>
-      `).join('');
-    }
+    </header>
 
-    function updateTexts() {
-      const tr = translations[currentLang];
-      headerTitle.textContent = tr.headerTitle;
-      subtitleEl.textContent = tr.subtitle;
-      rightsEl.textContent = tr.rights;
-      backTextEl.textContent = tr.backHome;
-    }
+    <div class="container">
+        <div class="template-grid">
+            <!-- Template 1 -->
+            <div class="template-card">
+                <div class="template-image">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80" alt="E-Commerce Template">
+                </div>
+                <div class="template-content">
+                    <h3>E-Commerce</h3>
+                    <p>Template completo per negozi online con carrello, pagamenti e gestione prodotti</p>
+                    <a href="#" class="btn">Anteprima</a>
+                </div>
+            </div>
+            
+            <!-- Template 2 -->
+            <div class="template-card">
+                <div class="template-image">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Aziendale Template">
+                </div>
+                <div class="template-content">
+                    <h3>Sito Aziendale</h3>
+                    <p>Design professionale per aziende con sezioni servizi, team e contatti</p>
+                    <a href="#" class="btn">Anteprima</a>
+                </div>
+            </div>
+            
+            <!-- Template 3 -->
+            <div class="template-card">
+                <div class="template-image">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80" alt="Portfolio Template">
+                </div>
+                <div class="template-content">
+                    <h3>Portfolio Personale</h3>
+                    <p>Template elegante per professionisti che vogliono mostrare il proprio lavoro</p>
+                    <a href="#" class="btn">Anteprima</a>
+                </div>
+            </div>
+            
+            <!-- Template 4 -->
+            <div class="template-card">
+                <div class="template-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Gestionale Template">
+                </div>
+                <div class="template-content">
+                    <h3>Software Gestionale</h3>
+                    <p>Interfaccia per applicazioni gestionali con dashboard e report</p>
+                    <a href="#" class="btn">Anteprima</a>
+                </div>
+            </div>
+            
+            <!-- Template 5 -->
+            <div class="template-card">
+                <div class="template-image">
+                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="Trading Template">
+                </div>
+                <div class="template-content">
+                    <h3>EA/Indicators MT4/5</h3>
+                    <p>Interfacce per piattaforme di trading con grafici e indicatori</p>
+                    <a href="#" class="btn">Anteprima</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    /* === INITIALIZATION === */
-    let currentCategory = "all";
-    
-    // Event Listeners
-    langBtn.addEventListener("click", toggleLang);
-    themeBtn.addEventListener("click", toggleTheme);
-    
-    document.getElementById('backHome').addEventListener('click', () => {
-      window.location.href = '../../index.html';
-    });
-    
-    // Aggiorna stati iniziali
-    updateThemeIcon();
-    updateLanguageText();
-    
-    // Attiva sincronizzazione BIDIREZIONALE
-    setupBidirectionalSync();
+    <footer>
+        <div class="container">
+            <p>© 2025 Corrado Bruni – Torino</p>
+            <p>
+                <a href="../cookie.html" style="color: #63b3ed;">Cookie Policy</a> | 
+                <a href="../privacy.html" style="color: #63b3ed;">Privacy Policy</a>
+            </p>
+            <p>
+                📧 <a href="mailto:corbruni@gmail.com" style="color: #63b3ed;">corbruni@gmail.com</a> | 
+                📞 <a href="tel:+393388187925" style="color: #63b3ed;">+39 338 818 7925</a>
+            </p>
+        </div>
+    </footer>
 
-    // Inizializzazione
-    document.getElementById("year").textContent = new Date().getFullYear();
-    renderMenu(); 
-    renderGrid(); 
-    updateTexts();
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsent" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #2d3748; color: white; padding: 20px; z-index: 10000; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+            <div style="flex: 1; min-width: 300px;">
+                <h4 id="cookieTitle" style="margin: 0 0 8px 0; color: white;">🍪 Utilizziamo i cookie</h4>
+                <p id="cookieMessage" style="margin: 0; font-size: 14px; opacity: 0.9;">
+                    Utilizziamo cookie tecnici e analitici per migliorare la tua esperienza. 
+                    <a href="../cookie.html" style="color: #63b3ed; text-decoration: underline;" id="cookieLearnMore">Maggiori informazioni</a>
+                </p>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button onclick="acceptCookies()" id="cookieAccept" style="background: #00b4d8; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 500;">
+                    Accetta tutti
+                </button>
+                <button onclick="rejectCookies()" id="cookieReject" style="background: transparent; color: white; border: 1px solid #718096; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                    Solo necessari
+                </button>
+                <a href="../cookie.html" id="cookieCustomize" style="color: white; padding: 10px 15px; text-decoration: none; border: 1px solid #718096; border-radius: 5px;">
+                    Personalizza
+                </a>
+            </div>
+        </div>
+    </div>
 
-    console.log('✅ Template System inizializzato correttamente');
-  </script>
+    <script>
+        // Traduzioni per template.html
+        const cookieTranslations = {
+            it: {
+                title: "🍪 Utilizziamo i cookie",
+                message: "Utilizziamo cookie tecnici e analitici per migliorare la tua esperienza.",
+                learnmore: "Maggiori informazioni",
+                accept: "Accetta tutti",
+                reject: "Solo necessari",
+                customize: "Personalizza"
+            },
+            en: {
+                title: "🍪 We use cookies",
+                message: "We use technical and analytics cookies to improve your experience.",
+                learnmore: "Learn more",
+                accept: "Accept all",
+                reject: "Only necessary",
+                customize: "Customize"
+            }
+        };
+
+        // Funzione per aggiornare le traduzioni del banner
+        function updateCookieBannerLanguage() {
+            const lang = localStorage.getItem('language') || 'it';
+            const translations = cookieTranslations[lang];
+            
+            document.getElementById('cookieTitle').textContent = translations.title;
+            document.getElementById('cookieMessage').innerHTML = `${translations.message} <a href="../cookie.html" style="color: #63b3ed; text-decoration: underline;">${translations.learnmore}</a>`;
+            document.getElementById('cookieAccept').textContent = translations.accept;
+            document.getElementById('cookieReject').textContent = translations.reject;
+            document.getElementById('cookieCustomize').textContent = translations.customize;
+        }
+
+        // Gestione Cookie Consent per template.html
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                document.getElementById('cookieConsent').style.display = 'block';
+            }
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookieConsent').style.display = 'none';
+        }
+
+        function rejectCookies() {
+            localStorage.setItem('cookieConsent', 'rejected');
+            document.getElementById('cookieConsent').style.display = 'none';
+        }
+
+        // Ascolta i cambiamenti di lingua
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'language') {
+                updateCookieBannerLanguage();
+            }
+        });
+
+        // Inizializza al caricamento
+        document.addEventListener('DOMContentLoaded', function() {
+            checkCookieConsent();
+            updateCookieBannerLanguage();
+        });
+    </script>
 </body>
 </html>
