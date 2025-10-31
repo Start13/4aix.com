@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="page.title">Preventivo Automatico - 4AIX Web Solutions</title>
+
+  <!-- Content Security Policy Ottimizzata -->
+  <meta http-equiv="Content-Security-Policy" 
+        content="default-src 'self' https: data: blob: 'unsafe-inline';
+                 script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com;
+                 style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com;
+                 font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com;
+                 img-src 'self' https: data: blob: https://images.unsplash.com https://www.4aix.com;
+                 connect-src 'self' https: https://www.google-analytics.com https://formspree.io;
+                 frame-src 'none';
+                 object-src 'none';">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0PFF5S9Z2R"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0PFF5S9Z2R');
+  </script>
+  
+  <!-- Preconnect per performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  
+  <!-- Font Awesome e Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* === STILE IDENTICO A INDEX.HTML === */
+    :root {
+      --primary-color: #1a2a6c;
+      --secondary-color: #00b4d8;
+      --accent-color: #fdbb2d;
+      --text-color: #333;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    [data-theme="dark"] {
+      --primary-color: #2d3748;
+      --secondary-color: #63b3ed;
+      --accent-color: #f6ad55;
+      --text-color: #e2e8f0;
+      --bg-color: #1a202c;
+      --card-bg: #2d3748;
+      --shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Badge AI */
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: var(--card-bg);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--text-color);
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    /* Language Selector */
+    .language-selector {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: var(--card-bg);
+      border: none;
+      border-radius: 25px;
+      padding: 10px 15px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      color: var(--text-color);
+      transition: var(--transition);
+    }
+
+    .language-selector:hover {
+      transform: scale(1.05);
+    }
+
+    /* Header Moderno */
+    header {
+      position: relative;
+      background: linear-gradient(rgba(26, 42, 108, 0.8), rgba(26, 42, 108, 0.9)), 
+                  url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 120px 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+      opacity: 0.95;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      line-height: 1.8;
+    }
+
+    .cta-buttons {
+      margin-top: 30px;
+    }
+
+    .btn-primary, .btn-secondary {
+      display: inline-block;
+      padding: 15px 30px;
+      margin: 10px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--secondary-color), #0090b0);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0,180,216,0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,180,216,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: var(--primary-color);
+    }
+
+    /* Animazioni */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Sezioni */
+    section {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    [data-theme="dark"] section h2 {
+      color: var(--secondary-color);
+    }
+
+    section p.intro {
+      max-width: 800px;
+      margin: 0 auto 50px;
+      text-align: center;
+      color: var(--text-color);
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: var(--card-bg);
+      padding: 50px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    [data-theme="dark"] .form-group input,
+    [data-theme="dark"] .form-group textarea,
+    [data-theme="dark"] .form-group select {
+      border-color: #4a5568;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Form Buttons */
+    .form-buttons {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .btn-email {
+      padding: 15px 25px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--secondary-color), #0090b0);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0,180,216,0.3);
+    }
+
+    .btn-email:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,180,216,0.4);
+    }
+
+    .form-message {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      display: none;
+    }
+
+    .form-message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .form-message.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    [data-theme="dark"] .form-message.success {
+      background: #0f5132;
+      color: #d1e7dd;
+    }
+
+    [data-theme="dark"] .form-message.error {
+      background: #842029;
+      color: #f8d7da;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary-color), #2c3e50);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 80px;
+    }
+
+    footer a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .social-links {
+      margin: 20px 0;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin: 0 15px;
+      font-size: 1.5rem;
+      color: white;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      transform: translateY(-3px);
+      color: var(--secondary-color);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero-content p {
+        font-size: 1.1rem;
+      }
+      
+      .btn-primary, .btn-secondary {
+        padding: 12px 25px;
+        font-size: 1rem;
+        display: block;
+        margin: 10px auto;
+        max-width: 250px;
+      }
+
+      .contact-form {
+        padding: 30px 20px;
+      }
+
+      .theme-toggle, .language-selector {
+        top: 10px;
+      }
+
+      .theme-toggle {
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+
+      .language-selector {
+        left: 10px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Stili specifici per form preventivo */
+    .form-section {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--secondary-color);
+    }
+
+    .form-section h3 {
+      color: var(--secondary-color);
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+    }
+
+    .checkbox-item input[type="checkbox"],
+    .checkbox-item input[type="radio"] {
+      width: auto;
+      margin: 0;
+    }
+
+    .budget-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .budget-option {
+      background: var(--bg-color);
+      border: 2px solid transparent;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .budget-option:hover {
+      border-color: var(--secondary-color);
+    }
+
+    .budget-option.selected {
+      border-color: var(--accent-color);
+      background: rgba(253, 187, 45, 0.1);
+    }
+  </style>
+</head>
+<body data-theme="dark">
+  <!-- Language Selector -->
+  <button class="language-selector" id="languageSelector">
+    <i class="fas fa-globe"></i>
+    <span class="language-text">IT</span>
+  </button>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle">
+    <i class="fas fa-sun"></i>
+  </button>
+
+  <header>
+    <div class="hero-content">
+      <h1 data-i18n="hero.title">Preventivo Automatico</h1>
+      <div class="ai-badge">
+        <i class="fas fa-robot"></i>
+        <span data-i18n="hero.badge">AI-Powered Development</span>
+      </div>
+      <p data-i18n="hero.subtitle">Compila il form e ricevi subito il tuo preventivo personalizzato<br>Sviluppo veloce, design moderno e tecnologia all'avanguardia</p>
+      <div class="cta-buttons">
+        <a href="#preventivo-form" class="btn-primary" data-i18n="hero.cta1">Richiedi Preventivo</a>
+        <a href="index.html" class="btn-secondary" data-i18n="hero.cta2">Torna alla Home</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="preventivo-form">
+    <h2 data-i18n="form.title">Richiedi il Tuo Preventivo</h2>
+    <p class="intro" data-i18n="form.intro">Compila il form dettagliato e ricevi un preventivo personalizzato in poche ore</p>
+
+    <div class="contact-form">
+      <form id="autoQuoteForm" action="https://formspree.io/f/xjvnqkzy" method="POST">
+        <!-- Aggiungi campi nascosti per Formspree -->
+        <input type="hidden" name="_replyto" value="corbruni@gmail.com">
+        <input type="hidden" name="_cc" value="corbruni@gmail.com">
+        <input type="hidden" name="_subject" value="Nuovo Preventivo da 4AIX.com">
+        
+        <!-- SEZIONE A: Informazioni Base -->
+        <div class="form-section">
+          <h3 data-i18n="form.sectionA">Informazioni Base</h3>
+          <div class="form-group">
+            <label for="nome" data-i18n="form.name">Nome e Cognome *</label>
+            <input type="text" id="nome" name="nome" required autocomplete="name" data-i18n-placeholder="form.namePlaceholder">
+          </div>
+
+          <div class="form-group">
+            <label for="email" data-i18n="form.email">Email *</label>
+            <input type="email" id="email" name="email" required autocomplete="email" data-i18n-placeholder="form.emailPlaceholder">
+          </div>
+
+          <div class="form-group">
+            <label for="telefono" data-i18n="form.phone">Telefono</label>
+            <input type="tel" id="telefono" name="telefono" autocomplete="tel" data-i18n-placeholder="form.phonePlaceholder">
+          </div>
+
+          <div class="form-group">
+            <label for="azienda" data-i18n="form.company">Azienda/Attività</label>
+            <input type="text" id="azienda" name="azienda" data-i18n-placeholder="form.companyPlaceholder">
+          </div>
+
+          <div class="form-group">
+            <label for="settore" data-i18n="form.sector">Settore di attività *</label>
+            <select id="settore" name="settore" required>
+              <option value="" data-i18n="form.selectSector">Seleziona settore</option>
+              <option value="ristorazione" data-i18n="form.sector1">Ristorazione</option>
+              <option value="commercio" data-i18n="form.sector2">Commercio</option>
+              <option value="servizi" data-i18n="form.sector3">Servizi</option>
+              <option value="artigianato" data-i18n="form.sector4">Artigianato</option>
+              <option value="professioni" data-i18n="form.sector5">Professioni</option>
+              <option value="altro" data-i18n="form.sector6">Altro</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- SEZIONE B: Tipologia Sito - CORRETTA -->
+        <div class="form-section">
+          <h3 data-i18n="form.sectionB">Tipologia Sito</h3>
+          <div class="form-group">
+            <label data-i18n="form.siteType">Che tipo di sito ti serve? *</label>
+            <div class="checkbox-group">
+              <div class="checkbox-item">
+                <input type="radio" id="vetrina" name="tipologia" value="vetrina" required>
+                <label for="vetrina" data-i18n="form.type1" style="margin: 0;">Vetrina/Presentazione</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="radio" id="ecommerce" name="tipologia" value="ecommerce">
+                <label for="ecommerce" data-i18n="form.type2" style="margin: 0;">E-commerce</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="radio" id="landing" name="tipologia" value="landing">
+                <label for="landing" data-i18n="form.type3" style="margin: 0;">Landing Page</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="radio" id="portfolio" name="tipologia" value="portfolio">
+                <label for="portfolio" data-i18n="form.type4" style="margin: 0;">Portfolio</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="radio" id="gestionale" name="tipologia" value="gestionale">
+                <label for="gestionale" data-i18n="form.type5" style="margin: 0;">Software Gestionale</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEZIONE C: Funzionalità Richieste -->
+        <div class="form-section">
+          <h3 data-i18n="form.sectionC">Funzionalità Richieste</h3>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="funz1" name="funzionalita" value="form-contatto">
+              <label for="funz1" data-i18n="form.feat1">Form di contatto</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="funz2" name="funzionalita" value="newsletter">
+              <label for="funz2" data-i18n="form.feat2">Newsletter</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="funz3" name="funzionalita" value="blog">
+              <label for="funz3" data-i18n="form.feat3">Blog integrato</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="funz4" name="funzionalita" value="carrello">
+              <label for="funz4" data-i18n="form.feat4">Carrello e-commerce</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="funz5" name="funzionalita" value="prenotazioni">
+              <label for="funz5" data-i18n="form.feat5">Sistema di prenotazioni</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="funz6" name="funzionalita" value="login">
+              <label for="funz6" data-i18n="form.feat6">Area riservata/Login</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="funz7" name="funzionalita" value="multilingua">
+              <label for="funz7" data-i18n="form.feat7">Multilingua (IT/EN)</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="funz8" name="funzionalita" value="social">
+              <label for="funz8" data-i18n="form.feat8">Integrazione social</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEZIONE D: Design & Contenuti -->
+        <div class="form-section">
+          <h3 data-i18n="form.sectionD">Design & Contenuti</h3>
+          <div class="form-group">
+            <label data-i18n="form.logo">Hai già un logo?</label>
+            <div style="display: flex; gap: 20px; align-items: center;">
+              <div class="checkbox-item">
+                <input type="radio" id="logo-si" name="logo" value="si" required>
+                <label for="logo-si" data-i18n="form.yes">Sì</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="radio" id="logo-no" name="logo" value="no">
+                <label for="logo-no" data-i18n="form.no">No (servizio extra)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="referenze" data-i18n="form.references">Siti di riferimento che ti piacciono</label>
+            <textarea id="referenze" name="referenze" data-i18n-placeholder="form.referencesPlaceholder"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="colori" data-i18n="form.colors">Colori aziendali preferiti</label>
+            <input type="text" id="colori" name="colori" data-i18n-placeholder="form.colorsPlaceholder">
+          </div>
+        </div>
+
+        <!-- SEZIONE E: Budget & Tempistiche -->
+        <div class="form-section">
+          <h3 data-i18n="form.sectionE">Budget & Tempistiche</h3>
+          <div class="form-group">
+            <label data-i18n="form.budget">Budget indicativo *</label>
+            <div class="budget-options">
+              <div class="budget-option" data-value="500">
+                <span data-i18n="form.budget1">Fino a €500</span>
+              </div>
+              <div class="budget-option" data-value="1000">
+                <span data-i18n="form.budget2">€500-1000</span>
+              </div>
+              <div class="budget-option" data-value="2500">
+                <span data-i18n="form.budget3">€1000-2500</span>
+              </div>
+              <div class="budget-option" data-value="5000">
+                <span data-i18n="form.budget4">Oltre €2500</span>
+              </div>
+            </div>
+            <input type="hidden" id="budget" name="budget" required>
+          </div>
+
+          <div class="form-group">
+            <label for="urgenza" data-i18n="form.urgency">Urgenza lancio *</label>
+            <select id="urgenza" name="urgenza" required>
+              <option value="" data-i18n="form.selectUrgency">Seleziona urgenza</option>
+              <option value="1-settimana" data-i18n="form.urgency1">1 settimana</option>
+              <option value="2-4-settimane" data-i18n="form.urgency2">2-4 settimane</option>
+              <option value="1-2-mesi" data-i18n="form.urgency3">1-2 mesi</option>
+              <option value="flessibile" data-i18n="form.urgency4">Flessibile</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- SEZIONE F: Note Aggiuntive -->
+        <div class="form-section">
+          <h3 data-i18n="form.sectionF">Note Aggiuntive</h3>
+          <div class="form-group">
+            <label for="note" data-i18n="form.notes">Altre informazioni utili</label>
+            <textarea id="note" name="note" data-i18n-placeholder="form.notesPlaceholder"></textarea>
+          </div>
+        </div>
+
+        <div class="form-buttons">
+          <button type="submit" class="btn-email">
+            <i class="fas fa-paper-plane"></i>
+            <span data-i18n="form.submit">Richiedi Preventivo Immediato</span>
+          </button>
+        </div>
+      </form>
+      <div id="formMessage" class="form-message"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Corrado Bruni – Torino</p>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/company/4aix-di-c-b/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/Start13" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61582582593980" target="_blank"><i class="fab fa-facebook"></i></a>
+    </div>
+    <p>
+      <a href="cookie.html" data-i18n="footer.cookie">Cookie Policy</a> |
+      <a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+    </p>
+    <p>
+      📧 <a href="mailto:corbruni@gmail.com">corbruni@gmail.com</a><br>
+      📞 <a href="tel:+393388187925">+39 338 818 7925</a>
+    </p>
+  </footer>
+
+  <script>
+    // ===== TRADUZIONI COMPLETE =====
+    const translations = {
+      it: {
+        "page.title": "Preventivo Automatico - 4AIX Web Solutions",
+        "hero.title": "Preventivo Automatico",
+        "hero.badge": "AI-Powered Development",
+        "hero.subtitle": "Compila il form e ricevi subito il tuo preventivo personalizzato<br>Sviluppo veloce, design moderno e tecnologia all'avanguardia",
+        "hero.cta1": "Richiedi Preventivo",
+        "hero.cta2": "Torna alla Home",
+        "form.title": "Richiedi il Tuo Preventivo",
+        "form.intro": "Compila il form dettagliato e ricevi un preventivo personalizzato in poche ore",
+        "form.sectionA": "Informazioni Base",
+        "form.sectionB": "Tipologia Sito",
+        "form.sectionC": "Funzionalità Richieste",
+        "form.sectionD": "Design & Contenuti",
+        "form.sectionE": "Budget & Tempistiche",
+        "form.sectionF": "Note Aggiuntive",
+        "form.name": "Nome e Cognome *",
+        "form.namePlaceholder": "Il tuo nome completo",
+        "form.email": "Email *",
+        "form.emailPlaceholder": "La tua email",
+        "form.phone": "Telefono",
+        "form.phonePlaceholder": "Il tuo numero di telefono",
+        "form.company": "Azienda/Attività",
+        "form.companyPlaceholder": "Nome della tua azienda o attività",
+        "form.sector": "Settore di attività *",
+        "form.selectSector": "Seleziona settore",
+        "form.sector1": "Ristorazione",
+        "form.sector2": "Commercio",
+        "form.sector3": "Servizi",
+        "form.sector4": "Artigianato",
+        "form.sector5": "Professioni",
+        "form.sector6": "Altro",
+        "form.siteType": "Che tipo di sito ti serve? *",
+        "form.type1": "Vetrina/Presentazione",
+        "form.type2": "E-commerce",
+        "form.type3": "Landing Page",
+        "form.type4": "Portfolio",
+        "form.type5": "Software Gestionale",
+        "form.feat1": "Form di contatto",
+        "form.feat2": "Newsletter",
+        "form.feat3": "Blog integrato",
+        "form.feat4": "Carrello e-commerce",
+        "form.feat5": "Sistema di prenotazioni",
+        "form.feat6": "Area riservata/Login",
+        "form.feat7": "Multilingua (IT/EN)",
+        "form.feat8": "Integrazione social",
+        "form.logo": "Hai già un logo?",
+        "form.yes": "Sì",
+        "form.no": "No (servizio extra)",
+        "form.references": "Siti di riferimento che ti piacciono",
+        "form.referencesPlaceholder": "Incolla qui gli URL di siti che ti piacciono...",
+        "form.colors": "Colori aziendali preferiti",
+        "form.colorsPlaceholder": "Esempio: Blu, bianco, arancione...",
+        "form.budget": "Budget indicativo *",
+        "form.budget1": "Fino a €500",
+        "form.budget2": "€500-1000",
+        "form.budget3": "€1000-2500",
+        "form.budget4": "Oltre €2500",
+        "form.urgency": "Urgenza lancio *",
+        "form.selectUrgency": "Seleziona urgenza",
+        "form.urgency1": "1 settimana",
+        "form.urgency2": "2-4 settimane",
+        "form.urgency3": "1-2 mesi",
+        "form.urgency4": "Flessibile",
+        "form.notes": "Altre informazioni utili",
+        "form.notesPlaceholder": "Descrivi qualsiasi altra esigenza particolare...",
+        "form.submit": "Richiedi Preventivo Immediato",
+        "footer.cookie": "Cookie Policy",
+        "footer.privacy": "Privacy Policy",
+        "success.message": "Grazie per la tua richiesta! Ti invieremo il preventivo via email entro poche ore."
+      },
+      en: {
+        "page.title": "Automatic Quote - 4AIX Web Solutions",
+        "hero.title": "Automatic Quote",
+        "hero.badge": "AI-Powered Development",
+        "hero.subtitle": "Fill out the form and receive your personalized quote immediately<br>Fast development, modern design and cutting-edge technology",
+        "hero.cta1": "Request Quote",
+        "hero.cta2": "Back to Home",
+        "form.title": "Request Your Quote",
+        "form.intro": "Fill out the detailed form and receive a personalized quote within hours",
+        "form.sectionA": "Basic Information",
+        "form.sectionB": "Website Type",
+        "form.sectionC": "Required Features",
+        "form.sectionD": "Design & Content",
+        "form.sectionE": "Budget & Timing",
+        "form.sectionF": "Additional Notes",
+        "form.name": "Full Name *",
+        "form.namePlaceholder": "Your full name",
+        "form.email": "Email *",
+        "form.emailPlaceholder": "Your email",
+        "form.phone": "Phone",
+        "form.phonePlaceholder": "Your phone number",
+        "form.company": "Company/Business",
+        "form.companyPlaceholder": "Your company or business name",
+        "form.sector": "Business Sector *",
+        "form.selectSector": "Select sector",
+        "form.sector1": "Restaurant",
+        "form.sector2": "Retail",
+        "form.sector3": "Services",
+        "form.sector4": "Crafts",
+        "form.sector5": "Professions",
+        "form.sector6": "Other",
+        "form.siteType": "What type of website do you need? *",
+        "form.type1": "Showcase/Presentation",
+        "form.type2": "E-commerce",
+        "form.type3": "Landing Page",
+        "form.type4": "Portfolio",
+        "form.type5": "Management Software",
+        "form.feat1": "Contact form",
+        "form.feat2": "Newsletter",
+        "form.feat3": "Integrated blog",
+        "form.feat4": "E-commerce cart",
+        "form.feat5": "Booking system",
+        "form.feat6": "Private area/Login",
+        "form.feat7": "Multilingual (IT/EN)",
+        "form.feat8": "Social integration",
+        "form.logo": "Do you already have a logo?",
+        "form.yes": "Yes",
+        "form.no": "No (extra service)",
+        "form.references": "Reference websites you like",
+        "form.referencesPlaceholder": "Paste URLs of websites you like here...",
+        "form.colors": "Preferred brand colors",
+        "form.colorsPlaceholder": "Example: Blue, white, orange...",
+        "form.budget": "Indicative budget *",
+        "form.budget1": "Up to €500",
+        "form.budget2": "€500-1000",
+        "form.budget3": "€1000-2500",
+        "form.budget4": "Over €2500",
+        "form.urgency": "Launch urgency *",
+        "form.selectUrgency": "Select urgency",
+        "form.urgency1": "1 week",
+        "form.urgency2": "2-4 weeks",
+        "form.urgency3": "1-2 months",
+        "form.urgency4": "Flexible",
+        "form.notes": "Other useful information",
+        "form.notesPlaceholder": "Describe any other particular needs...",
+        "form.submit": "Request Immediate Quote",
+        "footer.cookie": "Cookie Policy",
+        "footer.privacy": "Privacy Policy",
+        "success.message": "Thank you for your request! We will send you the quote via email within a few hours."
+      }
+    };
+
+    // ===== GESTIONE LINGUA =====
+    let currentLanguage = localStorage.getItem('language') || 'it';
+    const languageSelector = document.getElementById('languageSelector');
+    const languageText = languageSelector.querySelector('.language-text');
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      localStorage.setItem('language', lang);
+      languageText.textContent = lang.toUpperCase();
+      
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          element.innerHTML = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-i18n-placeholder');
+        if (translations[lang][key]) {
+          element.setAttribute('placeholder', translations[lang][key]);
+        }
+      });
+
+      document.title = translations[lang]['page.title'];
+    }
+
+    // ===== GESTIONE TEMA =====
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+
+    function applyTheme(theme) {
+      document.body.setAttribute('data-theme', theme);
+      themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+      localStorage.setItem('theme', theme);
+    }
+
+    // ===== INIZIALIZZAZIONE =====
+    function initializeSettings() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      applyTheme(savedTheme);
+      setLanguage(currentLanguage);
+    }
+
+    // ===== EVENT LISTENERS =====
+    languageSelector.addEventListener('click', () => {
+      const newLang = currentLanguage === 'it' ? 'en' : 'it';
+      setLanguage(newLang);
+    });
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      applyTheme(newTheme);
+    });
+
+    // ===== BUDGET SELECTION =====
+    document.querySelectorAll('.budget-option').forEach(option => {
+      option.addEventListener('click', function() {
+        document.querySelectorAll('.budget-option').forEach(opt => opt.classList.remove('selected'));
+        this.classList.add('selected');
+        document.getElementById('budget').value = this.dataset.value;
+      });
+    });
+
+    // ===== FORM SUBMISSION =====
+    document.getElementById('autoQuoteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const form = e.target;
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      
+      // Mostra stato di invio
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio in corso...';
+      submitBtn.disabled = true;
+
+      // Invia a Formspree
+      fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // SUCCESSO
+          const messageDiv = document.getElementById('formMessage');
+          messageDiv.textContent = translations[currentLanguage]['success.message'];
+          messageDiv.className = 'form-message success';
+          messageDiv.style.display = 'block';
+          
+          // Scroll to success message
+          messageDiv.scrollIntoView({ behavior: 'smooth' });
+          
+          // Reset form
+          form.reset();
+          document.querySelectorAll('.budget-option').forEach(opt => opt.classList.remove('selected'));
+          
+          console.log('✅ Form inviato con successo a Formspree');
+        } else {
+          throw new Error('Errore nel server');
+        }
+      })
+      .catch(error => {
+        console.error('Errore Formspree:', error);
+        const messageDiv = document.getElementById('formMessage');
+        messageDiv.textContent = 'Grazie per la richiesta! Ti contatteremo presto.';
+        messageDiv.className = 'form-message success';
+        messageDiv.style.display = 'block';
+      })
+      .finally(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      });
+    });
+
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // ===== AVVIO =====
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeSettings();
+      console.log('✅ Pagina preventivo.html inizializzata con form completo');
+    });
+  </script>
+</body>
+</html>
