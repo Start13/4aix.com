@@ -837,9 +837,17 @@
 
     .hero-content h1 {
       font-size: 3rem;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       font-weight: 700;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      opacity: 0.9;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      font-weight: 300;
     }
 
     .hero-content p {
@@ -1415,6 +1423,10 @@
         font-size: 2.2rem;
       }
       
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
       .hero-content p {
         font-size: 1.1rem;
       }
@@ -1561,13 +1573,15 @@
 
   <header>
     <div class="hero-content">
-      <h1 data-i18n="hero.title">Corrado Bruni</h1>
+      <h1 data-i18n="hero.title">4AIX</h1>
+      <p class="hero-subtitle" data-i18n="hero.subtitle_name">di Corrado Bruni</p>
       <div class="ai-badge">
         <i class="fas fa-robot"></i>
         <span>AI-Powered Development</span>
       </div>
-      <p data-i18n="hero.subtitle">Web Developer & Supporto Tecnico a Torino<br>
-      Creo siti web moderni e offro una mano concreta per piccoli lavori e supporto quotidiano</p>
+      <p data-i18n="hero.subtitle">Web Developer & Supporto Tecnico<br>
+Creiamo siti web moderni e offriamo supporto concreto<br> 
+a famiglie e persone in terza età</p>
       <div class="cta-buttons">
         <a href="#servizi" class="btn-primary" data-i18n="hero.services">Scopri i Miei Servizi</a>
         <a href="#contatto" class="btn-secondary" data-i18n="hero.contact">Contattami</a>
@@ -1584,7 +1598,7 @@
     <div class="profile">
       <p data-i18n="profile.text1">Con un passato da progettista e imprenditore nel settore tech, ho gestito aziende e progetti complessi. Oggi scelgo di mettere questa esperienza al servizio delle persone, con un approccio più diretto e umano.</p>
 
-      <p data-i18n="profile.text2">Mi rivolgo a chi cerca un professionista affidabile non solo per un sito internet o una consulenza tecnica, ma anche per quel supporto pratico e rassicurante di cui a volte si ha bisogno: un accompagnamento, un piccolo lavoretto in casa, una soluzione semplice a un problema quotidiano.</p>
+      <p data-i18n="profile.text2">Mi rivolgo a chi cerca un professionista affidabile non solo per un sito internet o una consulenza tecnica, mas anche per quel supporto pratico e rassicurante di cui a volte si ha bisogno: un accompagnamento, un piccolo lavoretto in casa, una soluzione semplice a un problema quotidiano.</p>
     </div>
   </section>
 
@@ -2099,8 +2113,9 @@
     // Translations
     const translations = {
       it: {
-        "hero.title": "Corrado Bruni",
-        "hero.subtitle": "Web Developer & Supporto Tecnico a Torino<br>Creo siti web moderni e offro una mano concreta per piccoli lavori e supporto quotidiano",
+        "hero.title": "4AIX",
+        "hero.subtitle_name": "di Corrado Bruni",
+        "hero.subtitle": "Web Developer & Supporto Tecnico<br>Creiamo siti web moderni e offriamo supporto concreto<br>a famiglie e persone in terza età",
         "hero.services": "Scopri i Miei Servizi",
         "hero.contact": "Contattami",
         "hero.quote": "Chiedi un Preventivo",
@@ -2220,8 +2235,9 @@
         "cookie.customize": "Personalizza"
       },
       en: {
-        "hero.title": "Corrado Bruni",
-        "hero.subtitle": "Web Developer & Technical Support in Turin<br>I create modern websites and offer practical help for small jobs and daily support",
+        "hero.title": "4AIX",
+        "hero.subtitle_name": "by Corrado Bruni",
+        "hero.subtitle": "Web Developer & Technical Support<br>We create modern websites and offer concrete support<br>to families and elderly people",
         "hero.services": "Discover My Services",
         "hero.contact": "Contact Me",
         "hero.quote": "Get a Quote",
@@ -3309,59 +3325,64 @@
           // 2. Inizializza Blog System solo se esiste almeno un pulsante
           const blogButtons = document.querySelectorAll('.read-more-btn');
           if (blogButtons.length > 0) {
-            const blogSystem = new BlogSystem();
-            blogSystem.init();
+            new BlogSystem().init();
             console.log('✅ BlogSystem inizializzato');
           } else {
             console.warn('⚠️ BlogSystem non inizializzato: pulsanti non trovati');
           }
 
-          // 3. Inizializza Sincronizzazione Bidirezionale
+          // 3. Setup sincronizzazione bidirezionale
           setupBidirectionalSyncIndex();
-          console.log('✅ Sincronizzazione bidirezionale (index) inizializzata');
-
-          // 4. Inizializza Cookie Banner
-          checkCookieConsent();
-          console.log('✅ Cookie banner inizializzato');
-
-          console.log('🎉 Tutti i sistemi inizializzati correttamente');
           
+          console.log('🎉 Tutti i sistemi inizializzati con successo');
         } catch (error) {
-          console.error('❌ Errore inizializzazione:', error);
+          console.error('❌ Errore nell\'inizializzazione:', error);
         }
-      }, 500);
+      }, 100);
     }
 
-    // ===== GESTIONE COOKIE BANNER =====
+    // Cookie Consent System
     function checkCookieConsent() {
       const consent = localStorage.getItem('cookieConsent');
-      if (!consent) {
-        document.getElementById('cookieConsent').style.display = 'block';
-      }
+      const banner = document.getElementById('cookieConsent');
       
-      // Se ha accettato i cookie analitici, carica Google Analytics
-      if (consent === 'accepted') {
-        loadGoogleAnalytics();
+      if (!consent && banner) {
+        banner.style.display = 'block';
       }
     }
 
     function acceptCookies() {
       localStorage.setItem('cookieConsent', 'accepted');
-      document.getElementById('cookieConsent').style.display = 'none';
-      loadGoogleAnalytics();
+      const banner = document.getElementById('cookieConsent');
+      if (banner) {
+        banner.style.display = 'none';
+      }
+      // Initialize analytics if needed
     }
 
     function rejectCookies() {
       localStorage.setItem('cookieConsent', 'rejected');
-      document.getElementById('cookieConsent').style.display = 'none';
+      const banner = document.getElementById('cookieConsent');
+      if (banner) {
+        banner.style.display = 'none';
+      }
     }
 
-    function loadGoogleAnalytics() {
-      // Google Analytics è già incluso nell'head, si attiverà automaticamente
-      console.log('Google Analytics caricato dopo consenso');
-    }
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('🏁 DOM completamente caricato');
+      
+      // Inizializza tutto
+      initializeSystems();
+      
+      // Controlla il consenso cookie
+      checkCookieConsent();
+      
+      // Log finale
+      console.log('🎊 Sito completamente inizializzato');
+    });
 
-    // AVVIA TUTTO quando il DOM è pronto
+    // Fallback: se il DOM è già caricato
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initializeSystems);
     } else {
