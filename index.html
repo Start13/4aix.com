@@ -5,18 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Corrado Bruni - Web Developer & Supporto Tecnico a Torino</title>
 
-  <!-- Content Security Policy Ottimizzata -->
+  <!-- Content Security Policy OTTIMIZZATA e SICURA -->
   <meta http-equiv="Content-Security-Policy" 
-        content="default-src 'self' https: data: blob: 'unsafe-inline';
-                 script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com;
+        content="default-src 'self' https: data: blob:;
+                 script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com;
                  style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com;
                  font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com;
                  img-src 'self' https: data: blob: https://images.unsplash.com https://www.4aix.com;
                  connect-src 'self' https: https://www.google-analytics.com https://formspree.io;
                  frame-src 'none';
-                 object-src 'none';">
+                 object-src 'none';
+                 base-uri 'self';
+                 form-action 'self' https://formspree.io;">
 
-  <!-- Google Analytics - Versione Sicura -->
+  <!-- Google Analytics - Versione OTTIMIZZATA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0PFF5S9Z2R"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -24,7 +26,9 @@
     gtag('js', new Date());
     gtag('config', 'G-0PFF5S9Z2R', {
       page_title: document.title,
-      page_location: window.location.href
+      page_location: window.location.href,
+      'anonymize_ip': true,
+      'cookie_flags': 'SameSite=None;Secure'
     });
   </script>
   
