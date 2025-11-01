@@ -34,25 +34,19 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://images.unsplash.com">
 
-  <!-- Favicon -->
+  <!-- Favicon e icone corrette -->
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="167x167" href="img/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#1a2a6c">
 
-  <!-- iOS PWA Support -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="4AIX">
-<meta name="apple-touch-fullscreen" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-touch-fullscreen" content="yes">
+  <!-- Meta PWA corretti e aggiornati -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="4AIX">
 
   <!-- Meta Social Ottimizzati -->
   <meta property="og:title" content="Corrado Bruni - Web Developer & Supporto Tecnico a Torino"/>
@@ -1559,13 +1553,13 @@
 </head>
 <body data-theme="dark">
   <!-- Language Selector -->
-  <button class="language-selector" id="languageSelector">
+  <button class="language-selector" id="languageSelector" aria-label="Cambia lingua">
     <i class="fas fa-globe"></i>
     <span class="language-text">IT</span>
   </button>
 
   <!-- Theme Toggle -->
-  <button class="theme-toggle" id="themeToggle">
+  <button class="theme-toggle" id="themeToggle" aria-label="Cambia tema">
     <i class="fas fa-sun"></i>
   </button>
 
@@ -1605,7 +1599,7 @@ a famiglie e persone in terza età</p>
     <div class="profile">
       <p data-i18n="profile.text1">Con un passato da progettista e imprenditore nel settore tech, ho gestito aziende e progetti complessi. Oggi scelgo di mettere questa esperienza al servizio delle persone, con un approccio più diretto e umano.</p>
 
-      <p data-i18n="profile.text2">Mi rivolgo a chi cerca un professionista affidabile non solo per un sito internet o una consulenza tecnica, mas anche per quel supporto pratico e rassicurante di cui a volte si ha bisogno: un accompagnamento, un piccolo lavoretto in casa, una soluzione semplice a un problema quotidiano.</p>
+      <p data-i18n="profile.text2">Mi rivolgo a chi cerca un professionista affidabile non solo per un sito internet o una consulenza tecnica, ma anche per quel supporto pratico e rassicurante di cui a volte si ha bisogno: un accompagnamento, un piccolo lavoretto in casa, una soluzione semplice a un problema quotidiano.</p>
     </div>
   </section>
 
@@ -1648,7 +1642,7 @@ a famiglie e persone in terza età</p>
 
     <!-- Autista Privato -->
     <div class="service-card" onclick="scrollToSection('contatto')">
-      <img src="immagini/Immagini compresse/autista.png" alt="Autista privato Torino" loading="lazy" width="800" height="400">
+      <img src="img/autista.png" alt="Autista privato Torino" loading="lazy" width="800" height="400">
       <div class="content">
         <h3><i class="fas fa-car"></i> <span data-i18n="services.driver.title">Autista Privato</span></h3>
         <p data-i18n="services.driver.text">Disponibile per spostamenti in città e dintorni. Puntualità, discrezione e attenzione alla persona.</p>
@@ -1661,7 +1655,7 @@ a famiglie e persone in terza età</p>
         <i class="fas fa-heart"></i>
         <span>Supporto Dedicato</span>
       </div>
-      <img src="immagini/Immagini compresse/tuttofare.png" alt="Supporto per anziani e famiglie" loading="lazy" width="800" height="400">
+      <img src="img/tuttofare.png" alt="Supporto per anziani e famiglie" loading="lazy" width="800" height="400">
       <div class="content">
         <h3><i class="fas fa-hands-helping"></i> <span data-i18n="services.handyman.title">Supporto Generazionale</span></h3>
         <p data-i18n="services.handyman.text">Assistenza paziente e comprensiva per persone di terza età: tecnologia, piccoli lavori, accompagnamento. Un supporto pratico e affidabile, con gentilezza.</p>
@@ -1681,7 +1675,7 @@ a famiglie e persone in terza età</p>
           <i class="fas fa-brain"></i>
         </div>
         <h3 data-i18n="tech.ai.title">Sviluppo Assistito da AI</h3>
-        <p data-i18n="tech.ai.text">Utilizzo intelligente di Intelligenza Artificiale per ottimizzare processi, migliorare la qualità del codice e creare soluzioni innovative più efficientes</p>
+        <p data-i18n="tech.ai.text">Utilizzo intelligente di Intelligenza Artificiale per ottimizzare processi, migliorare la qualità del codice e creare soluzioni innovative più efficienti</p>
       </div>
       
       <div class="tech-card">
@@ -1705,7 +1699,7 @@ a famiglie e persone in terza età</p>
           <i class="fas fa-shield-alt"></i>
         </div>
         <h3 data-i18n="tech.security.title">Sicurezza & Affidabilità</h3>
-        <p data-i18n="tech.security.text">Implementazione di standard di sicurezza moderni e procedures di backup per garantire stabilità e protezione dei dati</p>
+        <p data-i18n="tech.security.text">Implementazione di standard di sicurezza moderni e procedure di backup per garantire stabilità e protezione dei dati</p>
       </div>
     </div>
   </section>
@@ -2150,7 +2144,7 @@ a famiglie e persone in terza età</p>
         "tech.performance.title": "Performance & SEO",
         "tech.performance.text": "Caricamento ultra-rapido, ottimizzazione SEO avanzata e best practices per massimizzare visibilità e conversione",
         "tech.security.title": "Sicurezza & Affidabilità",
-        "tech.security.text": "Implementazione di standard di sicurezza moderni e procedures di backup per garantire stabilità e protezione dei dati",
+        "tech.security.text": "Implementazione di standard di sicurezza moderni e procedure di backup per garantire stabilità e protezione dei dati",
         "portfolio.title": "Cosa Posso Creare per Te",
         "portfolio.intro": "Esplora i template disponibili per ogni categoria",
         "portfolio.project1.title": "E-Commerce",
