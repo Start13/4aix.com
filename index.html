@@ -697,6 +697,15 @@
       border-color: var(--accent-color);
     }
 
+    .no-slots {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 15px;
+      border-radius: 5px;
+      background: var(--bg-color);
+      font-weight: 500;
+    }
+
     .booking-summary {
       background: var(--bg-color);
       border-radius: 10px;
@@ -2950,6 +2959,33 @@ a famiglie e persone in terza età</p>
         this.updateStepDisplay();
       }
 
+      isSameDay(dateA, dateB) {
+        return dateA && dateB &&
+          dateA.getFullYear() === dateB.getFullYear() &&
+          dateA.getMonth() === dateB.getMonth() &&
+          dateA.getDate() === dateB.getDate();
+      }
+
+      getSlotsForDate(date) {
+        if (!date) {
+          return [];
+        }
+
+        const slots = [...this.availableSlots];
+        const now = new Date();
+
+        if (!this.isSameDay(date, now)) {
+          return slots;
+        }
+
+        const currentMinutes = now.getHours() * 60 + now.getMinutes();
+        return slots.filter(slot => {
+          const [hours, minutes] = slot.split(':').map(Number);
+          const slotMinutes = hours * 60 + minutes;
+          return slotMinutes >= currentMinutes;
+        });
+      }
+
       bindEvents() {
         // Service selection
         document.querySelectorAll('.service-option').forEach(option => {
@@ -3103,7 +3139,9 @@ a famiglie e persone in terza età</p>
 
           const currentDate = new Date(this.currentYear, this.currentMonth, day);
           
-          if (currentDate < today) {
+          const isWeekend = currentDate.getDay() === 0 || currentDate.getDay() === 6;
+
+          if (currentDate < today || isWeekend) {
             dateElement.classList.add('unavailable');
           } else {
             dateElement.classList.add('available');
@@ -3132,9 +3170,16 @@ a famiglie e persone in terza età</p>
         }
         this.renderCalendar();
       }
-
       selectDate(day) {
-        this.selectedDate = new Date(this.currentYear, this.currentMonth, day);
+        const chosenDate = new Date(this.currentYear, this.currentMonth, day);
+        const dayOfWeek = chosenDate.getDay();
+
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+          return;
+        }
+
+        this.selectedDate = chosenDate;
+        this.selectedTime = null;
         this.renderCalendar();
         this.showTimeSlots();
       }
@@ -3156,17 +3201,34 @@ generateTimeSlots() {
 
       showTimeSlots() {
         const container = document.querySelector('.slots-container');
-        if (!container) return;
-        
-        container.innerHTML = '';
+        if (!container || !this.selectedDate) return;
 
-        this.availableSlots.forEach(slot => {
-          const slotElement = document.createElement('div');
-          slotElement.className = 'time-slot';
-          slotElement.textContent = slot;
-          slotElement.addEventListener('click', () => this.selectTime(slot, slotElement));
-          container.appendChild(slotElement);
-        });
+        container.innerHTML = '';
+        const availableSlots = this.getSlotsForDate(this.selectedDate);
+
+        if (!availableSlots.includes(this.selectedTime)) {
+          this.selectedTime = null;
+        }
+
+        if (availableSlots.length === 0) {
+          const emptyMessage = document.createElement('div');
+          emptyMessage.className = 'no-slots';
+          emptyMessage.textContent = currentLanguage === 'it'
+            ? 'Nessuna fascia oraria disponibile oggi'
+            : 'No time slots available today';
+          container.appendChild(emptyMessage);
+        } else {
+          availableSlots.forEach(slot => {
+            const slotElement = document.createElement('div');
+            slotElement.className = 'time-slot';
+            slotElement.textContent = slot;
+            if (slot === this.selectedTime) {
+              slotElement.classList.add('selected');
+            }
+            slotElement.addEventListener('click', () => this.selectTime(slot, slotElement));
+            container.appendChild(slotElement);
+          });
+        }
 
         const timeSlots = document.getElementById('time-slots');
         if (timeSlots) {
@@ -3311,8 +3373,14 @@ generateTimeSlots() {
       }
     }
 
+    let systemsInitialized = false;
+
     // ===== INIZIALIZZAZIONE SISTEMI CORRETTA =====
     function initializeSystems() {
+      if (systemsInitialized) {
+        return;
+      }
+      systemsInitialized = true;
       console.log('🚀 Inizializzazione sistemi...');
       
       // INIZIALIZZA PRIMA LE IMPOSTAZIONI
