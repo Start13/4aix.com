@@ -6,17 +6,18 @@
   <title>Corrado Bruni - Web Developer & Supporto Tecnico a Torino</title>
 
   <!-- Content Security Policy OTTIMIZZATA e SICURA -->
-  <meta http-equiv="Content-Security-Policy" 
-        content="default-src 'self' https: data: blob:;
-                 script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com;
-                 style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com;
-                 font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com;
-                 img-src 'self' https: data: blob: https://images.unsplash.com https://www.4aix.com;
-                 connect-src 'self' https: https://www.google-analytics.com https://formspree.io;
-                 frame-src 'none';
-                 object-src 'none';
-                 base-uri 'self';
-                 form-action 'self' https://formspree.io;">
+<!-- SOSTITUISCI la CSP esistente con questa versione corretta -->
+<meta http-equiv="Content-Security-Policy" 
+      content="default-src 'self' https: data: blob:;
+               script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com;
+               style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com;
+               font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com;
+               img-src 'self' https: data: blob: https://images.unsplash.com https://www.4aix.com;
+               connect-src 'self' https: https://www.google-analytics.com https://formspree.io;
+               frame-src 'none';
+               object-src 'none';
+               base-uri 'self';
+               form-action 'self' https://formspree.io;">
 
   <!-- Google Analytics - Versione OTTIMIZZATA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0PFF5S9Z2R"></script>
@@ -3138,18 +3139,20 @@ a famiglie e persone in terza età</p>
         this.showTimeSlots();
       }
 
-      generateTimeSlots() {
-        const slots = [];
-        const startHour = 9;
-        const endHour = 18;
-        
-        for (let hour = startHour; hour < endHour; hour++) {
-          slots.push(`${hour.toString().padStart(2, '0')}:00`);
-          slots.push(`${hour.toString().padStart(2, '0')}:30`);
-        }
-        
-        return slots;
-      }
+// SOSTITUISCI nel BookingSystem (circa riga ~3300)
+// Invece di usare eval, usa funzioni nominate
+generateTimeSlots() {
+  const slots = [];
+  const startHour = 9;
+  const endHour = 18;
+  
+  for (let hour = startHour; hour < endHour; hour++) {
+    slots.push(`${hour.toString().padStart(2, '0')}:00`);
+    slots.push(`${hour.toString().padStart(2, '0')}:30`);
+  }
+  
+  return slots;
+}
 
       showTimeSlots() {
         const container = document.querySelector('.slots-container');
